@@ -191,7 +191,9 @@
       "reloadOptions": {
         "single_success": "Параметри успішно перезавантажено",
         "single_fail": "Не вдалося перезавантажити параметри"
-      }
+      },
+      "failed_to_update_options": "Не вдалося оновити налаштувань: {{f}} ({{options}})",
+      "options_partially_updated": "Оновлено налаштувань: {{s}}, відхилено: {{f}} ({{options}})"
     },
   
     "settings": {
@@ -833,8 +835,10 @@
             "Discord": "Discord",
             "Backup": "Резервна копія",
             "Anti-Cheat": "Анти-чит",
-            "Miscellaneous": "Різне"
-          }
+            "Miscellaneous": "Різне",
+            "Other": "Інші налаштування"
+          },
+          "other_options_description": "Налаштування, про які повідомляє сервер, але для яких застосунок не має опису. Їх можна змінювати, як і будь-які інші."
         },
         "terminal": {
           "name": "Термінал"

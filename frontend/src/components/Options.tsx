@@ -1,12 +1,12 @@
 import { Option, options as optionsData } from "@/assets/options";
 import { ScrollArea, ScrollBar } from "./ui/scroll-area";
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { TFunction } from "i18next";
 import { Button } from "./ui/button";
 import { SettingContent, SettingDescription, SettingLabel, SettingsGroup, SettingsItem } from "./ui/settings-group";
 import { useTranslation } from "react-i18next";
 import { useRcon } from "@/contexts/rcon-provider";
-import { main } from "@/wailsjs/go/models";
 import { Switch } from "./ui/switch";
 import { Input } from "./ui/input";
 import { formatWithMinimumOneDecimal } from "@/lib/utils";
@@ -22,6 +22,37 @@ import { ReloadOptions } from "@/wailsjs/go/main/App";
 import { Label } from "./ui/label";
 import { useConfig } from "@/contexts/config-provider";
 
+// Sammelkategorie für Optionen ohne Eintrag in der Darstellungstabelle. Was hier
+// auftaucht, gehört bei nächster Gelegenheit in assets/options.ts einsortiert.
+const otherCategoryName = "Other";
+
+// Der Server liefert den Typ; die Darstellungstabelle sagt nur, wie er aussehen soll.
+function displayTypeForKind(kind: string | undefined): Option["Type"] {
+  switch (kind) {
+    case "Boolean":
+      return "Boolean";
+    case "Integer":
+      return "Integer";
+    case "Double":
+      return "Double";
+    default:
+      return "String";
+  }
+}
+
+// Fehlt ein Katalogeintrag, steht der Rohname da — kein leeres Feld.
+function optionLabel(t: TFunction, fieldName: string): string {
+  return t(`options.${fieldName}.display_name`, { defaultValue: fieldName });
+}
+
+function optionDescription(t: TFunction, fieldName: string): string {
+  return t(`options.${fieldName}.description`, { defaultValue: "" });
+}
+
+function optionKeywords(t: TFunction, fieldName: string): string {
+  return t(`options.${fieldName}.keywords`, { defaultValue: "" });
+}
+
 export function OptionsTab() {
   const { config } = useConfig();
   const { t } = useTranslation();
@@ -36,6 +67,8 @@ export function OptionsTab() {
     reloadDoubleptions,
     importOptions,
     exportOptions,
+    optionNames,
+    optionKinds,
   } = useRcon();
 
   const [tab, setTab] = useState("General");
@@ -52,6 +85,24 @@ export function OptionsTab() {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  // Angezeigt wird, was der Server gemeldet hat — nicht, was die Anwendung kennt.
+  // Die Darstellungstabelle sagt nur, wie eine Option aussieht (PG-01, PG-02).
+  const categories = useMemo(() => {
+    const reported = new Set(optionNames);
+    const described = optionsData.categories.map((category) => ({
+      ...category,
+      options: category.options.filter((option) => reported.has(option.FieldName)),
+    }));
+
+    const describedNames = new Set(optionsData.categories.flatMap((c) => c.options.map((o) => o.FieldName)));
+    const others: Option[] = optionNames
+      .filter((name) => !describedNames.has(name))
+      .sort((a, b) => a.localeCompare(b))
+      .map((name) => ({ FieldName: name, Type: displayTypeForKind(optionKinds[name]) }));
+
+    return others.length > 0 ? [...described, { name: otherCategoryName, options: others }] : described;
+  }, [optionNames, optionKinds]);
 
   useEffect(() => {
     const observerOptions = {
@@ -72,7 +123,7 @@ export function OptionsTab() {
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-    const anchors = optionsData.categories.map((category) => document.getElementById(category.name + "-anchor"));
+    const anchors = categories.map((category) => document.getElementById(category.name + "-anchor"));
 
     anchors.forEach((anchor) => {
       if (anchor) {
@@ -87,7 +138,7 @@ export function OptionsTab() {
         }
       });
     };
-  }, []);
+  }, [categories]);
 
   useEffect(() => {
     const updateHeight = () => {
@@ -111,14 +162,14 @@ export function OptionsTab() {
     };
   }, []);
 
-  const filteredCategories = optionsData.categories
+  const filteredCategories = categories
     .map((category) => {
       return {
         ...category,
         options: category.options.filter(
           (option) =>
             option.FieldName.toLowerCase().includes(searchText.toLowerCase()) ||
-            t(`options.${option.FieldName}.keywords`).toLowerCase().includes(searchText.toLowerCase()) ||
+            optionKeywords(t, option.FieldName).toLowerCase().includes(searchText.toLowerCase()) ||
             category.name.toLowerCase().includes(searchText.toLowerCase()) ||
             option.Type.toLowerCase() === searchText.toLowerCase()
         ),
@@ -143,7 +194,7 @@ export function OptionsTab() {
                 setTab(category.name);
               }}
             >
-              {t(`admin_panel.tabs.options.categories.${category.name}`)}
+              {t(`admin_panel.tabs.options.categories.${category.name}`, { defaultValue: category.name })}
             </TabsTrigger>
           ))}
         </TabsList>
@@ -185,8 +236,13 @@ export function OptionsTab() {
                   setTab(category.name);
                 }}
               >
-                {t(`admin_panel.tabs.options.categories.${category.name}`)}
+                {t(`admin_panel.tabs.options.categories.${category.name}`, { defaultValue: category.name })}
               </a>
+              {category.name === otherCategoryName && (
+                <div className="pt-1 text-sm text-muted-foreground">
+                  {t("admin_panel.tabs.options.other_options_description")}
+                </div>
+              )}
             </div>
             <SettingsGroup className="space-y-0.5">
               {category.options.map((option) => (
@@ -197,21 +253,21 @@ export function OptionsTab() {
                     option.Requirements &&
                     option.Requirements.some(
                       (requirement) =>
-                        modifiedOptions[requirement.FieldName as keyof main.PzOptions] !== requirement.FieldValue
+                        modifiedOptions[requirement.FieldName] !== requirement.FieldValue
                     )
                   }
                 >
                   <div>
                     <SettingLabel className="flex gap-1.5">
-                      {t(`options.${option.FieldName}.display_name`)}
+                      {optionLabel(t, option.FieldName)}
                       {option.Default !== undefined &&
-                        option.Default !== modifiedOptions[option.FieldName as keyof main.PzOptions] && (
+                        option.Default !== modifiedOptions[option.FieldName] && (
                           <Tooltip>
                             <TooltipTrigger asChild>
                               <div
                                 className="cursor-pointer mt-0.5"
                                 onClick={() => {
-                                  modifyOption(option.FieldName as keyof main.PzOptions, option.Default!);
+                                  modifyOption(option.FieldName, option.Default!);
                                   reloadDoubleptions();
                                 }}
                               >
@@ -224,7 +280,7 @@ export function OptionsTab() {
                           </Tooltip>
                         )}
                     </SettingLabel>
-                    <SettingDescription>{t(`options.${option.FieldName}.description`)}</SettingDescription>
+                    <SettingDescription>{optionDescription(t, option.FieldName)}</SettingDescription>
                     {option.Requirements && (
                       <div className="flex items-center gap-2 opacity-50">
                         <span className="text-xs text-muted-foreground">
@@ -333,9 +389,9 @@ function BoolOptionContent({ option }: { option: Option }) {
   return (
     <div className="w-[5.5rem] flex justify-end">
       <Switch
-        checked={modifiedOptions[option.FieldName as keyof main.PzOptions] as boolean}
+        checked={modifiedOptions[option.FieldName] as boolean}
         onCheckedChange={(value) => {
-          modifyOption(option.FieldName as keyof main.PzOptions, value);
+          modifyOption(option.FieldName, value);
         }}
       />
     </div>
@@ -345,7 +401,7 @@ function BoolOptionContent({ option }: { option: Option }) {
 function IntOptionContent({ option }: { option: Option }) {
   const { modifiedOptions, modifyOption, options } = useRcon();
 
-  const value = modifiedOptions[option.FieldName as keyof main.PzOptions] as number;
+  const value = modifiedOptions[option.FieldName] as number;
 
   const { t } = useTranslation();
 
@@ -355,15 +411,15 @@ function IntOptionContent({ option }: { option: Option }) {
         <div className="flex flex-col items-center min-w-24">
           <Switch
             id={option.FieldName + "-disabled"}
-            checked={modifiedOptions[option.FieldName as keyof main.PzOptions] === option.DisabledValue}
+            checked={modifiedOptions[option.FieldName] === option.DisabledValue}
             onCheckedChange={(value) => {
               modifyOption(
-                option.FieldName as keyof main.PzOptions,
+                option.FieldName,
                 value
                   ? (option.DisabledValue as number)
-                  : options[option.FieldName as keyof main.PzOptions] === option.DisabledValue
+                  : options[option.FieldName] === option.DisabledValue
                   ? NaN
-                  : options[option.FieldName as keyof main.PzOptions]
+                  : options[option.FieldName]
               );
             }}
           />
@@ -382,14 +438,14 @@ function IntOptionContent({ option }: { option: Option }) {
           lang="en"
           inputMode="numeric"
           placeholder={
-            modifiedOptions[option.FieldName as keyof main.PzOptions] === option.DisabledValue
+            modifiedOptions[option.FieldName] === option.DisabledValue
               ? t(`options.${option.FieldName}.disabled`)
               : ""
           }
           value={
-            modifiedOptions[option.FieldName as keyof main.PzOptions] === option.DisabledValue
+            modifiedOptions[option.FieldName] === option.DisabledValue
               ? ""
-              : (modifiedOptions[option.FieldName as keyof main.PzOptions] as number)
+              : (modifiedOptions[option.FieldName] as number)
           }
           onChange={(e) => {
             let value = parseInt(e.target.value, 10);
@@ -398,12 +454,12 @@ function IntOptionContent({ option }: { option: Option }) {
             }
             value = Math.min(value, option.Range?.Max ?? 2147483647);
 
-            modifyOption(option.FieldName as keyof main.PzOptions, value);
+            modifyOption(option.FieldName, value);
           }}
           min={option.Range?.Min ?? -2147483647}
           max={option.Range?.Max ?? 2147483647}
           onKeyDown={(e) => e.key.match(/[-+.,]/) && e.preventDefault()}
-          disabled={modifiedOptions[option.FieldName as keyof main.PzOptions] === option.DisabledValue}
+          disabled={modifiedOptions[option.FieldName] === option.DisabledValue}
         />
         {option.Range && (
           <div className="text-[0.6rem] w-[5.5rem] h-0 text-center text-muted-foreground">
@@ -419,7 +475,7 @@ function DoubleOptionContent({ option }: { option: Option }) {
   const { modifiedOptions, modifyOption, optionsModified, options, reloadDoubleOptionsKey } = useRcon();
 
   const [inputValue, setInputValue] = useState(
-    formatWithMinimumOneDecimal(modifiedOptions[option.FieldName as keyof main.PzOptions])
+    formatWithMinimumOneDecimal(modifiedOptions[option.FieldName])
   );
   const floatInputValue = parseFloat(inputValue);
 
@@ -447,17 +503,17 @@ function DoubleOptionContent({ option }: { option: Option }) {
   };
 
   useEffect(() => {
-    modifyOption(option.FieldName as keyof main.PzOptions, floatInputValue);
+    modifyOption(option.FieldName, floatInputValue);
   }, [inputValue]);
 
   useEffect(() => {
     if (!optionsModified) {
-      setInputValue(formatWithMinimumOneDecimal(modifiedOptions[option.FieldName as keyof main.PzOptions]));
+      setInputValue(formatWithMinimumOneDecimal(modifiedOptions[option.FieldName]));
     }
   }, [optionsModified]);
 
   useEffect(() => {
-    setInputValue(formatWithMinimumOneDecimal(modifiedOptions[option.FieldName as keyof main.PzOptions]));
+    setInputValue(formatWithMinimumOneDecimal(modifiedOptions[option.FieldName]));
   }, [reloadDoubleOptionsKey]);
 
   return (
@@ -465,11 +521,11 @@ function DoubleOptionContent({ option }: { option: Option }) {
       {option.DisabledValue !== undefined && (
         <div className="flex flex-col items-center min-w-24">
           <Switch
-            checked={modifiedOptions[option.FieldName as keyof main.PzOptions] === option.DisabledValue}
+            checked={modifiedOptions[option.FieldName] === option.DisabledValue}
             onCheckedChange={(value) => {
               modifyOption(
-                option.FieldName as keyof main.PzOptions,
-                value ? (option.DisabledValue as number) : options[option.FieldName as keyof main.PzOptions]
+                option.FieldName,
+                value ? (option.DisabledValue as number) : options[option.FieldName]
               );
             }}
           />
@@ -526,15 +582,15 @@ function StringOptionContent({ option }: { option: Option }) {
         <div className="flex flex-col items-center min-w-24">
           <Switch
             id={option.FieldName + "-disabled"}
-            checked={modifiedOptions[option.FieldName as keyof main.PzOptions] === option.DisabledValue}
+            checked={modifiedOptions[option.FieldName] === option.DisabledValue}
             onCheckedChange={(value) => {
               modifyOption(
-                option.FieldName as keyof main.PzOptions,
+                option.FieldName,
                 value
                   ? (option.DisabledValue as string)
-                  : options[option.FieldName as keyof main.PzOptions] === option.DisabledValue
+                  : options[option.FieldName] === option.DisabledValue
                   ? ""
-                  : options[option.FieldName as keyof main.PzOptions]
+                  : options[option.FieldName]
               );
             }}
           />
@@ -548,20 +604,20 @@ function StringOptionContent({ option }: { option: Option }) {
         type="text"
         inputMode="text"
         placeholder={
-          modifiedOptions[option.FieldName as keyof main.PzOptions] === option.DisabledValue
+          modifiedOptions[option.FieldName] === option.DisabledValue
             ? t(`options.${option.FieldName}.disabled`)
             : ""
         }
         value={
-          modifiedOptions[option.FieldName as keyof main.PzOptions] === option.DisabledValue
+          modifiedOptions[option.FieldName] === option.DisabledValue
             ? ""
-            : (modifiedOptions[option.FieldName as keyof main.PzOptions] as string)
+            : (modifiedOptions[option.FieldName] as string)
         }
         onChange={(e) => {
-          modifyOption(option.FieldName as keyof main.PzOptions, e.target.value);
+          modifyOption(option.FieldName, e.target.value);
         }}
         onKeyDown={(e) => e.key.match(/[\\"]/g) && e.preventDefault()}
-        disabled={modifiedOptions[option.FieldName as keyof main.PzOptions] === option.DisabledValue}
+        disabled={modifiedOptions[option.FieldName] === option.DisabledValue}
       />
     </div>
   );
@@ -577,15 +633,15 @@ function TextOptionContent({ option }: { option: Option }) {
       {option.DisabledValue !== undefined && (
         <div className="flex flex-col items-center min-w-24">
           <Switch
-            checked={modifiedOptions[option.FieldName as keyof main.PzOptions] === option.DisabledValue}
+            checked={modifiedOptions[option.FieldName] === option.DisabledValue}
             onCheckedChange={(value) => {
               modifyOption(
-                option.FieldName as keyof main.PzOptions,
+                option.FieldName,
                 value
                   ? (option.DisabledValue as string)
-                  : options[option.FieldName as keyof main.PzOptions] === option.DisabledValue
+                  : options[option.FieldName] === option.DisabledValue
                   ? ""
-                  : (options[option.FieldName as keyof main.PzOptions] as string)
+                  : (options[option.FieldName] as string)
               );
             }}
           />
@@ -596,19 +652,19 @@ function TextOptionContent({ option }: { option: Option }) {
         className="w-[20rem] max-h-40"
         inputMode="text"
         placeholder={
-          modifiedOptions[option.FieldName as keyof main.PzOptions] === option.DisabledValue
+          modifiedOptions[option.FieldName] === option.DisabledValue
             ? t(`options.${option.FieldName}.disabled`)
             : ""
         }
-        value={(modifiedOptions[option.FieldName as keyof main.PzOptions] === option.DisabledValue
+        value={(modifiedOptions[option.FieldName] === option.DisabledValue
           ? ""
-          : (modifiedOptions[option.FieldName as keyof main.PzOptions] as string)
+          : (modifiedOptions[option.FieldName] as string)
         ).replace(/\\n/g, "\n")}
         onChange={(e) => {
-          modifyOption(option.FieldName as keyof main.PzOptions, e.target.value.replace(/\n/g, "\\n"));
+          modifyOption(option.FieldName, e.target.value.replace(/\n/g, "\\n"));
         }}
         onKeyDown={(e) => e.key.match(/[\\"]/g) && e.preventDefault()}
-        disabled={modifiedOptions[option.FieldName as keyof main.PzOptions] === option.DisabledValue}
+        disabled={modifiedOptions[option.FieldName] === option.DisabledValue}
         maxLength={965}
       />
     </div>
@@ -624,7 +680,7 @@ function InformationOptionContent({ option }: { option: Option }) {
       type="text"
       inputMode="none"
       readOnly={true}
-      value={modifiedOptions[option.FieldName as keyof main.PzOptions] as string}
+      value={modifiedOptions[option.FieldName] as string}
     />
   );
 }
@@ -642,20 +698,20 @@ function ServerWelcomeMessageOptionContent({ option }: { option: Option }) {
           type="text"
           inputMode="text"
           placeholder={
-            modifiedOptions[option.FieldName as keyof main.PzOptions] === option.DisabledValue
+            modifiedOptions[option.FieldName] === option.DisabledValue
               ? t(`options.${option.FieldName}.disabled`)
               : ""
           }
           value={
-            modifiedOptions[option.FieldName as keyof main.PzOptions] === option.DisabledValue
+            modifiedOptions[option.FieldName] === option.DisabledValue
               ? ""
-              : (modifiedOptions[option.FieldName as keyof main.PzOptions] as string)
+              : (modifiedOptions[option.FieldName] as string)
           }
           onChange={(e) => {
-            modifyOption(option.FieldName as keyof main.PzOptions, e.target.value);
+            modifyOption(option.FieldName, e.target.value);
           }}
           onKeyDown={(e) => e.key.match(/[\\"]/g) && e.preventDefault()}
-          disabled={modifiedOptions[option.FieldName as keyof main.PzOptions] === option.DisabledValue}
+          disabled={modifiedOptions[option.FieldName] === option.DisabledValue}
         />
         <Button size={"icon"} className="shrink-0" onClick={() => setIsDialogOpen(true)}>
           <Edit className="h-4 w-4" />
@@ -663,8 +719,8 @@ function ServerWelcomeMessageOptionContent({ option }: { option: Option }) {
       </div>
 
       <SendMessageDialog
-        onSaveEdit={(message) => modifyOption(option.FieldName as keyof main.PzOptions, message)}
-        initialMessage={modifiedOptions[option.FieldName as keyof main.PzOptions] as string}
+        onSaveEdit={(message) => modifyOption(option.FieldName, message)}
+        initialMessage={modifiedOptions[option.FieldName] as string}
         mode="settings"
         isOpen={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}
@@ -678,7 +734,7 @@ function SpawnItemsOptionContent({ option }: { option: Option }) {
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  const items = ((modifiedOptions[option.FieldName as keyof main.PzOptions] as string) || "").split(",");
+  const items = ((modifiedOptions[option.FieldName] as string) || "").split(",");
 
   return (
     <>
@@ -709,8 +765,8 @@ function SpawnItemsOptionContent({ option }: { option: Option }) {
       </div>
 
       <AddItemDialog
-        onSaveEdit={(items) => modifyOption(option.FieldName as keyof main.PzOptions, items)}
-        initialItems={modifiedOptions[option.FieldName as keyof main.PzOptions] as string}
+        onSaveEdit={(items) => modifyOption(option.FieldName, items)}
+        initialItems={modifiedOptions[option.FieldName] as string}
         mode="settings"
         isOpen={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}
@@ -725,13 +781,13 @@ function ChoiceOptionContent({ option }: { option: Option }) {
 
   return (
     <div>
-      <ToggleGroup type="single" value={modifiedOptions[option.FieldName as keyof main.PzOptions] as any}>
+      <ToggleGroup type="single" value={modifiedOptions[option.FieldName] as any}>
         {option.Choices?.map(({ Name, Value }) => (
           <ToggleGroupItem
             key={Value as any}
             value={Value as any}
             onClick={() => {
-              modifyOption(option.FieldName as keyof main.PzOptions, Value);
+              modifyOption(option.FieldName, Value);
             }}
           >
             {t(`options.${option.FieldName}.choices.${Name}`)}
@@ -747,7 +803,7 @@ function MultipleChoiceOptionContent({ option }: { option: Option }) {
   const { t } = useTranslation();
 
   // Helper to handle multiple selections as a comma-separated string
-  const handleModifyOption = (fieldName: keyof main.PzOptions, value: any) => {
+  const handleModifyOption = (fieldName: string, value: any) => {
     const currentValue = (modifiedOptions[fieldName] as string) || "";
     const currentValues = currentValue.split(",").filter((v) => v); // Split and filter empty strings
 
@@ -771,13 +827,13 @@ function MultipleChoiceOptionContent({ option }: { option: Option }) {
     <div>
       <ToggleGroup
         type="multiple"
-        value={((modifiedOptions[option.FieldName as keyof main.PzOptions] as string) || "").split(",")}
+        value={((modifiedOptions[option.FieldName] as string) || "").split(",")}
       >
         {option.Choices?.map(({ Name, Value }) => (
           <ToggleGroupItem
             key={Value as any}
             value={Value as any}
-            onClick={() => handleModifyOption(option.FieldName as keyof main.PzOptions, Value)}
+            onClick={() => handleModifyOption(option.FieldName, Value)}
           >
             {t(`options.${option.FieldName}.choices.${Name}`)}
           </ToggleGroupItem>

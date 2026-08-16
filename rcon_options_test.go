@@ -2,6 +2,114 @@ package main
 
 import "testing"
 
+func serverStateForTest() []Option {
+	return parseOptionLines([]string{
+		"* PublicName=My B42 Server",
+		"* MaxPlayers=32",
+		"* SpeedLimit=70.0",
+		"* War=false",
+		"* AntiCheatSafety=1",
+	})
+}
+
+// Geschrieben wird nur, was sich gegenüber dem gelesenen Serverstand geändert hat —
+// und nur für Namen, die der Server selbst gemeldet hat (PG-03).
+func TestDiffServerOptionsOnlySendsChangedNamesTheServerReported(t *testing.T) {
+	server := serverStateForTest()
+
+	changes := diffServerOptions(server, map[string]string{
+		"PublicName":          "My B42 Server", // unverändert
+		"MaxPlayers":          "48",            // geändert
+		"SpeedLimit":          "70.0",          // unverändert
+		"War":                 "true",          // geändert
+		"AntiCheatSafety":     "1",             // unverändert
+		"HoursForLootRespawn": "12",            // vom Server nie gemeldet -> nie senden
+	})
+
+	if len(changes) != 2 {
+		t.Fatalf("expected 2 changes, got %d: %v", len(changes), changes)
+	}
+
+	// Reihenfolge folgt der Serverantwort, damit der Ablauf nachvollziehbar bleibt.
+	if changes[0].Name != "MaxPlayers" || changes[0].Value != "48" {
+		t.Errorf("first change = %v, want MaxPlayers=48", changes[0])
+	}
+	if changes[1].Name != "War" || changes[1].Value != "true" {
+		t.Errorf("second change = %v, want War=true", changes[1])
+	}
+}
+
+// Der Server meldet Kommazahlen als "70.0", die Oberfläche schickt vielleicht "70".
+// Das ist derselbe Wert und darf kein changeoption auslösen.
+func TestDiffServerOptionsTreatsEqualNumbersAndCasedBooleansAsUnchanged(t *testing.T) {
+	server := serverStateForTest()
+
+	changes := diffServerOptions(server, map[string]string{
+		"SpeedLimit": "70",
+		"MaxPlayers": "32.0",
+		"War":        "FALSE",
+	})
+
+	if len(changes) != 0 {
+		t.Fatalf("expected no changes, got %v", changes)
+	}
+}
+
+// Erfolg wird an der Antwort geprüft, nicht daran, dass Execute keinen Fehler
+// lieferte — ein PZ-Server antwortet auf Unsinn freundlich.
+func TestOptionUpdateSucceededChecksTheServerAnswer(t *testing.T) {
+	cases := []struct {
+		name     string
+		option   OptionPair
+		kind     string
+		response string
+		want     bool
+	}{
+		{
+			name:     "wörtliche Bestätigung",
+			option:   OptionPair{Name: "MaxPlayers", Value: "48"},
+			kind:     "Integer",
+			response: "Option : MaxPlayers is now : 48",
+			want:     true,
+		},
+		{
+			name:     "Kommazahl wird vom Server anders formatiert",
+			option:   OptionPair{Name: "SpeedLimit", Value: "70"},
+			kind:     "Double",
+			response: "Option : SpeedLimit is now : 70.0",
+			want:     true,
+		},
+		{
+			name:     "Text mit Sonderzeichen kommt unverändert zurück",
+			option:   OptionPair{Name: "ClientCommandFilter", Value: "-vehicle.*;+vehicle.fixPart"},
+			kind:     "String",
+			response: "Option : ClientCommandFilter is now : -vehicle.*;+vehicle.fixPart",
+			want:     true,
+		},
+		{
+			name:     "Server bestätigt einen anderen Wert",
+			option:   OptionPair{Name: "MaxPlayers", Value: "48"},
+			kind:     "Integer",
+			response: "Option : MaxPlayers is now : 32",
+			want:     false,
+		},
+		{
+			name:     "freundliche Antwort auf eine unbekannte Option",
+			option:   OptionPair{Name: "KickFastPlayers", Value: "true"},
+			kind:     "Boolean",
+			response: "Change a server option. Use /changeoption \"optionName\" \"newValue\"",
+			want:     false,
+		},
+	}
+
+	for _, testCase := range cases {
+		got := optionUpdateSucceeded(testCase.option, testCase.kind, testCase.response)
+		if got != testCase.want {
+			t.Errorf("%s: optionUpdateSucceeded = %v, want %v", testCase.name, got, testCase.want)
+		}
+	}
+}
+
 // Die Antwort von showoptions, wie ein Server sie liefert: eine Kopfzeile, dann je
 // Option eine Zeile "* Name=Wert". Der Parser übernimmt jede davon, ohne vorher zu
 // wissen, welche Optionen es gibt (PG-01).

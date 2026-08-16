@@ -32,7 +32,7 @@ export function DeleteCredentials():Promise<boolean>;
 
 export function DisconnectRcon():Promise<boolean>;
 
-export function ExportOptionsDialog(arg1:main.PzOptions):Promise<void>;
+export function ExportOptionsDialog(arg1:Record<string, string>):Promise<void>;
 
 export function Format(arg1:string,arg2:Array<any>):Promise<string>;
 
@@ -129,5 +129,7 @@ export function Thunder(arg1:Array<string>):Promise<void>;
 export function UnbanUsers(arg1:Array<string>):Promise<void>;
 
 export function Update(arg1:string):Promise<void>;
+
+export function UpdateOptions(arg1:Record<string, string>,arg2:boolean):Promise<boolean>;
 
 export function UpdatePzOptions(arg1:main.PzOptions,arg2:boolean):Promise<boolean>;

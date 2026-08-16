@@ -191,7 +191,9 @@
       "reloadOptions": {
         "single_success": "Параметры успешно перезагружены",
         "single_fail": "Не удалось перезагрузить параметры"
-      }
+      },
+      "failed_to_update_options": "Не удалось обновить настроек: {{f}} ({{options}})",
+      "options_partially_updated": "Обновлено настроек: {{s}}, отклонено: {{f}} ({{options}})"
     },
   
     "settings": {
@@ -833,8 +835,10 @@
             "Discord": "Discord",
             "Backup": "Бэкап",
             "Anti-Cheat": "Анти-чит",
-            "Miscellaneous": "Разное"
-          }
+            "Miscellaneous": "Разное",
+            "Other": "Прочие настройки"
+          },
+          "other_options_description": "Настройки, о которых сообщает сервер, но для которых у приложения нет описания. Их можно менять как любые другие."
         },
         "terminal": {
           "name": "Терминал"

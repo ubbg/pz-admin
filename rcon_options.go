@@ -193,6 +193,72 @@ func parseOptionLines(lines []string) []Option {
 	return options
 }
 
+// optionUpdateSucceeded prüft die Antwort des Servers auf changeoption. Build 42
+// antwortet "Option : <Name> is now : <Wert>"; bei Kommazahlen formatiert der Server
+// den Wert um ("70" wird zu "70.0"), deshalb wird dort numerisch verglichen.
+func optionUpdateSucceeded(option OptionPair, kind string, response string) bool {
+	prefix := fmt.Sprintf("Option : %s is now : ", option.Name)
+	if !strings.HasPrefix(response, prefix) {
+		return false
+	}
+
+	confirmed := strings.TrimPrefix(response, prefix)
+	if confirmed == option.Value {
+		return true
+	}
+
+	if kind == "Double" || kind == "Integer" {
+		return optionValuesEqual(confirmed, option.Value)
+	}
+
+	return false
+}
+
+// diffServerOptions vergleicht die Eingaben der Oberfläche mit dem zuletzt gelesenen
+// Serverstand. Es entsteht ein Änderungsbefehl je Option, die sich geändert hat — und
+// keiner für einen Namen, den der Server nicht gemeldet hat (PG-03). Die Reihenfolge
+// folgt der Serverantwort.
+func diffServerOptions(server []Option, values map[string]string) []OptionPair {
+	var changes []OptionPair
+
+	for _, option := range server {
+		value, ok := values[option.Name]
+		if !ok {
+			continue
+		}
+		if optionValuesEqual(option.Value, value) {
+			continue
+		}
+		changes = append(changes, OptionPair{Name: option.Name, Value: value})
+	}
+
+	return changes
+}
+
+// optionValuesEqual vergleicht zwei Werte so, wie der Server sie versteht: "70" und
+// "70.0" sind dieselbe Zahl, "false" und "FALSE" derselbe Wahrheitswert.
+func optionValuesEqual(a string, b string) bool {
+	if a == b {
+		return true
+	}
+
+	if isBooleanValue(a) && isBooleanValue(b) {
+		return strings.EqualFold(a, b)
+	}
+
+	numberA, errA := strconv.ParseFloat(a, 64)
+	numberB, errB := strconv.ParseFloat(b, 64)
+	if errA == nil && errB == nil {
+		return numberA == numberB
+	}
+
+	return false
+}
+
+func isBooleanValue(value string) bool {
+	return strings.EqualFold(value, "true") || strings.EqualFold(value, "false")
+}
+
 // kindOfValue leitet den Typ aus dem Wert ab: true/false ist ein Wahrheitswert, eine
 // reine Ganzzahl eine Zahl, eine Zahl mit Punkt eine Kommazahl, alles Übrige Text.
 func kindOfValue(value string) string {
@@ -314,6 +380,100 @@ func parseOptions(lines []string, target *PzOptions) error {
 	}
 
 	return nil
+}
+
+// UpdateOptions schreibt die Eingaben der Oberfläche zurück: ein changeoption je
+// Option, die sich gegenüber dem gelesenen Serverstand geändert hat, danach optional
+// ein reloadoptions. Namen, die der Server nicht gemeldet hat, werden nie gesendet.
+func (app *App) UpdateOptions(values map[string]string, reloadOptions bool) bool {
+	defer pzOptions_update()
+
+	optionsToUpdate := diffServerOptions(serverOptions, values)
+
+	if len(optionsToUpdate) == 0 {
+		app.SendNotification(Notification{Title: "rcon.no_options_to_update", Variant: "warning"})
+		return false
+	}
+
+	failed := app.applyServerOptions(optionsToUpdate)
+
+	if len(failed) > 0 {
+		// Welche Option der Server abgelehnt hat, ist beim Wechsel des Spiel-Builds
+		// die einzige interessante Angabe — eine Anzahl allein hilft niemandem (PG-06).
+		succeeded := len(optionsToUpdate) - len(failed)
+		notification := Notification{
+			Title:   "rcon.failed_to_update_options",
+			Variant: "error",
+			Parameters: map[string]string{
+				"f":       fmt.Sprintf("%d", len(failed)),
+				"s":       fmt.Sprintf("%d", succeeded),
+				"options": strings.Join(failed, ", "),
+			},
+		}
+		if succeeded > 0 {
+			notification.Title = "rcon.options_partially_updated"
+			notification.Variant = "warning"
+		}
+		app.SendNotification(notification)
+		return false
+	}
+
+	if err := pzOptions_update(); err != nil {
+		runtime.LogErrorf(app.ctx, "Error syncing options after update: %v", err)
+		app.SendNotification(Notification{Title: "rcon.options_updated_sync_failed", Variant: "error"})
+		return false
+	}
+
+	if reloadOptions {
+		command := RCONCommand{
+			CommandTemplate: "reloadoptions",
+			SuccessCheck: func(name string, response string) bool {
+				return response == "Options reloaded"
+			},
+		}
+
+		if command.execute() != 1 {
+			app.SendNotification(Notification{Title: "rcon.reloadOptions.single_fail", Variant: "error"})
+			return false
+		}
+
+		app.SendNotification(Notification{Title: "rcon.options_saved_and_reloaded", Variant: "success"})
+		return true
+	}
+
+	app.SendNotification(Notification{Title: "rcon.options_updated", Variant: "success"})
+	return true
+}
+
+// applyServerOptions sendet je Option ein changeoption und liefert die Namen, die der
+// Server nicht übernommen hat.
+func (app *App) applyServerOptions(options []OptionPair) []string {
+	connMutex.Lock()
+	defer connMutex.Unlock()
+
+	defer runtime.EventsEmit(app.ctx, "setProgress", 0)
+	runtime.EventsEmit(app.ctx, "setProgress", 10)
+
+	kinds := map[string]string{}
+	for _, option := range serverOptions {
+		kinds[option.Name] = option.Kind
+	}
+
+	var failed []string
+
+	for i, option := range options {
+		runtime.EventsEmit(app.ctx, "setProgress", float64(i)/float64(len(options))*100)
+
+		command := fmt.Sprintf("changeoption %s \"%s\"", option.Name, option.Value)
+		res, err := conn.Execute(command)
+
+		if err != nil || !optionUpdateSucceeded(option, kinds[option.Name], res) {
+			runtime.LogErrorf(app.ctx, "Failed to update %s: %v (response: %s)", option.Name, err, res)
+			failed = append(failed, option.Name)
+		}
+	}
+
+	return failed
 }
 
 func (app *App) UpdatePzOptions(newOptions PzOptions, reloadOptions bool) bool {

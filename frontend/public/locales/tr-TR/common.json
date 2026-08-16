@@ -191,7 +191,9 @@
     "reloadOptions": {
       "single_success": "Ayarlar yeniden yüklendi",
       "single_fail": "Ayarlar yeniden yüklenemedi"
-    }
+    },
+    "failed_to_update_options": "{{f}} seçenek güncellenemedi: {{options}}",
+    "options_partially_updated": "{{s}} seçenek güncellendi, {{f}} reddedildi: {{options}}"
   },
 
   "settings": {
@@ -833,8 +835,10 @@
           "Discord": "Discord",
           "Backup": "Yedekleme",
           "Anti-Cheat": "Anti-Cheat",
-          "Miscellaneous": "Diğer"
-        }
+          "Miscellaneous": "Diğer",
+          "Other": "Diğer Seçenekler"
+        },
+        "other_options_description": "Sunucunuzun bildirdiği, bu uygulamanın açıklaması olmayan seçenekler. Diğer seçenekler gibi değiştirilebilirler."
       },
       "terminal": {
         "name": "Terminal"

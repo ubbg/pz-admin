@@ -191,7 +191,9 @@
     "reloadOptions": {
       "single_success": "Successfully reloaded options",
       "single_fail": "Failed to reload options"
-    }
+    },
+    "failed_to_update_options": "Failed to update {{f}} options: {{options}}",
+    "options_partially_updated": "{{s}} options updated, {{f}} rejected: {{options}}"
   },
 
   "settings": {
@@ -833,8 +835,10 @@
           "Discord": "Discord",
           "Backup": "Backup",
           "Anti-Cheat": "Anti-Cheat",
-          "Miscellaneous": "Miscellaneous"
-        }
+          "Miscellaneous": "Miscellaneous",
+          "Other": "Other Options"
+        },
+        "other_options_description": "Options your server reports that this application has no description for. They can be changed like any other option."
       },
       "terminal": {
         "name": "Terminal"

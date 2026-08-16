@@ -258,6 +258,10 @@ export function Update(arg1) {
   return window['go']['main']['App']['Update'](arg1);
 }
 
+export function UpdateOptions(arg1, arg2) {
+  return window['go']['main']['App']['UpdateOptions'](arg1, arg2);
+}
+
 export function UpdatePzOptions(arg1, arg2) {
   return window['go']['main']['App']['UpdatePzOptions'](arg1, arg2);
 }

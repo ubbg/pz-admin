@@ -55,8 +55,8 @@ Projekts: Jede exportierte Methode auf `*App` wird zu einer TypeScript-Funktion.
 * `frontend/src/assets/` — `items.json` (~2060 IDs), `vehicles.json`, `options.ts`
   (Darstellungs-Metadaten der Serveroptionen). Die beiden JSON-Kataloge werden von
   `frontend/scripts/*.mjs` aus dem Wiki erzeugt, siehe `.claude/rules/catalogs.md`.
-* `frontend/public/locales/<sprache>/common.json` — vier Sprachen: `en-US`, `tr-TR`,
-  `ru-RU`, `uk-UA`.
+* `frontend/public/locales/<sprache>/common.json` — fünf Sprachen: `en-US`, `tr-TR`,
+  `ru-RU`, `uk-UA`, `de-DE`.
 
 ## Globale Entwicklungsrichtlinien
 
@@ -67,7 +67,7 @@ Projekts: Jede exportierte Methode auf `*App` wird zu einer TypeScript-Funktion.
 * **Nach außen sichtbare Strings gehören in die Sprachkataloge**, nie in den Code.
   Das gilt auch für Go: `Notification.Title` ist ein **i18n-Schlüssel**
   (`"rcon.rcon_connection_failed"`), keine Meldung. Ein neuer Schlüssel wird in
-  **allen vier** Katalogen angelegt — siehe `.claude/rules/i18n.md`.
+  **allen fünf** Katalogen angelegt — siehe `.claude/rules/i18n.md`.
 * **Eine Verbindung, ein Mutex.** Jeder RCON-Zugriff läuft über `conn` unter
   `connMutex`. Kein zweiter Dial, kein Zugriff ohne Sperre, kein `conn.Execute` aus
   dem Frontend-Pfad heraus außer über `SendRconCommand`.
@@ -144,7 +144,7 @@ Gebunden wird ausschließlich `app` (`main.go`, `Bind:`). Daraus folgt:
     (`rcon_options.go`, `frontend/src/assets/options.ts`).
   * `frontend.md` — React, shadcn/ui, Provider, Dialoge, Tabellen
     (`frontend/src/**`).
-  * `i18n.md` — vier Kataloge, Schlüsselkonventionen, Go-seitige Schlüssel
+  * `i18n.md` — fünf Kataloge, Schlüsselkonventionen, Go-seitige Schlüssel
     (`frontend/public/locales/**`, `frontend/src/i18n.ts`, `language.go`).
   * `catalogs.md` — die Wiki-Generatoren und ihre Versionsbindung
     (`frontend/scripts/*.mjs`, `frontend/src/assets/*.json`).

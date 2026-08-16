@@ -1,0 +1,1891 @@
+{
+  "save": "Speichern",
+  "cancel": "Abbrechen",
+  "yes": "Ja",
+  "no": "Nein",
+  "show_in_explorer": "Im Dateimanager zeigen",
+  "import": "Einfuhr",
+  "export": "Ausfuhr",
+  "error": "Fehler",
+  "show": "Anzeigen",
+  "create": "Anlegen",
+  "delete": "Löschen",
+  "unselect_all": "Auswahl aufheben",
+  "clear": "Leeren",
+  "copy": "Kopieren",
+  "add": "Hinzufügen",
+  "back": "Zurück",
+  "stop": "Anhalten",
+  "save_and_apply": "Speichern und anwenden",
+  "restore_to_default": "Auf Vorgabe zurücksetzen",
+  "downloading_missing_external_programs": "Fehlende externe Programme werden geladen …",
+  "downloaded_missing_external_programs": "Fehlende externe Programme wurden geladen.",
+  "nav": {
+    "admin_panel": "Adminbereich",
+    "tools": "Werkzeuge",
+    "settings": "Einstellungen",
+    "sandbox": "Sandbox"
+  },
+  "notifications": {
+    "copy_to_clipboard": "In die Zwischenablage kopiert",
+    "copy_to_clipboard_failed": "Kopieren in die Zwischenablage fehlgeschlagen"
+  },
+  "rcon": {
+    "rcon_connection_failed": "RCON-Verbindung fehlgeschlagen",
+    "rcon_connection_established": "RCON-Verbindung steht",
+    "rcon_connection_lost": "RCON-Verbindung verloren",
+    "error_encrypting_credentials": "Fehler beim Verschlüsseln der Zugangsdaten",
+    "error_decrypting_credentials": "Fehler beim Entschlüsseln der Zugangsdaten",
+    "error_saving_credentials": "Fehler beim Speichern der Zugangsdaten",
+    "error_loading_credentials": "Fehler beim Laden der Zugangsdaten",
+    "no_options_to_update": "Keine geänderten Optionen",
+    "failed_to_update_n_options": "{{n}} Optionen konnten nicht geändert werden",
+    "options_updated_sync_failed": "Optionen geändert, aber der Abgleich mit der Anwendung ist fehlgeschlagen",
+    "options_saved_and_reloaded": "Optionen geändert und neu geladen",
+    "options_updated": "Optionen geändert",
+    "addPlayer": {
+      "cant_add_player": "Spieler kann nicht hinzugefügt werden",
+      "player_already_in_list": "Spieler {{name}} steht bereits in der Liste"
+    },
+    "addPlayerToWhitelist": {
+      "single_success": "Spieler hinzugefügt",
+      "single_fail": "Spieler konnte nicht hinzugefügt werden"
+    },
+    "removePlayersFromWhitelist": {
+      "all_success": "{{s}} Spieler entfernt",
+      "all_fail": "{{f}} Spieler konnten nicht entfernt werden",
+      "partial": "{{s}} Spieler entfernt, {{f}} nicht",
+      "single_success": "Spieler {{name}} entfernt",
+      "single_fail": "Spieler {{name}} konnte nicht entfernt werden",
+      "cant_remove_player": "Spieler kann nicht entfernt werden",
+      "player_not_found_in_list": "Spieler {{name}} steht nicht in der Liste"
+    },
+    "banUsers": {
+      "all_success": "{{s}} Spieler gesperrt",
+      "all_fail": "{{f}} Spieler konnten nicht gesperrt werden",
+      "partial": "{{s}} Spieler gesperrt, {{f}} nicht",
+      "single_success": "{{name}} gesperrt",
+      "single_fail": "{{name}} konnte nicht gesperrt werden"
+    },
+    "unbanUsers": {
+      "all_success": "Sperre für {{s}} Spieler aufgehoben",
+      "all_fail": "Sperre für {{f}} Spieler konnte nicht aufgehoben werden",
+      "partial": "Sperre für {{s}} Spieler aufgehoben, für {{f}} nicht",
+      "single_success": "Sperre für {{name}} aufgehoben",
+      "single_fail": "Sperre für {{name}} konnte nicht aufgehoben werden"
+    },
+    "kickUsers": {
+      "all_success": "{{s}} Spieler hinausgeworfen",
+      "all_fail": "{{f}} Spieler konnten nicht hinausgeworfen werden",
+      "partial": "{{s}} Spieler hinausgeworfen, {{f}} nicht",
+      "single_success": "{{name}} hinausgeworfen",
+      "single_fail": "{{name}} konnte nicht hinausgeworfen werden"
+    },
+    "godMode": {
+      "all_success": "Unverwundbarkeit für {{s}} Spieler geändert",
+      "all_fail": "Unverwundbarkeit für {{f}} Spieler konnte nicht geändert werden",
+      "partial": "Unverwundbarkeit für {{s}} Spieler geändert, für {{f}} nicht",
+      "single_success": "Unverwundbarkeit für {{name}} geändert",
+      "single_fail": "Unverwundbarkeit für {{name}} konnte nicht geändert werden"
+    },
+    "teleport": {
+      "all_success": "{{s}} Spieler versetzt",
+      "all_fail": "{{f}} Spieler konnten nicht versetzt werden",
+      "partial": "{{s}} Spieler versetzt, {{f}} nicht",
+      "single_success": "{{name}} versetzt",
+      "single_fail": "{{name}} konnte nicht versetzt werden"
+    },
+    "setAccessLevel": {
+      "all_success": "Zugriffsstufe für {{s}} Spieler gesetzt",
+      "all_fail": "Zugriffsstufe für {{f}} Spieler konnte nicht gesetzt werden",
+      "partial": "Zugriffsstufe für {{s}} Spieler gesetzt, für {{f}} nicht",
+      "single_success": "Zugriffsstufe für {{name}} gesetzt",
+      "single_fail": "Zugriffsstufe für {{name}} konnte nicht gesetzt werden"
+    },
+    "createHorde": {
+      "all_success": "Horde bei {{s}} Spielern erzeugt",
+      "all_fail": "Horde bei {{f}} Spielern konnte nicht erzeugt werden",
+      "partial": "Horde bei {{s}} Spielern erzeugt, bei {{f}} nicht",
+      "single_success": "Horde bei {{name}} erzeugt",
+      "single_fail": "Horde bei {{name}} konnte nicht erzeugt werden"
+    },
+    "lightning": {
+      "all_success": "Blitz bei {{s}} Spielern ausgelöst",
+      "all_fail": "Blitz bei {{f}} Spielern konnte nicht ausgelöst werden",
+      "partial": "Blitz bei {{s}} Spielern ausgelöst, bei {{f}} nicht",
+      "single_success": "Blitz bei {{name}} ausgelöst",
+      "single_fail": "Blitz bei {{name}} konnte nicht ausgelöst werden"
+    },
+    "thunder": {
+      "all_success": "Donner bei {{s}} Spielern ausgelöst",
+      "all_fail": "Donner bei {{f}} Spielern konnte nicht ausgelöst werden",
+      "partial": "Donner bei {{s}} Spielern ausgelöst, bei {{f}} nicht",
+      "single_success": "Donner bei {{name}} ausgelöst",
+      "single_fail": "Donner bei {{name}} konnte nicht ausgelöst werden"
+    },
+    "addXP": {
+      "success": "Erfahrung vergeben",
+      "fail": "Erfahrung konnte nicht vergeben werden"
+    },
+    "addVehicle": {
+      "all_success": "{{s}} Fahrzeuge gegeben",
+      "all_fail": "{{f}} Fahrzeuge konnten nicht gegeben werden",
+      "partial": "{{s}} Fahrzeuge gegeben, {{f}} nicht",
+      "single_success": "Fahrzeug für {{name}} erzeugt",
+      "single_fail": "Fahrzeug für {{name}} konnte nicht erzeugt werden"
+    },
+    "addItems": {
+      "success": "Gegenstände gegeben",
+      "fail": "Gegenstände konnten nicht gegeben werden"
+    },
+    "saveWorld": {
+      "single_success": "Welt gespeichert",
+      "single_fail": "Welt konnte nicht gespeichert werden"
+    },
+    "stopServer": {
+      "single_success": "Server wird angehalten",
+      "single_fail": "Server konnte nicht angehalten werden"
+    },
+    "checkModsNeedUpdate": {
+      "single_success": "Prüfung gestartet. Die Antwort steht im Protokoll und im Chat",
+      "single_fail": "Die Mod-Prüfung konnte nicht gestartet werden"
+    },
+    "serverMessage": {
+      "single_success": "Servernachricht gesendet",
+      "single_fail": "Servernachricht konnte nicht gesendet werden"
+    },
+    "startRain": {
+      "single_success": "Regen gestartet",
+      "single_fail": "Regen konnte nicht gestartet werden"
+    },
+    "startStorm": {
+      "single_success": "Sturm gestartet",
+      "single_fail": "Sturm konnte nicht gestartet werden"
+    },
+    "stopRain": {
+      "single_success": "Regen beendet",
+      "single_fail": "Regen konnte nicht beendet werden"
+    },
+    "stopWeather": {
+      "single_success": "Wetter beendet",
+      "single_fail": "Wetter konnte nicht beendet werden"
+    },
+    "chopper": {
+      "single_success": "Hubschrauber ausgelöst",
+      "single_fail": "Hubschrauber konnte nicht ausgelöst werden"
+    },
+    "gunshot": {
+      "single_success": "Schuss ausgelöst",
+      "single_fail": "Schuss konnte nicht ausgelöst werden"
+    },
+    "triggerAlarm": {
+      "single_success": "Alarm ausgelöst",
+      "single_fail": "Alarm konnte nicht ausgelöst werden"
+    },
+    "reloadOptions": {
+      "single_success": "Optionen neu geladen",
+      "single_fail": "Optionen konnten nicht neu geladen werden"
+    },
+    "failed_to_update_options": "{{f}} Optionen konnten nicht geändert werden: {{options}}",
+    "options_partially_updated": "{{s}} Optionen geändert, {{f}} abgelehnt: {{options}}",
+    "addSteamId": {
+      "single_success": "SteamID {{steamId}} zur Erlaubnisliste hinzugefügt",
+      "single_fail": "SteamID {{steamId}} konnte nicht hinzugefügt werden"
+    },
+    "removeSteamId": {
+      "single_success": "SteamID {{steamId}} aus der Erlaubnisliste entfernt",
+      "single_fail": "SteamID {{steamId}} konnte nicht entfernt werden"
+    },
+    "banSteamId": {
+      "single_success": "SteamID {{steamId}} ist gesperrt",
+      "single_fail": "SteamID {{steamId}} konnte nicht gesperrt werden"
+    },
+    "unbanSteamId": {
+      "single_success": "Sperre für SteamID {{steamId}} aufgehoben",
+      "single_fail": "Sperre für SteamID {{steamId}} konnte nicht aufgehoben werden"
+    },
+    "banIp": {
+      "single_success": "IP {{ip}} ist gesperrt",
+      "single_fail": "IP {{ip}} konnte nicht gesperrt werden"
+    },
+    "unbanIp": {
+      "single_success": "Sperre für IP {{ip}} aufgehoben",
+      "single_fail": "Sperre für IP {{ip}} konnte nicht aufgehoben werden"
+    },
+    "setPassword": {
+      "single_success": "Passwort für {{name}} geändert",
+      "single_fail": "Passwort für {{name}} konnte nicht geändert werden"
+    },
+    "invisible": {
+      "single_success": "Unsichtbarkeit für {{name}} geändert",
+      "single_fail": "Unsichtbarkeit für {{name}} konnte nicht geändert werden",
+      "all_success": "Unsichtbarkeit für {{s}} Spieler geändert",
+      "all_fail": "Bei allen {{f}} Spielern fehlgeschlagen: {{failed}}",
+      "partial": "{{s}} geändert, {{f}} fehlgeschlagen: {{failed}}"
+    },
+    "noclip": {
+      "single_success": "Wanddurchlässigkeit für {{name}} geändert",
+      "single_fail": "Wanddurchlässigkeit für {{name}} konnte nicht geändert werden",
+      "all_success": "Wanddurchlässigkeit für {{s}} Spieler geändert",
+      "all_fail": "Bei allen {{f}} Spielern fehlgeschlagen: {{failed}}",
+      "partial": "{{s}} geändert, {{f}} fehlgeschlagen: {{failed}}"
+    },
+    "voiceban": {
+      "single_success": "Spracheinstellung für {{name}} geändert",
+      "single_fail": "Spracheinstellung für {{name}} konnte nicht geändert werden",
+      "all_success": "Spracheinstellung für {{s}} Spieler geändert",
+      "all_fail": "Bei allen {{f}} Spielern fehlgeschlagen: {{failed}}",
+      "partial": "{{s}} geändert, {{f}} fehlgeschlagen: {{failed}}"
+    },
+    "addToSafehouse": {
+      "single_success": "{{name}} ins Safehouse aufgenommen",
+      "single_fail": "{{name}} konnte nicht ins Safehouse aufgenommen werden",
+      "all_success": "{{s}} Spieler ins Safehouse aufgenommen",
+      "all_fail": "Bei allen {{f}} Spielern fehlgeschlagen: {{failed}}",
+      "partial": "{{s}} aufgenommen, {{f}} fehlgeschlagen: {{failed}}"
+    },
+    "kickFromSafehouse": {
+      "single_success": "{{name}} aus dem Safehouse geworfen",
+      "single_fail": "{{name}} konnte nicht aus dem Safehouse geworfen werden",
+      "all_success": "{{s}} Spieler aus dem Safehouse geworfen",
+      "all_fail": "Bei allen {{f}} Spielern fehlgeschlagen: {{failed}}",
+      "partial": "{{s}} hinausgeworfen, {{f}} fehlgeschlagen: {{failed}}"
+    },
+    "addKey": {
+      "single_success": "Schlüssel {{keyId}} an {{name}} gegeben",
+      "single_fail": "Schlüssel {{keyId}} konnte {{name}} nicht gegeben werden",
+      "all_success": "Schlüssel {{keyId}} an {{s}} Spieler gegeben",
+      "all_fail": "Bei allen {{f}} Spielern fehlgeschlagen: {{failed}}",
+      "partial": "{{s}} vergeben, {{f}} fehlgeschlagen: {{failed}}"
+    },
+    "removeMapSymbols": {
+      "single_success": "Kartensymbole von {{name}} gelöscht",
+      "single_fail": "Kartensymbole von {{name}} konnten nicht gelöscht werden",
+      "all_success": "Kartensymbole von {{s}} Spielern gelöscht",
+      "all_fail": "Bei allen {{f}} Spielern fehlgeschlagen: {{failed}}",
+      "partial": "{{s}} gelöscht, {{f}} fehlgeschlagen: {{failed}}"
+    },
+    "releaseSafehouse": {
+      "single_success": "Safehouse freigegeben",
+      "single_fail": "Safehouse konnte nicht freigegeben werden"
+    },
+    "removeItems": {
+      "single_success": "{{item}} entfernt",
+      "single_fail": "{{item}} konnte nicht entfernt werden"
+    },
+    "removeZombies": {
+      "single_success": "Geladene Zombies entfernt",
+      "single_fail": "Die Zombies konnten nicht entfernt werden"
+    },
+    "worldGen": {
+      "start": {
+        "single_success": "Weltgenerator gestartet",
+        "single_fail": "Weltgenerator konnte nicht gestartet werden"
+      },
+      "recheck": {
+        "single_success": "Weltgenerator erneut geprüft",
+        "single_fail": "Weltgenerator konnte nicht erneut geprüft werden"
+      },
+      "stop": {
+        "single_success": "Weltgenerator angehalten",
+        "single_fail": "Weltgenerator konnte nicht angehalten werden"
+      },
+      "status": {
+        "single_success": "Zustand des Weltgenerators gelesen",
+        "single_fail": "Zustand des Weltgenerators konnte nicht gelesen werden"
+      }
+    },
+    "reloadAllLua": {
+      "single_success": "Alle Lua-Skripte neu geladen",
+      "single_fail": "Die Lua-Skripte konnten nicht neu geladen werden"
+    },
+    "reloadLua": {
+      "single_success": "{{file}} neu geladen",
+      "single_fail": "{{file}} konnte nicht neu geladen werden"
+    },
+    "setLogLevel": {
+      "single_success": "Protokollstufe für {{type}} auf {{level}} gesetzt",
+      "single_fail": "Protokollstufe für {{type}} konnte nicht gesetzt werden"
+    },
+    "setStats": {
+      "single_success": "Statistikausgabe auf {{mode}} gesetzt",
+      "single_fail": "Statistikausgabe konnte nicht gesetzt werden"
+    },
+    "createHorde2": {
+      "single_success": "Zweite Horde bei {{name}} erzeugt",
+      "single_fail": "Zweite Horde bei {{name}} konnte nicht erzeugt werden",
+      "all_success": "Zweite Horde bei {{s}} Spielern erzeugt",
+      "all_fail": "Bei allen {{f}} Spielern fehlgeschlagen: {{failed}}",
+      "partial": "{{s}} erzeugt, {{f}} fehlgeschlagen: {{failed}}"
+    }
+  },
+  "settings": {
+    "restart_the_app_for_changes_to_take_effect": "Die Anwendung neu starten, damit die Änderungen greifen.",
+    "are_you_sure_you_want_to_import_this_config": "Diese Konfiguration wirklich einlesen?",
+    "the_app_will_restart_to_load_the_new_config": "Die Anwendung startet neu, um die neue Konfiguration zu laden.",
+    "config_saved": "Konfiguration gespeichert",
+    "there_was_an_error_saving_the_config": "Beim Speichern der Konfiguration ist ein Fehler aufgetreten.",
+    "categories": {
+      "general": "Allgemein",
+      "application": "Anwendung",
+      "advanced": "Erweitert",
+      "update": "Aktualisierung",
+      "rcon": "RCON"
+    },
+    "setting": {
+      "language": {
+        "label": "Sprache",
+        "description": "Die bevorzugte Sprache wählen.",
+        "select_language": "Sprache wählen …",
+        "search_language": "Sprache suchen …",
+        "no_languages_found": "Keine Sprache gefunden."
+      },
+      "theme": {
+        "label": "Erscheinungsbild",
+        "description": "Farbgebung der Oberfläche wählen."
+      },
+      "color_scheme": {
+        "label": "Farbschema",
+        "description": "Das bevorzugte Farbschema wählen.",
+        "select_color_scheme": "Farbschema wählen …",
+        "search_color_scheme": "Farbschema suchen …",
+        "no_color_schemes_found": "Kein Farbschema gefunden.",
+        "color_schemes": {
+          "default": "Standard",
+          "midnightAsh": "Mitternachtsasche",
+          "dawnMist": "Morgennebel",
+          "forestDawn": "Waldmorgen",
+          "goldenEmber": "Goldene Glut"
+        }
+      },
+      "window_effect": {
+        "label": "Fenstereffekt",
+        "description": "Den Fenstereffekt wählen.",
+        "auto": "Automatisch",
+        "none": "Keiner",
+        "acrylic": "Acryl",
+        "mica": "Mica",
+        "tabbed": "Tabbed"
+      },
+      "window_opacity": {
+        "label": "Fensterdeckkraft",
+        "description": "Die Deckkraft des Fensters einstellen. (Wird übergangen, wenn als Fenstereffekt „Keiner\" gewählt ist.)"
+      },
+      "window_scale": {
+        "label": "Fensterskalierung",
+        "description": "Die Skalierung des Fensters einstellen."
+      },
+      "use_system_title_bar": {
+        "label": "Titelleiste des Systems",
+        "description": "Die Titelleiste des Systems statt einer eigenen verwenden."
+      },
+      "logging": {
+        "label": "Protokollierung",
+        "description": "In Dateien protokollieren."
+      },
+      "log_levels": {
+        "label": "Protokollstufen",
+        "description": "Die Stufen wählen, die aufgezeichnet werden."
+      },
+      "max_log_files": {
+        "label": "Höchstzahl Protokolldateien",
+        "description": "Wie viele Protokolldateien höchstens aufbewahrt werden."
+      },
+      "import_export": {
+        "label": "Einstellungen ein- und ausführen",
+        "description": "Die Einstellungen aus einer JSON-Datei einlesen oder in eine schreiben."
+      },
+      "save_window_status": {
+        "label": "Fensterzustand merken",
+        "description": "Größe, Position und Zustand des Fensters merken."
+      },
+      "check_for_updates": {
+        "label": "Beim Start nach Aktualisierungen suchen",
+        "description": "Beim Start nach Aktualisierungen suchen.",
+        "no_source_description": "Für diesen Build ist keine Aktualisierungsquelle eingerichtet, deshalb wird nicht geprüft."
+      },
+      "update": {
+        "update_available": "Aktualisierung verfügbar",
+        "no_updates_available": "Keine Aktualisierung verfügbar",
+        "last_checked": "Zuletzt geprüft",
+        "check_for_updates": "Nach Aktualisierungen suchen",
+        "update": "Aktualisieren",
+        "updating": "Wird aktualisiert …",
+        "failed_to_check_for_updates": "Die Suche nach Aktualisierungen ist fehlgeschlagen. Bitte später erneut versuchen.",
+        "failed_to_download_update": "Die Aktualisierung konnte nicht geladen werden. Bitte später erneut versuchen.",
+        "failed_to_apply_update": "Die Aktualisierung konnte nicht eingespielt werden.",
+        "update_applied": "Die Aktualisierung wurde eingespielt.",
+        "restarting": "Neustart …",
+        "need_admin_privileges": "Zum Aktualisieren der Anwendung werden Administratorrechte gebraucht.",
+        "update_successful": "Die Aktualisierung wurde erfolgreich eingespielt.",
+        "no_update_source": "Keine Aktualisierungsquelle eingerichtet"
+      },
+      "rcon_check_interval": {
+        "label": "RCON-Prüfintervall",
+        "description": "Wie oft (in Sekunden) Verbindung und Spielerliste geprüft werden."
+      },
+      "disable_weather_control_buttons": {
+        "label": "Wetterknöpfe sperren",
+        "description": "Sperrt die Wetterknöpfe im Verwaltungsbereich, damit man sich nicht verklickt."
+      },
+      "disable_random_event_buttons": {
+        "label": "Zufallsereignis-Knöpfe sperren",
+        "description": "Sperrt die Knöpfe für Zufallsereignisse im Verwaltungsbereich, damit man sich nicht verklickt."
+      },
+      "disable_other_management_buttons": {
+        "label": "Übrige Verwaltungsknöpfe sperren",
+        "description": "Sperrt die Knöpfe im Bereich „Sonstiges\" der Serververwaltung, damit man sich nicht verklickt."
+      },
+      "debug_mode": {
+        "label": "Fehlersuchmodus",
+        "description": "Den Fehlersuchmodus einschalten."
+      },
+      "update_source": {
+        "label": "Aktualisierungsquelle",
+        "description": "Releases werden aus diesem Repository geprüft und geladen.",
+        "not_configured": "Nicht eingerichtet",
+        "not_configured_description": "Dieser Build folgt keiner Release-Quelle. Aktualisierungen sind aus, damit ihn kein fremdes Release ersetzt."
+      },
+      "sandbox_access": {
+        "label": "Zugang zur Sandbox-Datei",
+        "description": "Die Sandbox-Einstellungen von Build 42 sind über RCON nicht erreichbar. Die Anwendung braucht deshalb den Weg zur Datei: einen lokalen Pfad oder das Datenverzeichnis eines Docker-Volumes.",
+        "mode_local": "Lokaler Pfad",
+        "mode_docker": "Docker-Volume",
+        "placeholder_local": "/home/user/Zomboid/Server/servertest_SandboxVars.lua",
+        "placeholder_docker": "/srv/zomboid/data",
+        "choose": "Auswählen",
+        "resolved": "Datei: {{file}}",
+        "not_usable": "Nicht nutzbar: {{reason}}",
+        "not_configured": "Nicht eingerichtet — der Sandbox-Bereich bleibt inaktiv."
+      }
+    }
+  },
+  "tools": {
+    "message_editor": {
+      "mode": {
+        "tool": {
+          "name": "Nachrichten-Editor",
+          "copy_formatted_message": "Formatierte Nachricht kopieren"
+        },
+        "message": {
+          "name": "Nachricht senden",
+          "description": "Eine Nachricht an den Server senden.",
+          "send": "Senden"
+        },
+        "edit": {
+          "name": "Nachricht bearbeiten",
+          "reset": "Zurücksetzen",
+          "save_edit": "Änderung übernehmen"
+        }
+      },
+      "notifications": {
+        "error_saving_message": "Beim Speichern der Nachricht ist ein Fehler aufgetreten",
+        "message_saved": "Nachricht gespeichert",
+        "error_loading_message": "Beim Laden der Nachricht ist ein Fehler aufgetreten"
+      },
+      "message": "Nachricht",
+      "message_placeholder": "Hier die Nachricht eingeben …",
+      "formatted_message": "Formatierte Nachricht",
+      "save_message": "Nachricht speichern",
+      "load_message": "Nachricht laden",
+      "bytes": "Bytes"
+    },
+    "item_browser": {
+      "mode": {
+        "tool": {
+          "name": "Gegenstände"
+        },
+        "add": {
+          "name": "Gegenstände geben",
+          "description": "Die Gegenstände gehen an {{names}}.",
+          "add_selected_items": "Ausgewählte Gegenstände geben"
+        },
+        "edit": {
+          "name": "Gegenstände bearbeiten",
+          "reset": "Zurücksetzen",
+          "save_edit": "Änderung übernehmen"
+        }
+      },
+      "selected_items": "Ausgewählte Gegenstände",
+      "search_items_placeholder": "Gegenstände suchen …",
+      "show_ids": "Item-IDs anzeigen",
+      "save_items": "Gegenstände speichern",
+      "load_items": "Gegenstände laden",
+      "custom_item_placeholder": "Eigene Item-ID …"
+    },
+    "vehicle_browser": {
+      "mode": {
+        "tool": {
+          "name": "Fahrzeuge"
+        },
+        "add": {
+          "name": "Fahrzeug geben",
+          "preview_in_map_website": "Auf der Kartenseite ansehen",
+          "player_combobox": {
+            "placeholder": "Zielspieler wählen",
+            "search_placeholder": "Spieler suchen …",
+            "search_not_found": "Keine Spieler gefunden."
+          },
+          "add_vehicle": "Fahrzeug geben"
+        }
+      },
+      "Vehicles": "Fahrzeuge",
+      "Heavy-duty Vehicles": "Nutzfahrzeuge",
+      "Sport Vehicles": "Sportwagen",
+      "Standard Vehicles": "Standardfahrzeuge",
+      "Trailers": "Anhänger",
+      "Chevalier D6": "Chevalier D6",
+      "Chevalier Step Van": "Chevalier Step Van",
+      "Dash Bulldriver": "Dash Bulldriver",
+      "Franklin All-Terrain": "Franklin All-Terrain",
+      "Franklin Valuline": "Franklin Valuline",
+      "Chevalier Cossette": "Chevalier Cossette",
+      "Chevalier Primani": "Chevalier Primani",
+      "Dash Elite": "Dash Elite",
+      "Mercia Lang 4000": "Mercia Lang 4000",
+      "Chevalier Cerise Wagon": "Chevalier Cerise Wagon",
+      "Chevalier Dart": "Chevalier Dart",
+      "Chevalier Nyala": "Chevalier Nyala",
+      "Dash Rancher": "Dash Rancher",
+      "Masterson Horizon": "Masterson Horizon",
+      "Normal": "Normal",
+      "Police": "Polizei",
+      "Ambulance": "Krankenwagen",
+      "Fire": "Feuerwehr",
+      "Mail": "Post",
+      "Ranger": "Ranger",
+      "Fossoil": "Fossoil",
+      "Ranger_Fossoil": "Ranger/Fossoil",
+      "Taxi (yellow)": "Taxi (gelb)",
+      "Taxi (green)": "Taxi (grün)",
+      "McCoy": "McCoy",
+      "Kentucky Herald": "Kentucky Herald",
+      "Scarlet Oak Distillery": "Scarlet Oak Distillery",
+      "Knox Distillery": "Knox Distillery",
+      "KY Transit": "KY Transit",
+      "LBMW Network Radio": "LBMW Network Radio",
+      "Lectromax Manufacturing": "Lectromax Manufacturing",
+      "Mass-Genfac Co": "Mass-Genfac Co",
+      "Spiffos": "Spiffo's",
+      "Triple-N Radio Van": "Triple-N Radio Van",
+      "6-Seater": "Sechssitzer",
+      "Wood Siding": "Holzverkleidung",
+      "Advert Trailer": "Werbeanhänger",
+      "Trailer": "Anhänger",
+      "Cover": "Plane"
+    }
+  },
+  "admin_panel": {
+    "disconnect": "Trennen",
+    "connected_to": "Verbunden mit {{socket}}",
+    "tabs": {
+      "management": {
+        "name": "Verwaltung",
+        "send_message": "Nachricht senden",
+        "weather": {
+          "title": "Wetter",
+          "warning": "Kann laut Berichten den Wetterablauf durcheinanderbringen",
+          "stop_rain": "Regen beenden",
+          "stop_weather": "Wetter beenden",
+          "start_rain": {
+            "name": "Regen starten",
+            "description": "Startet Regen, wahlweise mit einer Stärke von 1–100",
+            "intensity": "Stärke"
+          },
+          "start_storm": {
+            "name": "Sturm starten",
+            "description": "Startet einen Sturm, wahlweise mit einer Dauer (in Spielstunden)",
+            "duration": "Dauer"
+          }
+        },
+        "random": {
+          "title": "Zufallsereignisse",
+          "description": "Löst das angeklickte Ereignis bei einem zufälligen Spieler aus",
+          "online_players": "Spieler online: {{players}}",
+          "no_players": "Keine Spieler online",
+          "chopper": {
+            "name": "Hubschrauber",
+            "tooltip": "Ein Hubschrauber-Ereignis bei einem zufälligen Spieler auslösen"
+          },
+          "gunshot": {
+            "name": "Schuss",
+            "tooltip": "Einen Schuss bei einem zufälligen Spieler auslösen"
+          },
+          "lightning": {
+            "name": "Blitz",
+            "tooltip": "Einen Blitz bei einem zufälligen Spieler auslösen"
+          },
+          "thunder": {
+            "name": "Donner",
+            "tooltip": "Donner bei einem zufälligen Spieler auslösen"
+          }
+        },
+        "other": {
+          "title": "Sonstiges",
+          "check_mod_updates": {
+            "name": "Mod-Aktualisierungen prüfen",
+            "description": "Prüft, ob eine Mod aktualisiert wurde. Die Antwort steht im Protokoll und im Chat."
+          },
+          "alarm": {
+            "name": "Alarm",
+            "description": "Löst einen Gebäudealarm an der Position des Admins aus. (Muss in einem Raum sein.)"
+          }
+        },
+        "access": {
+          "title": "Zugang",
+          "description": "Vorgänge, die an keiner Spielerzeile hängen. Der Server kann diese Listen über RCON nicht melden, deshalb wird nur das Ergebnis des einzelnen Vorgangs quittiert.",
+          "steamid": {
+            "title": "SteamID-Erlaubnisliste",
+            "hint": "Eine SteamID hinzufügen oder entfernen. Die Liste selbst ist über RCON nicht lesbar.",
+            "label": "SteamID",
+            "add": {
+              "title": "SteamID hinzufügen",
+              "description": "Trägt eine SteamID in die Erlaubnisliste des Servers ein.",
+              "submit": "SteamID hinzufügen"
+            },
+            "remove": {
+              "title": "SteamID entfernen",
+              "description": "Nimmt eine SteamID aus der Erlaubnisliste des Servers.",
+              "submit": "SteamID entfernen"
+            },
+            "ban": {
+              "title": "SteamID sperren",
+              "description": "Sperrt eine SteamID auf dem Server.",
+              "submit": "SteamID sperren"
+            },
+            "unban": {
+              "title": "SteamID entsperren",
+              "description": "Hebt die Sperre einer SteamID auf.",
+              "submit": "SteamID entsperren"
+            }
+          },
+          "setpassword": {
+            "title": "Kontopasswort",
+            "description": "Setzt ein neues Passwort für ein Benutzerkonto auf dem Server.",
+            "name": "Benutzername",
+            "password": "Neues Passwort",
+            "submit": "Passwort ändern"
+          }
+        },
+        "moderation": {
+          "ip": {
+            "title": "IP-Sperre",
+            "hint": "Eine IP-Sperre kann mehr als eine Person treffen — alle hinter dieser Adresse.",
+            "label": "IP-Adresse",
+            "ban": {
+              "title": "IP-Adresse sperren",
+              "description": "Blockiert jede Verbindung von dieser Adresse.",
+              "submit": "IP sperren",
+              "confirm": "{{ip}} wird gesperrt. Jeder, der hinter dieser Adresse spielt, verliert den Zugang — nicht nur ein Spieler.",
+              "confirm_submit": "Diese Adresse sperren"
+            },
+            "unban": {
+              "title": "IP-Adresse entsperren",
+              "description": "Erlaubt Verbindungen von dieser Adresse wieder.",
+              "submit": "IP entsperren"
+            }
+          },
+          "steamid": {
+            "title": "SteamID-Sperre",
+            "hint": "Eine einzelne SteamID sperren oder entsperren — bisher nur im Terminal möglich."
+          }
+        },
+        "console": {
+          "title": "Konsolenfigur",
+          "description": "Zwei Befehle von Build 42 kennen keinen Spielernamen — sie wirken auf die eigene Figur der Konsole. Auf einem Dedicated Server ohne Figur bleiben sie wirkungslos.",
+          "releasesafehouse": {
+            "title": "Safehouse freigeben",
+            "description": "Gibt das Safehouse der Konsolenfigur frei.",
+            "submit": "Safehouse freigeben"
+          },
+          "removeitem": {
+            "title": "Gegenstand entfernen",
+            "description": "Entfernt Gegenstände von der Konsolenfigur. Anders als additem kennt dieser Befehl keinen Spielernamen.",
+            "item": "Item-ID",
+            "count": "Anzahl",
+            "count_hint": "0 entfernt alle Gegenstände dieser Art.",
+            "submit": "Gegenstand entfernen"
+          }
+        },
+        "world": {
+          "title": "Welt & Wartung",
+          "description": "Die serverweiten Eingriffe von Build 42.",
+          "removezombies": {
+            "title": "Zombies entfernen",
+            "description": "Entfernt alle geladenen Zombies aus der Welt.",
+            "submit": "Zombies entfernen",
+            "confirm_title": "Alle geladenen Zombies entfernen?",
+            "confirm": "Jeder gerade geladene Zombie verschwindet aus der Welt. Niemand bekommt sie zurück — die Welt füllt sich nur über die Respawn-Einstellungen wieder.",
+            "confirm_submit": "Zombies entfernen"
+          },
+          "worldgen": {
+            "title": "Weltgenerator",
+            "description": "Build 42 erzeugt die Welt stufenweise. Der Fortschritt unten ist die Antwort des Servers auf „worldgen status\" und wird gelesen, solange diese Ansicht offen ist.",
+            "start": "Starten",
+            "recheck": "Erneut prüfen",
+            "stop": "Anhalten",
+            "no_status": "Noch kein Zustand.",
+            "stop_confirm_title": "Weltgenerator anhalten?",
+            "stop_confirm": "Der Lauf hält da an, wo er steht. Das bisher Erzeugte bleibt, der Rest fehlt, bis ein neuer Lauf gestartet wird.",
+            "stop_confirm_submit": "Generator anhalten"
+          },
+          "reloadlua": {
+            "title": "Lua-Skripte neu laden",
+            "description": "Lädt ein einzelnes Skript oder alle neu.",
+            "placeholder": "dateiname.lua",
+            "submit": "Datei neu laden",
+            "submit_all": "Alle Skripte neu laden"
+          },
+          "log": {
+            "title": "Protokollstufe",
+            "description": "Setzt die Protokollstufe für einen Bereich des Serverprotokolls.",
+            "type": "Bereich",
+            "level": "Stufe",
+            "nothing_found": "Nichts gefunden",
+            "submit": "Anwenden"
+          },
+          "stats": {
+            "title": "Statistikausgabe",
+            "description": "Wohin der Server seine Mehrspieler-Statistik schreibt und wie oft.",
+            "mode": "Ziel",
+            "nothing_found": "Nichts gefunden",
+            "submit": "Anwenden",
+            "modes": {
+              "none": "Aus",
+              "file": "Datei",
+              "console": "Konsole",
+              "all": "Datei und Konsole"
+            }
+          }
+        }
+      },
+      "players": {
+        "name": "Spieler",
+        "filter_by_name": "Nach Namen filtern …",
+        "god_mode": "Unverwundbarkeit",
+        "events": "Ereignisse",
+        "columns": {
+          "name": {
+            "name": "Name"
+          },
+          "status": {
+            "name": "Status",
+            "offline": "Offline",
+            "online": "Online",
+            "banned": "Gesperrt"
+          },
+          "access_level": {
+            "name": "Zugriffsstufe",
+            "admin": "Admin",
+            "moderator": "Moderator",
+            "overseer": "Aufseher",
+            "gm": "GM",
+            "observer": "Beobachter",
+            "player": "Spieler",
+            "unknown": "Unbekannt"
+          }
+        },
+        "dialogs": {
+          "setaccesslevel": {
+            "button": "Zugriffsstufe setzen",
+            "title": "Zugriffsstufe setzen",
+            "players": "Die Zugriffsstufe wird für {{players}} gesetzt.",
+            "submit": "Zugriffsstufe setzen",
+            "permissions": {
+              "player": [],
+              "observer": [
+                "Unverwundbarkeit und Unsichtbarkeit umschalten (nur für sich selbst)",
+                "Verbundene Spieler sehen (/players)",
+                "Zu Spielern oder Koordinaten springen",
+                "Wanddurchlässigkeit nutzen (nur für sich selbst)",
+                "Servereinstellungen ansehen",
+                "Verschlossene Türen öffnen und Safehouses betreten",
+                "Lag-Kick umgehen und vollen Servern beitreten",
+                "Unsichtbar im Chat schreiben",
+                "Unsichtbare Spieler sehen",
+                "Gegen Angriffe von Spielern immun",
+                "Unsichtbar/unverwundbar starten",
+                "Spielerwerte ansehen (nur lesend)"
+              ],
+              "gm": [
+                "Alle Rechte des Beobachters",
+                "Unverwundbarkeit, Unsichtbarkeit und Wanddurchlässigkeit umschalten (für sich und andere)",
+                "Spieler zueinander versetzen",
+                "Alarme, Schüsse, Donner und Hubschrauber auslösen",
+                "Regen steuern",
+                "Gegenstände und Erfahrung vergeben"
+              ],
+              "overseer": [
+                "Alle Rechte des GM",
+                "Horden erzeugen",
+                "Spieler hinauswerfen",
+                "Serverweite Nachrichten senden",
+                "Verbindungsdaten der Spieler sehen",
+                "Spieler trennen",
+                "Länge der Nacht anpassen",
+                "Spielerwerte bearbeiten",
+                "Spieler vom Chat ausschließen"
+              ],
+              "moderator": [
+                "Alle Rechte des Aufsehers",
+                "Spieler sperren und entsperren (auch per Steam-ID)",
+                "Erlaubnisliste verwalten",
+                "Safehouses zuweisen",
+                "Zugriffsstufen ändern (außer Admin)"
+              ],
+              "admin": [
+                "Alle Rechte des Moderators",
+                "Welt speichern und beenden",
+                "Jede Zugriffsstufe ändern",
+                "Servereinstellungen und Lua-Dateien neu laden",
+                "Lua-Prüfsumme umgehen",
+                "Server-Pulse senden"
+              ]
+            }
+          },
+          "banuser": {
+            "button": "Sperren",
+            "title": "Spieler sperren",
+            "title_multiple": "Spieler sperren",
+            "players": "Gesperrt werden: {{players}}.",
+            "submit": "Sperren",
+            "reason": "Grund",
+            "reason_placeholder": "Spam, Trollen usw.",
+            "ban_ip": "IP mitsperren"
+          },
+          "unbanuser": {
+            "button": "Entsperren",
+            "title": "Spieler entsperren",
+            "title_multiple": "Spieler entsperren",
+            "players": "Entsperrt werden: {{players}}.",
+            "submit": "Entsperren"
+          },
+          "kickuser": {
+            "button": "Hinauswerfen",
+            "title": "Spieler hinauswerfen",
+            "title_multiple": "Spieler hinauswerfen",
+            "players": "Hinausgeworfen werden: {{players}}.",
+            "submit": "Hinauswerfen",
+            "reason": "Grund",
+            "reason_placeholder": "Spam, Trollen usw."
+          },
+          "teleport": {
+            "button": "Versetzen",
+            "title": "Spieler versetzen",
+            "title_multiple": "Spieler versetzen",
+            "players": "Versetzt werden: {{players}}.",
+            "submit": "Versetzen",
+            "coordinates_tab": "Zu Koordinaten",
+            "player_tab": "Zu einem Spieler",
+            "preview_in_map_website": "Auf der Kartenseite ansehen",
+            "player_combobox": {
+              "placeholder": "Zielspieler wählen",
+              "search_placeholder": "Spieler suchen …",
+              "search_not_found": "Keine Spieler gefunden."
+            }
+          },
+          "createhorde": {
+            "button": "Horde erzeugen",
+            "title": "Horde erzeugen",
+            "players": "Die Horde entsteht bei {{players}}.",
+            "submit": "Horde erzeugen",
+            "horde_size": "Hordengröße",
+            "variant": "Horden-Befehl",
+            "variant_1": "Horde",
+            "variant_2": "Horde 2"
+          },
+          "lightning": {
+            "button": "Blitz",
+            "title": "Blitz auslösen",
+            "players": "Der Blitz trifft bei {{players}} ein.",
+            "submit": "Blitz auslösen"
+          },
+          "thunder": {
+            "button": "Donner",
+            "title": "Donner auslösen",
+            "players": "Der Donner ertönt bei {{players}}.",
+            "submit": "Donner auslösen"
+          },
+          "addxp": {
+            "button": "Erfahrung geben",
+            "title": "Erfahrung geben",
+            "players": "Erfahrung bekommen: {{players}}.",
+            "submit": "Erfahrung geben",
+            "xp_amount": "Erfahrungspunkte",
+            "max_all": "Alles maximieren",
+            "regular_skill": "Fertigkeit",
+            "passive_skill": "Passive Fertigkeit",
+            "lvl": "Stufe",
+            "skills": {
+              "Passive": {
+                "name": "Passiv",
+                "Fitness": "Fitness",
+                "Strength": "Stärke"
+              },
+              "Firearm": {
+                "name": "Schusswaffen",
+                "Aiming": "Zielen",
+                "Reloading": "Nachladen"
+              },
+              "Survivalist": {
+                "name": "Überleben",
+                "Fishing": "Angeln",
+                "Trapping": "Fallenstellen",
+                "PlantScavenging": "Sammeln"
+              },
+              "Combat": {
+                "name": "Nahkampf",
+                "Axe": "Axt",
+                "Blunt": "Lange stumpfe Waffe",
+                "SmallBlunt": "Kurze stumpfe Waffe",
+                "LongBlade": "Lange Klinge",
+                "SmallBlade": "Kurze Klinge",
+                "Spear": "Speer",
+                "Maintenance": "Instandhaltung"
+              },
+              "Agility": {
+                "name": "Beweglichkeit",
+                "Sprinting": "Sprinten",
+                "Nimble": "Wendigkeit",
+                "Lightfoot": "Leichtfüßigkeit",
+                "Sneak": "Schleichen"
+              },
+              "Crafting": {
+                "name": "Handwerk",
+                "Woodwork": "Zimmerei",
+                "Cooking": "Kochen",
+                "Farming": "Landwirtschaft",
+                "Doctor": "Erste Hilfe",
+                "Electricity": "Elektrik",
+                "MetalWelding": "Metallbau",
+                "Mechanics": "Mechanik",
+                "Tailoring": "Schneiderei"
+              }
+            }
+          },
+          "addplayertowhitelist": {
+            "button": "Spieler anlegen",
+            "title": "Spieler in die Erlaubnisliste aufnehmen",
+            "submit": "In die Erlaubnisliste aufnehmen",
+            "name": "Name",
+            "password": "Passwort"
+          },
+          "removeplayersfromwhitelist": {
+            "button": "Spieler entfernen",
+            "dropdown_button": "Aus der Erlaubnisliste nehmen",
+            "title": "Spieler aus der Erlaubnisliste nehmen",
+            "title_multiple": "Spieler aus der Erlaubnisliste nehmen",
+            "players": "Aus der Erlaubnisliste entfernt werden: {{players}}.",
+            "submit": "Spieler entfernen",
+            "submit_multiple": "Spieler entfernen",
+            "remove_from_players_list": "Auch aus der Spielerliste entfernen"
+          },
+          "add_missing_player": {
+            "button": "Spieler fehlt? Einen Offline-Spieler zur Liste hinzufügen.",
+            "title": "Spieler hinzufügen",
+            "submit": "Spieler hinzufügen",
+            "name": "Name"
+          },
+          "additem": {
+            "button": "Gegenstand geben",
+            "notifications": {
+              "error_saving_items": "Beim Speichern der Gegenstände ist ein Fehler aufgetreten",
+              "items_saved": "Gegenstände gespeichert",
+              "error_loading_items": "Beim Laden der Gegenstände ist ein Fehler aufgetreten"
+            }
+          },
+          "addvehicle": {
+            "button": "Fahrzeug geben",
+            "coordinates_tab": "Zu Koordinaten",
+            "player_tab": "Zu Spielern"
+          },
+          "addkey": {
+            "button": "Schlüssel geben",
+            "title": "Schlüssel geben",
+            "description": "Den Schlüssel bekommen: {{names}}",
+            "key_id": "Schlüssel-ID",
+            "key_name": "Schlüsselname (optional)",
+            "key_name_placeholder": "Geschenkschlüssel",
+            "submit": "Schlüssel geben"
+          }
+        },
+        "invisible": "Unsichtbar",
+        "invisible_on": "Unsichtbarkeit ein",
+        "invisible_off": "Unsichtbarkeit aus",
+        "noclip": "Durch Wände gehen",
+        "noclip_on": "Wanddurchlässigkeit ein",
+        "noclip_off": "Wanddurchlässigkeit aus",
+        "voice_ban": "Sprache gesperrt",
+        "voice_ban_on": "Sprache sperren",
+        "voice_ban_off": "Sprache freigeben",
+        "more_actions": "Weitere Aktionen",
+        "remove_map_symbols": "Kartensymbole löschen",
+        "safehouse": {
+          "add": "Ins Safehouse aufnehmen",
+          "kick": "Aus dem Safehouse werfen",
+          "release": "Safehouse freigeben"
+        }
+      },
+      "options": {
+        "name": "Optionen",
+        "reload_options": "Optionen neu laden",
+        "search_options": "Optionen suchen …",
+        "notifications": {
+          "error_exporting_options": "Beim Ausführen der Optionen ist ein Fehler aufgetreten",
+          "options_exported": "Optionen ausgeführt",
+          "error_importing_options": "Beim Einlesen der Optionen ist ein Fehler aufgetreten"
+        },
+        "categories": {
+          "General": "Allgemein",
+          "Gameplay & Mechanics": "Spiel & Mechanik",
+          "Safehouse": "Safehouse",
+          "Faction": "Fraktion",
+          "Player": "Spieler",
+          "PVP": "PvP",
+          "VOIP & Chat": "Sprache & Chat",
+          "Discord": "Discord",
+          "Backup": "Sicherung",
+          "Anti-Cheat": "Anti-Cheat",
+          "Miscellaneous": "Verschiedenes",
+          "Other": "Weitere Optionen",
+          "War": "Krieg",
+          "Network": "Netzwerk"
+        },
+        "other_options_description": "Optionen, die der Server meldet und für die diese Anwendung keine Beschreibung hat. Sie lassen sich wie jede andere Option ändern."
+      },
+      "terminal": {
+        "name": "Terminal"
+      },
+      "connection": {
+        "title": "Mit dem Server verbinden",
+        "description": "Die Serverdaten eingeben, um die Verbindung aufzubauen",
+        "server_ip_or_domain": "Server-IP oder Domain",
+        "rcon_port": "RCON-Port",
+        "rcon_password": "RCON-Passwort",
+        "save_credentials": "Zugangsdaten merken",
+        "auto_connect": "Beim Start automatisch verbinden",
+        "connect": "Verbinden"
+      },
+      "sandbox": {
+        "title": "Sandbox-Einstellungen",
+        "not_configured": "Es ist kein Zugang zur Sandbox-Datei eingerichtet. Diese Einstellungen stehen in der servertest_SandboxVars.lua des Servers — RCON erreicht sie nicht. Der Weg dorthin wird unter Einstellungen → RCON festgelegt.",
+        "search": "Variablen suchen",
+        "general_group": "Allgemein",
+        "restart_required": "Sandbox-Änderungen greifen erst nach einem Serverneustart — ein Neuladen gibt es dafür nicht.",
+        "modified": "{{count}} geändert"
+      }
+    }
+  },
+  "options": {
+    "requires": "Setzt {{option}} = {{value}} voraus",
+    "requires_2": "Setzt {{option1}} = {{value1}} und {{option2}} = {{value2}} voraus",
+    "requires_3": "Setzt {{option1}} = {{value1}}, {{option2}} = {{value2}} und {{option3}} = {{value3}} voraus",
+    "DoLuaChecksum": {
+      "display_name": "Lua-Prüfsumme erzwingen",
+      "description": "Wirft Clients hinaus, deren Spieldateien nicht zu denen des Servers passen.",
+      "keywords": "anti-cheat,anticheat,cheat,lua,prüfsumme,checksum,kick"
+    },
+    "SteamVAC": {
+      "display_name": "Valve Anti-Cheat (Steam VAC)",
+      "description": "Schaltet das Anti-Cheat-System von Steam ein.",
+      "keywords": "anti-cheat,anticheat,VAC,cheat,steam"
+    },
+    "BackupsCount": {
+      "display_name": "Anzahl Sicherungen",
+      "description": "Wie viele Sicherungen aufbewahrt werden.",
+      "keywords": "sicherung,backup,anzahl"
+    },
+    "BackupsOnStart": {
+      "display_name": "Sicherung beim Start",
+      "description": "Legt beim Serverstart eine Sicherung an.",
+      "keywords": "sicherung,backup,start"
+    },
+    "BackupsOnVersionChange": {
+      "display_name": "Sicherung bei Versionswechsel",
+      "description": "Legt eine Sicherung an, wenn sich die Serverversion ändert.",
+      "keywords": "sicherung,backup,version,wechsel"
+    },
+    "BackupsPeriod": {
+      "display_name": "Abstand der Sicherungen",
+      "description": "Zeit zwischen zwei Sicherungen.",
+      "disabled": "Aus",
+      "keywords": "sicherung,backup,abstand,intervall"
+    },
+    "DiscordEnable": {
+      "display_name": "Discord-Anbindung",
+      "description": "Verbindet den globalen Chat mit einem Discord-Kanal. Braucht einen gültigen Bot-Token unter „Discord-Token\".",
+      "disabled": "Aus",
+      "keywords": "discord,anbindung,integration"
+    },
+    "DiscordToken": {
+      "display_name": "Discord-Token",
+      "description": "Der Bot-Token für den Zugang zu den Discord-Servern.",
+      "keywords": "discord,token"
+    },
+    "Faction": {
+      "display_name": "Fraktionen",
+      "description": "Erlaubt das Gründen und Nutzen von Fraktionen.",
+      "keywords": "fraktion,faction"
+    },
+    "FactionDaySurvivedToCreate": {
+      "display_name": "Überlebte Tage bis zur Fraktion",
+      "description": "Wie viele Spieltage jemand überleben muss, bevor er eine Fraktion gründen darf.",
+      "keywords": "fraktion,tage,gründen"
+    },
+    "FactionPlayersRequiredForTag": {
+      "display_name": "Spieler für ein Fraktionskürzel",
+      "description": "Wie viele Spieler eine Fraktion braucht, damit sie ein Kürzel führen darf.",
+      "keywords": "fraktion,kürzel,spieler"
+    },
+    "AllowDestructionBySledgehammer": {
+      "display_name": "Abriss mit dem Vorschlaghammer",
+      "description": "Erlaubt es, Objekte der Welt mit dem Vorschlaghammer abzureißen.",
+      "keywords": "vorschlaghammer,abriss,zerstören"
+    },
+    "BloodSplatLifespanDays": {
+      "display_name": "Lebensdauer von Blutflecken",
+      "description": "Nach wie vielen Tagen alte Blutflecken verschwinden. Entfernt wird beim Laden der Kartenabschnitte.",
+      "disabled": "Nie",
+      "keywords": "blut,flecken,lebensdauer,tage"
+    },
+    "CarEngineAttractionModifier": {
+      "display_name": "Anziehung durch Motorgeräusch",
+      "description": "Wie weit Motorgeräusche Zombies anlocken. Kleinere Werte können Ruckeln mindern.",
+      "keywords": "auto,motor,zombie,anziehung,faktor"
+    },
+    "FastForwardMultiplier": {
+      "display_name": "Zeitraffer beim Schlafen",
+      "description": "Wie schnell die Zeit vergeht, während Spieler schlafen.",
+      "keywords": "zeitraffer,schlafen,zeit,faktor"
+    },
+    "HidePlayersBehindYou": {
+      "display_name": "Spieler hinter dir verbergen",
+      "description": "Blendet Spieler außerhalb des Sichtfelds aus, wie es bei Zombies geschieht.",
+      "keywords": "verbergen,spieler,hinter,sicht"
+    },
+    "ItemNumbersLimitPerContainer": {
+      "display_name": "Gegenstände je Behälter",
+      "description": "Wie viele Gegenstände ein Behälter höchstens fasst — einzelne Kleinteile wie Nägel zählen mit.",
+      "disabled": "Unbegrenzt",
+      "keywords": "gegenstand,grenze,behälter"
+    },
+    "KnockedDownAllowed": {
+      "display_name": "Umwerfen erlauben",
+      "description": "Erlaubt es, dass Spieler umgeworfen werden.",
+      "keywords": "umwerfen,niederschlagen"
+    },
+    "NoFire": {
+      "display_name": "Kein Feuer",
+      "description": "Verhindert jedes Feuer außer Lagerfeuern.",
+      "keywords": "feuer,verhindern"
+    },
+    "PlayerBumpPlayer": {
+      "display_name": "Spieler stoßen sich an",
+      "description": "Spieler können einander anrempeln und umwerfen.",
+      "keywords": "spieler,anrempeln,umwerfen"
+    },
+    "PlayerRespawnWithOther": {
+      "display_name": "Wiedereinstieg bei einem Mitspieler",
+      "description": "Erlaubt den Wiedereinstieg an der Position eines anderen Spielers (Splitscreen/Fernspiel).",
+      "keywords": "wiedereinstieg,respawn,position,splitscreen,fernspiel"
+    },
+    "PlayerRespawnWithSelf": {
+      "display_name": "Wiedereinstieg am Todesort",
+      "description": "Erlaubt den Wiedereinstieg an den Koordinaten, an denen die Figur gestorben ist.",
+      "keywords": "wiedereinstieg,respawn,tod,koordinaten"
+    },
+    "RemovePlayerCorpsesOnCorpseRemoval": {
+      "display_name": "Spielerleichen mit aufräumen",
+      "description": "Entfernt auch Spielerleichen, wenn das Aufräumen der Leichen greift.",
+      "keywords": "spieler,leiche,aufräumen"
+    },
+    "SledgehammerOnlyInSafehouse": {
+      "display_name": "Vorschlaghammer nur im Safehouse",
+      "description": "Erlaubt den Vorschlaghammer nur im eigenen Safehouse.",
+      "keywords": "vorschlaghammer,safehouse,abriss,einschränkung"
+    },
+    "SleepAllowed": {
+      "display_name": "Schlafen erlauben",
+      "description": "Erlaubt Schlafen bei Müdigkeit, erzwingt es aber nicht.",
+      "keywords": "schlafen,erlauben"
+    },
+    "SleepNeeded": {
+      "display_name": "Schlaf nötig",
+      "description": "Spieler werden müde und müssen schlafen.",
+      "keywords": "schlaf,müdigkeit,nötig"
+    },
+    "SneakModeHideFromOtherPlayers": {
+      "display_name": "Beim Schleichen unsichtbar für Mitspieler",
+      "description": "Verbirgt schleichende Spieler vor anderen Spielern.",
+      "keywords": "schleichen,verbergen,spieler"
+    },
+    "SpeedLimit": {
+      "display_name": "Geschwindigkeitsgrenze",
+      "description": "Die höchste Bewegungsgeschwindigkeit für Spieler.",
+      "keywords": "geschwindigkeit,grenze,maximum"
+    },
+    "TrashDeleteAll": {
+      "display_name": "„Alles löschen\" am Müll",
+      "description": "Erlaubt den Knopf „Alles löschen\" an Mülleimern.",
+      "keywords": "müll,löschen,alles"
+    },
+    "AllowCoop": {
+      "display_name": "Koop- und Splitscreen-Spieler",
+      "description": "Erlaubt Koop- und Splitscreen-Spiel.",
+      "keywords": "koop,co-op,splitscreen"
+    },
+    "AllowNonAsciiUsername": {
+      "display_name": "Benutzernamen außerhalb von ASCII",
+      "description": "Erlaubt Zeichen außerhalb von ASCII (z. B. Kyrillisch) in Benutzernamen.",
+      "keywords": "ascii,benutzername,zeichen"
+    },
+    "AnnounceDeath": {
+      "display_name": "Tod ankündigen",
+      "description": "Meldet den Tod eines Spielers im globalen Chat.",
+      "keywords": "ankündigen,tod,spieler"
+    },
+    "BanKickGlobalSound": {
+      "display_name": "Ton bei Sperre und Hinauswurf",
+      "description": "Spielt einen globalen Ton, wenn jemand gesperrt oder hinausgeworfen wird.",
+      "keywords": "sperre,hinauswurf,ton,global"
+    },
+    "ClientActionLogs": {
+      "display_name": "Protokollierte Client-Aktionen",
+      "description": "Mit Semikolon getrennte Liste der Aktionen, die in ClientActionLogs.txt geschrieben werden.",
+      "keywords": "client,aktionen,protokoll"
+    },
+    "ClientCommandFilter": {
+      "display_name": "Filter für Client-Befehle",
+      "description": "Mit Semikolon getrennte Liste der Befehle, die nicht in cmd.txt geschrieben werden.",
+      "keywords": "client,befehl,filter,protokoll"
+    },
+    "DefaultPort": {
+      "display_name": "Standardport",
+      "description": "Der Standardport für die Serverkommunikation.",
+      "keywords": "server,port,standard"
+    },
+    "DenyLoginOnOverloadedServer": {
+      "display_name": "Kein Beitritt bei Überlast",
+      "description": "Verweigert den Beitritt, wenn der Server überlastet ist.",
+      "keywords": "server,überlast,beitritt,verweigern"
+    },
+    "Map": {
+      "display_name": "Karten",
+      "description": "Mit Semikolon getrennte Liste der Karten, die der Server lädt.",
+      "keywords": "karte,server,laden"
+    },
+    "MapRemotePlayerVisibility": {
+      "display_name": "Mitspieler auf der Karte",
+      "description": "Wie andere Spieler auf der Karte im Spiel angezeigt werden.",
+      "choices": {
+        "Hidden": "Verborgen",
+        "Friends": "Freunde",
+        "Everyone": "Alle"
+      },
+      "keywords": "spieler,karte,sichtbarkeit"
+    },
+    "MaxPlayers": {
+      "display_name": "Höchstzahl Spieler",
+      "description": "Wie viele Spieler höchstens auf den Server dürfen (Admins nicht mitgezählt).",
+      "keywords": "server,spieler,grenze,maximum"
+    },
+    "Mods": {
+      "display_name": "Mods",
+      "description": "Mit Semikolon getrennte Liste der Mod-IDs. Den Backslash, den Build 42 in der Konfigurationsdatei erwartet, ergänzt die Anwendung beim Speichern.",
+      "keywords": "mods,server"
+    },
+    "Open": {
+      "display_name": "Offener Server",
+      "description": "Erlaubt den Beitritt ohne Eintrag in der Erlaubnisliste. Sonst legen Admins Benutzername und Passwort von Hand an.",
+      "keywords": "server,offen,erlaubnisliste,whitelist"
+    },
+    "PauseEmpty": {
+      "display_name": "Pause bei leerem Server",
+      "description": "Hält die Spielzeit an, solange niemand online ist.",
+      "keywords": "pause,leer,spieler"
+    },
+    "PerkLogs": {
+      "display_name": "Fertigkeiten protokollieren",
+      "description": "Schreibt Änderungen an den Fertigkeiten in PerkLog.txt.",
+      "keywords": "fertigkeit,protokoll"
+    },
+    "Public": {
+      "display_name": "Server öffentlich zeigen",
+      "description": "Zeigt den Server in der öffentlichen Serverliste (Steam-Server erscheinen ohnehin in der Steam-Liste).",
+      "keywords": "server,öffentlich,liste,steam"
+    },
+    "PublicDescription": {
+      "display_name": "Serverbeschreibung",
+      "description": "Die Beschreibung, die in der Serverliste steht.",
+      "keywords": "server,beschreibung,öffentlich"
+    },
+    "PublicName": {
+      "display_name": "Servername",
+      "description": "Der Name, unter dem der Server in der Serverliste erscheint.",
+      "keywords": "server,name,öffentlich,steam"
+    },
+    "SaveWorldEveryMinutes": {
+      "display_name": "Abstand der Weltspeicherung",
+      "description": "Abstand zwischen automatischen Speicherungen in echten Minuten. (Ein Kartenabschnitt wird meist erst gespeichert, wenn ihn alle verlassen haben.)",
+      "disabled": "Nie",
+      "keywords": "speichern,welt,abstand,minuten"
+    },
+    "SpawnItems": {
+      "display_name": "Startausrüstung",
+      "description": "Die Gegenstände, mit denen neue Spieler starten.",
+      "keywords": "start,gegenstände,spieler"
+    },
+    "SpawnPoint": {
+      "display_name": "Startpunkt",
+      "description": "Koordinaten, an denen Spieler starten. Koordinaten findet man auf https://map.projectzomboid.com.",
+      "disabled": "0,0,0",
+      "keywords": "start,punkt,koordinaten,karte"
+    },
+    "UDPPort": {
+      "display_name": "UDP-Port",
+      "description": "Der Port für die UDP-Verbindung.",
+      "keywords": "port,udp,verbindung"
+    },
+    "UPnP": {
+      "display_name": "UPnP",
+      "description": "Erlaubt die automatische Portfreigabe auf Routern, die das können.",
+      "keywords": "port,freigabe,router,upnp"
+    },
+    "WorkshopItems": {
+      "display_name": "Workshop-Einträge",
+      "description": "Mit Semikolon getrennte Liste der Workshop-IDs, die installiert werden.",
+      "keywords": "workshop,mods,ids"
+    },
+    "ServerWelcomeMessage": {
+      "display_name": "Willkommensnachricht",
+      "description": "Die Nachricht, die Spieler nach dem Beitritt sehen.",
+      "keywords": "willkommen,nachricht,motd,beitritt"
+    },
+    "ResetID": {
+      "display_name": "Reset-ID",
+      "description": "Zeigt an, ob der Server einen Soft-Reset hinter sich hat. Passt die Zahl nicht zur des Clients, muss eine neue Figur angelegt werden. Gehört zusammen mit ServerPlayerID gesichert.",
+      "keywords": "reset,id,soft-reset"
+    },
+    "ServerPlayerID": {
+      "display_name": "Server-Spieler-ID",
+      "description": "Zeigt an, ob eine Figur von einem anderen Server oder aus dem Einzelspieler stammt. Ein Soft-Reset ändert den Wert; passt er nicht, muss eine neue Figur angelegt werden. Gehört zusammen mit der Reset-ID gesichert.",
+      "keywords": "server,spieler,id,soft-reset"
+    },
+    "PVP": {
+      "display_name": "PvP erlauben",
+      "description": "Erlaubt Kämpfe zwischen Spielern.",
+      "keywords": "pvp,kampf"
+    },
+    "PVPFirearmDamageModifier": {
+      "display_name": "PvP-Schaden mit Schusswaffen",
+      "description": "Regelt den Schaden von Schusswaffen im PvP.",
+      "keywords": "pvp,schusswaffe,schaden,faktor"
+    },
+    "PVPMeleeDamageModifier": {
+      "display_name": "PvP-Schaden im Nahkampf",
+      "description": "Regelt den Nahkampfschaden im PvP.",
+      "keywords": "pvp,nahkampf,schaden,faktor"
+    },
+    "PVPMeleeWhileHitReaction": {
+      "display_name": "Zuschlagen während der Trefferreaktion",
+      "description": "Erlaubt es, erneut zuzuschlagen, während man selbst getroffen wird.",
+      "keywords": "pvp,nahkampf,treffer,reaktion"
+    },
+    "SafetyCooldownTimer": {
+      "display_name": "PvP-Wartezeit",
+      "description": "Wie lange es dauert, bis jemand den PvP-Modus erneut betreten darf.",
+      "keywords": "pvp,wartezeit,abklingzeit"
+    },
+    "SafetySystem": {
+      "display_name": "PvP-Schalter (Sicherheitssystem)",
+      "description": "Jede Person schaltet PvP für sich ein oder aus. Verletzen kann man einander nur, wenn mindestens eine Seite im PvP-Modus ist.",
+      "keywords": "pvp,schalter,sicherheitssystem"
+    },
+    "SafetyToggleTimer": {
+      "display_name": "Umschaltdauer für PvP",
+      "description": "Wie lange das Umschalten des PvP-Modus dauert.",
+      "keywords": "pvp,umschalten,dauer"
+    },
+    "ShowSafety": {
+      "display_name": "PvP-Zustand anzeigen",
+      "description": "Zeigt ein Totenkopfsymbol über Spielern im PvP-Modus.",
+      "keywords": "pvp,zustand,anzeige,sicherheitssystem"
+    },
+    "DisplayUserName": {
+      "display_name": "Benutzernamen anzeigen",
+      "description": "Zeigt Benutzernamen über den Figuren.",
+      "keywords": "benutzername,anzeige,spieler"
+    },
+    "DropOffWhiteListAfterDeath": {
+      "display_name": "Nach dem Tod aus der Erlaubnisliste",
+      "description": "Entfernt Spieler nach dem Tod aus der Erlaubnisliste. Das verhindert auf geschlossenen Servern, dass jemand einfach neu anfängt.",
+      "keywords": "erlaubnisliste,whitelist,tod,entfernen"
+    },
+    "LoginQueueConnectTimeout": {
+      "display_name": "Zeitgrenze in der Warteschlange",
+      "description": "Wie lange jemand in der Anmeldewarteschlange warten darf.",
+      "keywords": "anmeldung,warteschlange,zeitgrenze"
+    },
+    "LoginQueueEnabled": {
+      "display_name": "Anmeldewarteschlange",
+      "description": "Schaltet eine Warteschlange für die Anmeldung ein.",
+      "keywords": "anmeldung,warteschlange"
+    },
+    "MaxAccountsPerUser": {
+      "display_name": "Konten je Benutzer",
+      "description": "Wie viele Konten ein einzelner Steam-Benutzer auf dem Server anlegen darf.",
+      "disabled": "Unbegrenzt",
+      "keywords": "konten,grenze,benutzer,steam"
+    },
+    "MouseOverToSeeDisplayName": {
+      "display_name": "Name erst beim Zeigen",
+      "description": "Der Anzeigename erscheint erst, wenn man mit der Maus auf jemanden zeigt.",
+      "keywords": "maus,zeigen,name"
+    },
+    "PingLimit": {
+      "display_name": "Ping-Grenze",
+      "description": "Ab welchem Ping ein Spieler hinausgeworfen wird.",
+      "disabled": "Unbegrenzt",
+      "keywords": "ping,grenze,hinauswurf"
+    },
+    "ShowFirstAndLastName": {
+      "display_name": "Figurennamen anzeigen",
+      "description": "Zeigt Vor- und Nachnamen der Figur statt des Benutzernamens.",
+      "keywords": "anzeige,figur,name"
+    },
+    "SteamScoreboard": {
+      "display_name": "Steam-Spielerliste",
+      "description": "Zeigt Steam-Namen und -Bilder in der Spielerliste.",
+      "keywords": "steam,spielerliste,anzeige"
+    },
+    "AdminSafehouse": {
+      "display_name": "Safehouses für Admins",
+      "description": "Erlaubt Admins, Safehouses zu beanspruchen.",
+      "keywords": "safehouse,admin"
+    },
+    "PlayerSafehouse": {
+      "display_name": "Safehouses für Spieler",
+      "description": "Erlaubt Spielern und Admins, Safehouses zu beanspruchen.",
+      "keywords": "safehouse,spieler,beanspruchen"
+    },
+    "SafeHouseRemovalTime": {
+      "display_name": "Frist bis zum Verlust des Safehouses",
+      "description": "Nach wie vielen echten Stunden ohne Besuch jemand aus einem Safehouse fällt.",
+      "keywords": "safehouse,frist,untätigkeit"
+    },
+    "SafehouseAllowFire": {
+      "display_name": "Feuer im Safehouse",
+      "description": "Erlaubt, dass Safehouses durch Feuer Schaden nehmen.",
+      "keywords": "safehouse,feuer,schaden"
+    },
+    "SafehouseAllowLoot": {
+      "display_name": "Plündern im Safehouse",
+      "description": "Erlaubt Nichtmitgliedern, Gegenstände aus Safehouses zu nehmen.",
+      "keywords": "safehouse,plündern,lut"
+    },
+    "SafehouseAllowNonResidential": {
+      "display_name": "Safehouses außerhalb von Wohnhäusern",
+      "description": "Erlaubt es, auch Nichtwohngebäude (z. B. Schulen) als Safehouse zu beanspruchen.",
+      "keywords": "safehouse,gebäude,nichtwohn"
+    },
+    "SafehouseAllowRespawn": {
+      "display_name": "Wiedereinstieg im Safehouse",
+      "description": "Erlaubt den Wiedereinstieg im eigenen Safehouse nach dem Tod.",
+      "keywords": "safehouse,wiedereinstieg,respawn"
+    },
+    "SafehouseAllowTrepass": {
+      "display_name": "Betreten ohne Einladung",
+      "description": "Erlaubt Nichtmitgliedern, ein Safehouse ohne Einladung zu betreten.",
+      "keywords": "safehouse,betreten,hausfriedensbruch"
+    },
+    "SafehouseDaySurvivedToClaim": {
+      "display_name": "Überlebte Tage bis zum Safehouse",
+      "description": "Wie viele Spieltage jemand überleben muss, bevor er ein Safehouse beanspruchen darf.",
+      "keywords": "safehouse,tage,beanspruchen"
+    },
+    "ChatStreams": {
+      "display_name": "Chat-Kanäle",
+      "description": "Welche Chat-Kanäle zur Verfügung stehen.",
+      "choices": {
+        "Say": "Sagen",
+        "Radio": "Funk",
+        "Whisper": "Flüstern",
+        "Yell": "Rufen",
+        "Safehouse": "Safehouse",
+        "Faction": "Fraktion",
+        "All": "Alle"
+      },
+      "keywords": "chat,kanäle,verständigung"
+    },
+    "DisableRadioAdmin": {
+      "display_name": "Kein Funk für Admins",
+      "description": "Sperrt Funksendungen von Spielern mit der Stufe „admin\".",
+      "keywords": "funk,admin,sperren"
+    },
+    "DisableRadioGM": {
+      "display_name": "Kein Funk für GMs",
+      "description": "Sperrt Funksendungen von Spielern mit der Stufe „gm\".",
+      "keywords": "funk,gm,sperren"
+    },
+    "DisableRadioInvisible": {
+      "display_name": "Kein Funk für Unsichtbare",
+      "description": "Sperrt Funksendungen von unsichtbaren Spielern.",
+      "keywords": "funk,unsichtbar,sperren"
+    },
+    "DisableRadioModerator": {
+      "display_name": "Kein Funk für Moderatoren",
+      "description": "Sperrt Funksendungen von Spielern mit der Stufe „moderator\".",
+      "keywords": "funk,moderator,sperren"
+    },
+    "DisableRadioOverseer": {
+      "display_name": "Kein Funk für Aufseher",
+      "description": "Sperrt Funksendungen von Spielern mit der Stufe „overseer\".",
+      "keywords": "funk,aufseher,sperren"
+    },
+    "DisableRadioStaff": {
+      "display_name": "Kein Funk für das Team",
+      "description": "Sperrt Funksendungen von allen Spielern mit einer Zugriffsstufe.",
+      "keywords": "funk,team,sperren"
+    },
+    "GlobalChat": {
+      "display_name": "Globaler Chat",
+      "description": "Erlaubt es, über /all mit allen zu sprechen.",
+      "keywords": "chat,global,verständigung"
+    },
+    "Voice3D": {
+      "display_name": "Räumliche Sprache",
+      "description": "Schaltet richtungsabhängigen Ton für die Sprachübertragung ein.",
+      "keywords": "sprache,3d,voip"
+    },
+    "VoiceEnable": {
+      "display_name": "Sprachübertragung",
+      "description": "Erlaubt Spielern, miteinander zu sprechen.",
+      "keywords": "sprache,voip"
+    },
+    "VoiceMaxDistance": {
+      "display_name": "Größte Sprachreichweite",
+      "description": "Die größte Entfernung, über die Sprache noch zu hören ist.",
+      "keywords": "sprache,maximum,entfernung,reichweite"
+    },
+    "VoiceMinDistance": {
+      "display_name": "Kleinste Sprachreichweite",
+      "description": "Die Entfernung, bis zu der Sprache unvermindert zu hören ist.",
+      "keywords": "sprache,minimum,entfernung,reichweite"
+    },
+    "Password": {
+      "display_name": "Serverpasswort",
+      "description": "Ohne dieses Passwort kommt niemand auf den Server.",
+      "keywords": "passwort,beitritt,zugang,privat"
+    },
+    "Seed": {
+      "display_name": "Weltgenerator-Zahl",
+      "description": "Die Zahl, aus der die Welt erzeugt wird. Eine Änderung greift erst, wenn map_worldgen.bin im Spielstand gelöscht wird.",
+      "keywords": "seed,welt,karte,erzeugung"
+    },
+    "AnnounceAnimalDeath": {
+      "display_name": "Tod von Tieren ankündigen",
+      "description": "Meldet im globalen Chat, wenn ein Tier stirbt.",
+      "keywords": "tier,tod,ankündigen,chat,viehhaltung"
+    },
+    "DisableVehicleTowing": {
+      "display_name": "Kein Abschleppen von Fahrzeugen",
+      "description": "Verhindert das Abschleppen von Fahrzeugen.",
+      "keywords": "abschleppen,fahrzeug,auto,sperren"
+    },
+    "DisableTrailerTowing": {
+      "display_name": "Kein Ziehen von Anhängern",
+      "description": "Verhindert das Ziehen von Anhängern.",
+      "keywords": "abschleppen,anhänger,sperren"
+    },
+    "DisableBurntTowing": {
+      "display_name": "Kein Abschleppen ausgebrannter Fahrzeuge",
+      "description": "Verhindert das Abschleppen ausgebrannter Fahrzeuge.",
+      "keywords": "abschleppen,ausgebrannt,wrack,fahrzeug,sperren"
+    },
+    "UsePhysicsHitReaction": {
+      "display_name": "Physikalische Trefferreaktion",
+      "description": "Zombies und Spieler reagieren auf Treffer mit physikalisch berechneter Bewegung.",
+      "keywords": "physik,treffer,reaktion,kampf"
+    },
+    "SwitchZombiesOwnershipEachUpdate": {
+      "display_name": "Zombie-Zuständigkeit jedes Mal neu verteilen",
+      "description": "Verteilt bei jeder Aktualisierung neu, welcher Client welchen Zombie berechnet.",
+      "keywords": "zombie,zuständigkeit,netzwerk,leistung"
+    },
+    "UltraSpeedDoesnotAffectToAnimals": {
+      "display_name": "Zeitraffer lässt Tiere aus",
+      "description": "Der Zeitraffer beschleunigt Tiere nicht mit.",
+      "keywords": "tier,geschwindigkeit,zeitraffer,zeit,viehhaltung"
+    },
+    "DisableSafehouseWhenOwnerConnected": {
+      "display_name": "Safehouse aus, wenn der Besitzer online ist",
+      "description": "Solange der Besitzer verbunden ist, verhält sich das Safehouse wie ein gewöhnliches Haus.",
+      "keywords": "safehouse,besitzer,online,schutz"
+    },
+    "SafehousePreventsLootRespawn": {
+      "display_name": "Kein neuer Lut im Safehouse",
+      "description": "In Gebäuden, die als Safehouse beansprucht sind, tauchen keine Gegenstände nach.",
+      "keywords": "safehouse,lut,nachschub,gegenstände"
+    },
+    "SafehouseDisableDisguises": {
+      "display_name": "Keine Verkleidung im Safehouse",
+      "description": "Im Safehouse werden verborgene Benutzernamen wieder sichtbar.",
+      "keywords": "safehouse,verkleidung,benutzername,aufdecken"
+    },
+    "MaxSafezoneSize": {
+      "display_name": "Größte Schutzzone",
+      "description": "Wie viele Felder eine einzelne Schutzzone höchstens umfassen darf.",
+      "keywords": "schutzzone,größe,fläche,grenze"
+    },
+    "War": {
+      "display_name": "Fraktionskrieg",
+      "description": "Erlaubt Fraktionen, einander den Krieg zu erklären.",
+      "keywords": "krieg,fraktion,pvp,konflikt"
+    },
+    "WarStartDelay": {
+      "display_name": "Vorlauf bis zum Kriegsbeginn",
+      "description": "Sekunden zwischen der Erklärung und dem Beginn eines Krieges.",
+      "keywords": "krieg,vorlauf,beginn,sekunden,fraktion"
+    },
+    "WarDuration": {
+      "display_name": "Kriegsdauer",
+      "description": "Wie viele Sekunden ein Krieg dauert.",
+      "keywords": "krieg,dauer,sekunden,fraktion"
+    },
+    "WarSafehouseHitPoints": {
+      "display_name": "Safehouse-Widerstand im Krieg",
+      "description": "Wie viel Schaden ein Safehouse im Krieg aushält, bevor es fällt.",
+      "keywords": "krieg,safehouse,widerstand,schaden,fraktion"
+    },
+    "UsernameDisguises": {
+      "display_name": "Verkleidung verbirgt den Namen",
+      "description": "Wer das Gesicht vollständig verdeckt, wird ohne Benutzernamen angezeigt.",
+      "keywords": "verkleidung,benutzername,maske,verbergen"
+    },
+    "HideDisguisedUserName": {
+      "display_name": "Verborgenen Namen ganz ausblenden",
+      "description": "Blendet den Namen vollständig aus, statt einen Platzhalter zu zeigen.",
+      "keywords": "verkleidung,benutzername,verbergen"
+    },
+    "HideAdminsInPlayerList": {
+      "display_name": "Admins nicht in der Spielerliste",
+      "description": "Admins erscheinen nicht in der Spielerliste im Spiel.",
+      "keywords": "admin,spielerliste,verbergen,team"
+    },
+    "ShowCoordinates": {
+      "display_name": "Koordinaten anzeigen",
+      "description": "Zeigt die Koordinaten der Figur unten rechts.",
+      "keywords": "koordinaten,position,anzeige"
+    },
+    "DisableScoreboard": {
+      "display_name": "Punktetafel aus",
+      "description": "Schaltet die Punktetafel im Spiel ab.",
+      "keywords": "punktetafel,spieler,liste,aus"
+    },
+    "PVPLogToolChat": {
+      "display_name": "PvP im Admin-Chat protokollieren",
+      "description": "Meldet PvP-Vorfälle im Admin-Chat.",
+      "keywords": "pvp,protokoll,chat,admin"
+    },
+    "PVPLogToolFile": {
+      "display_name": "PvP in die Datei protokollieren",
+      "description": "Schreibt PvP-Vorfälle in die Serverprotokolle.",
+      "keywords": "pvp,protokoll,datei,server"
+    },
+    "SafetyDisconnectDelay": {
+      "display_name": "Nachlauf beim Trennen im PvP",
+      "description": "Wie viele Sekunden eine Figur in der Welt bleibt, wenn die Verbindung im PvP abbricht.",
+      "keywords": "sicherheit,trennen,nachlauf,pvp"
+    },
+    "ChatMessageCharacterLimit": {
+      "display_name": "Zeichengrenze für Chatnachrichten",
+      "description": "Wie lang eine Chatnachricht höchstens sein darf.",
+      "keywords": "chat,nachricht,grenze,zeichen,moderation"
+    },
+    "ChatMessageSlowModeTime": {
+      "display_name": "Wartezeit zwischen Chatnachrichten",
+      "description": "Wie viele Sekunden zwischen zwei Nachrichten liegen müssen.",
+      "keywords": "chat,wartezeit,spam,moderation"
+    },
+    "BadWordListFile": {
+      "display_name": "Datei mit verbotenen Wörtern",
+      "description": "Pfad zu einer Datei mit einem verbotenen Wort je Zeile.",
+      "keywords": "verbotene wörter,filter,moderation,chat,datei"
+    },
+    "GoodWordListFile": {
+      "display_name": "Datei mit erlaubten Wörtern",
+      "description": "Pfad zu einer Datei mit Wörtern, die erlaubt bleiben, auch wenn sie ein verbotenes enthalten.",
+      "keywords": "erlaubte wörter,filter,moderation,chat,datei"
+    },
+    "BadWordPolicy": {
+      "display_name": "Umgang mit verbotenen Wörtern",
+      "description": "Was mit jemandem geschieht, der ein verbotenes Wort schreibt.",
+      "keywords": "verbotene wörter,regel,sperre,hinauswurf,stummschalten"
+    },
+    "BadWordReplacement": {
+      "display_name": "Ersatz für verbotene Wörter",
+      "description": "Der Text, der ein verbotenes Wort im Chat ersetzt.",
+      "keywords": "verbotene wörter,ersatz,zensur,chat,moderation"
+    },
+    "DiscordChatChannel": {
+      "display_name": "Discord-Chatkanal",
+      "description": "Name des Discord-Kanals, der den Chat im Spiel spiegelt.",
+      "keywords": "discord,chat,kanal,brücke"
+    },
+    "DiscordLogChannel": {
+      "display_name": "Discord-Protokollkanal",
+      "description": "Name des Discord-Kanals, der die Protokollmeldungen des Servers bekommt.",
+      "keywords": "discord,protokoll,kanal"
+    },
+    "DiscordCommandChannel": {
+      "display_name": "Discord-Befehlskanal",
+      "description": "Name des Discord-Kanals, der Adminbefehle annimmt.",
+      "keywords": "discord,befehl,kanal,admin"
+    },
+    "WebhookAddress": {
+      "display_name": "Webhook-Adresse",
+      "description": "Die eingehende Webhook-Adresse, an die der Server Nachrichten schickt.",
+      "keywords": "webhook,slack,adresse,benachrichtigung"
+    },
+    "AntiCheatSafety": {
+      "display_name": "Sicherheitssystem",
+      "description": "Reaktion, wenn ein Client am PvP-Sicherheitssystem manipuliert.",
+      "keywords": "anti-cheat,sicherheit,pvp,cheat"
+    },
+    "AntiCheatSpeed": {
+      "display_name": "Bewegungsgeschwindigkeit",
+      "description": "Reaktion, wenn sich eine Figur schneller bewegt als möglich.",
+      "keywords": "anti-cheat,geschwindigkeit,bewegung,cheat"
+    },
+    "AntiCheatNoClip": {
+      "display_name": "Wanddurchlässigkeit",
+      "description": "Reaktion, wenn eine Figur durch Wände geht.",
+      "keywords": "anti-cheat,noclip,wände,cheat"
+    },
+    "AntiCheatHit": {
+      "display_name": "Treffererkennung",
+      "description": "Reaktion, wenn Treffer gemeldet werden, die es nicht gegeben haben kann.",
+      "keywords": "anti-cheat,treffer,schaden,kampf,cheat"
+    },
+    "AntiCheatPacketException": {
+      "display_name": "Fehlerhafte Pakete",
+      "description": "Reaktion, wenn ein Client fehlerhafte Netzwerkpakete schickt.",
+      "keywords": "anti-cheat,paket,netzwerk,fehler,cheat"
+    },
+    "AntiCheatPermission": {
+      "display_name": "Rechte",
+      "description": "Reaktion, wenn ein Client Befehle über seiner Zugriffsstufe benutzt.",
+      "keywords": "anti-cheat,rechte,zugriff,admin,cheat"
+    },
+    "AntiCheatXP": {
+      "display_name": "Erfahrungspunkte",
+      "description": "Reaktion, wenn ein Client sich selbst Erfahrung gibt.",
+      "keywords": "anti-cheat,erfahrung,xp,fertigkeit,cheat"
+    },
+    "AntiCheatSafeHouse": {
+      "display_name": "Safehouses",
+      "description": "Reaktion, wenn ein Client die Safehouse-Regeln umgeht.",
+      "keywords": "anti-cheat,safehouse,cheat"
+    },
+    "AntiCheatPlayer": {
+      "display_name": "Figurenzustand",
+      "description": "Reaktion, wenn ein Client einen unmöglichen Zustand der Figur meldet.",
+      "keywords": "anti-cheat,spieler,zustand,cheat"
+    },
+    "AntiCheatChecksum": {
+      "display_name": "Dateiprüfsummen",
+      "description": "Reaktion, wenn die Spieldateien eines Clients nicht zu denen des Servers passen.",
+      "keywords": "anti-cheat,prüfsumme,dateien,lua,cheat"
+    },
+    "server_browser_announced_ip": {
+      "display_name": "Angekündigte IP",
+      "description": "Die IP-Adresse, die der Server in der Serverliste angibt.",
+      "keywords": "ip,serverliste,netzwerk"
+    },
+    "RCONPort": {
+      "display_name": "RCON-Port",
+      "description": "Der Port der Fernkonsole. Hier nur lesbar — eine Änderung würde diese Verbindung kappen.",
+      "keywords": "rcon,port,fernkonsole,netzwerk"
+    },
+    "RCONPassword": {
+      "display_name": "RCON-Passwort",
+      "description": "Das Passwort der Fernkonsole. Hier nur lesbar — eine Änderung würde diese Verbindung kappen.",
+      "keywords": "rcon,passwort,fernkonsole"
+    },
+    "MaxPacketsPerSecond": {
+      "display_name": "Pakete je Sekunde",
+      "description": "Wie viele Netzwerkpakete je Client und Sekunde verarbeitet werden.",
+      "keywords": "netzwerk,pakete,grenze,leistung"
+    },
+    "MultiplayerStatisticsPeriod": {
+      "display_name": "Abstand der Statistik",
+      "description": "Sekunden zwischen zwei Aktualisierungen der Mehrspieler-Statistik.",
+      "keywords": "statistik,abstand,mehrspieler,leistung",
+      "disabled": "Aus"
+    },
+    "choices": {
+      "ban": "Sperren",
+      "kick": "Hinauswerfen",
+      "log": "Protokollieren",
+      "disable": "Aus",
+      "mute": "Stummschalten"
+    }
+  },
+  "item_categories": {
+    "Accessory": "Zubehör",
+    "Ammo": "Munition",
+    "Appearance": "Aussehen",
+    "Badger": "Dachs",
+    "Bag": "Tasche",
+    "Beaver": "Biber",
+    "Bunny": "Kaninchen",
+    "Camping": "Camping",
+    "Cartography": "Kartografie",
+    "Clothing": "Kleidung",
+    "Communications": "Funk",
+    "Container": "Behälter",
+    "Cooking": "Kochen",
+    "Corpse": "Leiche",
+    "Electronics": "Elektronik",
+    "Entertainment": "Unterhaltung",
+    "Explosives": "Sprengstoff",
+    "First Aid": "Erste Hilfe",
+    "Fishing": "Angeln",
+    "Food": "Nahrung",
+    "Fox": "Fuchs",
+    "Furniture": "Möbel",
+    "Gardening": "Gartenbau",
+    "Hedgehog": "Igel",
+    "Hidden": "Verborgen",
+    "Household": "Haushalt",
+    "Instrument": "Instrument",
+    "Junk": "Krempel",
+    "Light Source": "Lichtquelle",
+    "Literature": "Literatur",
+    "Material": "Material",
+    "Mole": "Maulwurf",
+    "Paint": "Farbe",
+    "Raccoon": "Waschbär",
+    "Security": "Sicherheit",
+    "Skill Book": "Fachbuch",
+    "Sports": "Sport",
+    "Squirrel": "Eichhörnchen",
+    "Tool": "Werkzeug",
+    "Tool / Weapon": "Werkzeug / Waffe",
+    "Trapping": "Fallenstellen",
+    "Vehicle Maintenance": "Fahrzeugwartung",
+    "Water": "Wasser",
+    "Water Container": "Wasserbehälter",
+    "Weapon": "Waffe",
+    "Weapon - Crafted": "Waffe — selbst gebaut",
+    "Weapon Part": "Waffenteil"
+  },
+  "sandbox": {
+    "saved": "{{count}} Werte in die Datei geschrieben",
+    "saved_restart_hint": "Sie greifen nach dem nächsten Serverneustart. Sicherung: {{backup}}",
+    "nothing_to_save": "Keine geänderten Werte",
+    "save_failed": "Die Sandbox-Datei konnte nicht geschrieben werden",
+    "save_failed_with_backup": "Die Sandbox-Datei konnte nicht geschrieben werden — der vorherige Stand liegt in {{backup}}",
+    "file_changed_meanwhile": "Die Datei hat sich seit dem Lesen geändert — es wurde nichts geschrieben. Bereich neu laden und die Änderung erneut vornehmen."
+  }
+}

@@ -17,6 +17,7 @@ import { useProgress } from "./contexts/progress-provider";
 import { useRcon } from "./contexts/rcon-provider";
 import { main } from "./wailsjs/go/models";
 import Tools from "./components/Tools";
+import { SandboxTab } from "@/components/Sandbox";
 import { reloadTranslations } from "@/i18n";
 import locales from "@/locales.json";
 import i18next from "i18next";
@@ -199,6 +200,9 @@ function App() {
                 <TabsTrigger value="tools" onClick={() => setTab("tools")} className="px-6">
                   {t("nav.tools")}
                 </TabsTrigger>
+                <TabsTrigger value="sandbox" onClick={() => setTab("sandbox")} className="px-6">
+                  {t("nav.sandbox")}
+                </TabsTrigger>
                 <TabsTrigger value="settings" onClick={() => setTab("settings")} className="px-6">
                   {t("nav.settings")}
                 </TabsTrigger>
@@ -216,6 +220,10 @@ function App() {
               <AdminPanel />
             </div>
             <div className={tab === "tools" ? "block h-full" : "hidden"}>{tab === "tools" && <Tools />}</div>
+            {/* Der Sandbox-Editor arbeitet auf der Datei des Servers und braucht
+                deshalb keine RCON-Verbindung — er steht neben dem Adminbereich, nicht
+                darin. */}
+            <div className={tab === "sandbox" ? "block h-full" : "hidden"}>{tab === "sandbox" && <SandboxTab />}</div>
             <div className={tab === "settings" ? "block h-full" : "hidden"}>
               <Settings />
             </div>

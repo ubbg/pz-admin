@@ -25,7 +25,8 @@
   "nav": {
     "admin_panel": "Admin Panel",
     "tools": "Tools",
-    "settings": "Settings"
+    "settings": "Settings",
+    "sandbox": "Sandbox"
   },
 
   "notifications": {
@@ -474,6 +475,18 @@
         "description": "Releases are checked and downloaded from this repository.",
         "not_configured": "Not configured",
         "not_configured_description": "This build follows no release source. Updates are disabled so that a foreign release cannot replace it."
+      },
+      "sandbox_access": {
+        "label": "Sandbox File Access",
+        "description": "The sandbox settings of Build 42 are not reachable over RCON. Point the application at the file: a local path, or the data directory of a Docker volume.",
+        "mode_local": "Local path",
+        "mode_docker": "Docker volume",
+        "placeholder_local": "/home/user/Zomboid/Server/servertest_SandboxVars.lua",
+        "placeholder_docker": "/srv/zomboid/data",
+        "choose": "Choose",
+        "resolved": "File: {{file}}",
+        "not_usable": "Not usable: {{reason}}",
+        "not_configured": "Not configured — the sandbox area stays inactive."
       }
     }
   },
@@ -1139,6 +1152,14 @@
         "save_credentials": "Save Credentials",
         "auto_connect": "Automatically connect on startup",
         "connect": "Connect"
+      },
+      "sandbox": {
+        "title": "Sandbox settings",
+        "not_configured": "No access to the sandbox file is configured. These settings live in the server's servertest_SandboxVars.lua — RCON cannot reach them. Set the path under Settings → RCON.",
+        "search": "Search variables",
+        "general_group": "General",
+        "restart_required": "Sandbox changes take effect only after a server restart — there is no reload for them.",
+        "modified": "{{count}} changed"
       }
     }
   },
@@ -1948,5 +1969,13 @@
     "Weapon": "Weapon",
     "Weapon - Crafted": "Weapon - Crafted",
     "Weapon Part": "Weapon Part"
+  },
+  "sandbox": {
+    "saved": "{{count}} values written to the file",
+    "saved_restart_hint": "They take effect after the next server restart. Backup: {{backup}}",
+    "nothing_to_save": "No changed values",
+    "save_failed": "Failed to write the sandbox file",
+    "save_failed_with_backup": "Failed to write the sandbox file — the previous state is at {{backup}}",
+    "file_changed_meanwhile": "The file changed since it was read — nothing was written. Reload the sandbox area and make your change again."
   }
 }

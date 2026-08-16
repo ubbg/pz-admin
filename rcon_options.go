@@ -224,8 +224,6 @@ func options_update() error {
 // Option, die sich gegenüber dem gelesenen Serverstand geändert hat, danach optional
 // ein reloadoptions. Namen, die der Server nicht gemeldet hat, werden nie gesendet.
 func (app *App) UpdateOptions(values map[string]string, reloadOptions bool) bool {
-	defer options_update()
-
 	optionsToUpdate := diffServerOptions(serverOptions, values)
 
 	if len(optionsToUpdate) == 0 {
@@ -233,9 +231,13 @@ func (app *App) UpdateOptions(values map[string]string, reloadOptions bool) bool
 		return false
 	}
 
+	// Nach dem Schreiben wird der Serverstand genau einmal neu gelesen — im
+	// Erfolgsfall unten im Ablauf, im Fehlerfall hier.
 	failed := app.applyServerOptions(optionsToUpdate)
 
 	if len(failed) > 0 {
+		defer options_update()
+
 		// Welche Option der Server abgelehnt hat, ist beim Wechsel des Spiel-Builds
 		// die einzige interessante Angabe — eine Anzahl allein hilft niemandem (PG-06).
 		succeeded := len(optionsToUpdate) - len(failed)

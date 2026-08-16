@@ -42,6 +42,11 @@ type Config struct {
 	DisableRandomButtons         *bool   `json:"disableRandomButtons"`         // true, false
 	DisableOtherButtons          *bool   `json:"disableOtherButtons"`          // true, false
 	DebugMode                    *bool   `json:"debugMode"`                    // true, false
+	// Zweiter Zugangsweg neben RCON: Dateizugriff auf die SandboxVars des Servers.
+	// Leerer Modus = nicht eingerichtet; dann wird nichts geraten und keine Datei
+	// angefasst (specs/sandbox/SANDBOX-001.spec.md).
+	SandboxAccessMode *string `json:"sandboxAccessMode"` // "", local, docker
+	SandboxPath       *string `json:"sandboxPath"`       // Datei oder Serververzeichnis
 }
 
 func GetDefaultConfig() Config {
@@ -77,6 +82,8 @@ func GetDefaultConfig() Config {
 	defaultDisableRandomButtons := false
 	defaultDisableOtherButtons := false
 	defaultDebugMode := false
+	defaultSandboxAccessMode := ""
+	defaultSandboxPath := ""
 
 	return Config{
 		Theme:                        &defaultTheme,
@@ -109,6 +116,8 @@ func GetDefaultConfig() Config {
 		DisableRandomButtons:         &defaultDisableRandomButtons,
 		DisableOtherButtons:          &defaultDisableOtherButtons,
 		DebugMode:                    &defaultDebugMode,
+		SandboxAccessMode:            &defaultSandboxAccessMode,
+		SandboxPath:                  &defaultSandboxPath,
 	}
 }
 

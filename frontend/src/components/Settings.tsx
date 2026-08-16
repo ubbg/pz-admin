@@ -15,6 +15,7 @@ import { SaveWindowStatusSetting } from "./SettingItems/SaveWindowStatusSetting"
 import { CheckForUpdatesSetting } from "./SettingItems/CheckForUpdatesSetting";
 import { UpdateSetting } from "./SettingItems/UpdateSetting";
 import { UpdateSourceSetting } from "./SettingItems/UpdateSourceSetting";
+import { SandboxAccessSetting } from "./SettingItems/SandboxAccessSetting";
 import { useEffect, useState } from "react";
 import { useStorage } from "@/contexts/storage-provider";
 import { ColorSchemeSetting } from "./SettingItems/ColorSchemeSetting";
@@ -98,6 +99,7 @@ export default function Settings() {
       >
         <ScrollArea className="h-full w-full overflow-auto">
           <SettingsGroup className="flex flex-col items-start px-4 py-2 w-full h-full">
+            <SandboxAccessSetting />
             <RCONCheckIntervalSetting />
             <DisableWeatherControlsSetting />
             <DisableRandomButtonsSetting />

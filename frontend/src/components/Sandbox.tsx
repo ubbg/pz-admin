@@ -69,8 +69,16 @@ export function SandboxTab() {
   }, [vars, searchText]);
 
   const save = () => {
+    // Gesendet wird nur, was sich geändert hat, zusammen mit der Prüfsumme des
+    // gelesenen Standes: Wurde die Datei in der Zwischenzeit von Hand geändert,
+    // lehnt Go ab, statt fremde Änderungen zurückzudrehen.
+    const changedValues: Record<string, string> = {};
+    for (const key of modified) {
+      changedValues[key] = values[key];
+    }
+
     setSaving(true);
-    SaveSandboxVars(values).finally(() => {
+    SaveSandboxVars(document?.checksum ?? "", changedValues).finally(() => {
       setSaving(false);
       load();
     });

@@ -262,8 +262,8 @@ export function SaveMessagesDialog(arg1) {
   return window['go']['main']['App']['SaveMessagesDialog'](arg1);
 }
 
-export function SaveSandboxVars(arg1) {
-  return window['go']['main']['App']['SaveSandboxVars'](arg1);
+export function SaveSandboxVars(arg1, arg2) {
+  return window['go']['main']['App']['SaveSandboxVars'](arg1, arg2);
 }
 
 export function SaveWorld() {

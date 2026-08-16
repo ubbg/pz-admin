@@ -1159,9 +1159,7 @@
         "search": "Search variables",
         "general_group": "General",
         "restart_required": "Sandbox changes take effect only after a server restart — there is no reload for them.",
-        "modified": "{{count}} changed",
-        "saved": "Written to the file. The server picks the values up on its next restart.",
-        "saved_backup": "Backup: {{backup}}"
+        "modified": "{{count}} changed"
       }
     }
   },
@@ -1977,6 +1975,7 @@
     "saved_restart_hint": "They take effect after the next server restart. Backup: {{backup}}",
     "nothing_to_save": "No changed values",
     "save_failed": "Failed to write the sandbox file",
-    "save_failed_with_backup": "Failed to write the sandbox file — the previous state is at {{backup}}"
+    "save_failed_with_backup": "Failed to write the sandbox file — the previous state is at {{backup}}",
+    "file_changed_meanwhile": "The file changed since it was read — nothing was written. Reload the sandbox area and make your change again."
   }
 }

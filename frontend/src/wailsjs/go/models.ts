@@ -237,7 +237,6 @@ export namespace main {
 	    value: string;
 	    kind: string;
 	    quoted: boolean;
-	    line: number;
 	
 	    static createFrom(source: any = {}) {
 	        return new SandboxVar(source);
@@ -251,13 +250,13 @@ export namespace main {
 	        this.value = source["value"];
 	        this.kind = source["kind"];
 	        this.quoted = source["quoted"];
-	        this.line = source["line"];
 	    }
 	}
 	export class SandboxDocument {
 	    success: boolean;
 	    file: string;
 	    vars: SandboxVar[];
+	    checksum: string;
 	    error: string;
 	
 	    static createFrom(source: any = {}) {
@@ -269,6 +268,7 @@ export namespace main {
 	        this.success = source["success"];
 	        this.file = source["file"];
 	        this.vars = this.convertValues(source["vars"], SandboxVar);
+	        this.checksum = source["checksum"];
 	        this.error = source["error"];
 	    }
 	

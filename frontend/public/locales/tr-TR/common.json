@@ -1159,9 +1159,7 @@
         "search": "Değişkenlerde ara",
         "general_group": "Genel",
         "restart_required": "Sandbox değişiklikleri ancak sunucu yeniden başlatıldığında etkili olur — bunlar için yeniden yükleme yoktur.",
-        "modified": "{{count}} değişti",
-        "saved": "Dosyaya yazıldı. Sunucu değerleri bir sonraki başlatmada alır.",
-        "saved_backup": "Yedek: {{backup}}"
+        "modified": "{{count}} değişti"
       }
     }
   },
@@ -1485,6 +1483,7 @@
     "saved_restart_hint": "Bir sonraki sunucu başlatmasında etkili olurlar. Yedek: {{backup}}",
     "nothing_to_save": "Değişen değer yok",
     "save_failed": "Sandbox dosyası yazılamadı",
-    "save_failed_with_backup": "Sandbox dosyası yazılamadı — önceki durum {{backup}} konumunda"
+    "save_failed_with_backup": "Sandbox dosyası yazılamadı — önceki durum {{backup}} konumunda",
+    "file_changed_meanwhile": "Dosya okunduğundan beri değişti — hiçbir şey yazılmadı. Sandbox alanını yeniden yükleyip değişikliğinizi tekrar yapın."
   }
 }

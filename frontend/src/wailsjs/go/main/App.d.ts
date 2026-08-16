@@ -132,7 +132,7 @@ export function SaveItemsDialog(arg1:Array<main.ItemRecord>):Promise<void>;
 
 export function SaveMessagesDialog(arg1:main.ServerMessage):Promise<void>;
 
-export function SaveSandboxVars(arg1:Record<string, string>):Promise<main.SandboxSaveResult>;
+export function SaveSandboxVars(arg1:string,arg2:Record<string, string>):Promise<main.SandboxSaveResult>;
 
 export function SaveWorld():Promise<void>;
 

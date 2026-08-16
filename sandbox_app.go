@@ -7,6 +7,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"time"
 
 	"github.com/wailsapp/wails/v2/pkg/runtime"
@@ -23,12 +24,15 @@ type SandboxAccess struct {
 	Reason     string `json:"reason"`
 }
 
-// SandboxDocument ist der gelesene Stand der Datei.
+// SandboxDocument ist der gelesene Stand der Datei. `Checksum` hält fest, wie die
+// Datei beim Lesen aussah — beim Speichern wird dagegen geprüft, damit eine
+// Handänderung in der Zwischenzeit nicht stillschweigend überschrieben wird.
 type SandboxDocument struct {
-	Success bool         `json:"success"`
-	File    string       `json:"file"`
-	Vars    []SandboxVar `json:"vars"`
-	Error   string       `json:"error"`
+	Success  bool         `json:"success"`
+	File     string       `json:"file"`
+	Vars     []SandboxVar `json:"vars"`
+	Checksum string       `json:"checksum"`
+	Error    string       `json:"error"`
 }
 
 // SandboxSaveResult meldet, was geschrieben wurde — und wohin die Sicherung ging.
@@ -149,7 +153,7 @@ func (app *App) ReadSandboxVars() SandboxDocument {
 	}
 
 	runtime.LogInfof(app.ctx, "Sandbox file read: %d variables", len(vars))
-	return SandboxDocument{Success: true, File: access.File, Vars: vars}
+	return SandboxDocument{Success: true, File: access.File, Vars: vars, Checksum: hashString(string(content))}
 }
 
 // SaveSandboxVars schreibt geänderte Werte in die Datei — strukturerhaltend und erst,
@@ -158,7 +162,7 @@ func (app *App) ReadSandboxVars() SandboxDocument {
 //
 // Kein Wert geht dabei über RCON (PG-16); die Änderungen greifen erst nach einem
 // Serverneustart (PG-19) — das sagt die Oberfläche am Speichern-Knopf.
-func (app *App) SaveSandboxVars(values map[string]string) SandboxSaveResult {
+func (app *App) SaveSandboxVars(checksum string, values map[string]string) SandboxSaveResult {
 	access := sandboxAccess()
 	if !access.Configured {
 		return SandboxSaveResult{Error: access.Reason}
@@ -168,6 +172,13 @@ func (app *App) SaveSandboxVars(values map[string]string) SandboxSaveResult {
 	if err != nil {
 		runtime.LogErrorf(app.ctx, "Error reading the sandbox file: %v", err)
 		return SandboxSaveResult{Error: err.Error()}
+	}
+
+	// Hat jemand die Datei seit dem Lesen von Hand geändert, wird nichts überschrieben:
+	// Die Oberfläche kennt nur den alten Stand und würde fremde Änderungen zurückdrehen.
+	if checksum != "" && hashString(string(content)) != checksum {
+		app.SendNotification(Notification{Title: "sandbox.file_changed_meanwhile", Variant: "error"})
+		return SandboxSaveResult{Error: "the file changed since it was read"}
 	}
 
 	vars, err := parseSandboxLua(string(content))
@@ -199,7 +210,7 @@ func (app *App) SaveSandboxVars(values map[string]string) SandboxSaveResult {
 		mode = info.Mode()
 	}
 
-	if err := os.WriteFile(access.File, []byte(updated), mode); err != nil {
+	if err := writeFileAtomically(access.File, []byte(updated), mode); err != nil {
 		// Die Sicherung liegt daneben — ihr Pfad gehört in die Meldung, damit die
 		// Nutzerin weiß, woher sie den vorherigen Stand bekommt.
 		runtime.LogErrorf(app.ctx, "Error writing the sandbox file: %v", err)
@@ -234,4 +245,32 @@ func backupSandboxFile(path string, content []byte) (string, error) {
 		return "", err
 	}
 	return backup, nil
+}
+
+// writeFileAtomically schreibt neben die Zieldatei und benennt dann um. Ein
+// abgebrochener Schreibvorgang hinterlässt damit keine halbe Weltkonfiguration —
+// die Datei ist entweder die alte oder die neue.
+func writeFileAtomically(path string, content []byte, mode os.FileMode) error {
+	temporary, err := os.CreateTemp(filepath.Dir(path), filepath.Base(path)+".tmp-")
+	if err != nil {
+		return err
+	}
+	defer os.Remove(temporary.Name())
+
+	if _, err := temporary.Write(content); err != nil {
+		temporary.Close()
+		return err
+	}
+	if err := temporary.Sync(); err != nil {
+		temporary.Close()
+		return err
+	}
+	if err := temporary.Close(); err != nil {
+		return err
+	}
+	if err := os.Chmod(temporary.Name(), mode); err != nil {
+		return err
+	}
+
+	return os.Rename(temporary.Name(), path)
 }

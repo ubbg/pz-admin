@@ -21,8 +21,12 @@ import (
 
 // SandboxVar ist eine Variable, so wie sie in der Datei steht: voller Schlüssel
 // (mit Gruppe), Gruppe, Wert und der aus dem Wert abgeleitete Typ. `Quoted` merkt
-// sich, ob der Wert in der Datei in Anführungszeichen stand — beim Schreiben wird
-// dieselbe Form wiederhergestellt.
+// sich, ob der Wert in Anführungszeichen stand — beim Schreiben wird dieselbe Form
+// wiederhergestellt.
+//
+// Start und End sind die Byte-Grenzen des Wertes in der Datei. Über sie wird beim
+// Speichern genau dieser Ausschnitt ersetzt und sonst nichts — unabhängig davon, ob
+// die Zuweisung allein auf einer Zeile steht oder mit anderen zusammen.
 type SandboxVar struct {
 	Key    string `json:"key"`
 	Group  string `json:"group"`
@@ -30,88 +34,141 @@ type SandboxVar struct {
 	Value  string `json:"value"`
 	Kind   string `json:"kind"` // Boolean, Integer, Double, String
 	Quoted bool   `json:"quoted"`
-	Line   int    `json:"line"` // 1-basiert, für das strukturerhaltende Schreiben
+	Line   int    `json:"-"`
+	Start  int    `json:"-"`
+	End    int    `json:"-"`
 }
 
-// parseSandboxLua liest die Datei zeilenweise. Es wird nicht Lua ausgewertet, sondern
-// die Schreibweise gelesen, die der Server erzeugt: `Name = Wert,` in beliebiger
-// Einrückung, Untertabellen als `Name = {` … `},`.
+// parseSandboxLua liest die Datei zeichenweise. Es wird kein Lua ausgewertet, aber
+// alles gelesen, was in dieser Datei vorkommen kann: Zuweisungen in beliebiger
+// Einrückung, Untertabellen über mehrere Zeilen **und** in einer Zeile, Kommentare
+// mit `--` und Zeichenketten mit maskierten Anführungszeichen.
+//
+// Die Datei wird auch von Hand geschrieben; eine Schreibweise, die Lua versteht, darf
+// den Editor nicht lahmlegen.
 func parseSandboxLua(text string) ([]SandboxVar, error) {
-	lines := strings.Split(text, "\n")
-
-	started := false
-	depth := 0
-	var groups []string
 	var vars []SandboxVar
+	var groups []string
 
-	for index, raw := range lines {
-		line := strings.TrimSpace(stripLuaComment(raw))
-		if line == "" {
-			continue
-		}
+	position := 0
+	line := 1
+	depth := 0
+	started := false
 
-		if !started {
-			if strings.HasPrefix(line, "SandboxVars") && strings.Contains(line, "{") {
-				started = true
-				depth = 1
+	// advance zählt Zeilenumbrüche mit, damit Line stimmt.
+	advance := func(to int) {
+		for i := position; i < to && i < len(text); i++ {
+			if text[i] == '\n' {
+				line++
 			}
-			continue
 		}
+		position = to
+	}
 
-		if strings.HasPrefix(line, "}") {
+	for position < len(text) {
+		character := text[position]
+
+		switch {
+		case character == '\n':
+			line++
+			position++
+
+		case character == ' ' || character == '\t' || character == '\r' || character == ',' || character == ';':
+			position++
+
+		case character == '-' && position+1 < len(text) && text[position+1] == '-':
+			end := strings.IndexByte(text[position:], '\n')
+			if end < 0 {
+				position = len(text)
+			} else {
+				position += end
+			}
+
+		case character == '}':
 			depth--
 			if len(groups) > 0 {
 				groups = groups[:len(groups)-1]
 			}
-			if depth == 0 {
+			position++
+			if started && depth == 0 {
 				return vars, nil
 			}
-			continue
-		}
 
-		name, value, ok := splitLuaAssignment(line)
-		if !ok {
-			continue
-		}
+		case isIdentifierStart(character):
+			name, after := readIdentifier(text, position)
+			assignment := skipSpaces(text, after)
 
-		if strings.HasPrefix(value, "{") {
-			groups = append(groups, name)
-			depth++
-			continue
-		}
+			if assignment >= len(text) || text[assignment] != '=' {
+				// Kein `Name =` — etwa `return` oder `local`; weitergehen.
+				advance(after)
+				continue
+			}
 
-		value = strings.TrimSuffix(value, ",")
-		value = strings.TrimSpace(value)
-		if value == "" {
-			continue
-		}
+			valueStart := skipSpaces(text, assignment+1)
+			if valueStart >= len(text) {
+				advance(len(text))
+				continue
+			}
 
-		quoted := false
-		if len(value) >= 2 && value[0] == '"' && value[len(value)-1] == '"' {
-			quoted = true
-			value = value[1 : len(value)-1]
-		}
+			if text[valueStart] == '{' {
+				advance(valueStart + 1)
+				depth++
+				if !started {
+					// Die äußerste Tabelle ist die Wurzel, keine Gruppe.
+					started = true
+				} else {
+					groups = append(groups, name)
+				}
+				continue
+			}
 
-		group := strings.Join(groups, ".")
-		key := name
-		if group != "" {
-			key = group + "." + name
-		}
+			literal, valueEnd := readValue(text, valueStart)
+			if literal == "" {
+				advance(valueEnd)
+				continue
+			}
 
-		kind := kindOfValue(value)
-		if quoted {
-			kind = "String"
-		}
+			if !started {
+				// Zuweisungen außerhalb der Tabelle gehören nicht dazu.
+				advance(valueEnd)
+				continue
+			}
 
-		vars = append(vars, SandboxVar{
-			Key:    key,
-			Group:  group,
-			Name:   name,
-			Value:  value,
-			Kind:   kind,
-			Quoted: quoted,
-			Line:   index + 1,
-		})
+			value := literal
+			quoted := false
+			if len(value) >= 2 && value[0] == '"' && value[len(value)-1] == '"' {
+				quoted = true
+				value = unquoteLuaString(value)
+			}
+
+			group := strings.Join(groups, ".")
+			key := name
+			if group != "" {
+				key = group + "." + name
+			}
+
+			kind := kindOfValue(value)
+			if quoted {
+				kind = "String"
+			}
+
+			advance(valueStart)
+			vars = append(vars, SandboxVar{
+				Key:    key,
+				Group:  group,
+				Name:   name,
+				Value:  value,
+				Kind:   kind,
+				Quoted: quoted,
+				Line:   line,
+				Start:  valueStart,
+				End:    valueEnd,
+			})
+			advance(valueEnd)
+
+		default:
+			position++
+		}
 	}
 
 	if !started {
@@ -119,6 +176,98 @@ func parseSandboxLua(text string) ([]SandboxVar, error) {
 	}
 
 	return nil, errors.New("the SandboxVars table is not closed — the file looks truncated")
+}
+
+func isIdentifierStart(character byte) bool {
+	return character == '_' ||
+		(character >= 'a' && character <= 'z') ||
+		(character >= 'A' && character <= 'Z')
+}
+
+func readIdentifier(text string, position int) (string, int) {
+	end := position
+	for end < len(text) {
+		character := text[end]
+		if isIdentifierStart(character) || (character >= '0' && character <= '9') {
+			end++
+			continue
+		}
+		break
+	}
+	return text[position:end], end
+}
+
+func skipSpaces(text string, position int) int {
+	for position < len(text) && (text[position] == ' ' || text[position] == '\t') {
+		position++
+	}
+	return position
+}
+
+// readValue liest den Wert genau so, wie er in der Datei steht — Zeichenketten samt
+// Anführungszeichen und Maskierungen, alles andere bis zum nächsten Trenner.
+func readValue(text string, position int) (string, int) {
+	if text[position] == '"' {
+		end := position + 1
+		for end < len(text) {
+			if text[end] == '\\' {
+				end += 2
+				continue
+			}
+			if text[end] == '"' {
+				end++
+				break
+			}
+			end++
+		}
+		return text[position:end], end
+	}
+
+	end := position
+	for end < len(text) {
+		character := text[end]
+		if character == ',' || character == '}' || character == '\n' || character == ';' {
+			break
+		}
+		if character == '-' && end+1 < len(text) && text[end+1] == '-' {
+			break
+		}
+		end++
+	}
+
+	value := strings.TrimRight(text[position:end], " \t\r")
+	return value, position + len(value)
+}
+
+// unquoteLuaString nimmt die Anführungszeichen weg und löst die Maskierungen auf,
+// die in dieser Datei vorkommen.
+func unquoteLuaString(literal string) string {
+	inner := literal[1 : len(literal)-1]
+	replaced := strings.Builder{}
+
+	for i := 0; i < len(inner); i++ {
+		if inner[i] == '\\' && i+1 < len(inner) {
+			switch inner[i+1] {
+			case '"', '\\':
+				replaced.WriteByte(inner[i+1])
+				i++
+				continue
+			case 'n':
+				replaced.WriteByte('\n')
+				i++
+				continue
+			}
+		}
+		replaced.WriteByte(inner[i])
+	}
+
+	return replaced.String()
+}
+
+// quoteLuaString schreibt eine Zeichenkette so, wie Lua sie wieder liest.
+func quoteLuaString(value string) string {
+	escaped := strings.NewReplacer(`\`, `\\`, `"`, `\"`, "\n", `\n`).Replace(value)
+	return `"` + escaped + `"`
 }
 
 // Zugangswege. SFTP steht in der Spec, kommt aber bewusst später — solange nur
@@ -184,44 +333,17 @@ func resolveSandboxPath(mode string, configured string, list func(string) ([]str
 }
 
 // writeSandboxValues ersetzt in der Datei genau die Werte, die sich geändert haben —
-// zeilenweise, an Ort und Stelle. Kommentare, Reihenfolge, Einrückung und die
+// zeichengenau an ihrer Stelle. Kommentare, Reihenfolge, Einrückung und die
 // Untertabellen bleiben unangetastet (PG-18): Diese Datei wird von Menschen gelesen,
 // eine umsortierte Fassung macht jeden künftigen Vergleich unbrauchbar.
 //
-// Zurück kommen der neue Dateiinhalt und die Schlüssel, die tatsächlich geändert
-// wurden.
+// Ersetzt wird von hinten nach vorn, damit die Grenzen der noch offenen Werte gültig
+// bleiben. Zurück kommen der neue Dateiinhalt und die Schlüssel, die tatsächlich
+// geändert wurden.
 func writeSandboxValues(text string, vars []SandboxVar, values map[string]string) (string, []string, error) {
 	byKey := make(map[string]SandboxVar, len(vars))
 	for _, variable := range vars {
 		byKey[variable.Key] = variable
-	}
-
-	lines := strings.Split(text, "\n")
-	var changed []string
-
-	// In der Reihenfolge der Datei, damit die Rückmeldung nachvollziehbar bleibt.
-	for _, variable := range vars {
-		value, ok := values[variable.Key]
-		if !ok || value == variable.Value {
-			continue
-		}
-
-		if !sandboxValueIsWellFormed(variable, value) {
-			return "", nil, fmt.Errorf("value %q does not fit the type %s of %s", value, variable.Kind, variable.Key)
-		}
-
-		index := variable.Line - 1
-		if index < 0 || index >= len(lines) {
-			return "", nil, fmt.Errorf("line %d for %s is outside the file", variable.Line, variable.Key)
-		}
-
-		replaced, ok := replaceValueInLine(lines[index], variable, value)
-		if !ok {
-			return "", nil, fmt.Errorf("could not find the value of %s in line %d", variable.Key, variable.Line)
-		}
-
-		lines[index] = replaced
-		changed = append(changed, variable.Key)
 	}
 
 	// Namen, die die Datei nicht kennt, werden nicht eingefügt — die Datei bestimmt,
@@ -232,90 +354,40 @@ func writeSandboxValues(text string, vars []SandboxVar, values map[string]string
 		}
 	}
 
-	return strings.Join(lines, "\n"), changed, nil
-}
+	var pending []SandboxVar
+	var changed []string
 
-// replaceValueInLine tauscht nur den Wert aus und lässt alles andere an der Zeile
-// stehen: Einrückung, Leerraum um das Gleichheitszeichen, Komma und Kommentar.
-func replaceValueInLine(line string, variable SandboxVar, value string) (string, bool) {
-	assignment := strings.Index(line, "=")
-	if assignment < 0 || strings.TrimSpace(line[:assignment]) != variable.Name {
-		return "", false
-	}
-
-	rest := line[assignment+1:]
-	oldLiteral := sandboxValueLiteral(variable, variable.Value)
-
-	start := strings.Index(rest, oldLiteral)
-	if start < 0 {
-		return "", false
-	}
-
-	newLiteral := sandboxValueLiteral(variable, value)
-	rest = rest[:start] + newLiteral + rest[start+len(oldLiteral):]
-
-	return line[:assignment+1] + rest, true
-}
-
-// stripLuaComment entfernt einen Kommentar am Zeilenende, ohne einen `--` innerhalb
-// einer Zeichenkette anzutasten.
-func stripLuaComment(line string) string {
-	inString := false
-
-	for i := 0; i < len(line); i++ {
-		switch line[i] {
-		case '"':
-			inString = !inString
-		case '-':
-			if !inString && i+1 < len(line) && line[i+1] == '-' {
-				return line[:i]
-			}
+	// In der Reihenfolge der Datei, damit die Rückmeldung nachvollziehbar bleibt.
+	for _, variable := range vars {
+		value, ok := values[variable.Key]
+		if !ok || value == variable.Value {
+			continue
 		}
-	}
-
-	return line
-}
-
-// splitLuaAssignment zerlegt `Name = Wert` in seine beiden Teile.
-func splitLuaAssignment(line string) (string, string, bool) {
-	index := strings.Index(line, "=")
-	if index <= 0 {
-		return "", "", false
-	}
-
-	name := strings.TrimSpace(line[:index])
-	value := strings.TrimSpace(line[index+1:])
-
-	if name == "" || value == "" || !isLuaIdentifier(name) {
-		return "", "", false
-	}
-
-	return name, value, true
-}
-
-func isLuaIdentifier(name string) bool {
-	for i, character := range name {
-		switch {
-		case character >= 'a' && character <= 'z',
-			character >= 'A' && character <= 'Z',
-			character == '_':
-		case character >= '0' && character <= '9':
-			if i == 0 {
-				return false
-			}
-		default:
-			return false
+		if !sandboxValueIsWellFormed(variable, value) {
+			return "", nil, fmt.Errorf("value %q does not fit the type %s of %s", value, variable.Kind, variable.Key)
 		}
+		pending = append(pending, variable)
+		changed = append(changed, variable.Key)
 	}
 
-	return name != ""
+	updated := text
+	for i := len(pending) - 1; i >= 0; i-- {
+		variable := pending[i]
+		if variable.Start < 0 || variable.End > len(updated) || variable.Start > variable.End {
+			return "", nil, fmt.Errorf("the position of %s is outside the file", variable.Key)
+		}
+		literal := sandboxValueLiteral(variable, values[variable.Key])
+		updated = updated[:variable.Start] + literal + updated[variable.End:]
+	}
+
+	return updated, changed, nil
 }
 
 // sandboxValueLiteral bringt einen Wert in die Schreibweise, in der er in der Datei
 // steht — Zeichenketten in Anführungszeichen, Zahlen und Wahrheitswerte blank.
 func sandboxValueLiteral(variable SandboxVar, value string) string {
 	if variable.Quoted {
-		return fmt.Sprintf("%q", value)
+		return quoteLuaString(value)
 	}
 	return value
 }
@@ -333,6 +405,8 @@ func sandboxValueIsWellFormed(variable SandboxVar, value string) bool {
 		_, err := strconv.ParseFloat(value, 64)
 		return err == nil
 	default:
-		return !strings.ContainsAny(value, "\"\n")
+		// Zeichenketten werden beim Schreiben maskiert (quoteLuaString), deshalb
+		// darf hier alles stehen — auch Anführungszeichen.
+		return true
 	}
 }

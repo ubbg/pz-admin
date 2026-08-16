@@ -250,3 +250,107 @@ func TestResolveSandboxPathRefusesToGuessBetweenServers(t *testing.T) {
 		t.Error("erwartet: Fehler, weil zwei Sandbox-Dateien nebeneinander liegen")
 	}
 }
+
+// Die Datei wird auch von Hand geschrieben. Diese Schreibweisen sind gültiges Lua und
+// dürfen den Bereich nicht lahmlegen — vorher endeten alle drei in „looks truncated".
+func TestParseSandboxLuaHandlesOtherWritings(t *testing.T) {
+	cases := []struct {
+		name  string
+		text  string
+		key   string
+		value string
+		count int
+	}{
+		{
+			name:  "Untertabelle in einer Zeile",
+			text:  "SandboxVars = {\n    Zombies = 3,\n    Rally = { Group = 1 },\n    Speed = 2,\n}\n",
+			key:   "Rally.Group",
+			value: "1",
+			count: 3,
+		},
+		{
+			name:  "schließende Klammer am Zeilenende",
+			text:  "SandboxVars = {\n    Map = {\n        AllowMiniMap = false },\n    Speed = 2,\n}\n",
+			key:   "Map.AllowMiniMap",
+			value: "false",
+			count: 2,
+		},
+		{
+			name:  "alles in einer Zeile",
+			text:  "SandboxVars = { Zombies = 3 }\n",
+			key:   "Zombies",
+			value: "3",
+			count: 1,
+		},
+		{
+			name:  "maskiertes Anführungszeichen vor einem Gedankenstrich",
+			text:  "SandboxVars = {\n    Msg = \"a \\\" -- b\",\n}\n",
+			key:   "Msg",
+			value: `a " -- b`,
+			count: 1,
+		},
+	}
+
+	for _, testCase := range cases {
+		vars, err := parseSandboxLua(testCase.text)
+		if err != nil {
+			t.Errorf("%s: unerwarteter Fehler: %v", testCase.name, err)
+			continue
+		}
+		if len(vars) != testCase.count {
+			t.Errorf("%s: %d Variablen, erwartet %d (%v)", testCase.name, len(vars), testCase.count, vars)
+			continue
+		}
+		variable, ok := sandboxVarByKey(vars, testCase.key)
+		if !ok {
+			t.Errorf("%s: %s fehlt", testCase.name, testCase.key)
+			continue
+		}
+		if variable.Value != testCase.value {
+			t.Errorf("%s: %s = %q, erwartet %q", testCase.name, testCase.key, variable.Value, testCase.value)
+		}
+	}
+}
+
+// Auch in diesen Schreibweisen wird nur der Wert ersetzt.
+func TestWriteSandboxValuesInInlineTables(t *testing.T) {
+	text := "SandboxVars = {\n    Zombies = 3,\n    Rally = { Group = 1 },\n}\n"
+	vars, err := parseSandboxLua(text)
+	if err != nil {
+		t.Fatalf("unerwarteter Fehler: %v", err)
+	}
+
+	updated, changed, err := writeSandboxValues(text, vars, map[string]string{"Rally.Group": "4"})
+	if err != nil {
+		t.Fatalf("unerwarteter Fehler: %v", err)
+	}
+	if len(changed) != 1 {
+		t.Fatalf("erwartet 1 Änderung, bekommen %v", changed)
+	}
+	if !strings.Contains(updated, "Rally = { Group = 4 },") {
+		t.Errorf("Zeile falsch ersetzt: %q", updated)
+	}
+}
+
+// Eine Zeichenkette mit Anführungszeichen überlebt den Weg in die Datei und zurück.
+func TestWriteSandboxValuesQuotesLikeLua(t *testing.T) {
+	text := "SandboxVars = {\n    LootItemRemovalList = \"Base.Vest\",\n}\n"
+	vars, err := parseSandboxLua(text)
+	if err != nil {
+		t.Fatalf("unerwarteter Fehler: %v", err)
+	}
+
+	updated, _, err := writeSandboxValues(text, vars, map[string]string{"LootItemRemovalList": `Base."Vest"`})
+	if err != nil {
+		t.Fatalf("unerwarteter Fehler: %v", err)
+	}
+
+	again, err := parseSandboxLua(updated)
+	if err != nil {
+		t.Fatalf("die geschriebene Datei ist nicht mehr lesbar: %v", err)
+	}
+	variable, _ := sandboxVarByKey(again, "LootItemRemovalList")
+	if variable.Value != `Base."Vest"` {
+		t.Errorf("Wert nach dem Schreiben = %q", variable.Value)
+	}
+}

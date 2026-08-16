@@ -1165,6 +1165,11 @@
       "log": "Kaydet",
       "disable": "Kapalı",
       "mute": "Sustur"
+    },
+    "Mods": {
+      "display_name": "Modlar",
+      "description": "Noktalı virgülle ayrılmış mod kimlikleri. Build 42'nin yapılandırma dosyasında beklediği ters eğik çizgi kaydederken eklenir.",
+      "keywords": "mod,modlar,sunucu"
     }
   }
 }

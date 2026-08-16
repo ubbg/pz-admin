@@ -181,3 +181,61 @@ func TestParseOptionLinesDerivesKindFromValue(t *testing.T) {
 		}
 	}
 }
+
+// Build 42 erwartet Mod-IDs mit führendem Backslash in der Serverkonfiguration
+// (\mod1;\mod2). Die Nutzerin sieht und tippt weiterhin nur die IDs.
+func TestModsValueForServerAddsThePrefixExactlyOnce(t *testing.T) {
+	cases := []struct {
+		name  string
+		value string
+		want  string
+	}{
+		{"IDs ohne Präfix", "mod1;mod2", `\mod1;\mod2`},
+		{"schon im B42-Format", `\mod1;\mod2`, `\mod1;\mod2`},
+		{"gemischt", `\mod1;mod2`, `\mod1;\mod2`},
+		{"mit Leerzeichen", " mod1 ; mod2 ", `\mod1;\mod2`},
+		{"leere Liste bleibt leer", "", ""},
+		{"nur Trenner", ";;", ""},
+		{"einzelne Mod", "mod1", `\mod1`},
+	}
+
+	for _, testCase := range cases {
+		if got := modsValueForServer(testCase.value); got != testCase.want {
+			t.Errorf("%s: modsValueForServer(%q) = %q, want %q", testCase.name, testCase.value, got, testCase.want)
+		}
+	}
+}
+
+func TestModsValueForDisplayDropsThePrefix(t *testing.T) {
+	cases := []struct {
+		value string
+		want  string
+	}{
+		{`\mod1;\mod2`, "mod1;mod2"},
+		{"mod1;mod2", "mod1;mod2"},
+		{"", ""},
+		{`\mod1`, "mod1"},
+	}
+
+	for _, testCase := range cases {
+		if got := modsValueForDisplay(testCase.value); got != testCase.want {
+			t.Errorf("modsValueForDisplay(%q) = %q, want %q", testCase.value, got, testCase.want)
+		}
+	}
+}
+
+// Nur Mods trägt das Präfix — das Workshop-Feld bleibt eine Liste blanker IDs.
+func TestOnlyModsIsRewritten(t *testing.T) {
+	if got := optionValueForServer("WorkshopItems", "2200148440;2392709985"); got != "2200148440;2392709985" {
+		t.Errorf("WorkshopItems wurde verändert: %q", got)
+	}
+	if got := optionValueForDisplay("WorkshopItems", "2200148440;2392709985"); got != "2200148440;2392709985" {
+		t.Errorf("WorkshopItems wurde verändert: %q", got)
+	}
+	if got := optionValueForServer("Mods", "mod1"); got != `\mod1` {
+		t.Errorf("Mods wurde nicht umgeschrieben: %q", got)
+	}
+	if got := optionValueForDisplay("Mods", `\mod1`); got != "mod1" {
+		t.Errorf("Mods wurde nicht umgeschrieben: %q", got)
+	}
+}

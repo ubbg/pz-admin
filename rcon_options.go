@@ -45,7 +45,7 @@ func parseOptionLines(lines []string) []Option {
 		if name == "" {
 			continue
 		}
-		value := strings.TrimSpace(parts[1])
+		value := optionValueForDisplay(name, strings.TrimSpace(parts[1]))
 
 		options = append(options, Option{Name: name, Value: value, Kind: kindOfValue(value)})
 	}
@@ -117,6 +117,49 @@ func optionValuesEqual(a string, b string) bool {
 
 func isBooleanValue(value string) bool {
 	return strings.EqualFold(value, "true") || strings.EqualFold(value, "false")
+}
+
+// Build 42 führt Mod-IDs in der Serverkonfiguration mit einem vorangestellten
+// Backslash: Mods=\mod1;\mod2. Ohne ihn lädt der Server die Mods nicht. Die
+// Umwandlung sitzt hier und nur hier — die Oberfläche zeigt und nimmt blanke IDs.
+func optionValueForServer(name string, value string) string {
+	if name == "Mods" {
+		return modsValueForServer(value)
+	}
+	return value
+}
+
+func optionValueForDisplay(name string, value string) string {
+	if name == "Mods" {
+		return modsValueForDisplay(value)
+	}
+	return value
+}
+
+func modsValueForServer(value string) string {
+	ids := modIds(value)
+	for i, id := range ids {
+		ids[i] = `\` + id
+	}
+	return strings.Join(ids, ";")
+}
+
+func modsValueForDisplay(value string) string {
+	return strings.Join(modIds(value), ";")
+}
+
+// modIds zerlegt eine Mod-Liste in ihre IDs — ohne Präfix, ohne Leerraum und ohne
+// leere Einträge, damit aus einer leeren Liste kein einzelner Backslash wird.
+func modIds(value string) []string {
+	var ids []string
+	for _, id := range strings.Split(value, ";") {
+		id = strings.TrimSpace(strings.TrimPrefix(strings.TrimSpace(id), `\`))
+		if id == "" {
+			continue
+		}
+		ids = append(ids, id)
+	}
+	return ids
 }
 
 // kindOfValue leitet den Typ aus dem Wert ab: true/false ist ein Wahrheitswert, eine
@@ -259,10 +302,14 @@ func (app *App) applyServerOptions(options []OptionPair) []string {
 	for i, option := range options {
 		runtime.EventsEmit(app.ctx, "setProgress", float64(i)/float64(len(options))*100)
 
-		command := fmt.Sprintf("changeoption %s \"%s\"", option.Name, option.Value)
+		// Der Server bekommt den Wert in seiner Schreibweise (Mods mit Backslash),
+		// die Oberfläche hat ihn in der lesbaren geschickt.
+		sent := OptionPair{Name: option.Name, Value: optionValueForServer(option.Name, option.Value)}
+
+		command := fmt.Sprintf("changeoption %s \"%s\"", sent.Name, sent.Value)
 		res, err := conn.Execute(command)
 
-		if err != nil || !optionUpdateSucceeded(option, kinds[option.Name], res) {
+		if err != nil || !optionUpdateSucceeded(sent, kinds[option.Name], res) {
 			runtime.LogErrorf(app.ctx, "Failed to update %s: %v (response: %s)", option.Name, err, res)
 			failed = append(failed, option.Name)
 		}

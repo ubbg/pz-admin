@@ -1074,7 +1074,7 @@
     },
     "Mods": {
       "display_name": "Mods",
-      "description": "Semi-colon separated list of mod IDs.",
+      "description": "Semi-colon separated list of mod IDs. The backslash Build 42 expects in the config file is added when saving.",
       "keywords": "mods,server"
     },
     "Open": {

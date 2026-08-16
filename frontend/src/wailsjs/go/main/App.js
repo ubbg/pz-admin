@@ -74,6 +74,10 @@ export function CreateHorde(arg1, arg2) {
   return window['go']['main']['App']['CreateHorde'](arg1, arg2);
 }
 
+export function CreateHorde2(arg1, arg2) {
+  return window['go']['main']['App']['CreateHorde2'](arg1, arg2);
+}
+
 export function DeleteCredentials() {
   return window['go']['main']['App']['DeleteCredentials']();
 }
@@ -194,6 +198,14 @@ export function ReleaseSafehouse() {
   return window['go']['main']['App']['ReleaseSafehouse']();
 }
 
+export function ReloadAllLua() {
+  return window['go']['main']['App']['ReloadAllLua']();
+}
+
+export function ReloadLua(arg1) {
+  return window['go']['main']['App']['ReloadLua'](arg1);
+}
+
 export function ReloadOptions() {
   return window['go']['main']['App']['ReloadOptions']();
 }
@@ -212,6 +224,10 @@ export function RemovePlayersFromWhitelist(arg1, arg2) {
 
 export function RemoveSteamId(arg1) {
   return window['go']['main']['App']['RemoveSteamId'](arg1);
+}
+
+export function RemoveZombies() {
+  return window['go']['main']['App']['RemoveZombies']();
 }
 
 export function RestartApplication(arg1) {
@@ -264,6 +280,14 @@ export function SetAccessLevel(arg1, arg2) {
 
 export function SetConfigField(arg1, arg2) {
   return window['go']['main']['App']['SetConfigField'](arg1, arg2);
+}
+
+export function SetLogLevel(arg1, arg2) {
+  return window['go']['main']['App']['SetLogLevel'](arg1, arg2);
+}
+
+export function SetStats(arg1, arg2) {
+  return window['go']['main']['App']['SetStats'](arg1, arg2);
 }
 
 export function SetUserPassword(arg1, arg2) {
@@ -324,4 +348,12 @@ export function UpdateOptions(arg1, arg2) {
 
 export function VoiceBanPlayers(arg1, arg2) {
   return window['go']['main']['App']['VoiceBanPlayers'](arg1, arg2);
+}
+
+export function WorldGen(arg1) {
+  return window['go']['main']['App']['WorldGen'](arg1);
+}
+
+export function WorldGenStatus() {
+  return window['go']['main']['App']['WorldGenStatus']();
 }

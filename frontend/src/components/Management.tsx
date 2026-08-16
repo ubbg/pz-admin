@@ -11,6 +11,7 @@ import { RandomButtons } from "./RandomButtons";
 import { OtherButtons } from "./OtherButtons";
 import { AccessModeration } from "./AccessModeration";
 import { ConsoleActions } from "./ConsoleActions";
+import { WorldMaintenance } from "./WorldMaintenance";
 import { useTranslation } from "react-i18next";
 import { useConfig } from "@/contexts/config-provider";
 
@@ -54,6 +55,7 @@ export function ManagementTab() {
               <WeatherControl />
               <RandomButtons />
               <OtherButtons />
+              <WorldMaintenance />
               <AccessModeration />
               <ConsoleActions />
             </div>

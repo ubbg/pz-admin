@@ -10,7 +10,8 @@ import {
 import { Label } from "@/components/ui/label";
 import { useEffect, useState } from "react";
 import { Input } from "../ui/input";
-import { CreateHorde } from "@/wailsjs/go/main/App";
+import { CreateHorde, CreateHorde2 } from "@/wailsjs/go/main/App";
+import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
 import { useTranslation } from "react-i18next";
 
 interface CreateHordeDialogProps {
@@ -22,6 +23,8 @@ interface CreateHordeDialogProps {
 export function CreateHordeDialog({ isOpen, onClose, names }: CreateHordeDialogProps) {
   const { t } = useTranslation();
   const [count, setCount] = useState("");
+  // Build 42 kennt zwei Horden-Befehle; welcher gemeint ist, entscheidet die Nutzerin.
+  const [variant, setVariant] = useState<"createhorde" | "createhorde2">("createhorde");
 
   const handleCreateHorde = () => {
     onClose();
@@ -31,11 +34,16 @@ export function CreateHordeDialog({ isOpen, onClose, names }: CreateHordeDialogP
       return;
     }
 
-    CreateHorde(names, parseInt(count));
+    if (variant === "createhorde2") {
+      CreateHorde2(names, parseInt(count));
+    } else {
+      CreateHorde(names, parseInt(count));
+    }
   };
 
   useEffect(() => {
     setCount("");
+    setVariant("createhorde");
   }, [isOpen]);
 
   return (
@@ -47,6 +55,17 @@ export function CreateHordeDialog({ isOpen, onClose, names }: CreateHordeDialogP
             <p>{t("admin_panel.tabs.players.dialogs.createhorde.players", { players: names.join(", ") })}</p>
           </DialogDescription>
         </DialogHeader>
+        <div className="space-y-1 pb-2">
+          <Label className="text-right">{t("admin_panel.tabs.players.dialogs.createhorde.variant")}</Label>
+          <ToggleGroup type="single" value={variant} className="justify-start">
+            <ToggleGroupItem value="createhorde" onClick={() => setVariant("createhorde")}>
+              {t("admin_panel.tabs.players.dialogs.createhorde.variant_1")}
+            </ToggleGroupItem>
+            <ToggleGroupItem value="createhorde2" onClick={() => setVariant("createhorde2")}>
+              {t("admin_panel.tabs.players.dialogs.createhorde.variant_2")}
+            </ToggleGroupItem>
+          </ToggleGroup>
+        </div>
         <div className="space-y-1">
           <Label htmlFor="horde-size" className="text-right">
             {t("admin_panel.tabs.players.dialogs.createhorde.horde_size")}

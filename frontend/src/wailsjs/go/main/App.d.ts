@@ -38,6 +38,8 @@ export function CopyToClipboard(arg1:string,arg2:boolean):Promise<void>;
 
 export function CreateHorde(arg1:Array<string>,arg2:number):Promise<void>;
 
+export function CreateHorde2(arg1:Array<string>,arg2:number):Promise<void>;
+
 export function DeleteCredentials():Promise<boolean>;
 
 export function DisconnectRcon():Promise<boolean>;
@@ -98,6 +100,10 @@ export function ReadConfig(arg1:string):Promise<void>;
 
 export function ReleaseSafehouse():Promise<boolean>;
 
+export function ReloadAllLua():Promise<boolean>;
+
+export function ReloadLua(arg1:string):Promise<boolean>;
+
 export function ReloadOptions():Promise<void>;
 
 export function RemoveItems(arg1:Array<main.ItemRecord>):Promise<void>;
@@ -107,6 +113,8 @@ export function RemoveMapSymbolsForUser(arg1:Array<string>):Promise<void>;
 export function RemovePlayersFromWhitelist(arg1:Array<string>,arg2:boolean):Promise<number>;
 
 export function RemoveSteamId(arg1:string):Promise<boolean>;
+
+export function RemoveZombies():Promise<boolean>;
 
 export function RestartApplication(arg1:Array<string>):Promise<void>;
 
@@ -133,6 +141,10 @@ export function ServerOptions():Promise<Array<main.Option>>;
 export function SetAccessLevel(arg1:Array<string>,arg2:string):Promise<void>;
 
 export function SetConfigField(arg1:string,arg2:any):Promise<void>;
+
+export function SetLogLevel(arg1:string,arg2:string):Promise<boolean>;
+
+export function SetStats(arg1:string,arg2:number):Promise<boolean>;
 
 export function SetUserPassword(arg1:string,arg2:string):Promise<boolean>;
 
@@ -163,3 +175,7 @@ export function Update(arg1:string):Promise<void>;
 export function UpdateOptions(arg1:Record<string, string>,arg2:boolean):Promise<boolean>;
 
 export function VoiceBanPlayers(arg1:Array<string>,arg2:boolean):Promise<void>;
+
+export function WorldGen(arg1:string):Promise<boolean>;
+
+export function WorldGenStatus():Promise<main.RconResponse>;

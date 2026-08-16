@@ -278,6 +278,51 @@
     "removeItems": {
       "single_success": "{{item}} removed",
       "single_fail": "Failed to remove {{item}}"
+    },
+    "removeZombies": {
+      "single_success": "Loaded zombies removed",
+      "single_fail": "Failed to remove the zombies"
+    },
+    "worldGen": {
+      "start": {
+        "single_success": "World generation started",
+        "single_fail": "Failed to start world generation"
+      },
+      "recheck": {
+        "single_success": "World generation rechecked",
+        "single_fail": "Failed to recheck world generation"
+      },
+      "stop": {
+        "single_success": "World generation stopped",
+        "single_fail": "Failed to stop world generation"
+      },
+      "status": {
+        "single_success": "World generation status read",
+        "single_fail": "Failed to read the world generation status"
+      }
+    },
+    "reloadAllLua": {
+      "single_success": "All Lua scripts reloaded",
+      "single_fail": "Failed to reload the Lua scripts"
+    },
+    "reloadLua": {
+      "single_success": "{{file}} reloaded",
+      "single_fail": "Failed to reload {{file}}"
+    },
+    "setLogLevel": {
+      "single_success": "Log level for {{type}} set to {{level}}",
+      "single_fail": "Failed to set the log level for {{type}}"
+    },
+    "setStats": {
+      "single_success": "Statistics output set to {{mode}}",
+      "single_fail": "Failed to set the statistics output"
+    },
+    "createHorde2": {
+      "single_success": "Second horde spawned near {{name}}",
+      "single_fail": "Failed to spawn the second horde near {{name}}",
+      "all_success": "Second horde spawned near {{s}} players",
+      "all_fail": "Failed for all {{f}} players: {{failed}}",
+      "partial": "{{s}} spawned, {{f}} failed: {{failed}}"
     }
   },
 
@@ -693,6 +738,57 @@
             "count_hint": "0 removes every item of this type.",
             "submit": "Remove item"
           }
+        },
+        "world": {
+          "title": "World & Maintenance",
+          "description": "Server-wide interventions from Build 42.",
+          "removezombies": {
+            "title": "Remove zombies",
+            "description": "Removes every loaded zombie from the world.",
+            "submit": "Remove zombies",
+            "confirm_title": "Remove all loaded zombies?",
+            "confirm": "Every zombie currently loaded disappears from the world. Nobody gets them back — the world repopulates only through the respawn settings.",
+            "confirm_submit": "Remove zombies"
+          },
+          "worldgen": {
+            "title": "World generator",
+            "description": "Build 42 generates the world in stages. The progress below is the server's own answer to „worldgen status\" and is read while this view is open.",
+            "start": "Start",
+            "recheck": "Recheck",
+            "stop": "Stop",
+            "no_status": "No status yet.",
+            "stop_confirm_title": "Stop world generation?",
+            "stop_confirm": "The run stops where it is. Everything generated so far stays, the rest is missing until a new run is started.",
+            "stop_confirm_submit": "Stop generation"
+          },
+          "reloadlua": {
+            "title": "Reload Lua scripts",
+            "description": "Reloads a single script or all of them.",
+            "placeholder": "filename.lua",
+            "submit": "Reload file",
+            "submit_all": "Reload all scripts"
+          },
+          "log": {
+            "title": "Log level",
+            "description": "Sets the log level for one area of the server log.",
+            "type": "Area",
+            "level": "Level",
+            "nothing_found": "Nothing found",
+            "submit": "Apply"
+          },
+          "stats": {
+            "title": "Statistics output",
+            "description": "Where the server writes its multiplayer statistics, and how often.",
+            "mode": "Target",
+            "nothing_found": "Nothing found",
+            "submit": "Apply",
+            "modes": {
+              "none": "Off",
+              "file": "File",
+              "console": "Console",
+              "all": "File and console"
+            }
+          }
         }
       },
       "players": {
@@ -839,7 +935,10 @@
             "players": "You will create a horde near {{players}}.",
             "submit": "Create Horde",
 
-            "horde_size": "Horde Size"
+            "horde_size": "Horde Size",
+            "variant": "Horde command",
+            "variant_1": "Horde",
+            "variant_2": "Horde 2"
           },
 
           "lightning": {

@@ -278,6 +278,51 @@
     "removeItems": {
       "single_success": "{{item}} kaldırıldı",
       "single_fail": "{{item}} kaldırılamadı"
+    },
+    "removeZombies": {
+      "single_success": "Yüklü zombiler kaldırıldı",
+      "single_fail": "Zombiler kaldırılamadı"
+    },
+    "worldGen": {
+      "start": {
+        "single_success": "Dünya üretimi başladı",
+        "single_fail": "Dünya üretimi başlatılamadı"
+      },
+      "recheck": {
+        "single_success": "Dünya üretimi yeniden denetlendi",
+        "single_fail": "Dünya üretimi yeniden denetlenemedi"
+      },
+      "stop": {
+        "single_success": "Dünya üretimi durduruldu",
+        "single_fail": "Dünya üretimi durdurulamadı"
+      },
+      "status": {
+        "single_success": "Dünya üretimi durumu okundu",
+        "single_fail": "Dünya üretimi durumu okunamadı"
+      }
+    },
+    "reloadAllLua": {
+      "single_success": "Tüm Lua betikleri yeniden yüklendi",
+      "single_fail": "Lua betikleri yeniden yüklenemedi"
+    },
+    "reloadLua": {
+      "single_success": "{{file}} yeniden yüklendi",
+      "single_fail": "{{file}} yeniden yüklenemedi"
+    },
+    "setLogLevel": {
+      "single_success": "{{type}} için günlük düzeyi {{level}} olarak ayarlandı",
+      "single_fail": "{{type}} için günlük düzeyi ayarlanamadı"
+    },
+    "setStats": {
+      "single_success": "İstatistik çıktısı {{mode}} olarak ayarlandı",
+      "single_fail": "İstatistik çıktısı ayarlanamadı"
+    },
+    "createHorde2": {
+      "single_success": "{{name}} yakınında ikinci sürü oluşturuldu",
+      "single_fail": "{{name}} yakınında ikinci sürü oluşturulamadı",
+      "all_success": "{{s}} oyuncunun yakınında ikinci sürü oluşturuldu",
+      "all_fail": "{{f}} oyuncunun tümünde başarısız: {{failed}}",
+      "partial": "{{s}} oluşturuldu, {{f}} başarısız: {{failed}}"
     }
   },
 
@@ -693,6 +738,57 @@
             "count_hint": "0, bu türdeki tüm eşyaları kaldırır.",
             "submit": "Eşya kaldır"
           }
+        },
+        "world": {
+          "title": "Dünya ve Bakım",
+          "description": "Build 42'nin sunucu genelindeki işlemleri.",
+          "removezombies": {
+            "title": "Zombileri kaldır",
+            "description": "Dünyadaki yüklü tüm zombileri kaldırır.",
+            "submit": "Zombileri kaldır",
+            "confirm_title": "Yüklü tüm zombiler kaldırılsın mı?",
+            "confirm": "Şu anda yüklü olan her zombi dünyadan kaybolur. Kimse onları geri getiremez — dünya yalnızca yeniden doğma ayarlarıyla dolar.",
+            "confirm_submit": "Zombileri kaldır"
+          },
+          "worldgen": {
+            "title": "Dünya üreteci",
+            "description": "Build 42 dünyayı aşamalı üretir. Aşağıdaki ilerleme, sunucunun „worldgen status\" yanıtıdır ve bu görünüm açıkken okunur.",
+            "start": "Başlat",
+            "recheck": "Yeniden denetle",
+            "stop": "Durdur",
+            "no_status": "Henüz durum yok.",
+            "stop_confirm_title": "Dünya üretimi durdurulsun mu?",
+            "stop_confirm": "İşlem bulunduğu yerde durur. Şimdiye kadar üretilenler kalır, gerisi yeni bir çalışma başlatılana kadar eksik olur.",
+            "stop_confirm_submit": "Üretimi durdur"
+          },
+          "reloadlua": {
+            "title": "Lua betiklerini yeniden yükle",
+            "description": "Tek bir betiği ya da hepsini yeniden yükler.",
+            "placeholder": "dosyaadi.lua",
+            "submit": "Dosyayı yükle",
+            "submit_all": "Tüm betikleri yükle"
+          },
+          "log": {
+            "title": "Günlük düzeyi",
+            "description": "Sunucu günlüğünün bir alanı için düzeyi ayarlar.",
+            "type": "Alan",
+            "level": "Düzey",
+            "nothing_found": "Bulunamadı",
+            "submit": "Uygula"
+          },
+          "stats": {
+            "title": "İstatistik çıktısı",
+            "description": "Sunucunun çok oyunculu istatistiklerini nereye ve ne sıklıkla yazacağı.",
+            "mode": "Hedef",
+            "nothing_found": "Bulunamadı",
+            "submit": "Uygula",
+            "modes": {
+              "none": "Kapalı",
+              "file": "Dosya",
+              "console": "Konsol",
+              "all": "Dosya ve konsol"
+            }
+          }
         }
       },
       "players": {
@@ -839,7 +935,10 @@
             "players": "{{players}} yakınına bir zombi sürüsü oluşturacaksınız.",
             "submit": "Sürü Oluştur",
 
-            "horde_size": "Sürü Büyüklüğü"
+            "horde_size": "Sürü Büyüklüğü",
+            "variant": "Sürü komutu",
+            "variant_1": "Sürü",
+            "variant_2": "Sürü 2"
           },
 
           "lightning": {

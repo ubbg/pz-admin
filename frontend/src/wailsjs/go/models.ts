@@ -448,6 +448,22 @@ export namespace main {
 	        this.parameters = source["parameters"];
 	    }
 	}
+	export class Option {
+	    name: string;
+	    value: string;
+	    kind: string;
+	
+	    static createFrom(source: any = {}) {
+	        return new Option(source);
+	    }
+	
+	    constructor(source: any = {}) {
+	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.name = source["name"];
+	        this.value = source["value"];
+	        this.kind = source["kind"];
+	    }
+	}
 	export class Player {
 	    name: string;
 	    online: boolean;

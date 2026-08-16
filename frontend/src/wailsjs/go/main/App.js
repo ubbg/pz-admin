@@ -146,6 +146,10 @@ export function Players() {
   return window['go']['main']['App']['Players']();
 }
 
+export function PzOptionsList() {
+  return window['go']['main']['App']['PzOptionsList']();
+}
+
 export function RandomLightning() {
   return window['go']['main']['App']['RandomLightning']();
 }

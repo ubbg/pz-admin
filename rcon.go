@@ -299,6 +299,7 @@ func (app *App) watchConnection() {
 			}
 			players = nil
 			pzOptions = PzOptions{}
+			serverOptions = nil
 			lastOptionsHash = ""
 			return
 		case <-time.After(time.Duration(*config.RconCheckInterval) * time.Second):

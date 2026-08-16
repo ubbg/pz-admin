@@ -155,10 +155,76 @@ type OptionPair struct {
 	Value string
 }
 
+// Option ist eine Serveroption, so wie showoptions sie meldet: Name, Wert und der aus
+// dem Wert abgeleitete Typ. Welche Optionen es gibt, entscheidet damit der Server —
+// nicht die Anwendung. Siehe specs/options/OPTIONS-001.spec.md.
+type Option struct {
+	Name  string `json:"name"`
+	Value string `json:"value"`
+	Kind  string `json:"kind"` // Boolean, Integer, Double, String
+}
+
+// parseOptionLines liest die Antwort von showoptions Zeile für Zeile. Jede Zeile der
+// Form "* Name=Wert" wird übernommen, auch wenn die Anwendung die Option nicht kennt
+// (PG-01). Alles andere wird übergangen.
+func parseOptionLines(lines []string) []Option {
+	options := make([]Option, 0, len(lines))
+
+	for _, line := range lines {
+		line = strings.TrimSpace(line)
+		if !strings.HasPrefix(line, "* ") {
+			continue
+		}
+
+		parts := strings.SplitN(strings.TrimPrefix(line, "* "), "=", 2)
+		if len(parts) != 2 {
+			continue
+		}
+
+		name := strings.TrimSpace(parts[0])
+		if name == "" {
+			continue
+		}
+		value := strings.TrimSpace(parts[1])
+
+		options = append(options, Option{Name: name, Value: value, Kind: kindOfValue(value)})
+	}
+
+	return options
+}
+
+// kindOfValue leitet den Typ aus dem Wert ab: true/false ist ein Wahrheitswert, eine
+// reine Ganzzahl eine Zahl, eine Zahl mit Punkt eine Kommazahl, alles Übrige Text.
+func kindOfValue(value string) string {
+	switch strings.ToLower(value) {
+	case "true", "false":
+		return "Boolean"
+	}
+
+	if _, err := strconv.ParseInt(value, 10, 64); err == nil {
+		return "Integer"
+	}
+
+	if strings.Contains(value, ".") {
+		if _, err := strconv.ParseFloat(value, 64); err == nil {
+			return "Double"
+		}
+	}
+
+	return "String"
+}
+
 var (
-	pzOptions       PzOptions
+	pzOptions PzOptions
+	// serverOptions ist der zuletzt gelesene Serverstand in generischer Form: alles,
+	// was showoptions gemeldet hat, unabhängig davon, ob die Anwendung es kennt.
+	serverOptions   []Option
 	lastOptionsHash string
 )
+
+func (app *App) PzOptionsList() []Option {
+	return serverOptions
+}
 
 func setFieldValue(field reflect.Value, value string) error {
 	switch field.Kind() {
@@ -210,8 +276,11 @@ func pzOptions_update() error {
 	}
 
 	pzOptions = updatedOptions
+	serverOptions = parseOptionLines(lines)
+
 	runtime.EventsEmit(app.ctx, "update-options", pzOptions)
-	runtime.LogDebugf(app.ctx, "Options synced: %v", pzOptions)
+	runtime.EventsEmit(app.ctx, "update-options-list", serverOptions)
+	runtime.LogDebugf(app.ctx, "Options synced: %d options reported by the server", len(serverOptions))
 
 	return nil
 }

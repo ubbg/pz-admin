@@ -74,6 +74,8 @@ export function OpenLogFolder():Promise<void>;
 
 export function Players():Promise<Array<main.Player>>;
 
+export function PzOptionsList():Promise<Array<main.Option>>;
+
 export function RandomLightning():Promise<void>;
 
 export function RandomThunder():Promise<void>;

@@ -10,7 +10,7 @@ import { useRcon } from "@/contexts/rcon-provider";
 import { Switch } from "./ui/switch";
 import { Input } from "./ui/input";
 import { formatWithMinimumOneDecimal } from "@/lib/utils";
-import { Edit, Loader2, RotateCw, Search } from "lucide-react";
+import { Edit, Eye, EyeOff, Loader2, RotateCw, Search } from "lucide-react";
 import { SendMessageDialog } from "./Dialogs/SendMessageDialog";
 import { Tooltip, TooltipContent } from "./ui/tooltip";
 import { TooltipTrigger } from "@radix-ui/react-tooltip";
@@ -51,6 +51,14 @@ function optionDescription(t: TFunction, fieldName: string): string {
 
 function optionKeywords(t: TFunction, fieldName: string): string {
   return t(`options.${fieldName}.keywords`, { defaultValue: "" });
+}
+
+// Auswahlwerte, die mehrere Optionen teilen (z. B. Ban/Kick/Log/Disable im
+// Anti-Cheat), stehen einmal unter options.choices.* im Katalog.
+function optionChoiceLabel(t: TFunction, fieldName: string, choice: string): string {
+  return t(`options.${fieldName}.choices.${choice}`, {
+    defaultValue: t(`options.choices.${choice}`, { defaultValue: choice }),
+  });
 }
 
 export function OptionsTab() {
@@ -368,6 +376,8 @@ function OptionContent({ option }: { option: Option }) {
     return <DoubleOptionContent option={option} />;
   } else if (option.Type === "String") {
     return <StringOptionContent option={option} />;
+  } else if (option.Type === "Password") {
+    return <PasswordOptionContent option={option} />;
   } else if (option.Type === "Text") {
     return <TextOptionContent option={option} />;
   } else if (option.Type === "Information") {
@@ -381,6 +391,35 @@ function OptionContent({ option }: { option: Option }) {
   } else if (option.Type === "MultipleChoice") {
     return <MultipleChoiceOptionContent option={option} />;
   }
+}
+
+// Passwörter erscheinen nur maskiert. Was die Verbindung kappen würde (RCON-Port und
+// -Passwort), ist mit ReadOnly gekennzeichnet und wird nur angezeigt.
+function PasswordOptionContent({ option }: { option: Option }) {
+  const { modifiedOptions, modifyOption } = useRcon();
+  const [revealed, setRevealed] = useState(false);
+
+  const value = (modifiedOptions[option.FieldName] as string) ?? "";
+
+  return (
+    <div className="flex gap-1.5 w-[20rem]">
+      <Input
+        type={revealed ? "text" : "password"}
+        inputMode="text"
+        autoComplete="off"
+        value={value}
+        readOnly={option.ReadOnly}
+        disabled={option.ReadOnly}
+        onChange={(e) => {
+          modifyOption(option.FieldName, e.target.value);
+        }}
+        onKeyDown={(e) => e.key.match(/[\\"]/g) && e.preventDefault()}
+      />
+      <Button size={"icon"} variant={"outline"} className="shrink-0" onClick={() => setRevealed((shown) => !shown)}>
+        {revealed ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+      </Button>
+    </div>
+  );
 }
 
 function BoolOptionContent({ option }: { option: Option }) {
@@ -459,7 +498,7 @@ function IntOptionContent({ option }: { option: Option }) {
           min={option.Range?.Min ?? -2147483647}
           max={option.Range?.Max ?? 2147483647}
           onKeyDown={(e) => e.key.match(/[-+.,]/) && e.preventDefault()}
-          disabled={modifiedOptions[option.FieldName] === option.DisabledValue}
+          disabled={option.ReadOnly || modifiedOptions[option.FieldName] === option.DisabledValue}
         />
         {option.Range && (
           <div className="text-[0.6rem] w-[5.5rem] h-0 text-center text-muted-foreground">
@@ -790,7 +829,7 @@ function ChoiceOptionContent({ option }: { option: Option }) {
               modifyOption(option.FieldName, Value);
             }}
           >
-            {t(`options.${option.FieldName}.choices.${Name}`)}
+            {optionChoiceLabel(t, option.FieldName, Name)}
           </ToggleGroupItem>
         ))}
       </ToggleGroup>
@@ -835,7 +874,7 @@ function MultipleChoiceOptionContent({ option }: { option: Option }) {
             value={Value as any}
             onClick={() => handleModifyOption(option.FieldName, Value)}
           >
-            {t(`options.${option.FieldName}.choices.${Name}`)}
+            {optionChoiceLabel(t, option.FieldName, Name)}
           </ToggleGroupItem>
         ))}
       </ToggleGroup>

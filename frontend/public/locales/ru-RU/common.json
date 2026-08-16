@@ -836,7 +836,9 @@
             "Backup": "Бэкап",
             "Anti-Cheat": "Анти-чит",
             "Miscellaneous": "Разное",
-            "Other": "Прочие настройки"
+            "Other": "Прочие настройки",
+            "War": "Война",
+            "Network": "Сеть"
           },
           "other_options_description": "Настройки, о которых сообщает сервер, но для которых у приложения нет описания. Их можно менять как любые другие."
         },
@@ -861,175 +863,10 @@
       "requires_2": "Требует, чтобы {{option1}} было {{value1}} и {{option2}} было {{value2}}.",
       "requires_3": "Требует, чтобы {{option1}} было {{value1}}, {{option2}} было {{value2}} и {{option3}} было {{value3}}.",
   
-      "AntiCheatProtectionType1": {
-        "display_name": "Тип античита 1",
-        "description": "",
-        "keywords": "античит,защита,тип1"
-      },
-      "AntiCheatProtectionType2": {
-        "display_name": "Тип античита 2",
-        "description": "",
-        "keywords": "античит,защита,тип2"
-      },
-      "AntiCheatProtectionType3": {
-        "display_name": "Тип античита 3",
-        "description": "",
-        "keywords": "античит,защита,тип3"
-      },
-      "AntiCheatProtectionType4": {
-        "display_name": "Тип античита 4",
-        "description": "",
-        "keywords": "античит,защита,тип4"
-      },
-      "AntiCheatProtectionType5": {
-        "display_name": "Тип античита 5",
-        "description": "",
-        "keywords": "античит,защита,тип5"
-      },
-      "AntiCheatProtectionType6": {
-        "display_name": "Тип античита 6",
-        "description": "",
-        "keywords": "античит,защита,тип6"
-      },
-      "AntiCheatProtectionType7": {
-        "display_name": "Тип античита 7",
-        "description": "",
-        "keywords": "античит,защита,тип7"
-      },
-      "AntiCheatProtectionType8": {
-        "display_name": "Тип античита 8",
-        "description": "",
-        "keywords": "античит,защита,тип8"
-      },
-      "AntiCheatProtectionType9": {
-        "display_name": "Тип античита 9",
-        "description": "",
-        "keywords": "античит,защита,тип9"
-      },
-      "AntiCheatProtectionType10": {
-        "display_name": "Тип античита 10",
-        "description": "",
-        "keywords": "античит,защита,тип10"
-      },
-      "AntiCheatProtectionType11": {
-        "display_name": "Тип античита 11",
-        "description": "",
-        "keywords": "античит,защита,тип11"
-      },
-      "AntiCheatProtectionType12": {
-        "display_name": "Тип античита 12",
-        "description": "",
-        "keywords": "античит,защита,тип12"
-      },
-      "AntiCheatProtectionType13": {
-        "display_name": "Тип античита 13",
-        "description": "",
-        "keywords": "античит,защита,тип13"
-      },
-      "AntiCheatProtectionType14": {
-        "display_name": "Тип античита 14",
-        "description": "",
-        "keywords": "античит,защита,тип14"
-      },
-      "AntiCheatProtectionType15": {
-        "display_name": "Тип античита 15",
-        "description": "",
-        "keywords": "античит,защита,тип15"
-      },
-      "AntiCheatProtectionType16": {
-        "display_name": "Тип античита 16",
-        "description": "",
-        "keywords": "античит,защита,тип16"
-      },
-      "AntiCheatProtectionType17": {
-        "display_name": "Тип античита 17",
-        "description": "",
-        "keywords": "античит,защита,тип17"
-      },
-      "AntiCheatProtectionType18": {
-        "display_name": "Тип античита 18",
-        "description": "",
-        "keywords": "античит,защита,тип18"
-      },
-      "AntiCheatProtectionType19": {
-        "display_name": "Тип античита 19",
-        "description": "",
-        "keywords": "античит,защита,тип19"
-      },
-      "AntiCheatProtectionType20": {
-        "display_name": "Тип античита 20",
-        "description": "",
-        "keywords": "античит,защита,тип20"
-      },
-      "AntiCheatProtectionType21": {
-        "display_name": "Тип античита 21",
-        "description": "",
-        "keywords": "античит,защита,тип21"
-      },
-      "AntiCheatProtectionType22": {
-        "display_name": "Тип античита 22",
-        "description": "",
-        "keywords": "античит,защита,тип22"
-      },
-      "AntiCheatProtectionType23": {
-        "display_name": "Тип античита 23",
-        "description": "",
-        "keywords": "античит,защита,тип23"
-      },
-      "AntiCheatProtectionType24": {
-        "display_name": "Тип античита 24",
-        "description": "",
-        "keywords": "античит,защита,тип24"
-      },
-      "AntiCheatProtectionType2ThresholdMultiplier": {
-        "display_name": "Множитель порога античита типа 2",
-        "description": "",
-        "keywords": "античит,порог,множитель,тип2"
-      },
-      "AntiCheatProtectionType3ThresholdMultiplier": {
-        "display_name": "Множитель порога античита типа 3",
-        "description": "",
-        "keywords": "античит,порог,множитель,тип3"
-      },
-      "AntiCheatProtectionType4ThresholdMultiplier": {
-        "display_name": "Множитель порога античита типа 4",
-        "description": "",
-        "keywords": "античит,порог,множитель,тип4"
-      },
-      "AntiCheatProtectionType9ThresholdMultiplier": {
-        "display_name": "Множитель порога античита типа 9",
-        "description": "",
-        "keywords": "античит,порог,множитель,тип9"
-      },
-      "AntiCheatProtectionType15ThresholdMultiplier": {
-        "display_name": "Множитель порога античита типа 15",
-        "description": "",
-        "keywords": "античит,порог,множитель,тип15"
-      },
-      "AntiCheatProtectionType20ThresholdMultiplier": {
-        "display_name": "Множитель порога античита типа 20",
-        "description": "",
-        "keywords": "античит,порог,множитель,тип20"
-      },
-      "AntiCheatProtectionType22ThresholdMultiplier": {
-        "display_name": "Множитель порога античита типа 22",
-        "description": "",
-        "keywords": "античит,порог,множитель,тип22"
-      },
-      "AntiCheatProtectionType24ThresholdMultiplier": {
-        "display_name": "Множитель порога античита типа 24",
-        "description": "",
-        "keywords": "античит,порог,множитель,тип24"
-      },
       "DoLuaChecksum": {
         "display_name": "Включить кик по контрольной сумме Lua",
         "description": "Если включено, клиенты, чьи файлы игры не совпадают с файлами сервера, будут кикнуты.",
         "keywords": "античит,lua,контрольная сумма,кик"
-      },
-      "KickFastPlayers": {
-        "display_name": "Кикать быстрых игроков",
-        "description": "Если включено, игроки, которые двигаются быстрее, чем возможно, будут кикнуты. Может быть багованным - используйте с осторожностью.",
-        "keywords": "античит,кик,быстрые игроки"
       },
       "SteamVAC": {
         "display_name": "Включить Valve Anti-cheat (Steam VAC)",
@@ -1068,16 +905,6 @@
         "description": "Устанавливает токен бота для доступа к серверам Discord.",
         "keywords": "discord,токен"
       },
-      "DiscordChannel": {
-        "display_name": "Канал Discord",
-        "description": "Устанавливает название канала Discord для интеграции. Используйте \"Discord ID\", если это не работает.",
-        "keywords": "discord,канал"
-      },
-      "DiscordChannelID": {
-        "display_name": "ID канала Discord",
-        "description": "Устанавливает ID канала Discord для интеграции. Используйте это, если \"Discord Channel\" не работает.",
-        "keywords": "discord,id канала"
-      },
       "Faction": {
         "display_name": "Включить фракции",
         "description": "Включает создание и использование фракций.",
@@ -1109,11 +936,6 @@
         "description": "Настраивает радиус привлечения зомби к машинам. Меньшие значения могут уменьшить лаги.",
         "keywords": "машина,двигатель,зомби,привлечение,модификатор"
       },
-      "ConstructionPreventsLootRespawn": {
-        "display_name": "Строительство предотвращает респавн лута",
-        "description": "Предотвращает респавн лута в зданиях с игроковыми постройками или баррикадами.",
-        "keywords": "строительство,лут,респавн,предотвращение"
-      },
       "FastForwardMultiplier": {
         "display_name": "Множитель ускорения времени сна",
         "description": "Определяет, насколько быстро идет время во время сна игроков.",
@@ -1123,12 +945,6 @@
         "display_name": "Скрывать игроков позади",
         "description": "Автоматически скрывает игроков вне поля зрения за персонажем (как зомби).",
         "keywords": "скрыть,игроки,позади,обзор"
-      },
-      "HoursForLootRespawn": {
-        "display_name": "Минимальный период респавна лута",
-        "description": "Количество игровых часов, после которых лутанные контейнеры респавнят лут. Респавн лута не зависит от видимости или последующего лутания.",
-        "disabled": "Никогда",
-        "keywords": "лут,респавн,часы,минимум"
       },
       "ItemNumbersLimitPerContainer": {
         "display_name": "Лимит предметов на контейнер",
@@ -1140,16 +956,6 @@
         "display_name": "Разрешить сбивание с ног",
         "description": "Позволяет игрокам быть сбитыми с ног.",
         "keywords": "сбивание,ноги,разрешить"
-      },
-      "MaxItemsForLootRespawn": {
-        "display_name": "Максимум предметов для респавна лута",
-        "description": "Максимальное количество предметов в контейнере для респавна лута.",
-        "keywords": "лут,респавн,максимум,предметы"
-      },
-      "MinutesPerPage": {
-        "display_name": "Минут на страницу книги",
-        "description": "Количество игровых минут для прочтения одной страницы книги.",
-        "keywords": "минуты,книга,страница,чтение"
       },
       "NoFire": {
         "display_name": "Запретить огонь",
@@ -1388,11 +1194,6 @@
         "description": "Отображает значок черепа над головами игроков, вошедших в режим PvP",
         "keywords": "pvp,статус,индикатор,система безопасности"
       },
-      "AutoCreateUserInWhiteList": {
-        "display_name": "Автоматически вайтлистить игроков",
-        "description": "Автоматически добавляет новых игроков в вайтлист (для открытых серверов). Игроки будут указывать свои имя/пароль при присоединении.",
-        "keywords": "вайтлист,добавить,авто-создание,автоматически,игроки"
-      },
       "DisplayUserName": {
         "display_name": "Показывать имена игроков",
         "description": "Показывает имена игроков над их персонажами.",
@@ -1444,11 +1245,6 @@
         "display_name": "Разрешить убежища админам",
         "description": "Позволяет админам занимать убежища.",
         "keywords": "убежище,админ,ограничение"
-      },
-      "DisableSafehouseWhenPlayerConnected": {
-        "display_name": "Отключать убежище при подключении игрока",
-        "description": "Отключает защиту убежища, когда игрок онлайн, так что оно действует как обычный дом и защищено только когда игроки оффлайн.",
-        "keywords": "убежище,отключение,подключение"
       },
       "PlayerSafehouse": {
         "display_name": "Разрешить убежища игрокам",
@@ -1558,6 +1354,264 @@
         "display_name": "Минимальная дистанция VOIP",
         "description": "Определяет минимальную дальность звука VOIP.",
         "keywords": "голос,минимум,дистанция,дальность"
+      },
+      "Password": {
+          "display_name": "Пароль сервера",
+          "description": "Клиенты должны знать этот пароль, чтобы войти на сервер.",
+          "keywords": "пароль,вход,доступ,приватный"
+      },
+      "Seed": {
+          "display_name": "Зерно генерации мира",
+          "description": "Зерно, по которому создаётся мир. Изменение действует только после удаления map_worldgen.bin в папке сохранения.",
+          "keywords": "зерно,мир,карта,генерация"
+      },
+      "AnnounceAnimalDeath": {
+          "display_name": "Объявлять смерть животных",
+          "description": "При гибели животного в общий чат выводится сообщение.",
+          "keywords": "животное,смерть,объявление,чат"
+      },
+      "DisableVehicleTowing": {
+          "display_name": "Запретить буксировку машин",
+          "description": "Запрещает игрокам буксировать транспорт.",
+          "keywords": "буксировка,машина,транспорт,запрет"
+      },
+      "DisableTrailerTowing": {
+          "display_name": "Запретить буксировку прицепов",
+          "description": "Запрещает игрокам буксировать прицепы.",
+          "keywords": "буксировка,прицеп,запрет"
+      },
+      "DisableBurntTowing": {
+          "display_name": "Запретить буксировку сгоревших машин",
+          "description": "Запрещает игрокам буксировать сгоревший транспорт.",
+          "keywords": "буксировка,сгоревший,машина,запрет"
+      },
+      "UsePhysicsHitReaction": {
+          "display_name": "Физическая реакция на удар",
+          "description": "Зомби и игроки реагируют на удары физически рассчитанным движением.",
+          "keywords": "физика,удар,реакция,бой"
+      },
+      "SwitchZombiesOwnershipEachUpdate": {
+          "display_name": "Менять владельца зомби каждое обновление",
+          "description": "При каждом обновлении заново назначает, какой клиент считает зомби.",
+          "keywords": "зомби,владелец,сеть,производительность"
+      },
+      "UltraSpeedDoesnotAffectToAnimals": {
+          "display_name": "Ускорение времени не влияет на животных",
+          "description": "Перемотка времени не ускоряет животных.",
+          "keywords": "животное,скорость,время,перемотка"
+      },
+      "DisableSafehouseWhenOwnerConnected": {
+          "display_name": "Отключать убежище при владельце в сети",
+          "description": "Пока владелец в сети, убежище ведёт себя как обычный дом.",
+          "keywords": "убежище,владелец,онлайн,защита"
+      },
+      "SafehousePreventsLootRespawn": {
+          "display_name": "Убежище отключает респавн лута",
+          "description": "В зданиях, взятых как убежище, предметы не появляются заново.",
+          "keywords": "убежище,лут,респавн,предметы"
+      },
+      "SafehouseDisableDisguises": {
+          "display_name": "Без маскировки в убежищах",
+          "description": "В убежищах скрытые имена игроков показываются.",
+          "keywords": "убежище,маскировка,имя,показать"
+      },
+      "MaxSafezoneSize": {
+          "display_name": "Максимальный размер безопасной зоны",
+          "description": "Наибольшая площадь в клетках, которую может занимать одна безопасная зона.",
+          "keywords": "безопасная зона,размер,площадь,предел"
+      },
+      "War": {
+          "display_name": "Война фракций",
+          "description": "Позволяет фракциям объявлять друг другу войну.",
+          "keywords": "война,фракция,pvp,конфликт"
+      },
+      "WarStartDelay": {
+          "display_name": "Задержка начала войны",
+          "description": "Секунды между объявлением и началом войны.",
+          "keywords": "война,задержка,начало,секунды"
+      },
+      "WarDuration": {
+          "display_name": "Длительность войны",
+          "description": "Сколько секунд длится война.",
+          "keywords": "война,длительность,секунды,фракция"
+      },
+      "WarSafehouseHitPoints": {
+          "display_name": "Прочность убежища на войне",
+          "description": "Сколько урона выдерживает убежище во время войны.",
+          "keywords": "война,убежище,прочность,урон"
+      },
+      "UsernameDisguises": {
+          "display_name": "Разрешить маскировку имени",
+          "description": "Игроки в полностью закрывающей лицо маскировке показываются без имени.",
+          "keywords": "маскировка,имя,маска,скрыть"
+      },
+      "HideDisguisedUserName": {
+          "display_name": "Полностью скрывать имя при маскировке",
+          "description": "Скрывает имя целиком вместо заполнителя.",
+          "keywords": "маскировка,имя,скрыть"
+      },
+      "HideAdminsInPlayerList": {
+          "display_name": "Скрывать админов в списке игроков",
+          "description": "Администраторы не отображаются в игровом списке игроков.",
+          "keywords": "админ,список игроков,скрыть"
+      },
+      "ShowCoordinates": {
+          "display_name": "Показывать координаты",
+          "description": "Показывает координаты персонажа в правом нижнем углу.",
+          "keywords": "координаты,позиция,интерфейс"
+      },
+      "DisableScoreboard": {
+          "display_name": "Отключить таблицу счёта",
+          "description": "Выключает игровую таблицу счёта.",
+          "keywords": "таблица,счёт,игроки,отключить"
+      },
+      "PVPLogToolChat": {
+          "display_name": "Писать PvP в чат админов",
+          "description": "События PvP сообщаются в админском чате.",
+          "keywords": "pvp,журнал,чат,админ"
+      },
+      "PVPLogToolFile": {
+          "display_name": "Писать PvP в файл",
+          "description": "События PvP записываются в журналы сервера.",
+          "keywords": "pvp,журнал,файл,сервер"
+      },
+      "SafetyDisconnectDelay": {
+          "display_name": "Задержка выхода в PvP",
+          "description": "Сколько секунд игрок остаётся в мире после отключения в режиме PvP.",
+          "keywords": "безопасность,выход,задержка,pvp"
+      },
+      "ChatMessageCharacterLimit": {
+          "display_name": "Ограничение длины сообщения",
+          "description": "Самое длинное сообщение, которое игрок может отправить в чат.",
+          "keywords": "чат,сообщение,ограничение,символы"
+      },
+      "ChatMessageSlowModeTime": {
+          "display_name": "Медленный режим чата",
+          "description": "Сколько секунд игрок ждёт между двумя сообщениями.",
+          "keywords": "чат,медленный режим,задержка,спам"
+      },
+      "BadWordListFile": {
+          "display_name": "Файл списка запрещённых слов",
+          "description": "Путь к файлу, где на каждой строке одно запрещённое слово.",
+          "keywords": "запрещённые слова,фильтр,чат,файл"
+      },
+      "GoodWordListFile": {
+          "display_name": "Файл списка разрешённых слов",
+          "description": "Путь к файлу со словами, которые остаются разрешёнными, даже если содержат запрещённое.",
+          "keywords": "разрешённые слова,фильтр,чат,файл"
+      },
+      "BadWordPolicy": {
+          "display_name": "Что делать с запрещённым словом",
+          "description": "Что происходит с игроком, отправившим запрещённое слово.",
+          "keywords": "запрещённые слова,правило,бан,кик,мут"
+      },
+      "BadWordReplacement": {
+          "display_name": "Замена запрещённого слова",
+          "description": "Текст, которым заменяется запрещённое слово в чате.",
+          "keywords": "запрещённые слова,замена,цензура,чат"
+      },
+      "DiscordChatChannel": {
+          "display_name": "Канал чата в Discord",
+          "description": "Название канала Discord, куда зеркалится игровой чат.",
+          "keywords": "discord,чат,канал"
+      },
+      "DiscordLogChannel": {
+          "display_name": "Канал журналов в Discord",
+          "description": "Название канала Discord для сообщений журнала сервера.",
+          "keywords": "discord,журнал,канал"
+      },
+      "DiscordCommandChannel": {
+          "display_name": "Канал команд в Discord",
+          "description": "Название канала Discord, принимающего админские команды.",
+          "keywords": "discord,команда,канал,админ"
+      },
+      "WebhookAddress": {
+          "display_name": "Адрес вебхука",
+          "description": "URL входящего вебхука, куда сервер отправляет сообщения.",
+          "keywords": "вебхук,slack,url,уведомление"
+      },
+      "AntiCheatSafety": {
+          "display_name": "Система безопасности",
+          "description": "Реакция, когда клиент вмешивается в систему безопасности PvP.",
+          "keywords": "античит,безопасность,pvp"
+      },
+      "AntiCheatSpeed": {
+          "display_name": "Скорость передвижения",
+          "description": "Реакция, когда персонаж движется быстрее возможного.",
+          "keywords": "античит,скорость,движение"
+      },
+      "AntiCheatNoClip": {
+          "display_name": "Проход сквозь стены",
+          "description": "Реакция, когда персонаж проходит сквозь стены.",
+          "keywords": "античит,noclip,стены"
+      },
+      "AntiCheatHit": {
+          "display_name": "Проверка попаданий",
+          "description": "Реакция на попадания, которых не могло быть.",
+          "keywords": "античит,удар,урон,бой"
+      },
+      "AntiCheatPacketException": {
+          "display_name": "Ошибки пакетов",
+          "description": "Реакция, когда клиент шлёт некорректные сетевые пакеты.",
+          "keywords": "античит,пакет,сеть,ошибка"
+      },
+      "AntiCheatPermission": {
+          "display_name": "Права доступа",
+          "description": "Реакция, когда клиент использует команды выше своего уровня доступа.",
+          "keywords": "античит,права,доступ,админ"
+      },
+      "AntiCheatXP": {
+          "display_name": "Опыт",
+          "description": "Реакция, когда клиент сам начисляет себе опыт.",
+          "keywords": "античит,опыт,навык"
+      },
+      "AntiCheatSafeHouse": {
+          "display_name": "Убежища",
+          "description": "Реакция, когда клиент обходит правила убежищ.",
+          "keywords": "античит,убежище"
+      },
+      "AntiCheatPlayer": {
+          "display_name": "Состояние персонажа",
+          "description": "Реакция, когда клиент сообщает невозможное состояние персонажа.",
+          "keywords": "античит,игрок,состояние"
+      },
+      "AntiCheatChecksum": {
+          "display_name": "Контрольные суммы файлов",
+          "description": "Реакция, когда файлы игры клиента не совпадают с серверными.",
+          "keywords": "античит,контрольная сумма,файлы"
+      },
+      "server_browser_announced_ip": {
+          "display_name": "Объявляемый IP",
+          "description": "IP-адрес, который сервер объявляет в браузере серверов.",
+          "keywords": "ip,браузер серверов,сеть"
+      },
+      "RCONPort": {
+          "display_name": "Порт RCON",
+          "description": "Порт удалённой консоли. Здесь только для чтения — изменение разорвёт это подключение.",
+          "keywords": "rcon,порт,консоль,сеть"
+      },
+      "RCONPassword": {
+          "display_name": "Пароль RCON",
+          "description": "Пароль удалённой консоли. Здесь только для чтения — изменение разорвёт это подключение.",
+          "keywords": "rcon,пароль,консоль"
+      },
+      "MaxPacketsPerSecond": {
+          "display_name": "Пакетов в секунду",
+          "description": "Предел сетевых пакетов, обрабатываемых на клиента в секунду.",
+          "keywords": "сеть,пакеты,предел,производительность"
+      },
+      "MultiplayerStatisticsPeriod": {
+          "display_name": "Период статистики",
+          "description": "Секунды между обновлениями сетевой статистики.",
+          "keywords": "статистика,период,мультиплеер",
+          "disabled": "Выключено"
+      },
+      "choices": {
+          "ban": "Бан",
+          "kick": "Кик",
+          "log": "В журнал",
+          "disable": "Выключено",
+          "mute": "Мут"
       }
     },
   

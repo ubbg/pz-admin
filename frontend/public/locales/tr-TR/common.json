@@ -836,7 +836,9 @@
           "Backup": "Yedekleme",
           "Anti-Cheat": "Anti-Cheat",
           "Miscellaneous": "Diğer",
-          "Other": "Diğer Seçenekler"
+          "Other": "Diğer Seçenekler",
+          "War": "Savaş",
+          "Network": "Ağ"
         },
         "other_options_description": "Sunucunuzun bildirdiği, bu uygulamanın açıklaması olmayan seçenekler. Diğer seçenekler gibi değiştirilebilirler."
       },
@@ -904,5 +906,265 @@
     "Weapon": "Silah",
     "Weapon - Crafted": "Silah - Üretilmiş",
     "Weapon Part": "Silah Parçası"
+  },
+  "options": {
+    "Password": {
+      "display_name": "Sunucu Parolası",
+      "description": "İstemcilerin sunucuya katılabilmesi için bu parolayı bilmesi gerekir.",
+      "keywords": "parola,katıl,erişim,özel"
+    },
+    "Seed": {
+      "display_name": "Dünya Üretim Tohumu",
+      "description": "Dünyanın üretiminde kullanılan tohum. Değişiklik ancak kayıt dizinindeki map_worldgen.bin silindikten sonra etkili olur.",
+      "keywords": "tohum,dünya,harita,üretim"
+    },
+    "AnnounceAnimalDeath": {
+      "display_name": "Hayvan Ölümünü Duyur",
+      "description": "Bir hayvan öldüğünde genel sohbete ileti düşer.",
+      "keywords": "hayvan,ölüm,duyuru,sohbet"
+    },
+    "DisableVehicleTowing": {
+      "display_name": "Araç Çekmeyi Kapat",
+      "description": "Oyuncuların araç çekmesini engeller.",
+      "keywords": "çekme,araç,kapat"
+    },
+    "DisableTrailerTowing": {
+      "display_name": "Römork Çekmeyi Kapat",
+      "description": "Oyuncuların römork çekmesini engeller.",
+      "keywords": "çekme,römork,kapat"
+    },
+    "DisableBurntTowing": {
+      "display_name": "Yanmış Araç Çekmeyi Kapat",
+      "description": "Oyuncuların yanmış araçları çekmesini engeller.",
+      "keywords": "çekme,yanmış,araç,kapat"
+    },
+    "UsePhysicsHitReaction": {
+      "display_name": "Fizik Tabanlı Vuruş Tepkisi",
+      "description": "Zombiler ve oyuncular vuruşlara fizik tabanlı hareketle tepki verir.",
+      "keywords": "fizik,vuruş,tepki,dövüş"
+    },
+    "SwitchZombiesOwnershipEachUpdate": {
+      "display_name": "Zombi Sahipliğini Her Güncellemede Değiştir",
+      "description": "Her güncellemede hangi istemcinin zombiyi işlediğini yeniden atar.",
+      "keywords": "zombi,sahiplik,ağ,başarım"
+    },
+    "UltraSpeedDoesnotAffectToAnimals": {
+      "display_name": "Hızlı İlerleme Hayvanları Etkilemesin",
+      "description": "Zamanı hızlı ilerletmek hayvanları hızlandırmaz.",
+      "keywords": "hayvan,hız,zaman"
+    },
+    "DisableSafehouseWhenOwnerConnected": {
+      "display_name": "Sahibi Çevrimiçiyken Güvenli Evi Kapat",
+      "description": "Sahibi bağlıyken güvenli ev sıradan bir ev gibi davranır.",
+      "keywords": "güvenli ev,sahip,çevrimiçi,koruma"
+    },
+    "SafehousePreventsLootRespawn": {
+      "display_name": "Güvenli Evde Ganimet Yenilenmesin",
+      "description": "Güvenli ev olarak alınan binalarda eşyalar yeniden oluşmaz.",
+      "keywords": "güvenli ev,ganimet,yenilenme,eşya"
+    },
+    "SafehouseDisableDisguises": {
+      "display_name": "Güvenli Evlerde Kılık Değiştirme Yok",
+      "description": "Güvenli evlerde gizlenmiş kullanıcı adları görünür olur.",
+      "keywords": "güvenli ev,kılık,kullanıcı adı"
+    },
+    "MaxSafezoneSize": {
+      "display_name": "En Büyük Güvenli Bölge",
+      "description": "Tek bir güvenli bölgenin kaplayabileceği en büyük alan (kare).",
+      "keywords": "güvenli bölge,boyut,alan,sınır"
+    },
+    "War": {
+      "display_name": "Klan Savaşı",
+      "description": "Klanların birbirine savaş ilan etmesine izin verir.",
+      "keywords": "savaş,klan,pvp,çatışma"
+    },
+    "WarStartDelay": {
+      "display_name": "Savaş Başlama Gecikmesi",
+      "description": "İlan ile savaşın başlaması arasındaki saniye sayısı.",
+      "keywords": "savaş,gecikme,başlangıç,saniye"
+    },
+    "WarDuration": {
+      "display_name": "Savaş Süresi",
+      "description": "Bir savaşın saniye cinsinden süresi.",
+      "keywords": "savaş,süre,saniye,klan"
+    },
+    "WarSafehouseHitPoints": {
+      "display_name": "Savaşta Güvenli Ev Canı",
+      "description": "Savaş sırasında güvenli evin düşmeden önce dayandığı hasar.",
+      "keywords": "savaş,güvenli ev,can,hasar"
+    },
+    "UsernameDisguises": {
+      "display_name": "Kullanıcı Adı Gizlemeye İzin Ver",
+      "description": "Yüzünü tamamen kapatan oyuncular kullanıcı adı olmadan görünür.",
+      "keywords": "kılık,kullanıcı adı,maske,gizle"
+    },
+    "HideDisguisedUserName": {
+      "display_name": "Gizlenmiş Kullanıcı Adını Sakla",
+      "description": "Yer tutucu göstermek yerine kullanıcı adını tamamen gizler.",
+      "keywords": "kılık,kullanıcı adı,gizle"
+    },
+    "HideAdminsInPlayerList": {
+      "display_name": "Yöneticileri Oyuncu Listesinde Gizle",
+      "description": "Yöneticiler oyun içi oyuncu listesinde görünmez.",
+      "keywords": "yönetici,oyuncu listesi,gizle"
+    },
+    "ShowCoordinates": {
+      "display_name": "Koordinatları Göster",
+      "description": "Karakterin koordinatlarını sağ alt köşede gösterir.",
+      "keywords": "koordinat,konum,ekran"
+    },
+    "DisableScoreboard": {
+      "display_name": "Skor Tablosunu Kapat",
+      "description": "Oyun içi skor tablosunu kapatır.",
+      "keywords": "skor tablosu,oyuncular,kapat"
+    },
+    "PVPLogToolChat": {
+      "display_name": "PvP'yi Yönetici Sohbetine Yaz",
+      "description": "PvP olayları yönetici sohbetinde bildirilir.",
+      "keywords": "pvp,kayıt,sohbet,yönetici"
+    },
+    "PVPLogToolFile": {
+      "display_name": "PvP'yi Dosyaya Yaz",
+      "description": "PvP olayları sunucu günlük dosyalarına yazılır.",
+      "keywords": "pvp,kayıt,dosya,sunucu"
+    },
+    "SafetyDisconnectDelay": {
+      "display_name": "Bağlantı Kesme Gecikmesi",
+      "description": "PvP sırasında bağlantısı kesilen oyuncunun dünyada kaldığı saniye.",
+      "keywords": "güvenlik,bağlantı,gecikme,pvp"
+    },
+    "ChatMessageCharacterLimit": {
+      "display_name": "Sohbet İletisi Karakter Sınırı",
+      "description": "Bir oyuncunun gönderebileceği en uzun sohbet iletisi.",
+      "keywords": "sohbet,ileti,sınır,karakter"
+    },
+    "ChatMessageSlowModeTime": {
+      "display_name": "Sohbet Yavaş Kip",
+      "description": "Oyuncunun iki ileti arasında beklemesi gereken saniye.",
+      "keywords": "sohbet,yavaş kip,bekleme,spam"
+    },
+    "BadWordListFile": {
+      "display_name": "Yasaklı Kelime Dosyası",
+      "description": "Her satırda bir yasaklı kelime bulunan dosyanın yolu.",
+      "keywords": "yasaklı kelime,süzgeç,sohbet,dosya"
+    },
+    "GoodWordListFile": {
+      "display_name": "İzin Verilen Kelime Dosyası",
+      "description": "Yasaklı kelime içerse bile izin verilen kelimelerin dosya yolu.",
+      "keywords": "izinli kelime,süzgeç,sohbet,dosya"
+    },
+    "BadWordPolicy": {
+      "display_name": "Yasaklı Kelime Kuralı",
+      "description": "Yasaklı kelime gönderen oyuncuya ne olacağı.",
+      "keywords": "yasaklı kelime,kural,yasak,at,sustur"
+    },
+    "BadWordReplacement": {
+      "display_name": "Yasaklı Kelime Yerine Geçen Metin",
+      "description": "Sohbette yasaklı kelimenin yerine yazılan metin.",
+      "keywords": "yasaklı kelime,değiştirme,sansür,sohbet"
+    },
+    "DiscordChatChannel": {
+      "display_name": "Discord Sohbet Kanalı",
+      "description": "Oyun içi sohbeti yansıtan Discord kanalının adı.",
+      "keywords": "discord,sohbet,kanal"
+    },
+    "DiscordLogChannel": {
+      "display_name": "Discord Günlük Kanalı",
+      "description": "Sunucu günlük iletilerinin gittiği Discord kanalının adı.",
+      "keywords": "discord,günlük,kanal"
+    },
+    "DiscordCommandChannel": {
+      "display_name": "Discord Komut Kanalı",
+      "description": "Yönetici komutlarının kabul edildiği Discord kanalının adı.",
+      "keywords": "discord,komut,kanal,yönetici"
+    },
+    "WebhookAddress": {
+      "display_name": "Webhook Adresi",
+      "description": "Sunucunun ileti gönderdiği gelen webhook adresi.",
+      "keywords": "webhook,slack,adres,bildirim"
+    },
+    "AntiCheatSafety": {
+      "display_name": "Güvenlik Sistemi",
+      "description": "Bir istemci PvP güvenlik sistemini kurcaladığında verilecek tepki.",
+      "keywords": "hile,güvenlik,pvp"
+    },
+    "AntiCheatSpeed": {
+      "display_name": "Hareket Hızı",
+      "description": "Bir karakter mümkün olandan hızlı hareket ettiğinde verilecek tepki.",
+      "keywords": "hile,hız,hareket"
+    },
+    "AntiCheatNoClip": {
+      "display_name": "Duvardan Geçme",
+      "description": "Bir karakter duvarlardan geçtiğinde verilecek tepki.",
+      "keywords": "hile,duvar,geçiş"
+    },
+    "AntiCheatHit": {
+      "display_name": "Vuruş Denetimi",
+      "description": "Gerçekleşmesi mümkün olmayan vuruşlar bildirildiğinde verilecek tepki.",
+      "keywords": "hile,vuruş,hasar,dövüş"
+    },
+    "AntiCheatPacketException": {
+      "display_name": "Paket Hataları",
+      "description": "Bir istemci bozuk ağ paketleri gönderdiğinde verilecek tepki.",
+      "keywords": "hile,paket,ağ,hata"
+    },
+    "AntiCheatPermission": {
+      "display_name": "Yetkiler",
+      "description": "Bir istemci erişim düzeyinin üstünde komut kullandığında verilecek tepki.",
+      "keywords": "hile,yetki,erişim,yönetici"
+    },
+    "AntiCheatXP": {
+      "display_name": "Deneyim Puanı",
+      "description": "Bir istemci kendine deneyim verdiğinde verilecek tepki.",
+      "keywords": "hile,deneyim,beceri"
+    },
+    "AntiCheatSafeHouse": {
+      "display_name": "Güvenli Evler",
+      "description": "Bir istemci güvenli ev kurallarını atlattığında verilecek tepki.",
+      "keywords": "hile,güvenli ev"
+    },
+    "AntiCheatPlayer": {
+      "display_name": "Oyuncu Durumu",
+      "description": "Bir istemci imkânsız bir karakter durumu bildirdiğinde verilecek tepki.",
+      "keywords": "hile,oyuncu,durum"
+    },
+    "AntiCheatChecksum": {
+      "display_name": "Dosya Sağlamaları",
+      "description": "Bir istemcinin oyun dosyaları sunucununkiyle uyuşmadığında verilecek tepki.",
+      "keywords": "hile,sağlama,dosya"
+    },
+    "server_browser_announced_ip": {
+      "display_name": "Duyurulan IP",
+      "description": "Sunucunun sunucu tarayıcısında duyurduğu IP adresi.",
+      "keywords": "ip,sunucu listesi,ağ"
+    },
+    "RCONPort": {
+      "display_name": "RCON Kapısı",
+      "description": "Uzak konsolun kapı numarası. Burada salt okunur — değiştirmek bu bağlantıyı keser.",
+      "keywords": "rcon,kapı,uzak konsol,ağ"
+    },
+    "RCONPassword": {
+      "display_name": "RCON Parolası",
+      "description": "Uzak konsolun parolası. Burada salt okunur — değiştirmek bu bağlantıyı keser.",
+      "keywords": "rcon,parola,uzak konsol"
+    },
+    "MaxPacketsPerSecond": {
+      "display_name": "Saniyede En Fazla Paket",
+      "description": "İstemci başına saniyede işlenen ağ paketi sınırı.",
+      "keywords": "ağ,paket,sınır,başarım"
+    },
+    "MultiplayerStatisticsPeriod": {
+      "display_name": "İstatistik Aralığı",
+      "description": "Çok oyunculu istatistik güncellemeleri arasındaki saniye.",
+      "keywords": "istatistik,aralık,çok oyunculu",
+      "disabled": "Kapalı"
+    },
+    "choices": {
+      "ban": "Yasakla",
+      "kick": "At",
+      "log": "Kaydet",
+      "disable": "Kapalı",
+      "mute": "Sustur"
+    }
   }
 }

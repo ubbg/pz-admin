@@ -172,6 +172,9 @@ export namespace main {
 	    accessLevel: string;
 	    banned: boolean;
 	    godmode: boolean;
+	    invisible: boolean;
+	    noclip: boolean;
+	    voiceBanned: boolean;
 	
 	    static createFrom(source: any = {}) {
 	        return new Player(source);
@@ -184,6 +187,9 @@ export namespace main {
 	        this.accessLevel = source["accessLevel"];
 	        this.banned = source["banned"];
 	        this.godmode = source["godmode"];
+	        this.invisible = source["invisible"];
+	        this.noclip = source["noclip"];
+	        this.voiceBanned = source["voiceBanned"];
 	    }
 	}
 	export class RconResponse {

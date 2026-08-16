@@ -4,11 +4,15 @@ import {main} from '../models';
 
 export function AddItems(arg1:Array<string>,arg2:Array<main.ItemRecord>):Promise<void>;
 
+export function AddKey(arg1:Array<string>,arg2:string,arg3:string):Promise<void>;
+
 export function AddPlayer(arg1:string):Promise<void>;
 
 export function AddPlayerToWhitelist(arg1:string,arg2:string):Promise<void>;
 
 export function AddSteamId(arg1:string):Promise<boolean>;
+
+export function AddToSafehouse(arg1:Array<string>):Promise<void>;
 
 export function AddVehicle(arg1:string,arg2:Array<string>,arg3:main.Coordinates):Promise<void>;
 
@@ -62,7 +66,11 @@ export function Gunshot():Promise<void>;
 
 export function ImportOptionsDialog():Promise<main.ImportOptionsResponse>;
 
+export function InvisiblePlayers(arg1:Array<string>,arg2:boolean):Promise<void>;
+
 export function IsRconConnected():Promise<boolean>;
+
+export function KickFromSafehouse(arg1:Array<string>):Promise<void>;
 
 export function KickUsers(arg1:Array<string>,arg2:string):Promise<void>;
 
@@ -73,6 +81,8 @@ export function LoadCredentials():Promise<main.Credentials>;
 export function LoadItemsDialog():Promise<Array<main.ItemRecord>>;
 
 export function LoadMessageDialog():Promise<main.ServerMessage>;
+
+export function NoClipPlayers(arg1:Array<string>,arg2:boolean):Promise<void>;
 
 export function OpenFileInExplorer(arg1:string):Promise<void>;
 
@@ -86,7 +96,13 @@ export function RandomThunder():Promise<void>;
 
 export function ReadConfig(arg1:string):Promise<void>;
 
+export function ReleaseSafehouse():Promise<boolean>;
+
 export function ReloadOptions():Promise<void>;
+
+export function RemoveItems(arg1:Array<main.ItemRecord>):Promise<void>;
+
+export function RemoveMapSymbolsForUser(arg1:Array<string>):Promise<void>;
 
 export function RemovePlayersFromWhitelist(arg1:Array<string>,arg2:boolean):Promise<number>;
 
@@ -130,9 +146,9 @@ export function StopServer():Promise<boolean>;
 
 export function StopWeather():Promise<void>;
 
-export function TeleportToCoordinates(arg1:Array<string>,arg2:main.Coordinates):Promise<void>;
+export function TeleportPlayerToPlayer(arg1:Array<string>,arg2:string):Promise<void>;
 
-export function TeleportToUser(arg1:Array<string>,arg2:string):Promise<void>;
+export function TeleportToCoordinates(arg1:Array<string>,arg2:main.Coordinates):Promise<void>;
 
 export function Thunder(arg1:Array<string>):Promise<void>;
 
@@ -145,3 +161,5 @@ export function UnbanUsers(arg1:Array<string>):Promise<void>;
 export function Update(arg1:string):Promise<void>;
 
 export function UpdateOptions(arg1:Record<string, string>,arg2:boolean):Promise<boolean>;
+
+export function VoiceBanPlayers(arg1:Array<string>,arg2:boolean):Promise<void>;

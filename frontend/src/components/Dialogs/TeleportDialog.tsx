@@ -10,7 +10,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { TeleportToCoordinates, TeleportToUser } from "@/wailsjs/go/main/App";
+import { TeleportPlayerToPlayer, TeleportToCoordinates } from "@/wailsjs/go/main/App";
 import { main } from "@/wailsjs/go/models";
 import { BrowserOpenURL } from "@/wailsjs/runtime/runtime";
 import { useEffect, useState } from "react";
@@ -37,7 +37,9 @@ export function TeleportDialog({ isOpen, onClose, names }: TeleportDialogProps) 
     if (tab === "coordinates") {
       TeleportToCoordinates(names, coordinates);
     } else {
-      TeleportToUser(names, player);
+      // teleportplayer statt teleport: die kurze Form zielt auf die Figur der
+      // Konsole und tut auf einem Dedicated Server nichts.
+      TeleportPlayerToPlayer(names, player);
     }
   };
 

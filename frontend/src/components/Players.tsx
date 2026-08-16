@@ -35,7 +35,15 @@ import { BanUserDialog } from "./Dialogs/BanUserDialog";
 import { useRcon } from "@/contexts/rcon-provider";
 import { UnbanUserDialog } from "./Dialogs/UnbanUserDialog";
 import { KickUserDialog } from "./Dialogs/KickUserDialog";
-import { GodMode } from "@/wailsjs/go/main/App";
+import {
+  AddToSafehouse,
+  GodMode,
+  InvisiblePlayers,
+  KickFromSafehouse,
+  NoClipPlayers,
+  RemoveMapSymbolsForUser,
+  VoiceBanPlayers,
+} from "@/wailsjs/go/main/App";
 import { TeleportDialog } from "./Dialogs/TeleportDialog";
 import { SetAccessLevelDialog } from "./Dialogs/SetAccessLevelDialog";
 import { Badge } from "./ui/badge";
@@ -48,6 +56,7 @@ import { RemovePlayerFromWhitelistDialog } from "./Dialogs/RemovePlayerFromWhite
 import { AddXpDialog } from "./Dialogs/AddXpDialog";
 import { AddVehicleDialog } from "./Dialogs/AddVehicleDialog";
 import { AddItemDialog } from "./Dialogs/AddItemDialog";
+import { AddKeyDialog } from "./Dialogs/AddKeyDialog";
 import { useConfig } from "@/contexts/config-provider";
 import { useTranslation } from "react-i18next";
 
@@ -237,9 +246,50 @@ export function PlayersTab() {
                       </DropdownMenuItem>
                       <DropdownMenuItem
                         disabled={!config?.debugMode && !player.online}
+                        className="flex justify-between"
+                        onClick={() => handleInvisible(!player.invisible, player.name)}
+                      >
+                        {t("admin_panel.tabs.players.invisible")}
+                        {player.invisible && <Check />}
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        disabled={!config?.debugMode && !player.online}
+                        className="flex justify-between"
+                        onClick={() => handleNoClip(!player.noclip, player.name)}
+                      >
+                        {t("admin_panel.tabs.players.noclip")}
+                        {player.noclip && <Check />}
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        disabled={!config?.debugMode && !player.online}
+                        className="flex justify-between"
+                        onClick={() => handleVoiceBan(!player.voiceBanned, player.name)}
+                      >
+                        {t("admin_panel.tabs.players.voice_ban")}
+                        {player.voiceBanned && <Check />}
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        disabled={!config?.debugMode && !player.online}
                         onClick={() => handleTeleport(player.name)}
                       >
                         {t("admin_panel.tabs.players.dialogs.teleport.button")}
+                      </DropdownMenuItem>
+                    </DropdownMenuGroup>
+
+                    <DropdownMenuSeparator />
+
+                    <DropdownMenuGroup>
+                      <DropdownMenuItem
+                        disabled={!config?.debugMode && !player.online}
+                        onClick={() => handleAddToSafehouse(player.name)}
+                      >
+                        {t("admin_panel.tabs.players.safehouse.add")}
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        disabled={!config?.debugMode && !player.online}
+                        onClick={() => handleKickFromSafehouse(player.name)}
+                      >
+                        {t("admin_panel.tabs.players.safehouse.kick")}
                       </DropdownMenuItem>
                     </DropdownMenuGroup>
 
@@ -263,6 +313,15 @@ export function PlayersTab() {
                         onClick={() => handleAddVehicle(player.name)}
                       >
                         {t("admin_panel.tabs.players.dialogs.addvehicle.button")}
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        disabled={!config?.debugMode && !player.online}
+                        onClick={() => handleAddKey(player.name)}
+                      >
+                        {t("admin_panel.tabs.players.dialogs.addkey.button")}
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => handleRemoveMapSymbols(player.name)}>
+                        {t("admin_panel.tabs.players.remove_map_symbols")}
                       </DropdownMenuItem>
                     </DropdownMenuGroup>
 
@@ -324,11 +383,16 @@ export function PlayersTab() {
   const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
 
   const handleSelect = (name?: string) => {
+    setSelectedUsers(namesFor(name));
+  };
+
+  // Für Aktionen ohne Dialog: die betroffenen Namen sofort bestimmen, statt auf den
+  // nächsten Rerender von selectedUsers zu warten.
+  const namesFor = (name?: string): string[] => {
     if (name) {
-      setSelectedUsers([name]);
-    } else {
-      setSelectedUsers(table.getSelectedRowModel().rows.map((row) => row.original.name));
+      return [name];
     }
+    return table.getSelectedRowModel().rows.map((row) => row.original.name);
   };
 
   const [isAddPlayerDialogOpen, setAddPlayerDialogOpen] = useState(false);
@@ -363,9 +427,40 @@ export function PlayersTab() {
     setTeleportDialogOpen(true);
   };
 
+  // Die Fernwirkungen laufen über die Befehlsform für andere Spieler; die kurze Form
+  // zielt auf die Figur der Konsole und tut auf einem Dedicated Server nichts.
   const handleCheat = (value: boolean, name?: string) => {
+    GodMode(namesFor(name), value);
+  };
+
+  const handleInvisible = (value: boolean, name?: string) => {
+    InvisiblePlayers(namesFor(name), value);
+  };
+
+  const handleNoClip = (value: boolean, name?: string) => {
+    NoClipPlayers(namesFor(name), value);
+  };
+
+  const handleVoiceBan = (value: boolean, name?: string) => {
+    VoiceBanPlayers(namesFor(name), value);
+  };
+
+  const handleAddToSafehouse = (name?: string) => {
+    AddToSafehouse(namesFor(name));
+  };
+
+  const handleKickFromSafehouse = (name?: string) => {
+    KickFromSafehouse(namesFor(name));
+  };
+
+  const handleRemoveMapSymbols = (name?: string) => {
+    RemoveMapSymbolsForUser(namesFor(name));
+  };
+
+  const [isAddKeyDialogOpen, setAddKeyDialogOpen] = useState(false);
+  const handleAddKey = (name?: string) => {
     handleSelect(name);
-    GodMode(selectedUsers, value);
+    setAddKeyDialogOpen(true);
   };
 
   const [isCreateHordeDialogOpen, setCreateHordeDialogOpen] = useState(false);
@@ -596,6 +691,60 @@ export function PlayersTab() {
                 >
                   {t("admin_panel.tabs.players.dialogs.addvehicle.button")}
                 </Button>
+
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button disabled={!debug && Object.keys(rowSelection).length === 0}>
+                      {t("admin_panel.tabs.players.more_actions")}
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuPortal>
+                    <DropdownMenuContent align="start">
+                      <DropdownMenuGroup>
+                        <DropdownMenuItem onClick={() => handleInvisible(true)}>
+                          {t("admin_panel.tabs.players.invisible_on")}
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => handleInvisible(false)}>
+                          {t("admin_panel.tabs.players.invisible_off")}
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => handleNoClip(true)}>
+                          {t("admin_panel.tabs.players.noclip_on")}
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => handleNoClip(false)}>
+                          {t("admin_panel.tabs.players.noclip_off")}
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => handleVoiceBan(true)}>
+                          {t("admin_panel.tabs.players.voice_ban_on")}
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => handleVoiceBan(false)}>
+                          {t("admin_panel.tabs.players.voice_ban_off")}
+                        </DropdownMenuItem>
+                      </DropdownMenuGroup>
+
+                      <DropdownMenuSeparator />
+
+                      <DropdownMenuGroup>
+                        <DropdownMenuItem onClick={() => handleAddToSafehouse()}>
+                          {t("admin_panel.tabs.players.safehouse.add")}
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => handleKickFromSafehouse()}>
+                          {t("admin_panel.tabs.players.safehouse.kick")}
+                        </DropdownMenuItem>
+                      </DropdownMenuGroup>
+
+                      <DropdownMenuSeparator />
+
+                      <DropdownMenuGroup>
+                        <DropdownMenuItem onClick={() => handleAddKey()}>
+                          {t("admin_panel.tabs.players.dialogs.addkey.button")}
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => handleRemoveMapSymbols()}>
+                          {t("admin_panel.tabs.players.remove_map_symbols")}
+                        </DropdownMenuItem>
+                      </DropdownMenuGroup>
+                    </DropdownMenuContent>
+                  </DropdownMenuPortal>
+                </DropdownMenu>
               </div>
             </div>
             <div className="rounded-md border">
@@ -708,6 +857,7 @@ export function PlayersTab() {
         initialTab={selectedUsers.length > 0 ? "player" : "coordinates"}
       />
       <AddItemDialog isOpen={isAddItemDialogOpen} onClose={() => setAddItemDialogOpen(false)} names={selectedUsers} />
+      <AddKeyDialog isOpen={isAddKeyDialogOpen} onClose={() => setAddKeyDialogOpen(false)} names={selectedUsers} />
       <AddPlayerDialog
         isOpen={isAddPlayerDialogOpen}
         onClose={() => {

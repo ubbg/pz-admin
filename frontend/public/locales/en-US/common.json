@@ -221,6 +221,63 @@
     "setPassword": {
       "single_success": "Password for {{name}} changed",
       "single_fail": "Failed to change the password for {{name}}"
+    },
+    "invisible": {
+      "single_success": "Invisibility changed for {{name}}",
+      "single_fail": "Failed to change invisibility for {{name}}",
+      "all_success": "Invisibility changed for {{s}} players",
+      "all_fail": "Failed for all {{f}} players: {{failed}}",
+      "partial": "{{s}} changed, {{f}} failed: {{failed}}"
+    },
+    "noclip": {
+      "single_success": "Wall passing changed for {{name}}",
+      "single_fail": "Failed to change wall passing for {{name}}",
+      "all_success": "Wall passing changed for {{s}} players",
+      "all_fail": "Failed for all {{f}} players: {{failed}}",
+      "partial": "{{s}} changed, {{f}} failed: {{failed}}"
+    },
+    "voiceban": {
+      "single_success": "Voice setting changed for {{name}}",
+      "single_fail": "Failed to change the voice setting for {{name}}",
+      "all_success": "Voice setting changed for {{s}} players",
+      "all_fail": "Failed for all {{f}} players: {{failed}}",
+      "partial": "{{s}} changed, {{f}} failed: {{failed}}"
+    },
+    "addToSafehouse": {
+      "single_success": "{{name}} added to the safehouse",
+      "single_fail": "Failed to add {{name}} to the safehouse",
+      "all_success": "{{s}} players added to the safehouse",
+      "all_fail": "Failed for all {{f}} players: {{failed}}",
+      "partial": "{{s}} added, {{f}} failed: {{failed}}"
+    },
+    "kickFromSafehouse": {
+      "single_success": "{{name}} kicked from the safehouse",
+      "single_fail": "Failed to kick {{name}} from the safehouse",
+      "all_success": "{{s}} players kicked from the safehouse",
+      "all_fail": "Failed for all {{f}} players: {{failed}}",
+      "partial": "{{s}} kicked, {{f}} failed: {{failed}}"
+    },
+    "addKey": {
+      "single_success": "Key {{keyId}} given to {{name}}",
+      "single_fail": "Failed to give key {{keyId}} to {{name}}",
+      "all_success": "Key {{keyId}} given to {{s}} players",
+      "all_fail": "Failed for all {{f}} players: {{failed}}",
+      "partial": "{{s}} given, {{f}} failed: {{failed}}"
+    },
+    "removeMapSymbols": {
+      "single_success": "Map symbols of {{name}} removed",
+      "single_fail": "Failed to remove the map symbols of {{name}}",
+      "all_success": "Map symbols of {{s}} players removed",
+      "all_fail": "Failed for all {{f}} players: {{failed}}",
+      "partial": "{{s}} removed, {{f}} failed: {{failed}}"
+    },
+    "releaseSafehouse": {
+      "single_success": "Safehouse released",
+      "single_fail": "Failed to release the safehouse"
+    },
+    "removeItems": {
+      "single_success": "{{item}} removed",
+      "single_fail": "Failed to remove {{item}}"
     }
   },
 
@@ -619,6 +676,23 @@
             "title": "SteamID Ban",
             "hint": "Ban or unban a single SteamID — previously only possible in the terminal."
           }
+        },
+        "console": {
+          "title": "Console Character",
+          "description": "Two Build 42 commands take no player name — they act on the console's own character. On a dedicated server without a character they have no effect.",
+          "releasesafehouse": {
+            "title": "Release safehouse",
+            "description": "Releases the safehouse owned by the console character.",
+            "submit": "Release safehouse"
+          },
+          "removeitem": {
+            "title": "Remove item",
+            "description": "Removes items from the console character. Unlike additem, this command takes no player name.",
+            "item": "Item ID",
+            "count": "Count",
+            "count_hint": "0 removes every item of this type.",
+            "submit": "Remove item"
+          }
         }
       },
       "players": {
@@ -896,7 +970,32 @@
 
             "coordinates_tab": "To Coordinates",
             "player_tab": "To Players"
+          },
+          "addkey": {
+            "button": "Give key",
+            "title": "Give key",
+            "description": "The key goes to: {{names}}",
+            "key_id": "Key ID",
+            "key_name": "Key name (optional)",
+            "key_name_placeholder": "Gift Key",
+            "submit": "Give key"
           }
+        },
+        "invisible": "Invisible",
+        "invisible_on": "Invisible on",
+        "invisible_off": "Invisible off",
+        "noclip": "Walk through walls",
+        "noclip_on": "Walk through walls on",
+        "noclip_off": "Walk through walls off",
+        "voice_ban": "Voice muted",
+        "voice_ban_on": "Mute voice",
+        "voice_ban_off": "Unmute voice",
+        "more_actions": "More actions",
+        "remove_map_symbols": "Remove map symbols",
+        "safehouse": {
+          "add": "Add to safehouse",
+          "kick": "Kick from safehouse",
+          "release": "Release safehouse"
         }
       },
       "options": {

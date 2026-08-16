@@ -221,6 +221,63 @@
     "setPassword": {
       "single_success": "{{name}} için parola değiştirildi",
       "single_fail": "{{name}} için parola değiştirilemedi"
+    },
+    "invisible": {
+      "single_success": "{{name}} için görünmezlik değiştirildi",
+      "single_fail": "{{name}} için görünmezlik değiştirilemedi",
+      "all_success": "{{s}} oyuncu için görünmezlik değiştirildi",
+      "all_fail": "{{f}} oyuncunun tümünde başarısız: {{failed}}",
+      "partial": "{{s}} değişti, {{f}} başarısız: {{failed}}"
+    },
+    "noclip": {
+      "single_success": "{{name}} için duvardan geçme değiştirildi",
+      "single_fail": "{{name}} için duvardan geçme değiştirilemedi",
+      "all_success": "{{s}} oyuncu için duvardan geçme değiştirildi",
+      "all_fail": "{{f}} oyuncunun tümünde başarısız: {{failed}}",
+      "partial": "{{s}} değişti, {{f}} başarısız: {{failed}}"
+    },
+    "voiceban": {
+      "single_success": "{{name}} için ses ayarı değiştirildi",
+      "single_fail": "{{name}} için ses ayarı değiştirilemedi",
+      "all_success": "{{s}} oyuncu için ses ayarı değiştirildi",
+      "all_fail": "{{f}} oyuncunun tümünde başarısız: {{failed}}",
+      "partial": "{{s}} değişti, {{f}} başarısız: {{failed}}"
+    },
+    "addToSafehouse": {
+      "single_success": "{{name}} güvenli eve eklendi",
+      "single_fail": "{{name}} güvenli eve eklenemedi",
+      "all_success": "{{s}} oyuncu güvenli eve eklendi",
+      "all_fail": "{{f}} oyuncunun tümünde başarısız: {{failed}}",
+      "partial": "{{s}} eklendi, {{f}} başarısız: {{failed}}"
+    },
+    "kickFromSafehouse": {
+      "single_success": "{{name}} güvenli evden çıkarıldı",
+      "single_fail": "{{name}} güvenli evden çıkarılamadı",
+      "all_success": "{{s}} oyuncu güvenli evden çıkarıldı",
+      "all_fail": "{{f}} oyuncunun tümünde başarısız: {{failed}}",
+      "partial": "{{s}} çıkarıldı, {{f}} başarısız: {{failed}}"
+    },
+    "addKey": {
+      "single_success": "{{keyId}} anahtarı {{name}} oyuncusuna verildi",
+      "single_fail": "{{keyId}} anahtarı {{name}} oyuncusuna verilemedi",
+      "all_success": "{{keyId}} anahtarı {{s}} oyuncuya verildi",
+      "all_fail": "{{f}} oyuncunun tümünde başarısız: {{failed}}",
+      "partial": "{{s}} verildi, {{f}} başarısız: {{failed}}"
+    },
+    "removeMapSymbols": {
+      "single_success": "{{name}} oyuncusunun harita işaretleri kaldırıldı",
+      "single_fail": "{{name}} oyuncusunun harita işaretleri kaldırılamadı",
+      "all_success": "{{s}} oyuncunun harita işaretleri kaldırıldı",
+      "all_fail": "{{f}} oyuncunun tümünde başarısız: {{failed}}",
+      "partial": "{{s}} kaldırıldı, {{f}} başarısız: {{failed}}"
+    },
+    "releaseSafehouse": {
+      "single_success": "Güvenli ev bırakıldı",
+      "single_fail": "Güvenli ev bırakılamadı"
+    },
+    "removeItems": {
+      "single_success": "{{item}} kaldırıldı",
+      "single_fail": "{{item}} kaldırılamadı"
     }
   },
 
@@ -619,6 +676,23 @@
             "title": "SteamID Yasağı",
             "hint": "Tek bir SteamID'yi yasaklayın veya yasağını kaldırın — daha önce yalnızca terminalden yapılabiliyordu."
           }
+        },
+        "console": {
+          "title": "Konsol Karakteri",
+          "description": "Build 42'nin iki komutu oyuncu adı almaz — konsolun kendi karakterine etki eder. Karakteri olmayan bir adanmış sunucuda etkisizdirler.",
+          "releasesafehouse": {
+            "title": "Güvenli evi bırak",
+            "description": "Konsol karakterinin sahip olduğu güvenli evi bırakır.",
+            "submit": "Güvenli evi bırak"
+          },
+          "removeitem": {
+            "title": "Eşya kaldır",
+            "description": "Konsol karakterinden eşya kaldırır. additem'in aksine bu komut oyuncu adı almaz.",
+            "item": "Eşya kimliği",
+            "count": "Adet",
+            "count_hint": "0, bu türdeki tüm eşyaları kaldırır.",
+            "submit": "Eşya kaldır"
+          }
         }
       },
       "players": {
@@ -896,7 +970,32 @@
 
             "coordinates_tab": "Koordinatlara",
             "player_tab": "Oyunculara"
+          },
+          "addkey": {
+            "button": "Anahtar ver",
+            "title": "Anahtar ver",
+            "description": "Anahtarı alacak olanlar: {{names}}",
+            "key_id": "Anahtar kimliği",
+            "key_name": "Anahtar adı (isteğe bağlı)",
+            "key_name_placeholder": "Hediye Anahtarı",
+            "submit": "Anahtar ver"
           }
+        },
+        "invisible": "Görünmez",
+        "invisible_on": "Görünmez: açık",
+        "invisible_off": "Görünmez: kapalı",
+        "noclip": "Duvarlardan geç",
+        "noclip_on": "Duvarlardan geçme: açık",
+        "noclip_off": "Duvarlardan geçme: kapalı",
+        "voice_ban": "Ses susturuldu",
+        "voice_ban_on": "Sesi sustur",
+        "voice_ban_off": "Sesi aç",
+        "more_actions": "Diğer işlemler",
+        "remove_map_symbols": "Harita işaretlerini kaldır",
+        "safehouse": {
+          "add": "Güvenli eve ekle",
+          "kick": "Güvenli evden çıkar",
+          "release": "Güvenli evi bırak"
         }
       },
       "options": {

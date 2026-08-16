@@ -10,6 +10,7 @@ import { WeatherControl } from "./WeatherControl";
 import { RandomButtons } from "./RandomButtons";
 import { OtherButtons } from "./OtherButtons";
 import { AccessModeration } from "./AccessModeration";
+import { ConsoleActions } from "./ConsoleActions";
 import { useTranslation } from "react-i18next";
 import { useConfig } from "@/contexts/config-provider";
 
@@ -54,6 +55,7 @@ export function ManagementTab() {
               <RandomButtons />
               <OtherButtons />
               <AccessModeration />
+              <ConsoleActions />
             </div>
           </ScrollArea>
         </div>

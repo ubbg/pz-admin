@@ -34,6 +34,11 @@ type Player struct {
 	AccessLevel string `json:"accessLevel"`
 	Banned      bool   `json:"banned"`
 	Godmode     bool   `json:"godmode"`
+	// Zustände, die RCON nicht ausliest: wie Godmode lokal geführt, in players.json
+	// gespeichert und damit über einen Neustart hinweg bekannt.
+	Invisible   bool `json:"invisible"`
+	NoClip      bool `json:"noclip"`
+	VoiceBanned bool `json:"voiceBanned"`
 }
 
 type Coordinates struct {
@@ -747,6 +752,15 @@ func buildCommand(template string, args []RCONCommandParam, playerName string) (
 	return strings.Join(strings.Fields(command), " "), nil
 }
 
+// appendFailedName sammelt die Namen, bei denen ein Befehl nicht gegriffen hat.
+// Befehle ohne Spielerbezug tragen keinen Namen bei.
+func appendFailedName(names []string, name string) []string {
+	if name == "" {
+		return names
+	}
+	return append(names, name)
+}
+
 func (params *RCONCommand) execute() int {
 	connMutex.Lock()
 	defer connMutex.Unlock()
@@ -766,6 +780,7 @@ func (params *RCONCommand) execute() int {
 	var res string
 	var err error
 	var lastErrRes string
+	var failedNames []string
 
 	for i := 0; i < total; i++ {
 		runtime.EventsEmit(app.ctx, "setProgress", int(float64(i+1)/float64(total)*100))
@@ -784,6 +799,7 @@ func (params *RCONCommand) execute() int {
 		if len([]byte(command)) > 1000 {
 			runtime.LogError(app.ctx, "RCON command size exceeds 1000 bytes")
 			lastErrRes = "RCON command size exceeds 1000 bytes"
+			failedNames = appendFailedName(failedNames, playerName)
 			continue
 		}
 
@@ -791,47 +807,28 @@ func (params *RCONCommand) execute() int {
 
 		if err != nil {
 			lastErrRes = res
+			failedNames = appendFailedName(failedNames, playerName)
 			continue
 		}
 
 		if params.ResponseUpdate != nil {
-			res = params.ResponseUpdate(names[i], res)
+			res = params.ResponseUpdate(playerName, res)
 		}
 
-		if names == nil {
-			if params.ErrorCheck != nil && params.ErrorCheck("", res) {
-				lastErrRes = res
-				continue
-			}
-		} else {
-			if params.ErrorCheck != nil && params.ErrorCheck(names[i], res) {
-				lastErrRes = res
-				continue
-			}
+		if params.ErrorCheck != nil && params.ErrorCheck(playerName, res) {
+			lastErrRes = res
+			failedNames = appendFailedName(failedNames, playerName)
+			continue
 		}
 
-		if names == nil {
-			if params.SuccessCheck != nil && params.SuccessCheck("", res) {
-				successCount++
-				if params.UpdateFunc != nil {
-					params.UpdateFunc("", res)
-				}
-			} else {
-				lastErrRes = res
+		if params.SuccessCheck != nil && params.SuccessCheck(playerName, res) {
+			successCount++
+			if params.UpdateFunc != nil {
+				params.UpdateFunc(playerName, res)
 			}
 		} else {
-			if params.SuccessCheck != nil && params.SuccessCheck(names[i], res) {
-				successCount++
-				if params.UpdateFunc != nil {
-					if len(names) > 0 {
-						params.UpdateFunc(names[i], res)
-					} else {
-						params.UpdateFunc("", res)
-					}
-				}
-			} else {
-				lastErrRes = res
-			}
+			lastErrRes = res
+			failedNames = appendFailedName(failedNames, playerName)
 		}
 	}
 
@@ -857,18 +854,21 @@ func (params *RCONCommand) execute() int {
 					Message: lastErrRes,
 					Variant: "error",
 					Parameters: params.notificationParameters(map[string]string{
-						"f": fmt.Sprintf("%d", total),
+						"f":      fmt.Sprintf("%d", total),
+						"failed": strings.Join(failedNames, ", "),
 					}),
 				})
 			} else {
-				// Partial Success
+				// Partial Success — die betroffenen Namen gehören in die Meldung,
+				// eine Anzahl allein sagt nicht, wer übrig blieb.
 				app.SendNotification(Notification{
 					Title:   params.Notifications.Partial,
 					Message: lastErrRes,
 					Variant: "warning",
 					Parameters: params.notificationParameters(map[string]string{
-						"s": fmt.Sprintf("%d", successCount),
-						"f": fmt.Sprintf("%d", total-successCount),
+						"s":      fmt.Sprintf("%d", successCount),
+						"f":      fmt.Sprintf("%d", total-successCount),
+						"failed": strings.Join(failedNames, ", "),
 					}),
 				})
 			}
@@ -1060,7 +1060,9 @@ func (app *App) GodMode(names []string, value bool) {
 	}
 
 	command := RCONCommand{
-		CommandTemplate: "godmode {name} {value}",
+		// Die kurze Form zielt auf die Figur der Konsole; für andere Spieler ist
+		// godmodeplayer die richtige (pzwiki „Admin commands", 42.20.2).
+		CommandTemplate: "godmodeplayer {name} {value}",
 		PlayerNames:     names,
 		Args: []RCONCommandParam{
 			{
@@ -1115,37 +1117,6 @@ func (app *App) TeleportToCoordinates(names []string, coordinates Coordinates) {
 		},
 		SuccessCheck: func(name string, response string) bool {
 			return response == fmt.Sprintf("%s teleported to %d,%d,%d please wait two seconds to show the map around you.", name, coordinates.X, coordinates.Y, coordinates.Z)
-		},
-		ErrorCheck: func(name string, response string) bool {
-			return response == fmt.Sprintf("Can't find player %s", name)
-		},
-		Notifications: RCONCommandNotifications{
-			AllSuccess:    "rcon.teleport.all_success",
-			AllFail:       "rcon.teleport.all_fail",
-			Partial:       "rcon.teleport.partial",
-			SingleSuccess: "rcon.teleport.single_success",
-			SingleFail:    "rcon.teleport.single_fail",
-		},
-	}
-
-	command.execute()
-}
-
-func (app *App) TeleportToUser(names []string, targetUser string) {
-	command := RCONCommand{
-		CommandTemplate: "teleport {name} {target}",
-		PlayerNames:     names,
-		Args: []RCONCommandParam{
-			{
-				Name: "target",
-				Value: func() interface{} {
-					return fmt.Sprintf("\"%s\"", targetUser)
-				}(),
-				Mandatory: true,
-			},
-		},
-		SuccessCheck: func(name string, response string) bool {
-			return response == fmt.Sprintf("teleported %s to %s", name, targetUser)
 		},
 		ErrorCheck: func(name string, response string) bool {
 			return response == fmt.Sprintf("Can't find player %s", name)

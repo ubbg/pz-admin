@@ -6,6 +6,10 @@ export function AddItems(arg1, arg2) {
   return window['go']['main']['App']['AddItems'](arg1, arg2);
 }
 
+export function AddKey(arg1, arg2, arg3) {
+  return window['go']['main']['App']['AddKey'](arg1, arg2, arg3);
+}
+
 export function AddPlayer(arg1) {
   return window['go']['main']['App']['AddPlayer'](arg1);
 }
@@ -16,6 +20,10 @@ export function AddPlayerToWhitelist(arg1, arg2) {
 
 export function AddSteamId(arg1) {
   return window['go']['main']['App']['AddSteamId'](arg1);
+}
+
+export function AddToSafehouse(arg1) {
+  return window['go']['main']['App']['AddToSafehouse'](arg1);
 }
 
 export function AddVehicle(arg1, arg2, arg3) {
@@ -122,8 +130,16 @@ export function ImportOptionsDialog() {
   return window['go']['main']['App']['ImportOptionsDialog']();
 }
 
+export function InvisiblePlayers(arg1, arg2) {
+  return window['go']['main']['App']['InvisiblePlayers'](arg1, arg2);
+}
+
 export function IsRconConnected() {
   return window['go']['main']['App']['IsRconConnected']();
+}
+
+export function KickFromSafehouse(arg1) {
+  return window['go']['main']['App']['KickFromSafehouse'](arg1);
 }
 
 export function KickUsers(arg1, arg2) {
@@ -144,6 +160,10 @@ export function LoadItemsDialog() {
 
 export function LoadMessageDialog() {
   return window['go']['main']['App']['LoadMessageDialog']();
+}
+
+export function NoClipPlayers(arg1, arg2) {
+  return window['go']['main']['App']['NoClipPlayers'](arg1, arg2);
 }
 
 export function OpenFileInExplorer(arg1) {
@@ -170,8 +190,20 @@ export function ReadConfig(arg1) {
   return window['go']['main']['App']['ReadConfig'](arg1);
 }
 
+export function ReleaseSafehouse() {
+  return window['go']['main']['App']['ReleaseSafehouse']();
+}
+
 export function ReloadOptions() {
   return window['go']['main']['App']['ReloadOptions']();
+}
+
+export function RemoveItems(arg1) {
+  return window['go']['main']['App']['RemoveItems'](arg1);
+}
+
+export function RemoveMapSymbolsForUser(arg1) {
+  return window['go']['main']['App']['RemoveMapSymbolsForUser'](arg1);
 }
 
 export function RemovePlayersFromWhitelist(arg1, arg2) {
@@ -258,12 +290,12 @@ export function StopWeather() {
   return window['go']['main']['App']['StopWeather']();
 }
 
-export function TeleportToCoordinates(arg1, arg2) {
-  return window['go']['main']['App']['TeleportToCoordinates'](arg1, arg2);
+export function TeleportPlayerToPlayer(arg1, arg2) {
+  return window['go']['main']['App']['TeleportPlayerToPlayer'](arg1, arg2);
 }
 
-export function TeleportToUser(arg1, arg2) {
-  return window['go']['main']['App']['TeleportToUser'](arg1, arg2);
+export function TeleportToCoordinates(arg1, arg2) {
+  return window['go']['main']['App']['TeleportToCoordinates'](arg1, arg2);
 }
 
 export function Thunder(arg1) {
@@ -288,4 +320,8 @@ export function Update(arg1) {
 
 export function UpdateOptions(arg1, arg2) {
   return window['go']['main']['App']['UpdateOptions'](arg1, arg2);
+}
+
+export function VoiceBanPlayers(arg1, arg2) {
+  return window['go']['main']['App']['VoiceBanPlayers'](arg1, arg2);
 }

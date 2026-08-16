@@ -85,7 +85,7 @@ Vorlage, statt per `fmt.Sprintf` zusammengeklebt zu werden. Spielernamen gehöre
 * `runtime.EventsEmit(app.ctx, "setProgress", …)` — 0 am Ende, immer per `defer`
   zurücksetzen, sonst bleibt der Balken stehen.
 * `app.SendNotification(Notification{Title: "rcon.xxx", …})` — `Title` ist ein
-  **i18n-Schlüssel**, keine Meldung. Der Schlüssel muss in allen vier Katalogen
+  **i18n-Schlüssel**, keine Meldung. Der Schlüssel muss in allen fünf Katalogen
   existieren, siehe `.claude/rules/i18n.md`.
 
 ## Was hier nicht hineingehört

@@ -12,6 +12,16 @@ async function parseTranslationFile(sourcePath, targetPath, encoding = "UTF-8") 
     const fileBuffer = await readFile(sourcePath);
     const fileContent = iconv.decode(fileBuffer, encoding);
 
+    // Build 42 liefert die Übersetzungen als JSON ({"Base.Axe": "Axt", …}), Build 41
+    // als Lua-artige .txt mit ItemName_Base.Axe = "Axt". Beide Formen werden gelesen.
+    if (sourcePath.endsWith(".json")) {
+      const parsed = JSON.parse(fileContent);
+      const count = Object.keys(parsed).length;
+      await writeFile(targetPath, JSON.stringify(parsed, null, 2), "utf-8");
+      console.log(`Successfully wrote ${count} translations to ${targetPath}`);
+      return;
+    }
+
     const regex = /ItemName_([\w.]+\.[\w.]+)\s*=\s*"(.*)"/g;
     const translations = {};
 
@@ -36,7 +46,13 @@ async function main(locale, encoding) {
     process.exit(1);
   }
 
-  const sourcePath = path.resolve(`./game-translations/${locale}.txt`);
+  // Quelle ist die Übersetzungsdatei des Spiels, kopiert nach game-translations/:
+  // Build 42 unter media/lua/shared/Translate/<SPRACHE>/ItemName.json, Build 41 als
+  // ItemName_<SPRACHE>.txt. Die Spieldateien selbst gehören nicht ins Repo.
+  const jsonSource = path.resolve(`./game-translations/${locale}.json`);
+  const sourcePath = fs.existsSync(jsonSource)
+    ? jsonSource
+    : path.resolve(`./game-translations/${locale}.txt`);
   const targetPath = path.resolve(`./public/locales/${locale}/items.json`);
 
   fs.mkdirSync(path.dirname(targetPath), { recursive: true });

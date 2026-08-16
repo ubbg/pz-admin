@@ -35,3 +35,7 @@ certificate.*
 
 # Arbeitsvorrat der Engineering-Skills (Issues/Specs vor specs/)
 .scratch/
+
+# Übersetzungsdateien des Spiels — Quelle für yarn convert-item-translations,
+# gehören nicht ins Repo
+/frontend/game-translations/

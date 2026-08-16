@@ -19,6 +19,11 @@
             "name": "Українська",
             "code": "uk-UA",
             "authors": ["unclide"]
+        },
+        {
+            "name": "Deutsch",
+            "code": "de-DE",
+            "authors": ["urb"]
         }
     ]
 }

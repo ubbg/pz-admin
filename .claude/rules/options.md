@@ -15,7 +15,7 @@ entscheidet über ihre Existenz:
 2. `frontend/src/assets/options.ts` — die **Darstellungstabelle**: Kategorie, Typ,
    Bereich, Auswahlwerte, Abhängigkeiten. Fehlt hier ein Eintrag, erscheint die Option
    trotzdem, nur schlichter (Kategorie „Other Options", Rohname als Beschriftung).
-3. Die vier Sprachkataloge geben ihr einen Namen. Fehlt der Schlüssel, steht der
+3. Die fünf Sprachkataloge geben ihr einen Namen. Fehlt der Schlüssel, steht der
    Rohname da — kein leeres Feld.
 
 Der Umbau dahin ist `specs/options/OPTIONS-001.spec.md`; vor Änderungen hier lesen.
@@ -59,7 +59,7 @@ Options-Tab ──► UpdateOptions(map[string]string, reload)
 * **`Requirements`** blendet abhängige Felder aus (z. B. alles unter `VoiceEnable`).
   Ein ausgeblendetes Feld wird trotzdem gesendet, wenn es sich geändert hat —
   Abhängigkeit ist Darstellung, keine Sperre.
-* **Neue Beschriftung = vier Kataloge.** `display_name`, `description`, `keywords` je
+* **Neue Beschriftung = fünf Kataloge.** `display_name`, `description`, `keywords` je
   Option; siehe `.claude/rules/i18n.md`.
 
 ## Build-42-Besonderheiten

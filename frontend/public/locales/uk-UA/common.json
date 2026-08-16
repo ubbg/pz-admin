@@ -193,7 +193,35 @@
         "single_fail": "Не вдалося перезавантажити параметри"
       },
       "failed_to_update_options": "Не вдалося оновити налаштувань: {{f}} ({{options}})",
-      "options_partially_updated": "Оновлено налаштувань: {{s}}, відхилено: {{f}} ({{options}})"
+      "options_partially_updated": "Оновлено налаштувань: {{s}}, відхилено: {{f}} ({{options}})",
+      "addSteamId": {
+          "single_success": "SteamID {{steamId}} додано до списку дозволених",
+          "single_fail": "Не вдалося додати SteamID {{steamId}}"
+      },
+      "removeSteamId": {
+          "single_success": "SteamID {{steamId}} прибрано зі списку дозволених",
+          "single_fail": "Не вдалося прибрати SteamID {{steamId}}"
+      },
+      "banSteamId": {
+          "single_success": "SteamID {{steamId}} заблоковано",
+          "single_fail": "Не вдалося заблокувати SteamID {{steamId}}"
+      },
+      "unbanSteamId": {
+          "single_success": "SteamID {{steamId}} розблоковано",
+          "single_fail": "Не вдалося розблокувати SteamID {{steamId}}"
+      },
+      "banIp": {
+          "single_success": "IP {{ip}} заблоковано",
+          "single_fail": "Не вдалося заблокувати IP {{ip}}"
+      },
+      "unbanIp": {
+          "single_success": "IP {{ip}} розблоковано",
+          "single_fail": "Не вдалося розблокувати IP {{ip}}"
+      },
+      "setPassword": {
+          "single_success": "Пароль для {{name}} змінено",
+          "single_fail": "Не вдалося змінити пароль для {{name}}"
+      }
     },
   
     "settings": {
@@ -532,6 +560,65 @@
               "name": "Сигналізація",
               "description": "Активує сигналізацію в будівлі на позиції адміністратора. (Повинен знаходитися в приміщенні)"
             }
+          },
+          "access": {
+              "title": "Доступ",
+              "description": "Дії, не прив'язані до рядка гравця. Ці списки сервер не може показати через RCON, тому підтверджується лише результат кожної операції.",
+              "steamid": {
+                  "title": "Список дозволених SteamID",
+                  "hint": "Додати або прибрати SteamID. Сам список через RCON не читається.",
+                  "label": "SteamID",
+                  "add": {
+                      "title": "Додати SteamID",
+                      "description": "Додає SteamID до списку дозволених на сервері.",
+                      "submit": "Додати SteamID"
+                  },
+                  "remove": {
+                      "title": "Прибрати SteamID",
+                      "description": "Прибирає SteamID зі списку дозволених на сервері.",
+                      "submit": "Прибрати SteamID"
+                  },
+                  "ban": {
+                      "title": "Забанити SteamID",
+                      "description": "Блокує SteamID на сервері.",
+                      "submit": "Забанити SteamID"
+                  },
+                  "unban": {
+                      "title": "Розбанити SteamID",
+                      "description": "Знімає блокування зі SteamID.",
+                      "submit": "Розбанити SteamID"
+                  }
+              },
+              "setpassword": {
+                  "title": "Пароль облікового запису",
+                  "description": "Задає новий пароль для облікового запису на сервері.",
+                  "name": "Ім'я користувача",
+                  "password": "Новий пароль",
+                  "submit": "Змінити пароль"
+              }
+          },
+          "moderation": {
+              "ip": {
+                  "title": "Бан за IP",
+                  "hint": "Бан за IP може зачепити не одну людину, а всіх за цією адресою.",
+                  "label": "IP-адреса",
+                  "ban": {
+                      "title": "Забанити IP-адресу",
+                      "description": "Блокує всі підключення з цієї адреси.",
+                      "submit": "Забанити IP",
+                      "confirm": "{{ip}} буде заблоковано. Доступ втратить кожен, хто грає за цією адресою, а не один гравець.",
+                      "confirm_submit": "Заблокувати адресу"
+                  },
+                  "unban": {
+                      "title": "Розбанити IP-адресу",
+                      "description": "Знову дозволяє підключення з цієї адреси.",
+                      "submit": "Розбанити IP"
+                  }
+              },
+              "steamid": {
+                  "title": "Бан за SteamID",
+                  "hint": "Забанити або розбанити одну SteamID — раніше лише через термінал."
+              }
           }
         },
         "players": {

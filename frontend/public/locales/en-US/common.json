@@ -193,7 +193,35 @@
       "single_fail": "Failed to reload options"
     },
     "failed_to_update_options": "Failed to update {{f}} options: {{options}}",
-    "options_partially_updated": "{{s}} options updated, {{f}} rejected: {{options}}"
+    "options_partially_updated": "{{s}} options updated, {{f}} rejected: {{options}}",
+    "addSteamId": {
+      "single_success": "SteamID {{steamId}} added to the whitelist",
+      "single_fail": "Failed to add SteamID {{steamId}}"
+    },
+    "removeSteamId": {
+      "single_success": "SteamID {{steamId}} removed from the whitelist",
+      "single_fail": "Failed to remove SteamID {{steamId}}"
+    },
+    "banSteamId": {
+      "single_success": "SteamID {{steamId}} is now banned",
+      "single_fail": "Failed to ban SteamID {{steamId}}"
+    },
+    "unbanSteamId": {
+      "single_success": "SteamID {{steamId}} is no longer banned",
+      "single_fail": "Failed to unban SteamID {{steamId}}"
+    },
+    "banIp": {
+      "single_success": "IP {{ip}} is now banned",
+      "single_fail": "Failed to ban IP {{ip}}"
+    },
+    "unbanIp": {
+      "single_success": "IP {{ip}} is no longer banned",
+      "single_fail": "Failed to unban IP {{ip}}"
+    },
+    "setPassword": {
+      "single_success": "Password for {{name}} changed",
+      "single_fail": "Failed to change the password for {{name}}"
+    }
   },
 
   "settings": {
@@ -531,6 +559,65 @@
           "alarm": {
             "name": "Alarm",
             "description": "Sound a building alarm at the Admin's position. (Must be in a room)"
+          }
+        },
+        "access": {
+          "title": "Access",
+          "description": "Operations that do not belong to a single player row. The server cannot report these lists over RCON, so only the result of each operation is confirmed.",
+          "steamid": {
+            "title": "SteamID Whitelist",
+            "hint": "Add or remove a SteamID. The list itself cannot be read over RCON.",
+            "label": "SteamID",
+            "add": {
+              "title": "Add SteamID",
+              "description": "Adds a SteamID to the list of allowed SteamIDs on the server.",
+              "submit": "Add SteamID"
+            },
+            "remove": {
+              "title": "Remove SteamID",
+              "description": "Removes a SteamID from the list of allowed SteamIDs on the server.",
+              "submit": "Remove SteamID"
+            },
+            "ban": {
+              "title": "Ban SteamID",
+              "description": "Bans a SteamID from the server.",
+              "submit": "Ban SteamID"
+            },
+            "unban": {
+              "title": "Unban SteamID",
+              "description": "Lifts the ban on a SteamID.",
+              "submit": "Unban SteamID"
+            }
+          },
+          "setpassword": {
+            "title": "Account Password",
+            "description": "Sets a new password for a user account on the server.",
+            "name": "Username",
+            "password": "New password",
+            "submit": "Change Password"
+          }
+        },
+        "moderation": {
+          "ip": {
+            "title": "IP Ban",
+            "hint": "An IP ban can hit more than one person — everyone behind that address.",
+            "label": "IP address",
+            "ban": {
+              "title": "Ban IP address",
+              "description": "Blocks every connection from this address.",
+              "submit": "Ban IP",
+              "confirm": "{{ip}} will be banned. Everyone playing behind this address loses access, not just one player.",
+              "confirm_submit": "Ban this address"
+            },
+            "unban": {
+              "title": "Unban IP address",
+              "description": "Allows connections from this address again.",
+              "submit": "Unban IP"
+            }
+          },
+          "steamid": {
+            "title": "SteamID Ban",
+            "hint": "Ban or unban a single SteamID — previously only possible in the terminal."
           }
         }
       },

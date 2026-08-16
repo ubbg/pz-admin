@@ -8,11 +8,17 @@ export function AddPlayer(arg1:string):Promise<void>;
 
 export function AddPlayerToWhitelist(arg1:string,arg2:string):Promise<void>;
 
+export function AddSteamId(arg1:string):Promise<boolean>;
+
 export function AddVehicle(arg1:string,arg2:Array<string>,arg3:main.Coordinates):Promise<void>;
 
 export function AddXp(arg1:Array<string>,arg2:Array<string>,arg3:number):Promise<void>;
 
 export function Alarm():Promise<void>;
+
+export function BanIp(arg1:string):Promise<boolean>;
+
+export function BanSteamId(arg1:string):Promise<boolean>;
 
 export function BanUsers(arg1:Array<string>,arg2:string,arg3:boolean):Promise<void>;
 
@@ -84,6 +90,8 @@ export function ReloadOptions():Promise<void>;
 
 export function RemovePlayersFromWhitelist(arg1:Array<string>,arg2:boolean):Promise<number>;
 
+export function RemoveSteamId(arg1:string):Promise<boolean>;
+
 export function RestartApplication(arg1:Array<string>):Promise<void>;
 
 export function SaveConfigDialog():Promise<void>;
@@ -110,6 +118,8 @@ export function SetAccessLevel(arg1:Array<string>,arg2:string):Promise<void>;
 
 export function SetConfigField(arg1:string,arg2:any):Promise<void>;
 
+export function SetUserPassword(arg1:string,arg2:string):Promise<boolean>;
+
 export function StartRain(arg1:number):Promise<void>;
 
 export function StartStorm(arg1:number):Promise<void>;
@@ -125,6 +135,10 @@ export function TeleportToCoordinates(arg1:Array<string>,arg2:main.Coordinates):
 export function TeleportToUser(arg1:Array<string>,arg2:string):Promise<void>;
 
 export function Thunder(arg1:Array<string>):Promise<void>;
+
+export function UnbanIp(arg1:string):Promise<boolean>;
+
+export function UnbanSteamId(arg1:string):Promise<boolean>;
 
 export function UnbanUsers(arg1:Array<string>):Promise<void>;
 

@@ -9,6 +9,7 @@ import { StopDialog } from "./Dialogs/StopDialog";
 import { WeatherControl } from "./WeatherControl";
 import { RandomButtons } from "./RandomButtons";
 import { OtherButtons } from "./OtherButtons";
+import { AccessModeration } from "./AccessModeration";
 import { useTranslation } from "react-i18next";
 import { useConfig } from "@/contexts/config-provider";
 
@@ -52,6 +53,7 @@ export function ManagementTab() {
               <WeatherControl />
               <RandomButtons />
               <OtherButtons />
+              <AccessModeration />
             </div>
           </ScrollArea>
         </div>

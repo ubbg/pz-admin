@@ -14,6 +14,10 @@ export function AddPlayerToWhitelist(arg1, arg2) {
   return window['go']['main']['App']['AddPlayerToWhitelist'](arg1, arg2);
 }
 
+export function AddSteamId(arg1) {
+  return window['go']['main']['App']['AddSteamId'](arg1);
+}
+
 export function AddVehicle(arg1, arg2, arg3) {
   return window['go']['main']['App']['AddVehicle'](arg1, arg2, arg3);
 }
@@ -24,6 +28,14 @@ export function AddXp(arg1, arg2, arg3) {
 
 export function Alarm() {
   return window['go']['main']['App']['Alarm']();
+}
+
+export function BanIp(arg1) {
+  return window['go']['main']['App']['BanIp'](arg1);
+}
+
+export function BanSteamId(arg1) {
+  return window['go']['main']['App']['BanSteamId'](arg1);
 }
 
 export function BanUsers(arg1, arg2, arg3) {
@@ -166,6 +178,10 @@ export function RemovePlayersFromWhitelist(arg1, arg2) {
   return window['go']['main']['App']['RemovePlayersFromWhitelist'](arg1, arg2);
 }
 
+export function RemoveSteamId(arg1) {
+  return window['go']['main']['App']['RemoveSteamId'](arg1);
+}
+
 export function RestartApplication(arg1) {
   return window['go']['main']['App']['RestartApplication'](arg1);
 }
@@ -218,6 +234,10 @@ export function SetConfigField(arg1, arg2) {
   return window['go']['main']['App']['SetConfigField'](arg1, arg2);
 }
 
+export function SetUserPassword(arg1, arg2) {
+  return window['go']['main']['App']['SetUserPassword'](arg1, arg2);
+}
+
 export function StartRain(arg1) {
   return window['go']['main']['App']['StartRain'](arg1);
 }
@@ -248,6 +268,14 @@ export function TeleportToUser(arg1, arg2) {
 
 export function Thunder(arg1) {
   return window['go']['main']['App']['Thunder'](arg1);
+}
+
+export function UnbanIp(arg1) {
+  return window['go']['main']['App']['UnbanIp'](arg1);
+}
+
+export function UnbanSteamId(arg1) {
+  return window['go']['main']['App']['UnbanSteamId'](arg1);
 }
 
 export function UnbanUsers(arg1) {

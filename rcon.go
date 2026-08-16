@@ -668,6 +668,22 @@ type RCONCommandNotifications struct {
 	Partial       string // Notification for partial success (some succeed, some fail)
 	SingleSuccess string // Notification for single name success
 	SingleFail    string // Notification for single name failure
+	// Zusätzliche Platzhalter für die Meldung, z. B. die betroffene IP oder SteamID
+	// bei Befehlen ohne Spielerbezug. Niemals Passwörter.
+	Parameters map[string]string
+}
+
+// notificationParameters mischt die festen Platzhalter des Befehls mit den
+// Zählwerten des Laufs.
+func (params *RCONCommand) notificationParameters(values map[string]string) map[string]string {
+	merged := make(map[string]string, len(values)+len(params.Notifications.Parameters))
+	for key, value := range params.Notifications.Parameters {
+		merged[key] = value
+	}
+	for key, value := range values {
+		merged[key] = value
+	}
+	return merged
 }
 
 type RCONCommand struct {
@@ -680,6 +696,55 @@ type RCONCommand struct {
 	UpdateFunc        func(string, string)        // Function to update player state
 	EmitUpdatePlayers bool                        // Whether to emit "update-players"
 	Notifications     RCONCommandNotifications    // Notifications for outcomes
+}
+
+// Für viele Build-42-Befehle nennt das Wiki keinen Erfolgstext, wohl aber den
+// Hilfetext, den der Server bei falscher Benutzung zurückwirft ("Use: /banip IP").
+// succeededUnlessUsage prüft deshalb gegen diesen Hilfetext statt gegen eine
+// geratene Erfolgsmeldung: Eine leere oder erklärende Antwort ist kein Erfolg.
+// Wo der Erfolgstext belegt ist, steht er als eigener SuccessCheck am Befehl.
+func responseIsUsage(response string) bool {
+	trimmed := strings.TrimSpace(response)
+
+	return strings.Contains(trimmed, "Use: /") ||
+		strings.Contains(trimmed, "Use /") ||
+		strings.Contains(trimmed, "Use <code>") ||
+		strings.HasPrefix(trimmed, "Unknown command")
+}
+
+func succeededUnlessUsage(_ string, response string) bool {
+	return strings.TrimSpace(response) != "" && !responseIsUsage(response)
+}
+
+// buildCommand setzt die Befehlszeile aus Vorlage, Argumenten und Spielername
+// zusammen. Ein Platzhalter ohne Wert verschwindet, ein fehlendes Pflichtargument ist
+// ein Fehler — kein halber Befehl. Spielernamen stehen in Anführungszeichen.
+func buildCommand(template string, args []RCONCommandParam, playerName string) (string, error) {
+	command := template
+
+	for _, arg := range args {
+		placeholder := fmt.Sprintf("{%s}", arg.Name)
+
+		if arg.Value == nil {
+			if arg.Mandatory {
+				return "", fmt.Errorf("missing mandatory argument: %s", arg.Name)
+			}
+			command = strings.Replace(command, placeholder, "", 1)
+			continue
+		}
+
+		if arg.Key != "" {
+			command = strings.Replace(command, placeholder, fmt.Sprintf("%s %v", arg.Key, arg.Value), 1)
+		} else {
+			command = strings.Replace(command, placeholder, fmt.Sprintf("%v", arg.Value), 1)
+		}
+	}
+
+	if playerName != "" {
+		command = strings.Replace(command, "{name}", "\""+playerName+"\"", 1)
+	}
+
+	return strings.Join(strings.Fields(command), " "), nil
 }
 
 func (params *RCONCommand) execute() int {
@@ -698,28 +763,6 @@ func (params *RCONCommand) execute() int {
 		names = nil
 	}
 
-	baseCommand := params.CommandTemplate
-
-	for _, arg := range params.Args {
-		if arg.Value == nil {
-			if arg.Mandatory {
-				runtime.LogError(app.ctx, fmt.Sprintf("Missing mandatory argument: %s", arg.Key))
-				return 0
-			} else {
-				runtime.LogDebugf(app.ctx, "Skipping optional argument: %s", arg.Key)
-				baseCommand = strings.Replace(baseCommand, fmt.Sprintf("{%s}", arg.Name), "", 1)
-				continue
-			}
-		}
-
-		if arg.Key != "" {
-			baseCommand = strings.Replace(baseCommand, fmt.Sprintf("{%s}", arg.Name), fmt.Sprintf("%s %v", arg.Key, arg.Value), 1)
-		} else {
-			baseCommand = strings.Replace(baseCommand, fmt.Sprintf("{%s}", arg.Name), fmt.Sprintf("%v", arg.Value), 1)
-		}
-
-	}
-
 	var res string
 	var err error
 	var lastErrRes string
@@ -727,14 +770,16 @@ func (params *RCONCommand) execute() int {
 	for i := 0; i < total; i++ {
 		runtime.EventsEmit(app.ctx, "setProgress", int(float64(i+1)/float64(total)*100))
 
-		var command string
-		if names == nil {
-			command = baseCommand
-		} else {
-			command = strings.Replace(baseCommand, "{name}", "\""+names[i]+"\"", 1)
+		playerName := ""
+		if names != nil {
+			playerName = names[i]
 		}
 
-		command = strings.Join(strings.Fields(command), " ") // Collapse spaces
+		command, buildErr := buildCommand(params.CommandTemplate, params.Args, playerName)
+		if buildErr != nil {
+			runtime.LogError(app.ctx, buildErr.Error())
+			return 0
+		}
 
 		if len([]byte(command)) > 1000 {
 			runtime.LogError(app.ctx, "RCON command size exceeds 1000 bytes")
@@ -792,16 +837,18 @@ func (params *RCONCommand) execute() int {
 
 	runtime.EventsEmit(app.ctx, "setProgress", 100)
 
-	if params.Notifications != (RCONCommandNotifications{}) {
+	if params.Notifications.AllSuccess != "" || params.Notifications.AllFail != "" ||
+		params.Notifications.Partial != "" || params.Notifications.SingleSuccess != "" ||
+		params.Notifications.SingleFail != "" {
 		if total > 1 {
 			if successCount == total {
 				// All Success (Multiple)
 				app.SendNotification(Notification{
 					Title:   params.Notifications.AllSuccess,
 					Variant: "success",
-					Parameters: map[string]string{
+					Parameters: params.notificationParameters(map[string]string{
 						"s": fmt.Sprintf("%d", total),
-					},
+					}),
 				})
 			} else if successCount == 0 {
 				// All Fail (Multiple)
@@ -809,9 +856,9 @@ func (params *RCONCommand) execute() int {
 					Title:   params.Notifications.AllFail,
 					Message: lastErrRes,
 					Variant: "error",
-					Parameters: map[string]string{
+					Parameters: params.notificationParameters(map[string]string{
 						"f": fmt.Sprintf("%d", total),
-					},
+					}),
 				})
 			} else {
 				// Partial Success
@@ -819,10 +866,10 @@ func (params *RCONCommand) execute() int {
 					Title:   params.Notifications.Partial,
 					Message: lastErrRes,
 					Variant: "warning",
-					Parameters: map[string]string{
+					Parameters: params.notificationParameters(map[string]string{
 						"s": fmt.Sprintf("%d", successCount),
 						"f": fmt.Sprintf("%d", total-successCount),
-					},
+					}),
 				})
 			}
 		} else if len(names) == 1 {
@@ -831,9 +878,9 @@ func (params *RCONCommand) execute() int {
 				app.SendNotification(Notification{
 					Title:   params.Notifications.SingleSuccess,
 					Variant: "success",
-					Parameters: map[string]string{
+					Parameters: params.notificationParameters(map[string]string{
 						"name": names[0],
-					},
+					}),
 				})
 			} else {
 				// Single Fail
@@ -841,23 +888,25 @@ func (params *RCONCommand) execute() int {
 					Title:   params.Notifications.SingleFail,
 					Message: lastErrRes,
 					Variant: "error",
-					Parameters: map[string]string{
+					Parameters: params.notificationParameters(map[string]string{
 						"name": names[0],
-					},
+					}),
 				})
 			}
 		} else if names == nil {
 			// Commands Without Names
 			if successCount == total {
 				app.SendNotification(Notification{
-					Title:   params.Notifications.SingleSuccess,
-					Variant: "success",
+					Title:      params.Notifications.SingleSuccess,
+					Variant:    "success",
+					Parameters: params.notificationParameters(nil),
 				})
 			} else {
 				app.SendNotification(Notification{
-					Title:   params.Notifications.SingleFail,
-					Message: lastErrRes,
-					Variant: "error",
+					Title:      params.Notifications.SingleFail,
+					Message:    lastErrRes,
+					Variant:    "error",
+					Parameters: params.notificationParameters(nil),
 				})
 			}
 		}

@@ -193,7 +193,35 @@
       "single_fail": "Ayarlar yeniden yüklenemedi"
     },
     "failed_to_update_options": "{{f}} seçenek güncellenemedi: {{options}}",
-    "options_partially_updated": "{{s}} seçenek güncellendi, {{f}} reddedildi: {{options}}"
+    "options_partially_updated": "{{s}} seçenek güncellendi, {{f}} reddedildi: {{options}}",
+    "addSteamId": {
+      "single_success": "SteamID {{steamId}} erişim listesine eklendi",
+      "single_fail": "SteamID {{steamId}} eklenemedi"
+    },
+    "removeSteamId": {
+      "single_success": "SteamID {{steamId}} erişim listesinden kaldırıldı",
+      "single_fail": "SteamID {{steamId}} kaldırılamadı"
+    },
+    "banSteamId": {
+      "single_success": "SteamID {{steamId}} yasaklandı",
+      "single_fail": "SteamID {{steamId}} yasaklanamadı"
+    },
+    "unbanSteamId": {
+      "single_success": "SteamID {{steamId}} yasağı kaldırıldı",
+      "single_fail": "SteamID {{steamId}} yasağı kaldırılamadı"
+    },
+    "banIp": {
+      "single_success": "IP {{ip}} yasaklandı",
+      "single_fail": "IP {{ip}} yasaklanamadı"
+    },
+    "unbanIp": {
+      "single_success": "IP {{ip}} yasağı kaldırıldı",
+      "single_fail": "IP {{ip}} yasağı kaldırılamadı"
+    },
+    "setPassword": {
+      "single_success": "{{name}} için parola değiştirildi",
+      "single_fail": "{{name}} için parola değiştirilemedi"
+    }
   },
 
   "settings": {
@@ -531,6 +559,65 @@
           "alarm": {
             "name": "Alarm",
             "description": "Admin'in konumunda bir bina alarmı çalar. (Bir odada olması gerekir)"
+          }
+        },
+        "access": {
+          "title": "Erişim",
+          "description": "Tek bir oyuncu satırına bağlı olmayan işlemler. Sunucu bu listeleri RCON üzerinden bildiremez, bu yüzden yalnızca her işlemin sonucu onaylanır.",
+          "steamid": {
+            "title": "SteamID Erişim Listesi",
+            "hint": "Bir SteamID ekleyin veya kaldırın. Listenin kendisi RCON üzerinden okunamaz.",
+            "label": "SteamID",
+            "add": {
+              "title": "SteamID Ekle",
+              "description": "Sunucudaki izinli SteamID listesine bir SteamID ekler.",
+              "submit": "SteamID Ekle"
+            },
+            "remove": {
+              "title": "SteamID Kaldır",
+              "description": "Sunucudaki izinli SteamID listesinden bir SteamID kaldırır.",
+              "submit": "SteamID Kaldır"
+            },
+            "ban": {
+              "title": "SteamID Yasakla",
+              "description": "Bir SteamID'yi sunucudan yasaklar.",
+              "submit": "SteamID Yasakla"
+            },
+            "unban": {
+              "title": "SteamID Yasağını Kaldır",
+              "description": "Bir SteamID'nin yasağını kaldırır.",
+              "submit": "SteamID Yasağını Kaldır"
+            }
+          },
+          "setpassword": {
+            "title": "Hesap Parolası",
+            "description": "Sunucudaki bir kullanıcı hesabı için yeni parola belirler.",
+            "name": "Kullanıcı adı",
+            "password": "Yeni parola",
+            "submit": "Parolayı Değiştir"
+          }
+        },
+        "moderation": {
+          "ip": {
+            "title": "IP Yasağı",
+            "hint": "Bir IP yasağı birden fazla kişiyi etkileyebilir — o adresin arkasındaki herkesi.",
+            "label": "IP adresi",
+            "ban": {
+              "title": "IP adresini yasakla",
+              "description": "Bu adresten gelen tüm bağlantıları engeller.",
+              "submit": "IP Yasakla",
+              "confirm": "{{ip}} yasaklanacak. Bu adresin arkasından oynayan herkes erişimini kaybeder, yalnızca bir oyuncu değil.",
+              "confirm_submit": "Bu adresi yasakla"
+            },
+            "unban": {
+              "title": "IP yasağını kaldır",
+              "description": "Bu adresten gelen bağlantılara yeniden izin verir.",
+              "submit": "IP Yasağını Kaldır"
+            }
+          },
+          "steamid": {
+            "title": "SteamID Yasağı",
+            "hint": "Tek bir SteamID'yi yasaklayın veya yasağını kaldırın — daha önce yalnızca terminalden yapılabiliyordu."
           }
         }
       },

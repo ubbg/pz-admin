@@ -193,7 +193,35 @@
         "single_fail": "Не удалось перезагрузить параметры"
       },
       "failed_to_update_options": "Не удалось обновить настроек: {{f}} ({{options}})",
-      "options_partially_updated": "Обновлено настроек: {{s}}, отклонено: {{f}} ({{options}})"
+      "options_partially_updated": "Обновлено настроек: {{s}}, отклонено: {{f}} ({{options}})",
+      "addSteamId": {
+          "single_success": "SteamID {{steamId}} добавлен в список разрешённых",
+          "single_fail": "Не удалось добавить SteamID {{steamId}}"
+      },
+      "removeSteamId": {
+          "single_success": "SteamID {{steamId}} убран из списка разрешённых",
+          "single_fail": "Не удалось убрать SteamID {{steamId}}"
+      },
+      "banSteamId": {
+          "single_success": "SteamID {{steamId}} заблокирован",
+          "single_fail": "Не удалось заблокировать SteamID {{steamId}}"
+      },
+      "unbanSteamId": {
+          "single_success": "SteamID {{steamId}} разблокирован",
+          "single_fail": "Не удалось разблокировать SteamID {{steamId}}"
+      },
+      "banIp": {
+          "single_success": "IP {{ip}} заблокирован",
+          "single_fail": "Не удалось заблокировать IP {{ip}}"
+      },
+      "unbanIp": {
+          "single_success": "IP {{ip}} разблокирован",
+          "single_fail": "Не удалось разблокировать IP {{ip}}"
+      },
+      "setPassword": {
+          "single_success": "Пароль для {{name}} изменён",
+          "single_fail": "Не удалось изменить пароль для {{name}}"
+      }
     },
   
     "settings": {
@@ -532,6 +560,65 @@
               "name": "Сигнализация",
               "description": "Активирует сигнализацию в здании на позиции администратора. (Должен находиться в помещении)"
             }
+          },
+          "access": {
+              "title": "Доступ",
+              "description": "Действия, не привязанные к строке игрока. Эти списки сервер не может показать через RCON, поэтому подтверждается только результат каждой операции.",
+              "steamid": {
+                  "title": "Список разрешённых SteamID",
+                  "hint": "Добавить или убрать SteamID. Сам список через RCON не читается.",
+                  "label": "SteamID",
+                  "add": {
+                      "title": "Добавить SteamID",
+                      "description": "Добавляет SteamID в список разрешённых на сервере.",
+                      "submit": "Добавить SteamID"
+                  },
+                  "remove": {
+                      "title": "Убрать SteamID",
+                      "description": "Убирает SteamID из списка разрешённых на сервере.",
+                      "submit": "Убрать SteamID"
+                  },
+                  "ban": {
+                      "title": "Забанить SteamID",
+                      "description": "Блокирует SteamID на сервере.",
+                      "submit": "Забанить SteamID"
+                  },
+                  "unban": {
+                      "title": "Разбанить SteamID",
+                      "description": "Снимает блокировку со SteamID.",
+                      "submit": "Разбанить SteamID"
+                  }
+              },
+              "setpassword": {
+                  "title": "Пароль учётной записи",
+                  "description": "Задаёт новый пароль для учётной записи на сервере.",
+                  "name": "Имя пользователя",
+                  "password": "Новый пароль",
+                  "submit": "Изменить пароль"
+              }
+          },
+          "moderation": {
+              "ip": {
+                  "title": "Бан по IP",
+                  "hint": "Бан по IP может задеть не одного человека, а всех за этим адресом.",
+                  "label": "IP-адрес",
+                  "ban": {
+                      "title": "Забанить IP-адрес",
+                      "description": "Блокирует все подключения с этого адреса.",
+                      "submit": "Забанить IP",
+                      "confirm": "{{ip}} будет заблокирован. Доступ потеряет каждый, кто играет за этим адресом, а не один игрок.",
+                      "confirm_submit": "Заблокировать адрес"
+                  },
+                  "unban": {
+                      "title": "Разбанить IP-адрес",
+                      "description": "Снова разрешает подключения с этого адреса.",
+                      "submit": "Разбанить IP"
+                  }
+              },
+              "steamid": {
+                  "title": "Бан по SteamID",
+                  "hint": "Забанить или разбанить одну SteamID — раньше только через терминал."
+              }
           }
         },
         "players": {

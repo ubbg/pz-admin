@@ -29,7 +29,7 @@ Konkret:
 ## Der Server ist die Wahrheit
 
 Nach jedem schreibenden Befehl wird der Zustand **neu geholt**, statt lokal
-fortgeschrieben zu werden: `players_update()` liest `players`, `pzOptions_update()`
+fortgeschrieben zu werden: `players_update()` liest `players`, `options_update()`
 liest `showoptions`. Beide vergleichen vorher (`lastOptionsHash`) und schweigen, wenn
 sich nichts geändert hat.
 

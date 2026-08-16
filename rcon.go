@@ -98,7 +98,7 @@ func (app *App) ConnectRcon(credentials Credentials) bool {
 	if err != nil {
 		runtime.LogError(app.ctx, "Error updating players: "+err.Error())
 	}
-	err = pzOptions_update()
+	err = options_update()
 	if err != nil {
 		runtime.LogError(app.ctx, "Error updating pzOptions: "+err.Error())
 	}
@@ -274,7 +274,7 @@ func (app *App) SendRconCommand(command string) RconResponse {
 			runtime.EventsEmit(app.ctx, "update-players", players)
 		}
 	} else if strings.Contains(command, "changeoption ") {
-		err = pzOptions_update()
+		err = options_update()
 		if err != nil {
 			runtime.LogError(app.ctx, "Error updating PZ options: "+err.Error())
 		}
@@ -298,7 +298,6 @@ func (app *App) watchConnection() {
 				runtime.LogError(app.ctx, "Error saving players: "+err.Error())
 			}
 			players = nil
-			pzOptions = PzOptions{}
 			serverOptions = nil
 			lastOptionsHash = ""
 			return

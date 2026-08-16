@@ -74,8 +74,6 @@ export function OpenLogFolder():Promise<void>;
 
 export function Players():Promise<Array<main.Player>>;
 
-export function PzOptionsList():Promise<Array<main.Option>>;
-
 export function RandomLightning():Promise<void>;
 
 export function RandomThunder():Promise<void>;
@@ -106,6 +104,8 @@ export function SendWindowsNotification(arg1:main.Notification):Promise<void>;
 
 export function ServerMsg(arg1:string):Promise<void>;
 
+export function ServerOptions():Promise<Array<main.Option>>;
+
 export function SetAccessLevel(arg1:Array<string>,arg2:string):Promise<void>;
 
 export function SetConfigField(arg1:string,arg2:any):Promise<void>;
@@ -131,5 +131,3 @@ export function UnbanUsers(arg1:Array<string>):Promise<void>;
 export function Update(arg1:string):Promise<void>;
 
 export function UpdateOptions(arg1:Record<string, string>,arg2:boolean):Promise<boolean>;
-
-export function UpdatePzOptions(arg1:main.PzOptions,arg2:boolean):Promise<boolean>;

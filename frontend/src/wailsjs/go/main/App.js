@@ -146,10 +146,6 @@ export function Players() {
   return window['go']['main']['App']['Players']();
 }
 
-export function PzOptionsList() {
-  return window['go']['main']['App']['PzOptionsList']();
-}
-
 export function RandomLightning() {
   return window['go']['main']['App']['RandomLightning']();
 }
@@ -210,6 +206,10 @@ export function ServerMsg(arg1) {
   return window['go']['main']['App']['ServerMsg'](arg1);
 }
 
+export function ServerOptions() {
+  return window['go']['main']['App']['ServerOptions']();
+}
+
 export function SetAccessLevel(arg1, arg2) {
   return window['go']['main']['App']['SetAccessLevel'](arg1, arg2);
 }
@@ -260,8 +260,4 @@ export function Update(arg1) {
 
 export function UpdateOptions(arg1, arg2) {
   return window['go']['main']['App']['UpdateOptions'](arg1, arg2);
-}
-
-export function UpdatePzOptions(arg1, arg2) {
-  return window['go']['main']['App']['UpdatePzOptions'](arg1, arg2);
 }

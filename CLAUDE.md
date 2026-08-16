@@ -29,10 +29,11 @@ Projekts: Jede exportierte Methode auf `*App` wird zu einer TypeScript-Funktion.
   ein Watcher-Goroutine (`watchConnection`), die Spielerliste als Prozesszustand
   (`players`) und das Muster `RCONCommand` für alles, was Spieler betrifft.
   Details und Invarianten: `.claude/rules/rcon.md`.
-* `rcon_options.go` — Serveroptionen: `showoptions` → `PzOptions`-Struct → Event
-  `update-options` → UI; zurück über `changeoption` + `reloadoptions`. Das statische
-  Struct ist die Ursache der halben B42-Lückenliste, siehe
-  `.claude/rules/options.md` und `specs/options/OPTIONS-001.spec.md`.
+* `rcon_options.go` — Serveroptionen: `showoptions` → `[]Option{Name, Value, Kind}` →
+  Event `update-options-list` → UI; zurück über `changeoption` + `reloadoptions`.
+  **Kein Optionsname steht in Go** — welche Optionen es gibt, entscheidet der Server,
+  wie sie aussehen `frontend/src/assets/options.ts`. Siehe `.claude/rules/options.md`
+  und `specs/options/OPTIONS-001.spec.md`.
 * `config.go`, `app_paths.go` — Anwendungseinstellungen (`Config`, durchgehend
   **Zeiger**-Felder, damit „nicht gesetzt" von „false" unterscheidbar bleibt) und die
   Pfade dorthin.
@@ -71,7 +72,7 @@ Projekts: Jede exportierte Methode auf `*App` wird zu einer TypeScript-Funktion.
   `connMutex`. Kein zweiter Dial, kein Zugriff ohne Sperre, kein `conn.Execute` aus
   dem Frontend-Pfad heraus außer über `SendRconCommand`.
 * **Der Server ist die Wahrheit.** Nach jedem schreibenden Befehl wird der Zustand
-  neu vom Server geholt (`players_update`, `pzOptions_update`) statt lokal
+  neu vom Server geholt (`players_update`, `options_update`) statt lokal
   fortgeschrieben. Lokal geführt wird nur, was RCON nicht hergibt (Bann-Status,
   Zugriffsstufen).
 * **Kein Ratespiel bei Serverantworten.** Erfolg wird an der Antwort geprüft
@@ -116,11 +117,11 @@ Gebunden wird ausschließlich `app` (`main.go`, `Bind:`). Daraus folgt:
 * Eine Funktion wird für das Frontend sichtbar, indem sie **exportierte Methode auf
   `*App`** wird — `func (app *App) DoThing(...)`. Freie Funktionen und
   kleingeschriebene Methoden bleiben unsichtbar; genau so trennt das Projekt heute
-  Innenleben (`players_update`, `pzOptions_update`) von Oberfläche.
+  Innenleben (`players_update`, `options_update`) von Oberfläche.
 * Parameter- und Rückgabetypen erscheinen in `frontend/src/wailsjs/go/models.ts`. Ein
   Go-Struct ohne `json:"…"`-Tags erzeugt dort Feldnamen in Großschreibung — Tags sind
   Pflicht, nicht Geschmack.
-* Ereignisse laufen über `runtime.EventsEmit`: `update-players`, `update-options`,
+* Ereignisse laufen über `runtime.EventsEmit`: `update-players`, `update-options-list`,
   `setProgress`. Ein neues Ereignis braucht einen Abnehmer in einem Context-Provider,
   sonst ist es tot.
 

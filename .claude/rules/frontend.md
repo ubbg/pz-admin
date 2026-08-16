@@ -23,7 +23,7 @@ import { main } from "@/wailsjs/go/models";
 * **`src/wailsjs/` ist generiert.** Nie von Hand bearbeiten — der Ordner entsteht bei
   jedem `wails dev` / `wails build` neu. Fehlt dort eine Funktion, fehlt in Go die
   exportierte Methode auf `*App`, nicht hier ein Import.
-* Typen kommen aus `main.*` (`main.Player`, `main.PzOptions`, `main.Credentials`,
+* Typen kommen aus `main.*` (`main.Player`, `main.Option`, `main.Credentials`,
   `main.RconResponse`). Keine handgeschriebenen Zwillinge dieser Typen anlegen — sie
   laufen sofort auseinander.
 * Ereignisse aus Go über `EventsOn` / `EventsOff` aus `@/wailsjs/runtime/runtime`.

@@ -6,12 +6,24 @@ export function AddItems(arg1, arg2) {
   return window['go']['main']['App']['AddItems'](arg1, arg2);
 }
 
+export function AddKey(arg1, arg2, arg3) {
+  return window['go']['main']['App']['AddKey'](arg1, arg2, arg3);
+}
+
 export function AddPlayer(arg1) {
   return window['go']['main']['App']['AddPlayer'](arg1);
 }
 
 export function AddPlayerToWhitelist(arg1, arg2) {
   return window['go']['main']['App']['AddPlayerToWhitelist'](arg1, arg2);
+}
+
+export function AddSteamId(arg1) {
+  return window['go']['main']['App']['AddSteamId'](arg1);
+}
+
+export function AddToSafehouse(arg1) {
+  return window['go']['main']['App']['AddToSafehouse'](arg1);
 }
 
 export function AddVehicle(arg1, arg2, arg3) {
@@ -24,6 +36,14 @@ export function AddXp(arg1, arg2, arg3) {
 
 export function Alarm() {
   return window['go']['main']['App']['Alarm']();
+}
+
+export function BanIp(arg1) {
+  return window['go']['main']['App']['BanIp'](arg1);
+}
+
+export function BanSteamId(arg1) {
+  return window['go']['main']['App']['BanSteamId'](arg1);
 }
 
 export function BanUsers(arg1, arg2, arg3) {
@@ -52,6 +72,10 @@ export function CopyToClipboard(arg1, arg2) {
 
 export function CreateHorde(arg1, arg2) {
   return window['go']['main']['App']['CreateHorde'](arg1, arg2);
+}
+
+export function CreateHorde2(arg1, arg2) {
+  return window['go']['main']['App']['CreateHorde2'](arg1, arg2);
 }
 
 export function DeleteCredentials() {
@@ -90,6 +114,10 @@ export function GetOs() {
   return window['go']['main']['App']['GetOs']();
 }
 
+export function GetUpdateSource() {
+  return window['go']['main']['App']['GetUpdateSource']();
+}
+
 export function GetVersion() {
   return window['go']['main']['App']['GetVersion']();
 }
@@ -106,8 +134,16 @@ export function ImportOptionsDialog() {
   return window['go']['main']['App']['ImportOptionsDialog']();
 }
 
+export function InvisiblePlayers(arg1, arg2) {
+  return window['go']['main']['App']['InvisiblePlayers'](arg1, arg2);
+}
+
 export function IsRconConnected() {
   return window['go']['main']['App']['IsRconConnected']();
+}
+
+export function KickFromSafehouse(arg1) {
+  return window['go']['main']['App']['KickFromSafehouse'](arg1);
 }
 
 export function KickUsers(arg1, arg2) {
@@ -128,6 +164,10 @@ export function LoadItemsDialog() {
 
 export function LoadMessageDialog() {
   return window['go']['main']['App']['LoadMessageDialog']();
+}
+
+export function NoClipPlayers(arg1, arg2) {
+  return window['go']['main']['App']['NoClipPlayers'](arg1, arg2);
 }
 
 export function OpenFileInExplorer(arg1) {
@@ -154,12 +194,40 @@ export function ReadConfig(arg1) {
   return window['go']['main']['App']['ReadConfig'](arg1);
 }
 
+export function ReleaseSafehouse() {
+  return window['go']['main']['App']['ReleaseSafehouse']();
+}
+
+export function ReloadAllLua() {
+  return window['go']['main']['App']['ReloadAllLua']();
+}
+
+export function ReloadLua(arg1) {
+  return window['go']['main']['App']['ReloadLua'](arg1);
+}
+
 export function ReloadOptions() {
   return window['go']['main']['App']['ReloadOptions']();
 }
 
+export function RemoveItems(arg1) {
+  return window['go']['main']['App']['RemoveItems'](arg1);
+}
+
+export function RemoveMapSymbolsForUser(arg1) {
+  return window['go']['main']['App']['RemoveMapSymbolsForUser'](arg1);
+}
+
 export function RemovePlayersFromWhitelist(arg1, arg2) {
   return window['go']['main']['App']['RemovePlayersFromWhitelist'](arg1, arg2);
+}
+
+export function RemoveSteamId(arg1) {
+  return window['go']['main']['App']['RemoveSteamId'](arg1);
+}
+
+export function RemoveZombies() {
+  return window['go']['main']['App']['RemoveZombies']();
 }
 
 export function RestartApplication(arg1) {
@@ -202,12 +270,28 @@ export function ServerMsg(arg1) {
   return window['go']['main']['App']['ServerMsg'](arg1);
 }
 
+export function ServerOptions() {
+  return window['go']['main']['App']['ServerOptions']();
+}
+
 export function SetAccessLevel(arg1, arg2) {
   return window['go']['main']['App']['SetAccessLevel'](arg1, arg2);
 }
 
 export function SetConfigField(arg1, arg2) {
   return window['go']['main']['App']['SetConfigField'](arg1, arg2);
+}
+
+export function SetLogLevel(arg1, arg2) {
+  return window['go']['main']['App']['SetLogLevel'](arg1, arg2);
+}
+
+export function SetStats(arg1, arg2) {
+  return window['go']['main']['App']['SetStats'](arg1, arg2);
+}
+
+export function SetUserPassword(arg1, arg2) {
+  return window['go']['main']['App']['SetUserPassword'](arg1, arg2);
 }
 
 export function StartRain(arg1) {
@@ -230,16 +314,24 @@ export function StopWeather() {
   return window['go']['main']['App']['StopWeather']();
 }
 
+export function TeleportPlayerToPlayer(arg1, arg2) {
+  return window['go']['main']['App']['TeleportPlayerToPlayer'](arg1, arg2);
+}
+
 export function TeleportToCoordinates(arg1, arg2) {
   return window['go']['main']['App']['TeleportToCoordinates'](arg1, arg2);
 }
 
-export function TeleportToUser(arg1, arg2) {
-  return window['go']['main']['App']['TeleportToUser'](arg1, arg2);
-}
-
 export function Thunder(arg1) {
   return window['go']['main']['App']['Thunder'](arg1);
+}
+
+export function UnbanIp(arg1) {
+  return window['go']['main']['App']['UnbanIp'](arg1);
+}
+
+export function UnbanSteamId(arg1) {
+  return window['go']['main']['App']['UnbanSteamId'](arg1);
 }
 
 export function UnbanUsers(arg1) {
@@ -250,6 +342,18 @@ export function Update(arg1) {
   return window['go']['main']['App']['Update'](arg1);
 }
 
-export function UpdatePzOptions(arg1, arg2) {
-  return window['go']['main']['App']['UpdatePzOptions'](arg1, arg2);
+export function UpdateOptions(arg1, arg2) {
+  return window['go']['main']['App']['UpdateOptions'](arg1, arg2);
+}
+
+export function VoiceBanPlayers(arg1, arg2) {
+  return window['go']['main']['App']['VoiceBanPlayers'](arg1, arg2);
+}
+
+export function WorldGen(arg1) {
+  return window['go']['main']['App']['WorldGen'](arg1);
+}
+
+export function WorldGenStatus() {
+  return window['go']['main']['App']['WorldGenStatus']();
 }

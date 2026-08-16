@@ -191,6 +191,138 @@
       "reloadOptions": {
         "single_success": "Параметри успішно перезавантажено",
         "single_fail": "Не вдалося перезавантажити параметри"
+      },
+      "failed_to_update_options": "Не вдалося оновити налаштувань: {{f}} ({{options}})",
+      "options_partially_updated": "Оновлено налаштувань: {{s}}, відхилено: {{f}} ({{options}})",
+      "addSteamId": {
+          "single_success": "SteamID {{steamId}} додано до списку дозволених",
+          "single_fail": "Не вдалося додати SteamID {{steamId}}"
+      },
+      "removeSteamId": {
+          "single_success": "SteamID {{steamId}} прибрано зі списку дозволених",
+          "single_fail": "Не вдалося прибрати SteamID {{steamId}}"
+      },
+      "banSteamId": {
+          "single_success": "SteamID {{steamId}} заблоковано",
+          "single_fail": "Не вдалося заблокувати SteamID {{steamId}}"
+      },
+      "unbanSteamId": {
+          "single_success": "SteamID {{steamId}} розблоковано",
+          "single_fail": "Не вдалося розблокувати SteamID {{steamId}}"
+      },
+      "banIp": {
+          "single_success": "IP {{ip}} заблоковано",
+          "single_fail": "Не вдалося заблокувати IP {{ip}}"
+      },
+      "unbanIp": {
+          "single_success": "IP {{ip}} розблоковано",
+          "single_fail": "Не вдалося розблокувати IP {{ip}}"
+      },
+      "setPassword": {
+          "single_success": "Пароль для {{name}} змінено",
+          "single_fail": "Не вдалося змінити пароль для {{name}}"
+      },
+      "invisible": {
+          "single_success": "Невидимість змінено для {{name}}",
+          "single_fail": "Не вдалося змінити невидимість для {{name}}",
+          "all_success": "Невидимість змінено у {{s}} гравців",
+          "all_fail": "Не вдалося для жодного з {{f}} гравців: {{failed}}",
+          "partial": "{{s}} змінено, {{f}} не вдалося: {{failed}}"
+      },
+      "noclip": {
+          "single_success": "Прохід крізь стіни змінено для {{name}}",
+          "single_fail": "Не вдалося змінити прохід крізь стіни для {{name}}",
+          "all_success": "Прохід крізь стіни змінено у {{s}} гравців",
+          "all_fail": "Не вдалося для жодного з {{f}} гравців: {{failed}}",
+          "partial": "{{s}} змінено, {{f}} не вдалося: {{failed}}"
+      },
+      "voiceban": {
+          "single_success": "Налаштування голосу змінено для {{name}}",
+          "single_fail": "Не вдалося змінити налаштування голосу для {{name}}",
+          "all_success": "Налаштування голосу змінено у {{s}} гравців",
+          "all_fail": "Не вдалося для жодного з {{f}} гравців: {{failed}}",
+          "partial": "{{s}} змінено, {{f}} не вдалося: {{failed}}"
+      },
+      "addToSafehouse": {
+          "single_success": "{{name}} додано до сховку",
+          "single_fail": "Не вдалося додати {{name}} до сховку",
+          "all_success": "{{s}} гравців додано до сховку",
+          "all_fail": "Не вдалося для жодного з {{f}} гравців: {{failed}}",
+          "partial": "{{s}} додано, {{f}} не вдалося: {{failed}}"
+      },
+      "kickFromSafehouse": {
+          "single_success": "{{name}} вигнано зі сховку",
+          "single_fail": "Не вдалося вигнати {{name}} зі сховку",
+          "all_success": "{{s}} гравців вигнано зі сховку",
+          "all_fail": "Не вдалося для жодного з {{f}} гравців: {{failed}}",
+          "partial": "{{s}} вигнано, {{f}} не вдалося: {{failed}}"
+      },
+      "addKey": {
+          "single_success": "Ключ {{keyId}} видано {{name}}",
+          "single_fail": "Не вдалося видати ключ {{keyId}} для {{name}}",
+          "all_success": "Ключ {{keyId}} видано {{s}} гравцям",
+          "all_fail": "Не вдалося для жодного з {{f}} гравців: {{failed}}",
+          "partial": "{{s}} видано, {{f}} не вдалося: {{failed}}"
+      },
+      "removeMapSymbols": {
+          "single_success": "Символи карти {{name}} видалено",
+          "single_fail": "Не вдалося видалити символи карти {{name}}",
+          "all_success": "Символи карти видалено у {{s}} гравців",
+          "all_fail": "Не вдалося для жодного з {{f}} гравців: {{failed}}",
+          "partial": "{{s}} видалено, {{f}} не вдалося: {{failed}}"
+      },
+      "releaseSafehouse": {
+          "single_success": "Сховок звільнено",
+          "single_fail": "Не вдалося звільнити сховок"
+      },
+      "removeItems": {
+          "single_success": "{{item}} видалено",
+          "single_fail": "Не вдалося видалити {{item}}"
+      },
+      "removeZombies": {
+          "single_success": "Завантажених зомбі видалено",
+          "single_fail": "Не вдалося видалити зомбі"
+      },
+      "worldGen": {
+          "start": {
+              "single_success": "Генерацію світу запущено",
+              "single_fail": "Не вдалося запустити генерацію світу"
+          },
+          "recheck": {
+              "single_success": "Генерацію світу перевірено знову",
+              "single_fail": "Не вдалося перевірити генерацію світу"
+          },
+          "stop": {
+              "single_success": "Генерацію світу зупинено",
+              "single_fail": "Не вдалося зупинити генерацію світу"
+          },
+          "status": {
+              "single_success": "Статус генерації світу отримано",
+              "single_fail": "Не вдалося отримати статус генерації світу"
+          }
+      },
+      "reloadAllLua": {
+          "single_success": "Усі Lua-скрипти перезавантажено",
+          "single_fail": "Не вдалося перезавантажити Lua-скрипти"
+      },
+      "reloadLua": {
+          "single_success": "{{file}} перезавантажено",
+          "single_fail": "Не вдалося перезавантажити {{file}}"
+      },
+      "setLogLevel": {
+          "single_success": "Рівень журналу {{type}} — {{level}}",
+          "single_fail": "Не вдалося задати рівень журналу для {{type}}"
+      },
+      "setStats": {
+          "single_success": "Виведення статистики: {{mode}}",
+          "single_fail": "Не вдалося налаштувати виведення статистики"
+      },
+      "createHorde2": {
+          "single_success": "Другу орду створено біля {{name}}",
+          "single_fail": "Не вдалося створити другу орду біля {{name}}",
+          "all_success": "Другу орду створено біля {{s}} гравців",
+          "all_fail": "Не вдалося для жодного з {{f}} гравців: {{failed}}",
+          "partial": "{{s}} створено, {{f}} не вдалося: {{failed}}"
       }
     },
   
@@ -292,7 +424,8 @@
   
         "check_for_updates": {
           "label": "Перевіряти оновлення при запуску",
-          "description": "Перевіряти наявність оновлень при запуску."
+          "description": "Перевіряти наявність оновлень при запуску.",
+          "no_source_description": "Для цієї збірки джерело оновлень не налаштовано, тому перевірка не виконується."
         },
   
         "update": {
@@ -308,7 +441,8 @@
           "update_applied": "Оновлення успішно застосовано.",
           "restarting": "Перезапуск...",
           "need_admin_privileges": "Для оновлення додатка потрібні права адміністратора.",
-          "update_successful": "Оновлення успішно застосовано."
+          "update_successful": "Оновлення успішно застосовано.",
+          "no_update_source": "Джерело оновлень не налаштовано"
         },
   
         "rcon_check_interval": {
@@ -334,6 +468,12 @@
         "debug_mode": {
           "label": "Режим налагодження",
           "description": "Увімкнути режим налагодження."
+        },
+        "update_source": {
+            "label": "Джерело оновлень",
+            "description": "Випуски перевіряються та завантажуються з цього репозиторію.",
+            "not_configured": "Не налаштовано",
+            "not_configured_description": "Ця збірка не стежить за жодним джерелом випусків. Оновлення вимкнено, щоб її не замінив чужий випуск."
         }
       }
     },
@@ -522,6 +662,133 @@
               "name": "Сигналізація",
               "description": "Активує сигналізацію в будівлі на позиції адміністратора. (Повинен знаходитися в приміщенні)"
             }
+          },
+          "access": {
+              "title": "Доступ",
+              "description": "Дії, не прив'язані до рядка гравця. Ці списки сервер не може показати через RCON, тому підтверджується лише результат кожної операції.",
+              "steamid": {
+                  "title": "Список дозволених SteamID",
+                  "hint": "Додати або прибрати SteamID. Сам список через RCON не читається.",
+                  "label": "SteamID",
+                  "add": {
+                      "title": "Додати SteamID",
+                      "description": "Додає SteamID до списку дозволених на сервері.",
+                      "submit": "Додати SteamID"
+                  },
+                  "remove": {
+                      "title": "Прибрати SteamID",
+                      "description": "Прибирає SteamID зі списку дозволених на сервері.",
+                      "submit": "Прибрати SteamID"
+                  },
+                  "ban": {
+                      "title": "Забанити SteamID",
+                      "description": "Блокує SteamID на сервері.",
+                      "submit": "Забанити SteamID"
+                  },
+                  "unban": {
+                      "title": "Розбанити SteamID",
+                      "description": "Знімає блокування зі SteamID.",
+                      "submit": "Розбанити SteamID"
+                  }
+              },
+              "setpassword": {
+                  "title": "Пароль облікового запису",
+                  "description": "Задає новий пароль для облікового запису на сервері.",
+                  "name": "Ім'я користувача",
+                  "password": "Новий пароль",
+                  "submit": "Змінити пароль"
+              }
+          },
+          "moderation": {
+              "ip": {
+                  "title": "Бан за IP",
+                  "hint": "Бан за IP може зачепити не одну людину, а всіх за цією адресою.",
+                  "label": "IP-адреса",
+                  "ban": {
+                      "title": "Забанити IP-адресу",
+                      "description": "Блокує всі підключення з цієї адреси.",
+                      "submit": "Забанити IP",
+                      "confirm": "{{ip}} буде заблоковано. Доступ втратить кожен, хто грає за цією адресою, а не один гравець.",
+                      "confirm_submit": "Заблокувати адресу"
+                  },
+                  "unban": {
+                      "title": "Розбанити IP-адресу",
+                      "description": "Знову дозволяє підключення з цієї адреси.",
+                      "submit": "Розбанити IP"
+                  }
+              },
+              "steamid": {
+                  "title": "Бан за SteamID",
+                  "hint": "Забанити або розбанити одну SteamID — раніше лише через термінал."
+              }
+          },
+          "console": {
+              "title": "Персонаж консолі",
+              "description": "Дві команди Build 42 не приймають імені гравця — вони діють на власного персонажа консолі. На виділеному сервері без персонажа вони нічого не роблять.",
+              "releasesafehouse": {
+                  "title": "Звільнити сховок",
+                  "description": "Звільняє сховок, що належить персонажу консолі.",
+                  "submit": "Звільнити сховок"
+              },
+              "removeitem": {
+                  "title": "Видалити предмет",
+                  "description": "Видаляє предмети в персонажа консолі. На відміну від additem, команда не приймає імені гравця.",
+                  "item": "ID предмета",
+                  "count": "Кількість",
+                  "count_hint": "0 видаляє всі предмети цього типу.",
+                  "submit": "Видалити предмет"
+              }
+          },
+          "world": {
+              "title": "Світ і обслуговування",
+              "description": "Загальносерверні дії з Build 42.",
+              "removezombies": {
+                  "title": "Видалити зомбі",
+                  "description": "Прибирає всіх завантажених зомбі зі світу.",
+                  "submit": "Видалити зомбі",
+                  "confirm_title": "Видалити всіх завантажених зомбі?",
+                  "confirm": "Усі завантажені зараз зомбі зникнуть зі світу. Повернути їх не можна — світ заповниться лише через налаштування відродження.",
+                  "confirm_submit": "Видалити зомбі"
+              },
+              "worldgen": {
+                  "title": "Генератор світу",
+                  "description": "Build 42 створює світ поетапно. Нижче — власна відповідь сервера на «worldgen status», вона читається, поки відкрито цей вигляд.",
+                  "start": "Запустити",
+                  "recheck": "Перевірити знову",
+                  "stop": "Зупинити",
+                  "no_status": "Статусу ще немає.",
+                  "stop_confirm_title": "Зупинити генерацію світу?",
+                  "stop_confirm": "Процес зупиниться там, де є. Згенероване збережеться, решта бракуватиме до нового запуску.",
+                  "stop_confirm_submit": "Зупинити генерацію"
+              },
+              "reloadlua": {
+                  "title": "Перезавантажити Lua-скрипти",
+                  "description": "Перезавантажує один скрипт або всі одразу.",
+                  "placeholder": "імʼя_файлу.lua",
+                  "submit": "Перезавантажити файл",
+                  "submit_all": "Перезавантажити всі"
+              },
+              "log": {
+                  "title": "Рівень журналу",
+                  "description": "Задає рівень журналу для однієї області.",
+                  "type": "Область",
+                  "level": "Рівень",
+                  "nothing_found": "Нічого не знайдено",
+                  "submit": "Застосувати"
+              },
+              "stats": {
+                  "title": "Виведення статистики",
+                  "description": "Куди й як часто сервер пише мережеву статистику.",
+                  "mode": "Куди",
+                  "nothing_found": "Нічого не знайдено",
+                  "submit": "Застосувати",
+                  "modes": {
+                      "none": "Вимкнено",
+                      "file": "Файл",
+                      "console": "Консоль",
+                      "all": "Файл і консоль"
+                  }
+              }
           }
         },
         "players": {
@@ -668,7 +935,10 @@
               "players": "Ви створите орду біля {{players}}.",
               "submit": "Створити орду",
   
-              "horde_size": "Розмір орди"
+              "horde_size": "Розмір орди",
+              "variant": "Команда орди",
+              "variant_1": "Орда",
+              "variant_2": "Орда 2"
             },
   
             "lightning": {
@@ -799,7 +1069,32 @@
   
               "coordinates_tab": "За координатами",
               "player_tab": "До гравців"
+            },
+            "addkey": {
+                "button": "Видати ключ",
+                "title": "Видати ключ",
+                "description": "Ключ отримають: {{names}}",
+                "key_id": "ID ключа",
+                "key_name": "Назва ключа (необов'язково)",
+                "key_name_placeholder": "Подарунковий ключ",
+                "submit": "Видати ключ"
             }
+          },
+          "invisible": "Невидимість",
+          "invisible_on": "Увімкнути невидимість",
+          "invisible_off": "Вимкнути невидимість",
+          "noclip": "Прохід крізь стіни",
+          "noclip_on": "Увімкнути прохід крізь стіни",
+          "noclip_off": "Вимкнути прохід крізь стіни",
+          "voice_ban": "Голос вимкнено",
+          "voice_ban_on": "Вимкнути голос",
+          "voice_ban_off": "Увімкнути голос",
+          "more_actions": "Інші дії",
+          "remove_map_symbols": "Видалити символи з карти",
+          "safehouse": {
+              "add": "Додати до сховку",
+              "kick": "Вигнати зі сховку",
+              "release": "Звільнити сховок"
           }
         },
         "options": {
@@ -825,8 +1120,12 @@
             "Discord": "Discord",
             "Backup": "Резервна копія",
             "Anti-Cheat": "Анти-чит",
-            "Miscellaneous": "Різне"
-          }
+            "Miscellaneous": "Різне",
+            "Other": "Інші налаштування",
+            "War": "Війна",
+            "Network": "Мережа"
+          },
+          "other_options_description": "Налаштування, про які повідомляє сервер, але для яких застосунок не має опису. Їх можна змінювати, як і будь-які інші."
         },
         "terminal": {
           "name": "Термінал"
@@ -849,175 +1148,10 @@
       "requires_2": "Вимагає, щоб {{option1}} було {{value1}} та {{option2}} було {{value2}}.",
       "requires_3": "Вимагає, щоб {{option1}} було {{value1}}, {{option2}} було {{value2}} та {{option3}} було {{value3}}.",
   
-      "AntiCheatProtectionType1": {
-        "display_name": "Тип античиту 1",
-        "description": "",
-        "keywords": "античит,захист,тип1"
-      },
-      "AntiCheatProtectionType2": {
-        "display_name": "Тип античиту 2",
-        "description": "",
-        "keywords": "античит,захист,тип2"
-      },
-      "AntiCheatProtectionType3": {
-        "display_name": "Тип античиту 3",
-        "description": "",
-        "keywords": "античит,захист,тип3"
-      },
-      "AntiCheatProtectionType4": {
-        "display_name": "Тип античиту 4",
-        "description": "",
-        "keywords": "античит,захист,тип4"
-      },
-      "AntiCheatProtectionType5": {
-        "display_name": "Тип античиту 5",
-        "description": "",
-        "keywords": "античит,захист,тип5"
-      },
-      "AntiCheatProtectionType6": {
-        "display_name": "Тип античиту 6",
-        "description": "",
-        "keywords": "античит,захист,тип6"
-      },
-      "AntiCheatProtectionType7": {
-        "display_name": "Тип античиту 7",
-        "description": "",
-        "keywords": "античит,захист,тип7"
-      },
-      "AntiCheatProtectionType8": {
-        "display_name": "Тип античиту 8",
-        "description": "",
-        "keywords": "античит,захист,тип8"
-      },
-      "AntiCheatProtectionType9": {
-        "display_name": "Тип античиту 9",
-        "description": "",
-        "keywords": "античит,захист,тип9"
-      },
-      "AntiCheatProtectionType10": {
-        "display_name": "Тип античиту 10",
-        "description": "",
-        "keywords": "античит,захист,тип10"
-      },
-      "AntiCheatProtectionType11": {
-        "display_name": "Тип античиту 11",
-        "description": "",
-        "keywords": "античит,захист,тип11"
-      },
-      "AntiCheatProtectionType12": {
-        "display_name": "Тип античиту 12",
-        "description": "",
-        "keywords": "античит,захист,тип12"
-      },
-      "AntiCheatProtectionType13": {
-        "display_name": "Тип античиту 13",
-        "description": "",
-        "keywords": "античит,захист,тип13"
-      },
-      "AntiCheatProtectionType14": {
-        "display_name": "Тип античиту 14",
-        "description": "",
-        "keywords": "античит,захист,тип14"
-      },
-      "AntiCheatProtectionType15": {
-        "display_name": "Тип античиту 15",
-        "description": "",
-        "keywords": "античит,захист,тип15"
-      },
-      "AntiCheatProtectionType16": {
-        "display_name": "Тип античиту 16",
-        "description": "",
-        "keywords": "античит,захист,тип16"
-      },
-      "AntiCheatProtectionType17": {
-        "display_name": "Тип античиту 17",
-        "description": "",
-        "keywords": "античит,захист,тип17"
-      },
-      "AntiCheatProtectionType18": {
-        "display_name": "Тип античиту 18",
-        "description": "",
-        "keywords": "античит,захист,тип18"
-      },
-      "AntiCheatProtectionType19": {
-        "display_name": "Тип античиту 19",
-        "description": "",
-        "keywords": "античит,захист,тип19"
-      },
-      "AntiCheatProtectionType20": {
-        "display_name": "Тип античиту 20",
-        "description": "",
-        "keywords": "античит,захист,тип20"
-      },
-      "AntiCheatProtectionType21": {
-        "display_name": "Тип античиту 21",
-        "description": "",
-        "keywords": "античит,захист,тип21"
-      },
-      "AntiCheatProtectionType22": {
-        "display_name": "Тип античиту 22",
-        "description": "",
-        "keywords": "античит,захист,тип22"
-      },
-      "AntiCheatProtectionType23": {
-        "display_name": "Тип античиту 23",
-        "description": "",
-        "keywords": "античит,захист,тип23"
-      },
-      "AntiCheatProtectionType24": {
-        "display_name": "Тип античиту 24",
-        "description": "",
-        "keywords": "античит,захист,тип24"
-      },
-      "AntiCheatProtectionType2ThresholdMultiplier": {
-        "display_name": "Множник порогу античиту типу 2",
-        "description": "",
-        "keywords": "античит,поріг,множник,тип2"
-      },
-      "AntiCheatProtectionType3ThresholdMultiplier": {
-        "display_name": "Множник порогу античиту типу 3",
-        "description": "",
-        "keywords": "античит,поріг,множник,тип3"
-      },
-      "AntiCheatProtectionType4ThresholdMultiplier": {
-        "display_name": "Множник порогу античиту типу 4",
-        "description": "",
-        "keywords": "античит,поріг,множник,тип4"
-      },
-      "AntiCheatProtectionType9ThresholdMultiplier": {
-        "display_name": "Множник порогу античиту типу 9",
-        "description": "",
-        "keywords": "античит,поріг,множник,тип9"
-      },
-      "AntiCheatProtectionType15ThresholdMultiplier": {
-        "display_name": "Множник порогу античиту типу 15",
-        "description": "",
-        "keywords": "античит,поріг,множник,тип15"
-      },
-      "AntiCheatProtectionType20ThresholdMultiplier": {
-        "display_name": "Множник порогу античиту типу 20",
-        "description": "",
-        "keywords": "античит,поріг,множник,тип20"
-      },
-      "AntiCheatProtectionType22ThresholdMultiplier": {
-        "display_name": "Множник порогу античиту типу 22",
-        "description": "",
-        "keywords": "античит,поріг,множник,тип22"
-      },
-      "AntiCheatProtectionType24ThresholdMultiplier": {
-        "display_name": "Множник порогу античиту типу 24",
-        "description": "",
-        "keywords": "античит,поріг,множник,тип24"
-      },
       "DoLuaChecksum": {
         "display_name": "Увімкнути кік за контрольну суму Lua",
         "description": "Якщо увімкнено, клієнти, чиї файли гри не збігаються з файлами сервера, будуть кікнути.",
         "keywords": "античит,lua,контрольна сума,кік"
-      },
-      "KickFastPlayers": {
-        "display_name": "Кікати швидких гравців",
-        "description": "Якщо увімкнено, гравці, які рухаються швидше, ніж можливо, будуть кікнуті. Може бути багованим - використовуйте з обережністю.",
-        "keywords": "античит,кік,швидкі гравці"
       },
       "SteamVAC": {
         "display_name": "Увімкнути Valve Anti-cheat (Steam VAC)",
@@ -1056,16 +1190,6 @@
         "description": "Встановлює токен бота для доступу до серверів Discord.",
         "keywords": "discord,токен"
       },
-      "DiscordChannel": {
-        "display_name": "Канал Discord",
-        "description": "Встановлює назву каналу Discord для інтеграції. Використовуйте \"Discord ID\", якщо це не працює.",
-        "keywords": "discord,канал"
-      },
-      "DiscordChannelID": {
-        "display_name": "ID каналу Discord",
-        "description": "Встановлює ID каналу Discord для інтеграції. Використовуйте це, якщо \"Discord Channel\" не працює.",
-        "keywords": "discord,id каналу"
-      },
       "Faction": {
         "display_name": "Увімкнути фракції",
         "description": "Увімкнути створення та використання фракцій.",
@@ -1097,11 +1221,6 @@
         "description": "Налаштовує радіус привабливості зомбі до машин. Менші значення можуть зменшити лаги.",
         "keywords": "машина,двигун,зомбі,привабливість,модифікатор"
       },
-      "ConstructionPreventsLootRespawn": {
-        "display_name": "Будівництво запобігає респавну луту",
-        "description": "Запобігає респавну луту в будівлях з гравцевими спорудами або барикадами.",
-        "keywords": "будівництво,лут,респавн,запобігання"
-      },
       "FastForwardMultiplier": {
         "display_name": "Множник прискорення часу сну",
         "description": "Визначає, наскільки швидко йде час під час сну гравців.",
@@ -1111,12 +1230,6 @@
         "display_name": "Приховувати гравців позаду",
         "description": "Автоматично приховує гравців поза поля зору за персонажем (як зомбі).",
         "keywords": "приховати,гравці,позаду,огляд"
-      },
-      "HoursForLootRespawn": {
-        "display_name": "Мінімальний період респавну луту",
-        "description": "Кількість ігрових годин, після яких контейнери з лутом респавнять лут. Респавн луту не залежить від видимості або подальшого лутання.",
-        "disabled": "Ніколи",
-        "keywords": "лут,респавн,години,мінімум"
       },
       "ItemNumbersLimitPerContainer": {
         "display_name": "Ліміт предметів на контейнер",
@@ -1128,16 +1241,6 @@
         "display_name": "Дозволити збивання з ніг",
         "description": "Дозволяє гравцям бути збитими з ніг.",
         "keywords": "збивання,ноги,дозволити"
-      },
-      "MaxItemsForLootRespawn": {
-        "display_name": "Максимум предметів для респавну луту",
-        "description": "Максимальна кількість предметів у контейнері для респавну луту.",
-        "keywords": "лут,респавн,максимум,предмети"
-      },
-      "MinutesPerPage": {
-        "display_name": "Хвилин на сторінку книги",
-        "description": "Кількість ігрових хвилин для читання однієї сторінки книги.",
-        "keywords": "хвилини,книга,сторінка,читання"
       },
       "NoFire": {
         "display_name": "Заборонити вогонь",
@@ -1256,7 +1359,7 @@
       },
       "Mods": {
         "display_name": "Моди",
-        "description": "Список ID модів, розділених крапкою з комою.",
+        "description": "Список ID модів, розділених крапкою з комою. Зворотний слеш, якого вимагає Build 42 у файлі конфігурації, додається під час збереження.",
         "keywords": "моди,сервер"
       },
       "Open": {
@@ -1376,11 +1479,6 @@
         "description": "Відображає значок черепа над головами гравців, які увійшли в режим PvP",
         "keywords": "pvp,статус,індикатор,система безпеки"
       },
-      "AutoCreateUserInWhiteList": {
-        "display_name": "Автоматично додавати гравців до вайтлисту",
-        "description": "Автоматично додає нових гравців до вайтлисту (для відкритих серверів). Гравці вказуватимуть свої ім'я/пароль при приєднанні.",
-        "keywords": "вайтлист,додати,авто-створення,автоматично,гравці"
-      },
       "DisplayUserName": {
         "display_name": "Показувати імена гравців",
         "description": "Показує імена гравців над їх персонажами.",
@@ -1432,11 +1530,6 @@
         "display_name": "Дозволити притулок адмінам",
         "description": "Дозволяє адмінам займати притулок.",
         "keywords": "притулок,адмін,обмеження"
-      },
-      "DisableSafehouseWhenPlayerConnected": {
-        "display_name": "Вимкнути притулок при підключенні гравця",
-        "description": "Вимкнути захист притулок, коли гравець онлайн, так що воно діє як звичайний будинок і захищене тільки коли гравці офлайн.",
-        "keywords": "притулок,вимкнення,підключення"
       },
       "PlayerSafehouse": {
         "display_name": "Дозволити притулок гравцям",
@@ -1546,6 +1639,264 @@
         "display_name": "Мінімальна дистанція VOIP",
         "description": "Визначає мінімальну дальність звуку VOIP.",
         "keywords": "голос,мінімум,дистанція,дальність"
+      },
+      "Password": {
+          "display_name": "Пароль сервера",
+          "description": "Клієнти мають знати цей пароль, щоб зайти на сервер.",
+          "keywords": "пароль,вхід,доступ,приватний"
+      },
+      "Seed": {
+          "display_name": "Зерно генерації світу",
+          "description": "Зерно, за яким створюється світ. Зміна діє лише після видалення map_worldgen.bin у теці збереження.",
+          "keywords": "зерно,світ,карта,генерація"
+      },
+      "AnnounceAnimalDeath": {
+          "display_name": "Оголошувати смерть тварин",
+          "description": "Коли тварина гине, у загальний чат надходить повідомлення.",
+          "keywords": "тварина,смерть,оголошення,чат"
+      },
+      "DisableVehicleTowing": {
+          "display_name": "Заборонити буксирування машин",
+          "description": "Забороняє гравцям буксирувати транспорт.",
+          "keywords": "буксирування,машина,транспорт,заборона"
+      },
+      "DisableTrailerTowing": {
+          "display_name": "Заборонити буксирування причепів",
+          "description": "Забороняє гравцям буксирувати причепи.",
+          "keywords": "буксирування,причіп,заборона"
+      },
+      "DisableBurntTowing": {
+          "display_name": "Заборонити буксирування згорілих машин",
+          "description": "Забороняє гравцям буксирувати згорілий транспорт.",
+          "keywords": "буксирування,згорілий,машина,заборона"
+      },
+      "UsePhysicsHitReaction": {
+          "display_name": "Фізична реакція на удар",
+          "description": "Зомбі та гравці реагують на удари фізично розрахованим рухом.",
+          "keywords": "фізика,удар,реакція,бій"
+      },
+      "SwitchZombiesOwnershipEachUpdate": {
+          "display_name": "Змінювати власника зомбі щооновлення",
+          "description": "Під час кожного оновлення наново призначає, який клієнт обраховує зомбі.",
+          "keywords": "зомбі,власник,мережа,продуктивність"
+      },
+      "UltraSpeedDoesnotAffectToAnimals": {
+          "display_name": "Пришвидшення часу не впливає на тварин",
+          "description": "Перемотування часу не пришвидшує тварин.",
+          "keywords": "тварина,швидкість,час,перемотування"
+      },
+      "DisableSafehouseWhenOwnerConnected": {
+          "display_name": "Вимикати сховок, коли власник у мережі",
+          "description": "Поки власник у мережі, сховок поводиться як звичайний будинок.",
+          "keywords": "сховок,власник,онлайн,захист"
+      },
+      "SafehousePreventsLootRespawn": {
+          "display_name": "Сховок вимикає появу луту",
+          "description": "У будівлях, узятих як сховок, предмети не з'являються знову.",
+          "keywords": "сховок,лут,поява,предмети"
+      },
+      "SafehouseDisableDisguises": {
+          "display_name": "Без маскування у сховках",
+          "description": "У сховках приховані імена гравців показуються.",
+          "keywords": "сховок,маскування,ім'я,показати"
+      },
+      "MaxSafezoneSize": {
+          "display_name": "Максимальний розмір безпечної зони",
+          "description": "Найбільша площа у клітинках, яку може займати одна безпечна зона.",
+          "keywords": "безпечна зона,розмір,площа,межа"
+      },
+      "War": {
+          "display_name": "Війна фракцій",
+          "description": "Дозволяє фракціям оголошувати одна одній війну.",
+          "keywords": "війна,фракція,pvp,конфлікт"
+      },
+      "WarStartDelay": {
+          "display_name": "Затримка початку війни",
+          "description": "Секунди між оголошенням і початком війни.",
+          "keywords": "війна,затримка,початок,секунди"
+      },
+      "WarDuration": {
+          "display_name": "Тривалість війни",
+          "description": "Скільки секунд триває війна.",
+          "keywords": "війна,тривалість,секунди,фракція"
+      },
+      "WarSafehouseHitPoints": {
+          "display_name": "Міцність сховку на війні",
+          "description": "Скільки шкоди витримує сховок під час війни.",
+          "keywords": "війна,сховок,міцність,шкода"
+      },
+      "UsernameDisguises": {
+          "display_name": "Дозволити маскування імені",
+          "description": "Гравці у масці, що повністю закриває обличчя, показуються без імені.",
+          "keywords": "маскування,ім'я,маска,сховати"
+      },
+      "HideDisguisedUserName": {
+          "display_name": "Повністю ховати ім'я при маскуванні",
+          "description": "Ховає ім'я цілком замість заповнювача.",
+          "keywords": "маскування,ім'я,сховати"
+      },
+      "HideAdminsInPlayerList": {
+          "display_name": "Ховати адмінів у списку гравців",
+          "description": "Адміністратори не показуються в ігровому списку гравців.",
+          "keywords": "адмін,список гравців,сховати"
+      },
+      "ShowCoordinates": {
+          "display_name": "Показувати координати",
+          "description": "Показує координати персонажа у правому нижньому куті.",
+          "keywords": "координати,позиція,інтерфейс"
+      },
+      "DisableScoreboard": {
+          "display_name": "Вимкнути таблицю рахунку",
+          "description": "Вимикає ігрову таблицю рахунку.",
+          "keywords": "таблиця,рахунок,гравці,вимкнути"
+      },
+      "PVPLogToolChat": {
+          "display_name": "Писати PvP в чат адмінів",
+          "description": "Події PvP повідомляються в адмінському чаті.",
+          "keywords": "pvp,журнал,чат,адмін"
+      },
+      "PVPLogToolFile": {
+          "display_name": "Писати PvP у файл",
+          "description": "Події PvP записуються до журналів сервера.",
+          "keywords": "pvp,журнал,файл,сервер"
+      },
+      "SafetyDisconnectDelay": {
+          "display_name": "Затримка виходу в PvP",
+          "description": "Скільки секунд гравець лишається у світі після від'єднання в режимі PvP.",
+          "keywords": "безпека,вихід,затримка,pvp"
+      },
+      "ChatMessageCharacterLimit": {
+          "display_name": "Обмеження довжини повідомлення",
+          "description": "Найдовше повідомлення, яке гравець може надіслати в чат.",
+          "keywords": "чат,повідомлення,обмеження,символи"
+      },
+      "ChatMessageSlowModeTime": {
+          "display_name": "Повільний режим чату",
+          "description": "Скільки секунд гравець чекає між двома повідомленнями.",
+          "keywords": "чат,повільний режим,затримка,спам"
+      },
+      "BadWordListFile": {
+          "display_name": "Файл списку заборонених слів",
+          "description": "Шлях до файлу, де в кожному рядку одне заборонене слово.",
+          "keywords": "заборонені слова,фільтр,чат,файл"
+      },
+      "GoodWordListFile": {
+          "display_name": "Файл списку дозволених слів",
+          "description": "Шлях до файлу зі словами, які лишаються дозволеними, навіть якщо містять заборонене.",
+          "keywords": "дозволені слова,фільтр,чат,файл"
+      },
+      "BadWordPolicy": {
+          "display_name": "Що робити із забороненим словом",
+          "description": "Що стається з гравцем, який надіслав заборонене слово.",
+          "keywords": "заборонені слова,правило,бан,кік,мут"
+      },
+      "BadWordReplacement": {
+          "display_name": "Заміна забороненого слова",
+          "description": "Текст, яким замінюється заборонене слово в чаті.",
+          "keywords": "заборонені слова,заміна,цензура,чат"
+      },
+      "DiscordChatChannel": {
+          "display_name": "Канал чату в Discord",
+          "description": "Назва каналу Discord, куди дзеркалиться ігровий чат.",
+          "keywords": "discord,чат,канал"
+      },
+      "DiscordLogChannel": {
+          "display_name": "Канал журналів у Discord",
+          "description": "Назва каналу Discord для повідомлень журналу сервера.",
+          "keywords": "discord,журнал,канал"
+      },
+      "DiscordCommandChannel": {
+          "display_name": "Канал команд у Discord",
+          "description": "Назва каналу Discord, що приймає адмінські команди.",
+          "keywords": "discord,команда,канал,адмін"
+      },
+      "WebhookAddress": {
+          "display_name": "Адреса вебхука",
+          "description": "URL вхідного вебхука, куди сервер надсилає повідомлення.",
+          "keywords": "вебхук,slack,url,сповіщення"
+      },
+      "AntiCheatSafety": {
+          "display_name": "Система безпеки",
+          "description": "Реакція, коли клієнт втручається в систему безпеки PvP.",
+          "keywords": "античит,безпека,pvp"
+      },
+      "AntiCheatSpeed": {
+          "display_name": "Швидкість руху",
+          "description": "Реакція, коли персонаж рухається швидше за можливе.",
+          "keywords": "античит,швидкість,рух"
+      },
+      "AntiCheatNoClip": {
+          "display_name": "Прохід крізь стіни",
+          "description": "Реакція, коли персонаж проходить крізь стіни.",
+          "keywords": "античит,noclip,стіни"
+      },
+      "AntiCheatHit": {
+          "display_name": "Перевірка влучань",
+          "description": "Реакція на влучання, яких не могло бути.",
+          "keywords": "античит,удар,шкода,бій"
+      },
+      "AntiCheatPacketException": {
+          "display_name": "Помилки пакетів",
+          "description": "Реакція, коли клієнт надсилає некоректні мережеві пакети.",
+          "keywords": "античит,пакет,мережа,помилка"
+      },
+      "AntiCheatPermission": {
+          "display_name": "Права доступу",
+          "description": "Реакція, коли клієнт використовує команди понад свій рівень доступу.",
+          "keywords": "античит,права,доступ,адмін"
+      },
+      "AntiCheatXP": {
+          "display_name": "Досвід",
+          "description": "Реакція, коли клієнт сам нараховує собі досвід.",
+          "keywords": "античит,досвід,навичка"
+      },
+      "AntiCheatSafeHouse": {
+          "display_name": "Сховки",
+          "description": "Реакція, коли клієнт обходить правила сховків.",
+          "keywords": "античит,сховок"
+      },
+      "AntiCheatPlayer": {
+          "display_name": "Стан персонажа",
+          "description": "Реакція, коли клієнт повідомляє неможливий стан персонажа.",
+          "keywords": "античит,гравець,стан"
+      },
+      "AntiCheatChecksum": {
+          "display_name": "Контрольні суми файлів",
+          "description": "Реакція, коли файли гри клієнта не збігаються з серверними.",
+          "keywords": "античит,контрольна сума,файли"
+      },
+      "server_browser_announced_ip": {
+          "display_name": "Оголошуваний IP",
+          "description": "IP-адреса, яку сервер оголошує в браузері серверів.",
+          "keywords": "ip,браузер серверів,мережа"
+      },
+      "RCONPort": {
+          "display_name": "Порт RCON",
+          "description": "Порт віддаленої консолі. Тут лише для читання — зміна розірве це з'єднання.",
+          "keywords": "rcon,порт,консоль,мережа"
+      },
+      "RCONPassword": {
+          "display_name": "Пароль RCON",
+          "description": "Пароль віддаленої консолі. Тут лише для читання — зміна розірве це з'єднання.",
+          "keywords": "rcon,пароль,консоль"
+      },
+      "MaxPacketsPerSecond": {
+          "display_name": "Пакетів на секунду",
+          "description": "Межа мережевих пакетів, що обробляються на клієнта за секунду.",
+          "keywords": "мережа,пакети,межа,продуктивність"
+      },
+      "MultiplayerStatisticsPeriod": {
+          "display_name": "Період статистики",
+          "description": "Секунди між оновленнями мережевої статистики.",
+          "keywords": "статистика,період,мультиплеєр",
+          "disabled": "Вимкнено"
+      },
+      "choices": {
+          "ban": "Бан",
+          "kick": "Кік",
+          "log": "У журнал",
+          "disable": "Вимкнено",
+          "mute": "Мут"
       }
     },
   

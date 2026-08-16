@@ -191,6 +191,138 @@
     "reloadOptions": {
       "single_success": "Ayarlar yeniden yüklendi",
       "single_fail": "Ayarlar yeniden yüklenemedi"
+    },
+    "failed_to_update_options": "{{f}} seçenek güncellenemedi: {{options}}",
+    "options_partially_updated": "{{s}} seçenek güncellendi, {{f}} reddedildi: {{options}}",
+    "addSteamId": {
+      "single_success": "SteamID {{steamId}} erişim listesine eklendi",
+      "single_fail": "SteamID {{steamId}} eklenemedi"
+    },
+    "removeSteamId": {
+      "single_success": "SteamID {{steamId}} erişim listesinden kaldırıldı",
+      "single_fail": "SteamID {{steamId}} kaldırılamadı"
+    },
+    "banSteamId": {
+      "single_success": "SteamID {{steamId}} yasaklandı",
+      "single_fail": "SteamID {{steamId}} yasaklanamadı"
+    },
+    "unbanSteamId": {
+      "single_success": "SteamID {{steamId}} yasağı kaldırıldı",
+      "single_fail": "SteamID {{steamId}} yasağı kaldırılamadı"
+    },
+    "banIp": {
+      "single_success": "IP {{ip}} yasaklandı",
+      "single_fail": "IP {{ip}} yasaklanamadı"
+    },
+    "unbanIp": {
+      "single_success": "IP {{ip}} yasağı kaldırıldı",
+      "single_fail": "IP {{ip}} yasağı kaldırılamadı"
+    },
+    "setPassword": {
+      "single_success": "{{name}} için parola değiştirildi",
+      "single_fail": "{{name}} için parola değiştirilemedi"
+    },
+    "invisible": {
+      "single_success": "{{name}} için görünmezlik değiştirildi",
+      "single_fail": "{{name}} için görünmezlik değiştirilemedi",
+      "all_success": "{{s}} oyuncu için görünmezlik değiştirildi",
+      "all_fail": "{{f}} oyuncunun tümünde başarısız: {{failed}}",
+      "partial": "{{s}} değişti, {{f}} başarısız: {{failed}}"
+    },
+    "noclip": {
+      "single_success": "{{name}} için duvardan geçme değiştirildi",
+      "single_fail": "{{name}} için duvardan geçme değiştirilemedi",
+      "all_success": "{{s}} oyuncu için duvardan geçme değiştirildi",
+      "all_fail": "{{f}} oyuncunun tümünde başarısız: {{failed}}",
+      "partial": "{{s}} değişti, {{f}} başarısız: {{failed}}"
+    },
+    "voiceban": {
+      "single_success": "{{name}} için ses ayarı değiştirildi",
+      "single_fail": "{{name}} için ses ayarı değiştirilemedi",
+      "all_success": "{{s}} oyuncu için ses ayarı değiştirildi",
+      "all_fail": "{{f}} oyuncunun tümünde başarısız: {{failed}}",
+      "partial": "{{s}} değişti, {{f}} başarısız: {{failed}}"
+    },
+    "addToSafehouse": {
+      "single_success": "{{name}} güvenli eve eklendi",
+      "single_fail": "{{name}} güvenli eve eklenemedi",
+      "all_success": "{{s}} oyuncu güvenli eve eklendi",
+      "all_fail": "{{f}} oyuncunun tümünde başarısız: {{failed}}",
+      "partial": "{{s}} eklendi, {{f}} başarısız: {{failed}}"
+    },
+    "kickFromSafehouse": {
+      "single_success": "{{name}} güvenli evden çıkarıldı",
+      "single_fail": "{{name}} güvenli evden çıkarılamadı",
+      "all_success": "{{s}} oyuncu güvenli evden çıkarıldı",
+      "all_fail": "{{f}} oyuncunun tümünde başarısız: {{failed}}",
+      "partial": "{{s}} çıkarıldı, {{f}} başarısız: {{failed}}"
+    },
+    "addKey": {
+      "single_success": "{{keyId}} anahtarı {{name}} oyuncusuna verildi",
+      "single_fail": "{{keyId}} anahtarı {{name}} oyuncusuna verilemedi",
+      "all_success": "{{keyId}} anahtarı {{s}} oyuncuya verildi",
+      "all_fail": "{{f}} oyuncunun tümünde başarısız: {{failed}}",
+      "partial": "{{s}} verildi, {{f}} başarısız: {{failed}}"
+    },
+    "removeMapSymbols": {
+      "single_success": "{{name}} oyuncusunun harita işaretleri kaldırıldı",
+      "single_fail": "{{name}} oyuncusunun harita işaretleri kaldırılamadı",
+      "all_success": "{{s}} oyuncunun harita işaretleri kaldırıldı",
+      "all_fail": "{{f}} oyuncunun tümünde başarısız: {{failed}}",
+      "partial": "{{s}} kaldırıldı, {{f}} başarısız: {{failed}}"
+    },
+    "releaseSafehouse": {
+      "single_success": "Güvenli ev bırakıldı",
+      "single_fail": "Güvenli ev bırakılamadı"
+    },
+    "removeItems": {
+      "single_success": "{{item}} kaldırıldı",
+      "single_fail": "{{item}} kaldırılamadı"
+    },
+    "removeZombies": {
+      "single_success": "Yüklü zombiler kaldırıldı",
+      "single_fail": "Zombiler kaldırılamadı"
+    },
+    "worldGen": {
+      "start": {
+        "single_success": "Dünya üretimi başladı",
+        "single_fail": "Dünya üretimi başlatılamadı"
+      },
+      "recheck": {
+        "single_success": "Dünya üretimi yeniden denetlendi",
+        "single_fail": "Dünya üretimi yeniden denetlenemedi"
+      },
+      "stop": {
+        "single_success": "Dünya üretimi durduruldu",
+        "single_fail": "Dünya üretimi durdurulamadı"
+      },
+      "status": {
+        "single_success": "Dünya üretimi durumu okundu",
+        "single_fail": "Dünya üretimi durumu okunamadı"
+      }
+    },
+    "reloadAllLua": {
+      "single_success": "Tüm Lua betikleri yeniden yüklendi",
+      "single_fail": "Lua betikleri yeniden yüklenemedi"
+    },
+    "reloadLua": {
+      "single_success": "{{file}} yeniden yüklendi",
+      "single_fail": "{{file}} yeniden yüklenemedi"
+    },
+    "setLogLevel": {
+      "single_success": "{{type}} için günlük düzeyi {{level}} olarak ayarlandı",
+      "single_fail": "{{type}} için günlük düzeyi ayarlanamadı"
+    },
+    "setStats": {
+      "single_success": "İstatistik çıktısı {{mode}} olarak ayarlandı",
+      "single_fail": "İstatistik çıktısı ayarlanamadı"
+    },
+    "createHorde2": {
+      "single_success": "{{name}} yakınında ikinci sürü oluşturuldu",
+      "single_fail": "{{name}} yakınında ikinci sürü oluşturulamadı",
+      "all_success": "{{s}} oyuncunun yakınında ikinci sürü oluşturuldu",
+      "all_fail": "{{f}} oyuncunun tümünde başarısız: {{failed}}",
+      "partial": "{{s}} oluşturuldu, {{f}} başarısız: {{failed}}"
     }
   },
 
@@ -292,7 +424,8 @@
 
       "check_for_updates": {
         "label": "Başlangıçta Güncellemeleri Kontrol Et",
-        "description": "Başlangıçta güncellemeleri kontrol et."
+        "description": "Başlangıçta güncellemeleri kontrol et.",
+        "no_source_description": "Bu sürüm için bir güncelleme kaynağı tanımlı değil, bu yüzden kontrol yapılmaz."
       },
 
       "update": {
@@ -308,7 +441,8 @@
         "update_applied": "Güncelleme uygulandı.",
         "restarting": "Yeniden başlatılıyor...",
         "need_admin_privileges": "Uygulamayı güncellemek için yönetici yetkileri gereklidir.",
-        "update_successful": "Güncelleme başarıyla uygulandı."
+        "update_successful": "Güncelleme başarıyla uygulandı.",
+        "no_update_source": "Güncelleme kaynağı tanımlı değil"
       },
 
       "rcon_check_interval": {
@@ -334,6 +468,12 @@
       "debug_mode": {
         "label": "Hata Ayıklama Modu",
         "description": "Hata ayıklama modunu etkinleştir."
+      },
+      "update_source": {
+        "label": "Güncelleme Kaynağı",
+        "description": "Sürümler bu depodan kontrol edilir ve indirilir.",
+        "not_configured": "Tanımlı değil",
+        "not_configured_description": "Bu yapı hiçbir sürüm kaynağını izlemiyor. Yabancı bir sürümün onun yerini almaması için güncellemeler kapalıdır."
       }
     }
   },
@@ -522,6 +662,133 @@
             "name": "Alarm",
             "description": "Admin'in konumunda bir bina alarmı çalar. (Bir odada olması gerekir)"
           }
+        },
+        "access": {
+          "title": "Erişim",
+          "description": "Tek bir oyuncu satırına bağlı olmayan işlemler. Sunucu bu listeleri RCON üzerinden bildiremez, bu yüzden yalnızca her işlemin sonucu onaylanır.",
+          "steamid": {
+            "title": "SteamID Erişim Listesi",
+            "hint": "Bir SteamID ekleyin veya kaldırın. Listenin kendisi RCON üzerinden okunamaz.",
+            "label": "SteamID",
+            "add": {
+              "title": "SteamID Ekle",
+              "description": "Sunucudaki izinli SteamID listesine bir SteamID ekler.",
+              "submit": "SteamID Ekle"
+            },
+            "remove": {
+              "title": "SteamID Kaldır",
+              "description": "Sunucudaki izinli SteamID listesinden bir SteamID kaldırır.",
+              "submit": "SteamID Kaldır"
+            },
+            "ban": {
+              "title": "SteamID Yasakla",
+              "description": "Bir SteamID'yi sunucudan yasaklar.",
+              "submit": "SteamID Yasakla"
+            },
+            "unban": {
+              "title": "SteamID Yasağını Kaldır",
+              "description": "Bir SteamID'nin yasağını kaldırır.",
+              "submit": "SteamID Yasağını Kaldır"
+            }
+          },
+          "setpassword": {
+            "title": "Hesap Parolası",
+            "description": "Sunucudaki bir kullanıcı hesabı için yeni parola belirler.",
+            "name": "Kullanıcı adı",
+            "password": "Yeni parola",
+            "submit": "Parolayı Değiştir"
+          }
+        },
+        "moderation": {
+          "ip": {
+            "title": "IP Yasağı",
+            "hint": "Bir IP yasağı birden fazla kişiyi etkileyebilir — o adresin arkasındaki herkesi.",
+            "label": "IP adresi",
+            "ban": {
+              "title": "IP adresini yasakla",
+              "description": "Bu adresten gelen tüm bağlantıları engeller.",
+              "submit": "IP Yasakla",
+              "confirm": "{{ip}} yasaklanacak. Bu adresin arkasından oynayan herkes erişimini kaybeder, yalnızca bir oyuncu değil.",
+              "confirm_submit": "Bu adresi yasakla"
+            },
+            "unban": {
+              "title": "IP yasağını kaldır",
+              "description": "Bu adresten gelen bağlantılara yeniden izin verir.",
+              "submit": "IP Yasağını Kaldır"
+            }
+          },
+          "steamid": {
+            "title": "SteamID Yasağı",
+            "hint": "Tek bir SteamID'yi yasaklayın veya yasağını kaldırın — daha önce yalnızca terminalden yapılabiliyordu."
+          }
+        },
+        "console": {
+          "title": "Konsol Karakteri",
+          "description": "Build 42'nin iki komutu oyuncu adı almaz — konsolun kendi karakterine etki eder. Karakteri olmayan bir adanmış sunucuda etkisizdirler.",
+          "releasesafehouse": {
+            "title": "Güvenli evi bırak",
+            "description": "Konsol karakterinin sahip olduğu güvenli evi bırakır.",
+            "submit": "Güvenli evi bırak"
+          },
+          "removeitem": {
+            "title": "Eşya kaldır",
+            "description": "Konsol karakterinden eşya kaldırır. additem'in aksine bu komut oyuncu adı almaz.",
+            "item": "Eşya kimliği",
+            "count": "Adet",
+            "count_hint": "0, bu türdeki tüm eşyaları kaldırır.",
+            "submit": "Eşya kaldır"
+          }
+        },
+        "world": {
+          "title": "Dünya ve Bakım",
+          "description": "Build 42'nin sunucu genelindeki işlemleri.",
+          "removezombies": {
+            "title": "Zombileri kaldır",
+            "description": "Dünyadaki yüklü tüm zombileri kaldırır.",
+            "submit": "Zombileri kaldır",
+            "confirm_title": "Yüklü tüm zombiler kaldırılsın mı?",
+            "confirm": "Şu anda yüklü olan her zombi dünyadan kaybolur. Kimse onları geri getiremez — dünya yalnızca yeniden doğma ayarlarıyla dolar.",
+            "confirm_submit": "Zombileri kaldır"
+          },
+          "worldgen": {
+            "title": "Dünya üreteci",
+            "description": "Build 42 dünyayı aşamalı üretir. Aşağıdaki ilerleme, sunucunun „worldgen status\" yanıtıdır ve bu görünüm açıkken okunur.",
+            "start": "Başlat",
+            "recheck": "Yeniden denetle",
+            "stop": "Durdur",
+            "no_status": "Henüz durum yok.",
+            "stop_confirm_title": "Dünya üretimi durdurulsun mu?",
+            "stop_confirm": "İşlem bulunduğu yerde durur. Şimdiye kadar üretilenler kalır, gerisi yeni bir çalışma başlatılana kadar eksik olur.",
+            "stop_confirm_submit": "Üretimi durdur"
+          },
+          "reloadlua": {
+            "title": "Lua betiklerini yeniden yükle",
+            "description": "Tek bir betiği ya da hepsini yeniden yükler.",
+            "placeholder": "dosyaadi.lua",
+            "submit": "Dosyayı yükle",
+            "submit_all": "Tüm betikleri yükle"
+          },
+          "log": {
+            "title": "Günlük düzeyi",
+            "description": "Sunucu günlüğünün bir alanı için düzeyi ayarlar.",
+            "type": "Alan",
+            "level": "Düzey",
+            "nothing_found": "Bulunamadı",
+            "submit": "Uygula"
+          },
+          "stats": {
+            "title": "İstatistik çıktısı",
+            "description": "Sunucunun çok oyunculu istatistiklerini nereye ve ne sıklıkla yazacağı.",
+            "mode": "Hedef",
+            "nothing_found": "Bulunamadı",
+            "submit": "Uygula",
+            "modes": {
+              "none": "Kapalı",
+              "file": "Dosya",
+              "console": "Konsol",
+              "all": "Dosya ve konsol"
+            }
+          }
         }
       },
       "players": {
@@ -668,7 +935,10 @@
             "players": "{{players}} yakınına bir zombi sürüsü oluşturacaksınız.",
             "submit": "Sürü Oluştur",
 
-            "horde_size": "Sürü Büyüklüğü"
+            "horde_size": "Sürü Büyüklüğü",
+            "variant": "Sürü komutu",
+            "variant_1": "Sürü",
+            "variant_2": "Sürü 2"
           },
 
           "lightning": {
@@ -799,7 +1069,32 @@
 
             "coordinates_tab": "Koordinatlara",
             "player_tab": "Oyunculara"
+          },
+          "addkey": {
+            "button": "Anahtar ver",
+            "title": "Anahtar ver",
+            "description": "Anahtarı alacak olanlar: {{names}}",
+            "key_id": "Anahtar kimliği",
+            "key_name": "Anahtar adı (isteğe bağlı)",
+            "key_name_placeholder": "Hediye Anahtarı",
+            "submit": "Anahtar ver"
           }
+        },
+        "invisible": "Görünmez",
+        "invisible_on": "Görünmez: açık",
+        "invisible_off": "Görünmez: kapalı",
+        "noclip": "Duvarlardan geç",
+        "noclip_on": "Duvarlardan geçme: açık",
+        "noclip_off": "Duvarlardan geçme: kapalı",
+        "voice_ban": "Ses susturuldu",
+        "voice_ban_on": "Sesi sustur",
+        "voice_ban_off": "Sesi aç",
+        "more_actions": "Diğer işlemler",
+        "remove_map_symbols": "Harita işaretlerini kaldır",
+        "safehouse": {
+          "add": "Güvenli eve ekle",
+          "kick": "Güvenli evden çıkar",
+          "release": "Güvenli evi bırak"
         }
       },
       "options": {
@@ -825,8 +1120,12 @@
           "Discord": "Discord",
           "Backup": "Yedekleme",
           "Anti-Cheat": "Anti-Cheat",
-          "Miscellaneous": "Diğer"
-        }
+          "Miscellaneous": "Diğer",
+          "Other": "Diğer Seçenekler",
+          "War": "Savaş",
+          "Network": "Ağ"
+        },
+        "other_options_description": "Sunucunuzun bildirdiği, bu uygulamanın açıklaması olmayan seçenekler. Diğer seçenekler gibi değiştirilebilirler."
       },
       "terminal": {
         "name": "Terminal"
@@ -892,5 +1191,270 @@
     "Weapon": "Silah",
     "Weapon - Crafted": "Silah - Üretilmiş",
     "Weapon Part": "Silah Parçası"
+  },
+  "options": {
+    "Password": {
+      "display_name": "Sunucu Parolası",
+      "description": "İstemcilerin sunucuya katılabilmesi için bu parolayı bilmesi gerekir.",
+      "keywords": "parola,katıl,erişim,özel"
+    },
+    "Seed": {
+      "display_name": "Dünya Üretim Tohumu",
+      "description": "Dünyanın üretiminde kullanılan tohum. Değişiklik ancak kayıt dizinindeki map_worldgen.bin silindikten sonra etkili olur.",
+      "keywords": "tohum,dünya,harita,üretim"
+    },
+    "AnnounceAnimalDeath": {
+      "display_name": "Hayvan Ölümünü Duyur",
+      "description": "Bir hayvan öldüğünde genel sohbete ileti düşer.",
+      "keywords": "hayvan,ölüm,duyuru,sohbet"
+    },
+    "DisableVehicleTowing": {
+      "display_name": "Araç Çekmeyi Kapat",
+      "description": "Oyuncuların araç çekmesini engeller.",
+      "keywords": "çekme,araç,kapat"
+    },
+    "DisableTrailerTowing": {
+      "display_name": "Römork Çekmeyi Kapat",
+      "description": "Oyuncuların römork çekmesini engeller.",
+      "keywords": "çekme,römork,kapat"
+    },
+    "DisableBurntTowing": {
+      "display_name": "Yanmış Araç Çekmeyi Kapat",
+      "description": "Oyuncuların yanmış araçları çekmesini engeller.",
+      "keywords": "çekme,yanmış,araç,kapat"
+    },
+    "UsePhysicsHitReaction": {
+      "display_name": "Fizik Tabanlı Vuruş Tepkisi",
+      "description": "Zombiler ve oyuncular vuruşlara fizik tabanlı hareketle tepki verir.",
+      "keywords": "fizik,vuruş,tepki,dövüş"
+    },
+    "SwitchZombiesOwnershipEachUpdate": {
+      "display_name": "Zombi Sahipliğini Her Güncellemede Değiştir",
+      "description": "Her güncellemede hangi istemcinin zombiyi işlediğini yeniden atar.",
+      "keywords": "zombi,sahiplik,ağ,başarım"
+    },
+    "UltraSpeedDoesnotAffectToAnimals": {
+      "display_name": "Hızlı İlerleme Hayvanları Etkilemesin",
+      "description": "Zamanı hızlı ilerletmek hayvanları hızlandırmaz.",
+      "keywords": "hayvan,hız,zaman"
+    },
+    "DisableSafehouseWhenOwnerConnected": {
+      "display_name": "Sahibi Çevrimiçiyken Güvenli Evi Kapat",
+      "description": "Sahibi bağlıyken güvenli ev sıradan bir ev gibi davranır.",
+      "keywords": "güvenli ev,sahip,çevrimiçi,koruma"
+    },
+    "SafehousePreventsLootRespawn": {
+      "display_name": "Güvenli Evde Ganimet Yenilenmesin",
+      "description": "Güvenli ev olarak alınan binalarda eşyalar yeniden oluşmaz.",
+      "keywords": "güvenli ev,ganimet,yenilenme,eşya"
+    },
+    "SafehouseDisableDisguises": {
+      "display_name": "Güvenli Evlerde Kılık Değiştirme Yok",
+      "description": "Güvenli evlerde gizlenmiş kullanıcı adları görünür olur.",
+      "keywords": "güvenli ev,kılık,kullanıcı adı"
+    },
+    "MaxSafezoneSize": {
+      "display_name": "En Büyük Güvenli Bölge",
+      "description": "Tek bir güvenli bölgenin kaplayabileceği en büyük alan (kare).",
+      "keywords": "güvenli bölge,boyut,alan,sınır"
+    },
+    "War": {
+      "display_name": "Klan Savaşı",
+      "description": "Klanların birbirine savaş ilan etmesine izin verir.",
+      "keywords": "savaş,klan,pvp,çatışma"
+    },
+    "WarStartDelay": {
+      "display_name": "Savaş Başlama Gecikmesi",
+      "description": "İlan ile savaşın başlaması arasındaki saniye sayısı.",
+      "keywords": "savaş,gecikme,başlangıç,saniye"
+    },
+    "WarDuration": {
+      "display_name": "Savaş Süresi",
+      "description": "Bir savaşın saniye cinsinden süresi.",
+      "keywords": "savaş,süre,saniye,klan"
+    },
+    "WarSafehouseHitPoints": {
+      "display_name": "Savaşta Güvenli Ev Canı",
+      "description": "Savaş sırasında güvenli evin düşmeden önce dayandığı hasar.",
+      "keywords": "savaş,güvenli ev,can,hasar"
+    },
+    "UsernameDisguises": {
+      "display_name": "Kullanıcı Adı Gizlemeye İzin Ver",
+      "description": "Yüzünü tamamen kapatan oyuncular kullanıcı adı olmadan görünür.",
+      "keywords": "kılık,kullanıcı adı,maske,gizle"
+    },
+    "HideDisguisedUserName": {
+      "display_name": "Gizlenmiş Kullanıcı Adını Sakla",
+      "description": "Yer tutucu göstermek yerine kullanıcı adını tamamen gizler.",
+      "keywords": "kılık,kullanıcı adı,gizle"
+    },
+    "HideAdminsInPlayerList": {
+      "display_name": "Yöneticileri Oyuncu Listesinde Gizle",
+      "description": "Yöneticiler oyun içi oyuncu listesinde görünmez.",
+      "keywords": "yönetici,oyuncu listesi,gizle"
+    },
+    "ShowCoordinates": {
+      "display_name": "Koordinatları Göster",
+      "description": "Karakterin koordinatlarını sağ alt köşede gösterir.",
+      "keywords": "koordinat,konum,ekran"
+    },
+    "DisableScoreboard": {
+      "display_name": "Skor Tablosunu Kapat",
+      "description": "Oyun içi skor tablosunu kapatır.",
+      "keywords": "skor tablosu,oyuncular,kapat"
+    },
+    "PVPLogToolChat": {
+      "display_name": "PvP'yi Yönetici Sohbetine Yaz",
+      "description": "PvP olayları yönetici sohbetinde bildirilir.",
+      "keywords": "pvp,kayıt,sohbet,yönetici"
+    },
+    "PVPLogToolFile": {
+      "display_name": "PvP'yi Dosyaya Yaz",
+      "description": "PvP olayları sunucu günlük dosyalarına yazılır.",
+      "keywords": "pvp,kayıt,dosya,sunucu"
+    },
+    "SafetyDisconnectDelay": {
+      "display_name": "Bağlantı Kesme Gecikmesi",
+      "description": "PvP sırasında bağlantısı kesilen oyuncunun dünyada kaldığı saniye.",
+      "keywords": "güvenlik,bağlantı,gecikme,pvp"
+    },
+    "ChatMessageCharacterLimit": {
+      "display_name": "Sohbet İletisi Karakter Sınırı",
+      "description": "Bir oyuncunun gönderebileceği en uzun sohbet iletisi.",
+      "keywords": "sohbet,ileti,sınır,karakter"
+    },
+    "ChatMessageSlowModeTime": {
+      "display_name": "Sohbet Yavaş Kip",
+      "description": "Oyuncunun iki ileti arasında beklemesi gereken saniye.",
+      "keywords": "sohbet,yavaş kip,bekleme,spam"
+    },
+    "BadWordListFile": {
+      "display_name": "Yasaklı Kelime Dosyası",
+      "description": "Her satırda bir yasaklı kelime bulunan dosyanın yolu.",
+      "keywords": "yasaklı kelime,süzgeç,sohbet,dosya"
+    },
+    "GoodWordListFile": {
+      "display_name": "İzin Verilen Kelime Dosyası",
+      "description": "Yasaklı kelime içerse bile izin verilen kelimelerin dosya yolu.",
+      "keywords": "izinli kelime,süzgeç,sohbet,dosya"
+    },
+    "BadWordPolicy": {
+      "display_name": "Yasaklı Kelime Kuralı",
+      "description": "Yasaklı kelime gönderen oyuncuya ne olacağı.",
+      "keywords": "yasaklı kelime,kural,yasak,at,sustur"
+    },
+    "BadWordReplacement": {
+      "display_name": "Yasaklı Kelime Yerine Geçen Metin",
+      "description": "Sohbette yasaklı kelimenin yerine yazılan metin.",
+      "keywords": "yasaklı kelime,değiştirme,sansür,sohbet"
+    },
+    "DiscordChatChannel": {
+      "display_name": "Discord Sohbet Kanalı",
+      "description": "Oyun içi sohbeti yansıtan Discord kanalının adı.",
+      "keywords": "discord,sohbet,kanal"
+    },
+    "DiscordLogChannel": {
+      "display_name": "Discord Günlük Kanalı",
+      "description": "Sunucu günlük iletilerinin gittiği Discord kanalının adı.",
+      "keywords": "discord,günlük,kanal"
+    },
+    "DiscordCommandChannel": {
+      "display_name": "Discord Komut Kanalı",
+      "description": "Yönetici komutlarının kabul edildiği Discord kanalının adı.",
+      "keywords": "discord,komut,kanal,yönetici"
+    },
+    "WebhookAddress": {
+      "display_name": "Webhook Adresi",
+      "description": "Sunucunun ileti gönderdiği gelen webhook adresi.",
+      "keywords": "webhook,slack,adres,bildirim"
+    },
+    "AntiCheatSafety": {
+      "display_name": "Güvenlik Sistemi",
+      "description": "Bir istemci PvP güvenlik sistemini kurcaladığında verilecek tepki.",
+      "keywords": "hile,güvenlik,pvp"
+    },
+    "AntiCheatSpeed": {
+      "display_name": "Hareket Hızı",
+      "description": "Bir karakter mümkün olandan hızlı hareket ettiğinde verilecek tepki.",
+      "keywords": "hile,hız,hareket"
+    },
+    "AntiCheatNoClip": {
+      "display_name": "Duvardan Geçme",
+      "description": "Bir karakter duvarlardan geçtiğinde verilecek tepki.",
+      "keywords": "hile,duvar,geçiş"
+    },
+    "AntiCheatHit": {
+      "display_name": "Vuruş Denetimi",
+      "description": "Gerçekleşmesi mümkün olmayan vuruşlar bildirildiğinde verilecek tepki.",
+      "keywords": "hile,vuruş,hasar,dövüş"
+    },
+    "AntiCheatPacketException": {
+      "display_name": "Paket Hataları",
+      "description": "Bir istemci bozuk ağ paketleri gönderdiğinde verilecek tepki.",
+      "keywords": "hile,paket,ağ,hata"
+    },
+    "AntiCheatPermission": {
+      "display_name": "Yetkiler",
+      "description": "Bir istemci erişim düzeyinin üstünde komut kullandığında verilecek tepki.",
+      "keywords": "hile,yetki,erişim,yönetici"
+    },
+    "AntiCheatXP": {
+      "display_name": "Deneyim Puanı",
+      "description": "Bir istemci kendine deneyim verdiğinde verilecek tepki.",
+      "keywords": "hile,deneyim,beceri"
+    },
+    "AntiCheatSafeHouse": {
+      "display_name": "Güvenli Evler",
+      "description": "Bir istemci güvenli ev kurallarını atlattığında verilecek tepki.",
+      "keywords": "hile,güvenli ev"
+    },
+    "AntiCheatPlayer": {
+      "display_name": "Oyuncu Durumu",
+      "description": "Bir istemci imkânsız bir karakter durumu bildirdiğinde verilecek tepki.",
+      "keywords": "hile,oyuncu,durum"
+    },
+    "AntiCheatChecksum": {
+      "display_name": "Dosya Sağlamaları",
+      "description": "Bir istemcinin oyun dosyaları sunucununkiyle uyuşmadığında verilecek tepki.",
+      "keywords": "hile,sağlama,dosya"
+    },
+    "server_browser_announced_ip": {
+      "display_name": "Duyurulan IP",
+      "description": "Sunucunun sunucu tarayıcısında duyurduğu IP adresi.",
+      "keywords": "ip,sunucu listesi,ağ"
+    },
+    "RCONPort": {
+      "display_name": "RCON Kapısı",
+      "description": "Uzak konsolun kapı numarası. Burada salt okunur — değiştirmek bu bağlantıyı keser.",
+      "keywords": "rcon,kapı,uzak konsol,ağ"
+    },
+    "RCONPassword": {
+      "display_name": "RCON Parolası",
+      "description": "Uzak konsolun parolası. Burada salt okunur — değiştirmek bu bağlantıyı keser.",
+      "keywords": "rcon,parola,uzak konsol"
+    },
+    "MaxPacketsPerSecond": {
+      "display_name": "Saniyede En Fazla Paket",
+      "description": "İstemci başına saniyede işlenen ağ paketi sınırı.",
+      "keywords": "ağ,paket,sınır,başarım"
+    },
+    "MultiplayerStatisticsPeriod": {
+      "display_name": "İstatistik Aralığı",
+      "description": "Çok oyunculu istatistik güncellemeleri arasındaki saniye.",
+      "keywords": "istatistik,aralık,çok oyunculu",
+      "disabled": "Kapalı"
+    },
+    "choices": {
+      "ban": "Yasakla",
+      "kick": "At",
+      "log": "Kaydet",
+      "disable": "Kapalı",
+      "mute": "Sustur"
+    },
+    "Mods": {
+      "display_name": "Modlar",
+      "description": "Noktalı virgülle ayrılmış mod kimlikleri. Build 42'nin yapılandırma dosyasında beklediği ters eğik çizgi kaydederken eklenir.",
+      "keywords": "mod,modlar,sunucu"
+    }
   }
 }

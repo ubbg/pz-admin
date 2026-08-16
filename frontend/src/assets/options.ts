@@ -3,6 +3,7 @@ export type Option = {
   Type:
     | "String"
     | "Text"
+    | "Password"
     | "Integer"
     | "Double"
     | "Boolean"
@@ -17,6 +18,9 @@ export type Option = {
     Max: number;
   };
   DisabledValue?: boolean | number | string;
+  // Anzeigen, aber nicht ändern lassen — für Werte, deren Änderung die eigene
+  // Verbindung kappt (RCON-Port und -Passwort).
+  ReadOnly?: boolean;
   Requirements?: {
     FieldName: string;
     FieldValue: boolean | number | string;
@@ -36,12 +40,18 @@ export type Options = {
   categories: Category[];
 };
 
+// Darstellungsangaben zu den Serveroptionen: Kategorie, Bedienelement, Wertebereich,
+// Auswahlwerte, Abhängigkeiten. Diese Tabelle entscheidet *nicht*, welche Optionen es
+// gibt — das sagt der Server (siehe rcon_options.go). Fehlt hier ein Eintrag,
+// erscheint die Option unter „Other Options" mit ihrem Rohnamen.
+//
+// Stand: Project Zomboid Build 42 (pzwiki „Server settings", Fassung 42.20.0,
+// 144 Optionen).
 export const options: Options = {
   categories: [
     {
       name: "General",
       options: [
-        // Server
         {
           FieldName: "PublicName",
           Type: "String",
@@ -67,6 +77,10 @@ export const options: Options = {
           Default: false,
         },
         {
+          FieldName: "Password",
+          Type: "Password",
+        },
+        {
           FieldName: "DenyLoginOnOverloadedServer",
           Type: "Boolean",
           Default: true,
@@ -81,8 +95,10 @@ export const options: Options = {
             Max: 2147483647,
           },
         },
-
-        // Start
+        {
+          FieldName: "Seed",
+          Type: "String",
+        },
         {
           FieldName: "SpawnItems",
           Type: "SpawnItems",
@@ -93,8 +109,6 @@ export const options: Options = {
           Default: "0,0,0",
           DisabledValue: "0,0,0",
         },
-
-        // Players
         {
           FieldName: "MaxPlayers",
           Type: "Integer",
@@ -125,12 +139,15 @@ export const options: Options = {
           Default: false,
         },
         {
+          FieldName: "AnnounceAnimalDeath",
+          Type: "Boolean",
+          Default: false,
+        },
+        {
           FieldName: "BanKickGlobalSound",
           Type: "Boolean",
           Default: true,
         },
-
-        // Mods and map
         {
           FieldName: "Mods",
           Type: "String",
@@ -144,33 +161,6 @@ export const options: Options = {
           Type: "String",
           Default: "Muldraugh, KY",
         },
-
-        // Network
-        {
-          FieldName: "DefaultPort",
-          Type: "Integer",
-          Default: 16261,
-          Range: {
-            Min: 0,
-            Max: 65535,
-          },
-        },
-        {
-          FieldName: "UDPPort",
-          Type: "Integer",
-          Default: 16262,
-          Range: {
-            Min: 0,
-            Max: 65535,
-          },
-        },
-        {
-          FieldName: "UPnP",
-          Type: "Boolean",
-          Default: false,
-        },
-
-        // Logging
         {
           FieldName: "ClientCommandFilter",
           Type: "String",
@@ -191,16 +181,6 @@ export const options: Options = {
     {
       name: "Gameplay & Mechanics",
       options: [
-        // Modifiers and limits
-        {
-          FieldName: "MinutesPerPage",
-          Type: "Double",
-          Default: 1,
-          Range: {
-            Min: 0,
-            Max: 60,
-          },
-        },
         {
           FieldName: "CarEngineAttractionModifier",
           Type: "Double",
@@ -229,8 +209,6 @@ export const options: Options = {
             Max: 9000,
           },
         },
-
-        // Sledgehammer
         {
           FieldName: "AllowDestructionBySledgehammer",
           Type: "Boolean",
@@ -247,34 +225,21 @@ export const options: Options = {
             },
           ],
         },
-
-        // Loot
         {
-          FieldName: "ConstructionPreventsLootRespawn",
+          FieldName: "DisableVehicleTowing",
           Type: "Boolean",
-          Default: true,
+          Default: false,
         },
         {
-          FieldName: "HoursForLootRespawn",
-          Type: "Integer",
-          Default: 0,
-          DisabledValue: 0,
-          Range: {
-            Min: 0,
-            Max: 2147483647,
-          },
+          FieldName: "DisableTrailerTowing",
+          Type: "Boolean",
+          Default: false,
         },
         {
-          FieldName: "MaxItemsForLootRespawn",
-          Type: "Integer",
-          Default: 4,
-          Range: {
-            Min: 1,
-            Max: 2147483647,
-          },
+          FieldName: "DisableBurntTowing",
+          Type: "Boolean",
+          Default: false,
         },
-
-        // Environment
         {
           FieldName: "NoFire",
           Type: "Boolean",
@@ -290,8 +255,6 @@ export const options: Options = {
             Max: 365,
           },
         },
-
-        // Player
         {
           FieldName: "SleepAllowed",
           Type: "Boolean",
@@ -322,6 +285,11 @@ export const options: Options = {
               FieldValue: true,
             },
           ],
+        },
+        {
+          FieldName: "UltraSpeedDoesnotAffectToAnimals",
+          Type: "Boolean",
+          Default: false,
         },
         {
           FieldName: "MapRemotePlayerVisibility",
@@ -388,12 +356,21 @@ export const options: Options = {
           Type: "Boolean",
           Default: false,
         },
+        {
+          FieldName: "UsePhysicsHitReaction",
+          Type: "Boolean",
+          Default: false,
+        },
+        {
+          FieldName: "SwitchZombiesOwnershipEachUpdate",
+          Type: "Boolean",
+          Default: false,
+        },
       ],
     },
     {
       name: "Safehouse",
       options: [
-        // Basic
         {
           FieldName: "PlayerSafehouse",
           Type: "Boolean",
@@ -429,11 +406,16 @@ export const options: Options = {
           },
         },
         {
-          FieldName: "DisableSafehouseWhenPlayerConnected",
+          FieldName: "DisableSafehouseWhenOwnerConnected",
           Type: "Boolean",
           Default: false,
+          Requirements: [
+            {
+              FieldName: "PlayerSafehouse",
+              FieldValue: true,
+            },
+          ],
         },
-
         {
           FieldName: "SafehouseAllowNonResidential",
           Type: "Boolean",
@@ -449,8 +431,6 @@ export const options: Options = {
           Type: "Boolean",
           Default: true,
         },
-
-        // Non-member
         {
           FieldName: "SafehouseAllowTrepass",
           Type: "Boolean",
@@ -460,6 +440,86 @@ export const options: Options = {
           FieldName: "SafehouseAllowLoot",
           Type: "Boolean",
           Default: true,
+        },
+        {
+          FieldName: "SafehousePreventsLootRespawn",
+          Type: "Boolean",
+          Default: true,
+        },
+        {
+          FieldName: "SafehouseDisableDisguises",
+          Type: "Boolean",
+          Default: true,
+          Requirements: [
+            {
+              FieldName: "PlayerSafehouse",
+              FieldValue: true,
+            },
+          ],
+        },
+        {
+          FieldName: "MaxSafezoneSize",
+          Type: "Integer",
+          Default: 20000,
+          Range: {
+            Min: 0,
+            Max: 2147483647,
+          },
+        },
+      ],
+    },
+    {
+      name: "War",
+      options: [
+        {
+          FieldName: "War",
+          Type: "Boolean",
+          Default: false,
+        },
+        {
+          FieldName: "WarStartDelay",
+          Type: "Integer",
+          Default: 600,
+          Range: {
+            Min: 60,
+            Max: 2147483647,
+          },
+          Requirements: [
+            {
+              FieldName: "War",
+              FieldValue: true,
+            },
+          ],
+        },
+        {
+          FieldName: "WarDuration",
+          Type: "Integer",
+          Default: 3600,
+          Range: {
+            Min: 60,
+            Max: 2147483647,
+          },
+          Requirements: [
+            {
+              FieldName: "War",
+              FieldValue: true,
+            },
+          ],
+        },
+        {
+          FieldName: "WarSafehouseHitPoints",
+          Type: "Integer",
+          Default: 3,
+          Range: {
+            Min: 0,
+            Max: 2147483647,
+          },
+          Requirements: [
+            {
+              FieldName: "War",
+              FieldValue: true,
+            },
+          ],
         },
       ],
     },
@@ -506,7 +566,6 @@ export const options: Options = {
     {
       name: "Player",
       options: [
-        // Basic
         {
           FieldName: "DisplayUserName",
           Type: "Boolean",
@@ -528,8 +587,37 @@ export const options: Options = {
           Type: "Boolean",
           Default: true,
         },
-
-        // Login queue
+        {
+          FieldName: "UsernameDisguises",
+          Type: "Boolean",
+          Default: false,
+        },
+        {
+          FieldName: "HideDisguisedUserName",
+          Type: "Boolean",
+          Default: false,
+          Requirements: [
+            {
+              FieldName: "UsernameDisguises",
+              FieldValue: true,
+            },
+          ],
+        },
+        {
+          FieldName: "HideAdminsInPlayerList",
+          Type: "Boolean",
+          Default: false,
+        },
+        {
+          FieldName: "ShowCoordinates",
+          Type: "Boolean",
+          Default: false,
+        },
+        {
+          FieldName: "DisableScoreboard",
+          Type: "Boolean",
+          Default: false,
+        },
         {
           FieldName: "LoginQueueEnabled",
           Type: "Boolean",
@@ -550,26 +638,11 @@ export const options: Options = {
             Max: 1200,
           },
         },
-
-        // Whitelist
-        {
-          FieldName: "AutoCreateUserInWhiteList",
-          Type: "Boolean",
-          Default: false,
-          Requirements: [
-            {
-              FieldName: "Open",
-              FieldValue: true,
-            },
-          ],
-        },
         {
           FieldName: "DropOffWhiteListAfterDeath",
           Type: "Boolean",
           Default: false,
         },
-
-        // Limits
         {
           FieldName: "MaxAccountsPerUser",
           Type: "Integer",
@@ -590,8 +663,6 @@ export const options: Options = {
             Max: 2147483647,
           },
         },
-
-        // Misc
         {
           FieldName: "SteamScoreboard",
           Type: "Boolean",
@@ -607,8 +678,6 @@ export const options: Options = {
           Type: "Boolean",
           Default: true,
         },
-
-        // Safety System
         {
           FieldName: "SafetySystem",
           Type: "Boolean",
@@ -673,8 +742,25 @@ export const options: Options = {
             Max: 1000,
           },
         },
-
-        // Other
+        {
+          FieldName: "SafetyDisconnectDelay",
+          Type: "Integer",
+          Default: 60,
+          Range: {
+            Min: 0,
+            Max: 60,
+          },
+          Requirements: [
+            {
+              FieldName: "PVP",
+              FieldValue: true,
+            },
+            {
+              FieldName: "SafetySystem",
+              FieldValue: true,
+            },
+          ],
+        },
         {
           FieldName: "PVPFirearmDamageModifier",
           Type: "Double",
@@ -716,13 +802,33 @@ export const options: Options = {
             },
           ],
         },
+        {
+          FieldName: "PVPLogToolChat",
+          Type: "Boolean",
+          Default: true,
+          Requirements: [
+            {
+              FieldName: "PVP",
+              FieldValue: true,
+            },
+          ],
+        },
+        {
+          FieldName: "PVPLogToolFile",
+          Type: "Boolean",
+          Default: true,
+          Requirements: [
+            {
+              FieldName: "PVP",
+              FieldValue: true,
+            },
+          ],
+        },
       ],
     },
-
     {
       name: "VOIP & Chat",
       options: [
-        // Basic
         {
           FieldName: "GlobalChat",
           Type: "Boolean",
@@ -763,8 +869,60 @@ export const options: Options = {
             },
           ],
         },
-
-        // Radio
+        {
+          FieldName: "ChatMessageCharacterLimit",
+          Type: "Integer",
+          Default: 200,
+          Range: {
+            Min: 64,
+            Max: 1024,
+          },
+        },
+        {
+          FieldName: "ChatMessageSlowModeTime",
+          Type: "Integer",
+          Default: 3,
+          Range: {
+            Min: 1,
+            Max: 30,
+          },
+        },
+        {
+          FieldName: "BadWordListFile",
+          Type: "String",
+        },
+        {
+          FieldName: "GoodWordListFile",
+          Type: "String",
+        },
+        {
+          FieldName: "BadWordPolicy",
+          Type: "Choice",
+          Default: 3,
+          Choices: [
+            {
+              Name: "ban",
+              Value: 1,
+            },
+            {
+              Name: "kick",
+              Value: 2,
+            },
+            {
+              Name: "log",
+              Value: 3,
+            },
+            {
+              Name: "mute",
+              Value: 4,
+            },
+          ],
+        },
+        {
+          FieldName: "BadWordReplacement",
+          Type: "String",
+          Default: "[HIDDEN]",
+        },
         {
           FieldName: "DisableRadioInvisible",
           Type: "Boolean",
@@ -819,8 +977,6 @@ export const options: Options = {
             },
           ],
         },
-
-        // VOIP
         {
           FieldName: "VoiceEnable",
           Type: "Boolean",
@@ -889,7 +1045,7 @@ export const options: Options = {
           ],
         },
         {
-          FieldName: "DiscordChannel",
+          FieldName: "DiscordChatChannel",
           Type: "String",
           Requirements: [
             {
@@ -899,7 +1055,7 @@ export const options: Options = {
           ],
         },
         {
-          FieldName: "DiscordChannelID",
+          FieldName: "DiscordLogChannel",
           Type: "String",
           Requirements: [
             {
@@ -907,6 +1063,20 @@ export const options: Options = {
               FieldValue: true,
             },
           ],
+        },
+        {
+          FieldName: "DiscordCommandChannel",
+          Type: "String",
+          Requirements: [
+            {
+              FieldName: "DiscordEnable",
+              FieldValue: true,
+            },
+          ],
+        },
+        {
+          FieldName: "WebhookAddress",
+          Type: "String",
         },
       ],
     },
@@ -958,202 +1128,300 @@ export const options: Options = {
           Default: true,
         },
         {
-          FieldName: "KickFastPlayers",
+          FieldName: "AntiCheatSafety",
+          Type: "Choice",
+          Default: 2,
+          Choices: [
+            {
+              Name: "ban",
+              Value: 1,
+            },
+            {
+              Name: "kick",
+              Value: 2,
+            },
+            {
+              Name: "log",
+              Value: 3,
+            },
+            {
+              Name: "disable",
+              Value: 4,
+            },
+          ],
+        },
+        {
+          FieldName: "AntiCheatSpeed",
+          Type: "Choice",
+          Default: 2,
+          Choices: [
+            {
+              Name: "ban",
+              Value: 1,
+            },
+            {
+              Name: "kick",
+              Value: 2,
+            },
+            {
+              Name: "log",
+              Value: 3,
+            },
+            {
+              Name: "disable",
+              Value: 4,
+            },
+          ],
+        },
+        {
+          FieldName: "AntiCheatNoClip",
+          Type: "Choice",
+          Default: 4,
+          Choices: [
+            {
+              Name: "ban",
+              Value: 1,
+            },
+            {
+              Name: "kick",
+              Value: 2,
+            },
+            {
+              Name: "log",
+              Value: 3,
+            },
+            {
+              Name: "disable",
+              Value: 4,
+            },
+          ],
+        },
+        {
+          FieldName: "AntiCheatHit",
+          Type: "Choice",
+          Default: 2,
+          Choices: [
+            {
+              Name: "ban",
+              Value: 1,
+            },
+            {
+              Name: "kick",
+              Value: 2,
+            },
+            {
+              Name: "log",
+              Value: 3,
+            },
+            {
+              Name: "disable",
+              Value: 4,
+            },
+          ],
+        },
+        {
+          FieldName: "AntiCheatPacketException",
+          Type: "Choice",
+          Default: 4,
+          Choices: [
+            {
+              Name: "ban",
+              Value: 1,
+            },
+            {
+              Name: "kick",
+              Value: 2,
+            },
+            {
+              Name: "log",
+              Value: 3,
+            },
+            {
+              Name: "disable",
+              Value: 4,
+            },
+          ],
+        },
+        {
+          FieldName: "AntiCheatPermission",
+          Type: "Choice",
+          Default: 2,
+          Choices: [
+            {
+              Name: "ban",
+              Value: 1,
+            },
+            {
+              Name: "kick",
+              Value: 2,
+            },
+            {
+              Name: "log",
+              Value: 3,
+            },
+            {
+              Name: "disable",
+              Value: 4,
+            },
+          ],
+        },
+        {
+          FieldName: "AntiCheatXP",
+          Type: "Choice",
+          Default: 2,
+          Choices: [
+            {
+              Name: "ban",
+              Value: 1,
+            },
+            {
+              Name: "kick",
+              Value: 2,
+            },
+            {
+              Name: "log",
+              Value: 3,
+            },
+            {
+              Name: "disable",
+              Value: 4,
+            },
+          ],
+        },
+        {
+          FieldName: "AntiCheatSafeHouse",
+          Type: "Choice",
+          Default: 2,
+          Choices: [
+            {
+              Name: "ban",
+              Value: 1,
+            },
+            {
+              Name: "kick",
+              Value: 2,
+            },
+            {
+              Name: "log",
+              Value: 3,
+            },
+            {
+              Name: "disable",
+              Value: 4,
+            },
+          ],
+        },
+        {
+          FieldName: "AntiCheatPlayer",
+          Type: "Choice",
+          Default: 2,
+          Choices: [
+            {
+              Name: "ban",
+              Value: 1,
+            },
+            {
+              Name: "kick",
+              Value: 2,
+            },
+            {
+              Name: "log",
+              Value: 3,
+            },
+            {
+              Name: "disable",
+              Value: 4,
+            },
+          ],
+        },
+        {
+          FieldName: "AntiCheatChecksum",
+          Type: "Choice",
+          Default: 2,
+          Choices: [
+            {
+              Name: "ban",
+              Value: 1,
+            },
+            {
+              Name: "kick",
+              Value: 2,
+            },
+            {
+              Name: "log",
+              Value: 3,
+            },
+            {
+              Name: "disable",
+              Value: 4,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "Network",
+      options: [
+        {
+          FieldName: "DefaultPort",
+          Type: "Integer",
+          Default: 16261,
+          Range: {
+            Min: 0,
+            Max: 65535,
+          },
+        },
+        {
+          FieldName: "UDPPort",
+          Type: "Integer",
+          Default: 16262,
+          Range: {
+            Min: 0,
+            Max: 65535,
+          },
+        },
+        {
+          FieldName: "UPnP",
           Type: "Boolean",
           Default: false,
         },
-
         {
-          FieldName: "AntiCheatProtectionType1",
-          Type: "Boolean",
-          Default: true,
+          FieldName: "server_browser_announced_ip",
+          Type: "String",
         },
         {
-          FieldName: "AntiCheatProtectionType2",
-          Type: "Boolean",
-          Default: true,
-        },
-        {
-          FieldName: "AntiCheatProtectionType3",
-          Type: "Boolean",
-          Default: true,
-        },
-        {
-          FieldName: "AntiCheatProtectionType4",
-          Type: "Boolean",
-          Default: true,
-        },
-        {
-          FieldName: "AntiCheatProtectionType5",
-          Type: "Boolean",
-          Default: true,
-        },
-        {
-          FieldName: "AntiCheatProtectionType6",
-          Type: "Boolean",
-          Default: true,
-        },
-        {
-          FieldName: "AntiCheatProtectionType7",
-          Type: "Boolean",
-          Default: true,
-        },
-        {
-          FieldName: "AntiCheatProtectionType8",
-          Type: "Boolean",
-          Default: true,
-        },
-        {
-          FieldName: "AntiCheatProtectionType9",
-          Type: "Boolean",
-          Default: true,
-        },
-        {
-          FieldName: "AntiCheatProtectionType10",
-          Type: "Boolean",
-          Default: true,
-        },
-        {
-          FieldName: "AntiCheatProtectionType11",
-          Type: "Boolean",
-          Default: true,
-        },
-        {
-          FieldName: "AntiCheatProtectionType12",
-          Type: "Boolean",
-          Default: true,
-        },
-        {
-          FieldName: "AntiCheatProtectionType13",
-          Type: "Boolean",
-          Default: true,
-        },
-        {
-          FieldName: "AntiCheatProtectionType14",
-          Type: "Boolean",
-          Default: true,
-        },
-        {
-          FieldName: "AntiCheatProtectionType15",
-          Type: "Boolean",
-          Default: true,
-        },
-        {
-          FieldName: "AntiCheatProtectionType16",
-          Type: "Boolean",
-          Default: true,
-        },
-        {
-          FieldName: "AntiCheatProtectionType17",
-          Type: "Boolean",
-          Default: true,
-        },
-        {
-          FieldName: "AntiCheatProtectionType18",
-          Type: "Boolean",
-          Default: true,
-        },
-        {
-          FieldName: "AntiCheatProtectionType19",
-          Type: "Boolean",
-          Default: true,
-        },
-        {
-          FieldName: "AntiCheatProtectionType20",
-          Type: "Boolean",
-          Default: true,
-        },
-        {
-          FieldName: "AntiCheatProtectionType21",
-          Type: "Boolean",
-          Default: true,
-        },
-        {
-          FieldName: "AntiCheatProtectionType22",
-          Type: "Boolean",
-          Default: true,
-        },
-        {
-          FieldName: "AntiCheatProtectionType23",
-          Type: "Boolean",
-          Default: true,
-        },
-        {
-          FieldName: "AntiCheatProtectionType24",
-          Type: "Boolean",
-          Default: true,
-        },
-        {
-          FieldName: "AntiCheatProtectionType2ThresholdMultiplier",
-          Type: "Double",
-          Default: 3,
+          FieldName: "RCONPort",
+          Type: "Integer",
+          Default: 27015,
           Range: {
-            Min: 1,
-            Max: 10,
+            Min: 0,
+            Max: 65535,
+          },
+          ReadOnly: true,
+        },
+        {
+          FieldName: "RCONPassword",
+          Type: "Password",
+          ReadOnly: true,
+        },
+        {
+          FieldName: "MaxPacketsPerSecond",
+          Type: "Integer",
+          Default: 300,
+          Range: {
+            Min: 100,
+            Max: 1000,
           },
         },
         {
-          FieldName: "AntiCheatProtectionType3ThresholdMultiplier",
-          Type: "Double",
+          FieldName: "MultiplayerStatisticsPeriod",
+          Type: "Integer",
           Default: 1,
           Range: {
-            Min: 1,
+            Min: 0,
             Max: 10,
           },
-        },
-        {
-          FieldName: "AntiCheatProtectionType4ThresholdMultiplier",
-          Type: "Double",
-          Default: 1,
-          Range: {
-            Min: 1,
-            Max: 10,
-          },
-        },
-        {
-          FieldName: "AntiCheatProtectionType9ThresholdMultiplier",
-          Type: "Double",
-          Default: 1,
-          Range: {
-            Min: 1,
-            Max: 10,
-          },
-        },
-        {
-          FieldName: "AntiCheatProtectionType15ThresholdMultiplier",
-          Type: "Double",
-          Default: 1,
-          Range: {
-            Min: 1,
-            Max: 10,
-          },
-        },
-        {
-          FieldName: "AntiCheatProtectionType20ThresholdMultiplier",
-          Type: "Double",
-          Default: 1,
-          Range: {
-            Min: 1,
-            Max: 10,
-          },
-        },
-        {
-          FieldName: "AntiCheatProtectionType22ThresholdMultiplier",
-          Type: "Double",
-          Default: 1,
-          Range: {
-            Min: 1,
-            Max: 10,
-          },
-        },
-        {
-          FieldName: "AntiCheatProtectionType24ThresholdMultiplier",
-          Type: "Double",
-          Default: 6,
-          Range: {
-            Min: 1,
-            Max: 10,
-          },
+          DisabledValue: 0,
         },
       ],
     },

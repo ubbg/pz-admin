@@ -13,8 +13,8 @@ type ServerMessage struct {
 }
 
 type ImportOptionsResponse struct {
-	Options PzOptions `json:"options"`
-	Success bool      `json:"success"`
+	Options map[string]string `json:"options"`
+	Success bool              `json:"success"`
 }
 
 func (a *App) SaveConfigDialog() {
@@ -246,7 +246,7 @@ func (a *App) LoadMessageDialog() ServerMessage {
 	return message
 }
 
-func (a *App) ExportOptionsDialog(options PzOptions) {
+func (a *App) ExportOptionsDialog(options map[string]string) {
 	path, err := runtime.SaveFileDialog(a.ctx, runtime.SaveDialogOptions{
 		Title:                "Export options",
 		DefaultDirectory:     savedOptionsFolder,
@@ -316,8 +316,10 @@ func (a *App) ImportOptionsDialog() ImportOptionsResponse {
 
 	}
 
-	var options PzOptions
-	err = readJSON(path, &options)
+	// Werte werden als Text geführt, damit auch ältere Ausfuhren mit typisierten
+	// Werten (true, 32, 70.0) weiterhin gelesen werden können.
+	var raw map[string]interface{}
+	err = readJSON(path, &raw)
 	if err != nil {
 		runtime.LogWarning(a.ctx, err.Error())
 		app.SendNotification(Notification{
@@ -325,6 +327,11 @@ func (a *App) ImportOptionsDialog() ImportOptionsResponse {
 			Variant: "error",
 		})
 		return ImportOptionsResponse{Success: false}
+	}
+
+	options := make(map[string]string, len(raw))
+	for name, value := range raw {
+		options[name] = fmt.Sprintf("%v", value)
 	}
 
 	return ImportOptionsResponse{Options: options, Success: true}

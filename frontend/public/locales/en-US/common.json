@@ -191,6 +191,138 @@
     "reloadOptions": {
       "single_success": "Successfully reloaded options",
       "single_fail": "Failed to reload options"
+    },
+    "failed_to_update_options": "Failed to update {{f}} options: {{options}}",
+    "options_partially_updated": "{{s}} options updated, {{f}} rejected: {{options}}",
+    "addSteamId": {
+      "single_success": "SteamID {{steamId}} added to the whitelist",
+      "single_fail": "Failed to add SteamID {{steamId}}"
+    },
+    "removeSteamId": {
+      "single_success": "SteamID {{steamId}} removed from the whitelist",
+      "single_fail": "Failed to remove SteamID {{steamId}}"
+    },
+    "banSteamId": {
+      "single_success": "SteamID {{steamId}} is now banned",
+      "single_fail": "Failed to ban SteamID {{steamId}}"
+    },
+    "unbanSteamId": {
+      "single_success": "SteamID {{steamId}} is no longer banned",
+      "single_fail": "Failed to unban SteamID {{steamId}}"
+    },
+    "banIp": {
+      "single_success": "IP {{ip}} is now banned",
+      "single_fail": "Failed to ban IP {{ip}}"
+    },
+    "unbanIp": {
+      "single_success": "IP {{ip}} is no longer banned",
+      "single_fail": "Failed to unban IP {{ip}}"
+    },
+    "setPassword": {
+      "single_success": "Password for {{name}} changed",
+      "single_fail": "Failed to change the password for {{name}}"
+    },
+    "invisible": {
+      "single_success": "Invisibility changed for {{name}}",
+      "single_fail": "Failed to change invisibility for {{name}}",
+      "all_success": "Invisibility changed for {{s}} players",
+      "all_fail": "Failed for all {{f}} players: {{failed}}",
+      "partial": "{{s}} changed, {{f}} failed: {{failed}}"
+    },
+    "noclip": {
+      "single_success": "Wall passing changed for {{name}}",
+      "single_fail": "Failed to change wall passing for {{name}}",
+      "all_success": "Wall passing changed for {{s}} players",
+      "all_fail": "Failed for all {{f}} players: {{failed}}",
+      "partial": "{{s}} changed, {{f}} failed: {{failed}}"
+    },
+    "voiceban": {
+      "single_success": "Voice setting changed for {{name}}",
+      "single_fail": "Failed to change the voice setting for {{name}}",
+      "all_success": "Voice setting changed for {{s}} players",
+      "all_fail": "Failed for all {{f}} players: {{failed}}",
+      "partial": "{{s}} changed, {{f}} failed: {{failed}}"
+    },
+    "addToSafehouse": {
+      "single_success": "{{name}} added to the safehouse",
+      "single_fail": "Failed to add {{name}} to the safehouse",
+      "all_success": "{{s}} players added to the safehouse",
+      "all_fail": "Failed for all {{f}} players: {{failed}}",
+      "partial": "{{s}} added, {{f}} failed: {{failed}}"
+    },
+    "kickFromSafehouse": {
+      "single_success": "{{name}} kicked from the safehouse",
+      "single_fail": "Failed to kick {{name}} from the safehouse",
+      "all_success": "{{s}} players kicked from the safehouse",
+      "all_fail": "Failed for all {{f}} players: {{failed}}",
+      "partial": "{{s}} kicked, {{f}} failed: {{failed}}"
+    },
+    "addKey": {
+      "single_success": "Key {{keyId}} given to {{name}}",
+      "single_fail": "Failed to give key {{keyId}} to {{name}}",
+      "all_success": "Key {{keyId}} given to {{s}} players",
+      "all_fail": "Failed for all {{f}} players: {{failed}}",
+      "partial": "{{s}} given, {{f}} failed: {{failed}}"
+    },
+    "removeMapSymbols": {
+      "single_success": "Map symbols of {{name}} removed",
+      "single_fail": "Failed to remove the map symbols of {{name}}",
+      "all_success": "Map symbols of {{s}} players removed",
+      "all_fail": "Failed for all {{f}} players: {{failed}}",
+      "partial": "{{s}} removed, {{f}} failed: {{failed}}"
+    },
+    "releaseSafehouse": {
+      "single_success": "Safehouse released",
+      "single_fail": "Failed to release the safehouse"
+    },
+    "removeItems": {
+      "single_success": "{{item}} removed",
+      "single_fail": "Failed to remove {{item}}"
+    },
+    "removeZombies": {
+      "single_success": "Loaded zombies removed",
+      "single_fail": "Failed to remove the zombies"
+    },
+    "worldGen": {
+      "start": {
+        "single_success": "World generation started",
+        "single_fail": "Failed to start world generation"
+      },
+      "recheck": {
+        "single_success": "World generation rechecked",
+        "single_fail": "Failed to recheck world generation"
+      },
+      "stop": {
+        "single_success": "World generation stopped",
+        "single_fail": "Failed to stop world generation"
+      },
+      "status": {
+        "single_success": "World generation status read",
+        "single_fail": "Failed to read the world generation status"
+      }
+    },
+    "reloadAllLua": {
+      "single_success": "All Lua scripts reloaded",
+      "single_fail": "Failed to reload the Lua scripts"
+    },
+    "reloadLua": {
+      "single_success": "{{file}} reloaded",
+      "single_fail": "Failed to reload {{file}}"
+    },
+    "setLogLevel": {
+      "single_success": "Log level for {{type}} set to {{level}}",
+      "single_fail": "Failed to set the log level for {{type}}"
+    },
+    "setStats": {
+      "single_success": "Statistics output set to {{mode}}",
+      "single_fail": "Failed to set the statistics output"
+    },
+    "createHorde2": {
+      "single_success": "Second horde spawned near {{name}}",
+      "single_fail": "Failed to spawn the second horde near {{name}}",
+      "all_success": "Second horde spawned near {{s}} players",
+      "all_fail": "Failed for all {{f}} players: {{failed}}",
+      "partial": "{{s}} spawned, {{f}} failed: {{failed}}"
     }
   },
 
@@ -292,7 +424,8 @@
 
       "check_for_updates": {
         "label": "Check For Updates On Startup",
-        "description": "Check for updates on startup."
+        "description": "Check for updates on startup.",
+        "no_source_description": "No update source is configured for this build, so nothing is checked."
       },
 
       "update": {
@@ -308,7 +441,8 @@
         "update_applied": "Update applied successfully.",
         "restarting": "Restarting...",
         "need_admin_privileges": "Administration privileges are needed to update the application.",
-        "update_successful": "Update was successfully applied."
+        "update_successful": "Update was successfully applied.",
+        "no_update_source": "No update source configured"
       },
 
       "rcon_check_interval": {
@@ -334,6 +468,12 @@
       "debug_mode": {
         "label": "Debug Mode",
         "description": "Enable debug mode."
+      },
+      "update_source": {
+        "label": "Update Source",
+        "description": "Releases are checked and downloaded from this repository.",
+        "not_configured": "Not configured",
+        "not_configured_description": "This build follows no release source. Updates are disabled so that a foreign release cannot replace it."
       }
     }
   },
@@ -522,6 +662,133 @@
             "name": "Alarm",
             "description": "Sound a building alarm at the Admin's position. (Must be in a room)"
           }
+        },
+        "access": {
+          "title": "Access",
+          "description": "Operations that do not belong to a single player row. The server cannot report these lists over RCON, so only the result of each operation is confirmed.",
+          "steamid": {
+            "title": "SteamID Whitelist",
+            "hint": "Add or remove a SteamID. The list itself cannot be read over RCON.",
+            "label": "SteamID",
+            "add": {
+              "title": "Add SteamID",
+              "description": "Adds a SteamID to the list of allowed SteamIDs on the server.",
+              "submit": "Add SteamID"
+            },
+            "remove": {
+              "title": "Remove SteamID",
+              "description": "Removes a SteamID from the list of allowed SteamIDs on the server.",
+              "submit": "Remove SteamID"
+            },
+            "ban": {
+              "title": "Ban SteamID",
+              "description": "Bans a SteamID from the server.",
+              "submit": "Ban SteamID"
+            },
+            "unban": {
+              "title": "Unban SteamID",
+              "description": "Lifts the ban on a SteamID.",
+              "submit": "Unban SteamID"
+            }
+          },
+          "setpassword": {
+            "title": "Account Password",
+            "description": "Sets a new password for a user account on the server.",
+            "name": "Username",
+            "password": "New password",
+            "submit": "Change Password"
+          }
+        },
+        "moderation": {
+          "ip": {
+            "title": "IP Ban",
+            "hint": "An IP ban can hit more than one person — everyone behind that address.",
+            "label": "IP address",
+            "ban": {
+              "title": "Ban IP address",
+              "description": "Blocks every connection from this address.",
+              "submit": "Ban IP",
+              "confirm": "{{ip}} will be banned. Everyone playing behind this address loses access, not just one player.",
+              "confirm_submit": "Ban this address"
+            },
+            "unban": {
+              "title": "Unban IP address",
+              "description": "Allows connections from this address again.",
+              "submit": "Unban IP"
+            }
+          },
+          "steamid": {
+            "title": "SteamID Ban",
+            "hint": "Ban or unban a single SteamID — previously only possible in the terminal."
+          }
+        },
+        "console": {
+          "title": "Console Character",
+          "description": "Two Build 42 commands take no player name — they act on the console's own character. On a dedicated server without a character they have no effect.",
+          "releasesafehouse": {
+            "title": "Release safehouse",
+            "description": "Releases the safehouse owned by the console character.",
+            "submit": "Release safehouse"
+          },
+          "removeitem": {
+            "title": "Remove item",
+            "description": "Removes items from the console character. Unlike additem, this command takes no player name.",
+            "item": "Item ID",
+            "count": "Count",
+            "count_hint": "0 removes every item of this type.",
+            "submit": "Remove item"
+          }
+        },
+        "world": {
+          "title": "World & Maintenance",
+          "description": "Server-wide interventions from Build 42.",
+          "removezombies": {
+            "title": "Remove zombies",
+            "description": "Removes every loaded zombie from the world.",
+            "submit": "Remove zombies",
+            "confirm_title": "Remove all loaded zombies?",
+            "confirm": "Every zombie currently loaded disappears from the world. Nobody gets them back — the world repopulates only through the respawn settings.",
+            "confirm_submit": "Remove zombies"
+          },
+          "worldgen": {
+            "title": "World generator",
+            "description": "Build 42 generates the world in stages. The progress below is the server's own answer to „worldgen status\" and is read while this view is open.",
+            "start": "Start",
+            "recheck": "Recheck",
+            "stop": "Stop",
+            "no_status": "No status yet.",
+            "stop_confirm_title": "Stop world generation?",
+            "stop_confirm": "The run stops where it is. Everything generated so far stays, the rest is missing until a new run is started.",
+            "stop_confirm_submit": "Stop generation"
+          },
+          "reloadlua": {
+            "title": "Reload Lua scripts",
+            "description": "Reloads a single script or all of them.",
+            "placeholder": "filename.lua",
+            "submit": "Reload file",
+            "submit_all": "Reload all scripts"
+          },
+          "log": {
+            "title": "Log level",
+            "description": "Sets the log level for one area of the server log.",
+            "type": "Area",
+            "level": "Level",
+            "nothing_found": "Nothing found",
+            "submit": "Apply"
+          },
+          "stats": {
+            "title": "Statistics output",
+            "description": "Where the server writes its multiplayer statistics, and how often.",
+            "mode": "Target",
+            "nothing_found": "Nothing found",
+            "submit": "Apply",
+            "modes": {
+              "none": "Off",
+              "file": "File",
+              "console": "Console",
+              "all": "File and console"
+            }
+          }
         }
       },
       "players": {
@@ -668,7 +935,10 @@
             "players": "You will create a horde near {{players}}.",
             "submit": "Create Horde",
 
-            "horde_size": "Horde Size"
+            "horde_size": "Horde Size",
+            "variant": "Horde command",
+            "variant_1": "Horde",
+            "variant_2": "Horde 2"
           },
 
           "lightning": {
@@ -799,7 +1069,32 @@
 
             "coordinates_tab": "To Coordinates",
             "player_tab": "To Players"
+          },
+          "addkey": {
+            "button": "Give key",
+            "title": "Give key",
+            "description": "The key goes to: {{names}}",
+            "key_id": "Key ID",
+            "key_name": "Key name (optional)",
+            "key_name_placeholder": "Gift Key",
+            "submit": "Give key"
           }
+        },
+        "invisible": "Invisible",
+        "invisible_on": "Invisible on",
+        "invisible_off": "Invisible off",
+        "noclip": "Walk through walls",
+        "noclip_on": "Walk through walls on",
+        "noclip_off": "Walk through walls off",
+        "voice_ban": "Voice muted",
+        "voice_ban_on": "Mute voice",
+        "voice_ban_off": "Unmute voice",
+        "more_actions": "More actions",
+        "remove_map_symbols": "Remove map symbols",
+        "safehouse": {
+          "add": "Add to safehouse",
+          "kick": "Kick from safehouse",
+          "release": "Release safehouse"
         }
       },
       "options": {
@@ -825,8 +1120,12 @@
           "Discord": "Discord",
           "Backup": "Backup",
           "Anti-Cheat": "Anti-Cheat",
-          "Miscellaneous": "Miscellaneous"
-        }
+          "Miscellaneous": "Miscellaneous",
+          "Other": "Other Options",
+          "War": "War",
+          "Network": "Network"
+        },
+        "other_options_description": "Options your server reports that this application has no description for. They can be changed like any other option."
       },
       "terminal": {
         "name": "Terminal"
@@ -849,175 +1148,10 @@
     "requires_2": "Requires {{option1}} to be {{value1}} and {{option2}} to be {{value2}}.",
     "requires_3": "Requires {{option1}} to be {{value1}}, {{option2}} to be {{value2}} and {{option3}} to be {{value3}}.",
 
-    "AntiCheatProtectionType1": {
-      "display_name": "Anti-Cheat Protection Type 1",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type1"
-    },
-    "AntiCheatProtectionType2": {
-      "display_name": "Anti-Cheat Protection Type 2",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type2"
-    },
-    "AntiCheatProtectionType3": {
-      "display_name": "Anti-Cheat Protection Type 3",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type3"
-    },
-    "AntiCheatProtectionType4": {
-      "display_name": "Anti-Cheat Protection Type 4",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type4"
-    },
-    "AntiCheatProtectionType5": {
-      "display_name": "Anti-Cheat Protection Type 5",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type5"
-    },
-    "AntiCheatProtectionType6": {
-      "display_name": "Anti-Cheat Protection Type 6",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type6"
-    },
-    "AntiCheatProtectionType7": {
-      "display_name": "Anti-Cheat Protection Type 7",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type7"
-    },
-    "AntiCheatProtectionType8": {
-      "display_name": "Anti-Cheat Protection Type 8",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type8"
-    },
-    "AntiCheatProtectionType9": {
-      "display_name": "Anti-Cheat Protection Type 9",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type9"
-    },
-    "AntiCheatProtectionType10": {
-      "display_name": "Anti-Cheat Protection Type 10",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type10"
-    },
-    "AntiCheatProtectionType11": {
-      "display_name": "Anti-Cheat Protection Type 11",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type11"
-    },
-    "AntiCheatProtectionType12": {
-      "display_name": "Anti-Cheat Protection Type 12",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type12"
-    },
-    "AntiCheatProtectionType13": {
-      "display_name": "Anti-Cheat Protection Type 13",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type13"
-    },
-    "AntiCheatProtectionType14": {
-      "display_name": "Anti-Cheat Protection Type 14",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type14"
-    },
-    "AntiCheatProtectionType15": {
-      "display_name": "Anti-Cheat Protection Type 15",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type15"
-    },
-    "AntiCheatProtectionType16": {
-      "display_name": "Anti-Cheat Protection Type 16",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type16"
-    },
-    "AntiCheatProtectionType17": {
-      "display_name": "Anti-Cheat Protection Type 17",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type17"
-    },
-    "AntiCheatProtectionType18": {
-      "display_name": "Anti-Cheat Protection Type 18",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type18"
-    },
-    "AntiCheatProtectionType19": {
-      "display_name": "Anti-Cheat Protection Type 19",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type19"
-    },
-    "AntiCheatProtectionType20": {
-      "display_name": "Anti-Cheat Protection Type 20",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type20"
-    },
-    "AntiCheatProtectionType21": {
-      "display_name": "Anti-Cheat Protection Type 21",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type21"
-    },
-    "AntiCheatProtectionType22": {
-      "display_name": "Anti-Cheat Protection Type 22",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type22"
-    },
-    "AntiCheatProtectionType23": {
-      "display_name": "Anti-Cheat Protection Type 23",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type23"
-    },
-    "AntiCheatProtectionType24": {
-      "display_name": "Anti-Cheat Protection Type 24",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type24"
-    },
-    "AntiCheatProtectionType2ThresholdMultiplier": {
-      "display_name": "Anti-Cheat Protection Type 2 Threshold Multiplier",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type2,threshold,multiplier"
-    },
-    "AntiCheatProtectionType3ThresholdMultiplier": {
-      "display_name": "Anti-Cheat Protection Type 3 Threshold Multiplier",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type3,threshold,multiplier"
-    },
-    "AntiCheatProtectionType4ThresholdMultiplier": {
-      "display_name": "Anti-Cheat Protection Type 4 Threshold Multiplier",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type4,threshold,multiplier"
-    },
-    "AntiCheatProtectionType9ThresholdMultiplier": {
-      "display_name": "Anti-Cheat Protection Type 9 Threshold Multiplier",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type9,threshold,multiplier"
-    },
-    "AntiCheatProtectionType15ThresholdMultiplier": {
-      "display_name": "Anti-Cheat Protection Type 15 Threshold Multiplier",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type15,threshold,multiplier"
-    },
-    "AntiCheatProtectionType20ThresholdMultiplier": {
-      "display_name": "Anti-Cheat Protection Type 20 Threshold Multiplier",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type20,threshold,multiplier"
-    },
-    "AntiCheatProtectionType22ThresholdMultiplier": {
-      "display_name": "Anti-Cheat Protection Type 22 Threshold Multiplier",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type22,threshold,multiplier"
-    },
-    "AntiCheatProtectionType24ThresholdMultiplier": {
-      "display_name": "Anti-Cheat Protection Type 24 Threshold Multiplier",
-      "description": "",
-      "keywords": "anti-cheat,anticheat,cheat,protection,type24,threshold,multiplier"
-    },
     "DoLuaChecksum": {
       "display_name": "Enable Lua Checksum Kick",
       "description": "If enabled, clients whose game files don't match the server's files will be kicked.",
       "keywords": "anti-cheat,anticheat,cheat,lua,checksum,kick"
-    },
-    "KickFastPlayers": {
-      "display_name": "Kick Fast Players",
-      "description": "If enabled, players that appear to be moving faster than possible will be kicked. May be buggy - use with caution.",
-      "keywords": "anti-cheat,anticheat,cheat,kick,fast players"
     },
     "SteamVAC": {
       "display_name": "Enable Valve Anti-cheat (Steam VAC)",
@@ -1056,16 +1190,6 @@
       "description": "Sets the bot token to access the Discord servers.",
       "keywords": "discord,token"
     },
-    "DiscordChannel": {
-      "display_name": "Discord Channel",
-      "description": "Sets the name of the Discord channel to integrate with. Use \"Discord ID\" if this does not work.",
-      "keywords": "discord,channel"
-    },
-    "DiscordChannelID": {
-      "display_name": "Discord Channel ID",
-      "description": "Sets the ID of the Discord channel to integrate with. Use this if \"Discord Channel\" does not work.",
-      "keywords": "discord,channel id"
-    },
     "Faction": {
       "display_name": "Enable Factions",
       "description": "Enables faction creation and usage.",
@@ -1097,11 +1221,6 @@
       "description": "Adjusts the range of zombie attraction to cars. Lower values can help lag.",
       "keywords": "car,engine,zombie,attraction,modifier"
     },
-    "ConstructionPreventsLootRespawn": {
-      "display_name": "Construction Prevents Loot Spawn",
-      "description": "Prevents loot respawn in buildings with player construction or barricades.",
-      "keywords": "construction,loot,respawn,prevent"
-    },
     "FastForwardMultiplier": {
       "display_name": "Sleep Fast Forward Multiplier",
       "description": "Determines how fast time progresses during player sleep.",
@@ -1111,12 +1230,6 @@
       "display_name": "Hide Players Behind You",
       "description": "Automatically hides players out of view behind the character (like zombies).",
       "keywords": "hide,players,behind,view"
-    },
-    "HoursForLootRespawn": {
-      "display_name": "Minimum Period for Loot Respawn",
-      "description": "Number of in-game hours after which looted containers will respawn loot. Loot respawn is not impacted by visibility or subsequent looting.",
-      "disabled": "Never",
-      "keywords": "loot,respawn,hours,minimum"
     },
     "ItemNumbersLimitPerContainer": {
       "display_name": "Item Limit Per Container",
@@ -1128,16 +1241,6 @@
       "display_name": "Allow Knock Down",
       "description": "Allows players to be knocked down.",
       "keywords": "knocked,down,allow"
-    },
-    "MaxItemsForLootRespawn": {
-      "display_name": "Maximum Items for Loot Respawn",
-      "description": "Maximum number of items per container to allow loot respawn.",
-      "keywords": "loot,respawn,maximum,items"
-    },
-    "MinutesPerPage": {
-      "display_name": "Minutes Per Book Page",
-      "description": "Number of in-game minutes to read one book page.",
-      "keywords": "minutes,book,page,read"
     },
     "NoFire": {
       "display_name": "Don't Allow Fire",
@@ -1256,7 +1359,7 @@
     },
     "Mods": {
       "display_name": "Mods",
-      "description": "Semi-colon separated list of mod IDs.",
+      "description": "Semi-colon separated list of mod IDs. The backslash Build 42 expects in the config file is added when saving.",
       "keywords": "mods,server"
     },
     "Open": {
@@ -1376,11 +1479,6 @@
       "description": "Displays a skull icon above the heads of players who have entered PvP mode",
       "keywords": "pvp,status,indicator,safety system"
     },
-    "AutoCreateUserInWhiteList": {
-      "display_name": "Automatically Whitelist Players",
-      "description": "Automatically adds new players to the whitelist (for open servers). Players will supply their own username/password on joining.",
-      "keywords": "whitelist,add,auto-create,automatic,players"
-    },
     "DisplayUserName": {
       "display_name": "Display Player Usernames",
       "description": "Shows usernames above players' characters.",
@@ -1432,11 +1530,6 @@
       "display_name": "Allow Admin Safehouses",
       "description": "Allows admins to claim safehouses.",
       "keywords": "safehouse,admin,restrict"
-    },
-    "DisableSafehouseWhenPlayerConnected": {
-      "display_name": "Disable Safehouse When Player Connected",
-      "description": "Disables safehouse protections when a player is online, so that it acts like a normal house and is only secure when players are offline.",
-      "keywords": "safehouse,disable,connected"
     },
     "PlayerSafehouse": {
       "display_name": "Allow Player Safehouses",
@@ -1546,6 +1639,264 @@
       "display_name": "Minimum Distance For VOIP",
       "description": "Specifies the minimum range for VOIP audio.",
       "keywords": "voice,minimum,minimum,distance,range"
+    },
+    "Password": {
+      "display_name": "Server Password",
+      "description": "Clients must know this password to join the server.",
+      "keywords": "password,join,access,private"
+    },
+    "Seed": {
+      "display_name": "Worldgen Seed",
+      "description": "Seed used to generate the world. Changing it only takes effect after deleting map_worldgen.bin in the save directory.",
+      "keywords": "seed,world,worldgen,map,generation"
+    },
+    "AnnounceAnimalDeath": {
+      "display_name": "Announce Animal Death",
+      "description": "Shows a global chat message whenever an animal dies.",
+      "keywords": "animal,death,announce,chat,livestock"
+    },
+    "DisableVehicleTowing": {
+      "display_name": "Disable Vehicle Towing",
+      "description": "Prevents players from towing vehicles.",
+      "keywords": "towing,vehicle,car,tow,disable"
+    },
+    "DisableTrailerTowing": {
+      "display_name": "Disable Trailer Towing",
+      "description": "Prevents players from towing trailers.",
+      "keywords": "towing,trailer,tow,disable"
+    },
+    "DisableBurntTowing": {
+      "display_name": "Disable Burnt Vehicle Towing",
+      "description": "Prevents players from towing burnt-out vehicles.",
+      "keywords": "towing,burnt,wreck,vehicle,disable"
+    },
+    "UsePhysicsHitReaction": {
+      "display_name": "Physics Hit Reaction",
+      "description": "Zombies and players react to hits with physics-based movement.",
+      "keywords": "physics,hit,reaction,combat"
+    },
+    "SwitchZombiesOwnershipEachUpdate": {
+      "display_name": "Switch Zombie Ownership Each Update",
+      "description": "Reassigns which client simulates each zombie on every update.",
+      "keywords": "zombie,ownership,network,simulation,performance"
+    },
+    "UltraSpeedDoesnotAffectToAnimals": {
+      "display_name": "Ultra Speed Skips Animals",
+      "description": "Fast-forwarding time does not speed up animals.",
+      "keywords": "animal,speed,fast forward,time,livestock"
+    },
+    "DisableSafehouseWhenOwnerConnected": {
+      "display_name": "Disable Safehouse When Owner Online",
+      "description": "A safehouse behaves like a normal house while its owner is connected.",
+      "keywords": "safehouse,owner,online,protection"
+    },
+    "SafehousePreventsLootRespawn": {
+      "display_name": "Safehouse Prevents Loot Respawn",
+      "description": "Items do not respawn in buildings claimed as a safehouse.",
+      "keywords": "safehouse,loot,respawn,items"
+    },
+    "SafehouseDisableDisguises": {
+      "display_name": "No Disguises In Safehouses",
+      "description": "Disguised usernames are revealed inside safehouses.",
+      "keywords": "safehouse,disguise,username,reveal"
+    },
+    "MaxSafezoneSize": {
+      "display_name": "Maximum Safezone Size",
+      "description": "Largest area in tiles that a single safezone may cover.",
+      "keywords": "safezone,size,area,limit"
+    },
+    "War": {
+      "display_name": "Faction War",
+      "description": "Allows factions to declare war on each other.",
+      "keywords": "war,faction,pvp,conflict"
+    },
+    "WarStartDelay": {
+      "display_name": "War Start Delay",
+      "description": "Seconds between the declaration and the start of a war.",
+      "keywords": "war,delay,start,seconds,faction"
+    },
+    "WarDuration": {
+      "display_name": "War Duration",
+      "description": "How long a war lasts, in seconds.",
+      "keywords": "war,duration,seconds,faction"
+    },
+    "WarSafehouseHitPoints": {
+      "display_name": "Safehouse Hit Points In War",
+      "description": "How much damage a safehouse takes before it falls during a war.",
+      "keywords": "war,safehouse,hit points,damage,faction"
+    },
+    "UsernameDisguises": {
+      "display_name": "Allow Username Disguises",
+      "description": "Players wearing a full-face disguise are shown without their username.",
+      "keywords": "disguise,username,mask,hide,name"
+    },
+    "HideDisguisedUserName": {
+      "display_name": "Hide Disguised Username",
+      "description": "Hides the username entirely instead of showing a placeholder.",
+      "keywords": "disguise,username,hide,name"
+    },
+    "HideAdminsInPlayerList": {
+      "display_name": "Hide Admins In Player List",
+      "description": "Admins do not appear in the in-game player list.",
+      "keywords": "admin,player list,hide,staff"
+    },
+    "ShowCoordinates": {
+      "display_name": "Show Coordinates",
+      "description": "Shows the character's coordinates in the lower right corner.",
+      "keywords": "coordinates,position,hud,display"
+    },
+    "DisableScoreboard": {
+      "display_name": "Disable Scoreboard",
+      "description": "Turns off the in-game scoreboard.",
+      "keywords": "scoreboard,players,list,disable"
+    },
+    "PVPLogToolChat": {
+      "display_name": "Log PvP To Admin Chat",
+      "description": "PvP events are reported in the admin chat.",
+      "keywords": "pvp,log,chat,admin"
+    },
+    "PVPLogToolFile": {
+      "display_name": "Log PvP To File",
+      "description": "PvP events are written to the server log files.",
+      "keywords": "pvp,log,file,server"
+    },
+    "SafetyDisconnectDelay": {
+      "display_name": "Safety Disconnect Delay",
+      "description": "Seconds a player stays in the world after disconnecting while in PvP.",
+      "keywords": "safety,disconnect,delay,pvp,combat log"
+    },
+    "ChatMessageCharacterLimit": {
+      "display_name": "Chat Message Character Limit",
+      "description": "Longest chat message a player may send.",
+      "keywords": "chat,message,limit,characters,moderation"
+    },
+    "ChatMessageSlowModeTime": {
+      "display_name": "Chat Slow Mode",
+      "description": "Seconds a player must wait between two chat messages.",
+      "keywords": "chat,slow mode,cooldown,spam,moderation"
+    },
+    "BadWordListFile": {
+      "display_name": "Bad Word List File",
+      "description": "Path to a file with one prohibited word per line.",
+      "keywords": "bad word,filter,moderation,chat,file"
+    },
+    "GoodWordListFile": {
+      "display_name": "Allowed Word List File",
+      "description": "Path to a file with words that stay allowed even if they contain a bad word.",
+      "keywords": "good word,allow,filter,moderation,chat,file"
+    },
+    "BadWordPolicy": {
+      "display_name": "Bad Word Policy",
+      "description": "What happens to a player who sends a prohibited word.",
+      "keywords": "bad word,policy,ban,kick,mute,moderation"
+    },
+    "BadWordReplacement": {
+      "display_name": "Bad Word Replacement",
+      "description": "Text that replaces a prohibited word in chat.",
+      "keywords": "bad word,replacement,censor,chat,moderation"
+    },
+    "DiscordChatChannel": {
+      "display_name": "Discord Chat Channel",
+      "description": "Name of the Discord channel that mirrors the in-game chat.",
+      "keywords": "discord,chat,channel,bridge"
+    },
+    "DiscordLogChannel": {
+      "display_name": "Discord Log Channel",
+      "description": "Name of the Discord channel that receives server log messages.",
+      "keywords": "discord,log,channel"
+    },
+    "DiscordCommandChannel": {
+      "display_name": "Discord Command Channel",
+      "description": "Name of the Discord channel that accepts admin commands.",
+      "keywords": "discord,command,channel,admin"
+    },
+    "WebhookAddress": {
+      "display_name": "Webhook Address",
+      "description": "Incoming webhook URL the server posts messages to.",
+      "keywords": "webhook,slack,url,notification"
+    },
+    "AntiCheatSafety": {
+      "display_name": "Safety System",
+      "description": "Reaction when a client manipulates the PvP safety system.",
+      "keywords": "anti-cheat,safety,pvp,cheat"
+    },
+    "AntiCheatSpeed": {
+      "display_name": "Movement Speed",
+      "description": "Reaction when a character moves faster than possible.",
+      "keywords": "anti-cheat,speed,movement,cheat"
+    },
+    "AntiCheatNoClip": {
+      "display_name": "No-Clipping",
+      "description": "Reaction when a character moves through walls.",
+      "keywords": "anti-cheat,noclip,walls,cheat"
+    },
+    "AntiCheatHit": {
+      "display_name": "Hit Detection",
+      "description": "Reaction when hits are reported that cannot have happened.",
+      "keywords": "anti-cheat,hit,damage,combat,cheat"
+    },
+    "AntiCheatPacketException": {
+      "display_name": "Packet Exceptions",
+      "description": "Reaction when a client sends malformed network packets.",
+      "keywords": "anti-cheat,packet,network,exception,cheat"
+    },
+    "AntiCheatPermission": {
+      "display_name": "Permissions",
+      "description": "Reaction when a client uses commands above its access level.",
+      "keywords": "anti-cheat,permission,access,admin,cheat"
+    },
+    "AntiCheatXP": {
+      "display_name": "Experience Points",
+      "description": "Reaction when a client awards itself experience.",
+      "keywords": "anti-cheat,xp,experience,skill,cheat"
+    },
+    "AntiCheatSafeHouse": {
+      "display_name": "Safehouses",
+      "description": "Reaction when a client bypasses safehouse rules.",
+      "keywords": "anti-cheat,safehouse,cheat"
+    },
+    "AntiCheatPlayer": {
+      "display_name": "Player State",
+      "description": "Reaction when a client reports an impossible character state.",
+      "keywords": "anti-cheat,player,state,cheat"
+    },
+    "AntiCheatChecksum": {
+      "display_name": "File Checksums",
+      "description": "Reaction when a client's game files do not match the server's.",
+      "keywords": "anti-cheat,checksum,files,lua,cheat"
+    },
+    "server_browser_announced_ip": {
+      "display_name": "Announced IP",
+      "description": "IP address the server announces in the server browser.",
+      "keywords": "ip,server browser,announce,network"
+    },
+    "RCONPort": {
+      "display_name": "RCON Port",
+      "description": "Port of the remote console. Read-only here — changing it would cut this connection.",
+      "keywords": "rcon,port,remote console,network"
+    },
+    "RCONPassword": {
+      "display_name": "RCON Password",
+      "description": "Password of the remote console. Read-only here — changing it would cut this connection.",
+      "keywords": "rcon,password,remote console"
+    },
+    "MaxPacketsPerSecond": {
+      "display_name": "Max Packets Per Second",
+      "description": "Limit of network packets processed per client and second.",
+      "keywords": "network,packets,limit,performance"
+    },
+    "MultiplayerStatisticsPeriod": {
+      "display_name": "Statistics Period",
+      "description": "Seconds between multiplayer statistics updates.",
+      "keywords": "statistics,period,multiplayer,performance",
+      "disabled": "Off"
+    },
+    "choices": {
+      "ban": "Ban",
+      "kick": "Kick",
+      "log": "Log",
+      "disable": "Disable",
+      "mute": "Mute"
     }
   },
 

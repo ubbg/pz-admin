@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -11,6 +12,19 @@ import (
 	"github.com/blang/semver"
 	"github.com/minio/selfupdate"
 	"github.com/wailsapp/wails/v2/pkg/runtime"
+)
+
+// Herkunft der Selbstaktualisierung — die einzige Stelle, an der sie steht.
+//
+// Ein leerer updateRepoOwner heißt: Für diesen Build gibt es keine eigene
+// Release-Quelle. Die Anwendung prüft dann gar nicht, statt still dem Upstream zu
+// folgen — ein Upstream-Release brächte alle Build-41-Annahmen zurück, die dieser
+// Fork gerade beseitigt. Wer eigene Releases veröffentlicht, trägt hier seinen
+// GitHub-Benutzer ein; alles Weitere (Prüfung, Download-URL, Anzeige in den
+// Einstellungen) folgt daraus.
+const (
+	updateRepoOwner = ""
+	updateRepoName  = "pz-admin"
 )
 
 type UpdateInfo struct {
@@ -30,9 +44,47 @@ type Release struct {
 	Prerelease   bool   `json:"prerelease"`
 }
 
+// UpdateSource beschreibt, welcher Release-Quelle diese Anwendung folgt. Die
+// Oberfläche zeigt das an, damit niemand raten muss, woher eine Aktualisierung käme.
+type UpdateSource struct {
+	Configured bool   `json:"configured"`
+	Owner      string `json:"owner"`
+	Repo       string `json:"repo"`
+	Url        string `json:"url"`
+}
+
+func updateSource() UpdateSource {
+	if updateRepoOwner == "" {
+		return UpdateSource{Configured: false, Repo: updateRepoName}
+	}
+
+	return UpdateSource{
+		Configured: true,
+		Owner:      updateRepoOwner,
+		Repo:       updateRepoName,
+		Url:        fmt.Sprintf("https://github.com/%s/%s", updateRepoOwner, updateRepoName),
+	}
+}
+
+func (app *App) GetUpdateSource() UpdateSource {
+	return updateSource()
+}
+
 func (app *App) CheckForUpdate() UpdateInfo {
 	os := app.GetOs()     // windows, linux, macos
 	arch := app.GetArch() // amd64, arm64
+
+	source := updateSource()
+
+	// Ohne eigene Release-Quelle wird nichts geprüft: kein Netzzugriff, keine
+	// Fehlermeldung, kein fremdes Release.
+	if !source.Configured {
+		runtime.LogInfo(app.ctx, "No update source configured, skipping update check")
+		return UpdateInfo{
+			UpdateAvailable: false,
+			CurrentVersion:  version,
+		}
+	}
 
 	if !(os == "windows" || os == "linux" || os == "macos") {
 		return UpdateInfo{
@@ -59,8 +111,8 @@ func (app *App) CheckForUpdate() UpdateInfo {
 	lastUpdateCheck := int(time.Now().Unix())
 	config.LastUpdateCheck = &lastUpdateCheck
 
-	repoOwner := "beyenilmez"
-	repoName := "pz-admin"
+	repoOwner := source.Owner
+	repoName := source.Repo
 
 	// GitHub API endpoint to fetch latest release
 	apiUrl := fmt.Sprintf("https://api.github.com/repos/%s/%s/releases/latest", repoOwner, repoName)
@@ -170,6 +222,17 @@ func (app *App) CheckForUpdate() UpdateInfo {
 }
 
 func (app *App) Update(downloadUrl string) error {
+	// Ohne eigene Release-Quelle gibt es nichts einzuspielen — auch nicht aus einer
+	// URL, die noch von einem früheren Lauf im Speicher liegt.
+	if !updateSource().Configured {
+		runtime.LogWarning(app.ctx, "No update source configured, refusing to apply an update")
+		app.SendNotification(Notification{
+			Title:   "settings.setting.update.no_update_source",
+			Variant: "warning",
+		})
+		return errors.New("no update source configured")
+	}
+
 	// Log the download URL
 	runtime.LogInfo(app.ctx, "Starting update download from: "+downloadUrl)
 

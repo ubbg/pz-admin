@@ -10,10 +10,12 @@ import { useStorage } from "@/contexts/storage-provider";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { BrowserOpenURL } from "@/wailsjs/runtime/runtime";
+import { useUpdateSource } from "@/lib/update-source";
 
 export function UpdateSetting() {
   const { t } = useTranslation();
   const { getValue } = useStorage();
+  const source = useUpdateSource();
 
   const [updateInfo, setUpdateInfo] = useState<main.UpdateInfo>(main.UpdateInfo.createFrom({}));
 
@@ -22,8 +24,11 @@ export function UpdateSetting() {
   const [isUpdating, setIsUpdating] = useState(false);
 
   useEffect(() => {
-    handleCheckForUpdate();
-  }, []);
+    // Ohne eigene Release-Quelle wird nicht geprüft — siehe updateRepoOwner in update.go
+    if (source?.configured) {
+      handleCheckForUpdate();
+    }
+  }, [source]);
 
   useEffect(() => {
     // Update last update check timestamp from config
@@ -33,11 +38,11 @@ export function UpdateSetting() {
   useEffect(() => {
     // Automatic update trigger from argument
     const storedUpdate = getValue("update");
-    if (storedUpdate && !isChecking && !isUpdating) {
+    if (source?.configured && storedUpdate && !isChecking && !isUpdating) {
       setIsUpdating(true);
       Update(storedUpdate).finally(() => setIsUpdating(false));
     }
-  }, [getValue]);
+  }, [getValue, source]);
 
   const handleCheckForUpdate = () => {
     if (!isUpdating) {
@@ -74,10 +79,12 @@ export function UpdateSetting() {
             <RefreshCw className={`p-3 -ml-1.5 w-14 h-14 ${isChecking || isUpdating ? "animate-spin" : ""}`} />
             <div className="flex flex-col justify-center">
               <SettingLabel className="flex items-center gap-2">
-                {updateInfo.updateAvailable
+                {source && !source.configured
+                  ? t("settings.setting.update.no_update_source")
+                  : updateInfo.updateAvailable
                   ? t("settings.setting.update.update_available")
                   : t("settings.setting.update.no_updates_available")}
-                {lastUpdateCheck && lastUpdateCheck !== 0 && (
+                {source?.configured && lastUpdateCheck !== 0 && (
                   <SettingDescription>
                     {" (" + t("settings.setting.update.last_checked") + ": " + formatDate(lastUpdateCheck) + ")"}
                   </SettingDescription>
@@ -103,7 +110,9 @@ export function UpdateSetting() {
               {isUpdating ? t("settings.setting.update.updating") : t("settings.setting.update.update")}
             </Button>
           )}
-          <Button onClick={handleCheckForUpdate}>{t("settings.setting.update.check_for_updates")}</Button>
+          <Button onClick={handleCheckForUpdate} disabled={source !== undefined && !source.configured}>
+            {t("settings.setting.update.check_for_updates")}
+          </Button>
         </div>
       </div>
       <div className="p-1.5 pt-0" hidden={!updateInfo.updateAvailable}>

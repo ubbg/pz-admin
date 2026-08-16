@@ -15,12 +15,20 @@ import {
   ExportOptionsDialog,
   ImportOptionsDialog,
   SendRconCommand,
-  UpdatePzOptions,
+  UpdateOptions,
 } from "@/wailsjs/go/main/App";
 import { main } from "@/wailsjs/go/models";
 import { EventsOff, EventsOn } from "@/wailsjs/runtime/runtime";
 import { deepEqual } from "@/lib/utils";
 import { optionsMap } from "@/assets/options";
+import {
+  emptyServerOptions,
+  OptionValue,
+  optionValueFromString,
+  optionValuesToStrings,
+  serverOptionsFrom,
+  ServerOptions,
+} from "@/lib/options";
 
 interface RconContextType {
   isConnected: boolean;
@@ -33,9 +41,12 @@ interface RconContextType {
   port: string;
   players: main.Player[];
 
-  options: main.PzOptions;
-  modifiedOptions: main.PzOptions;
-  modifyOption: (key: keyof main.PzOptions, value: main.PzOptions[keyof main.PzOptions]) => void;
+  options: Record<string, OptionValue>;
+  modifiedOptions: Record<string, OptionValue>;
+  // Was der Server gemeldet hat: Namen in Serverreihenfolge und der Typ je Name.
+  optionNames: string[];
+  optionKinds: Record<string, string>;
+  modifyOption: (key: string, value: OptionValue) => void;
   cancelModifiedOptions: () => void;
   optionsModified: boolean;
   updateOptions: (reload?: boolean) => Promise<boolean>;
@@ -58,11 +69,13 @@ export const RconProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [port, setPort] = useState("");
   const [players, setPlayers] = useState<main.Player[]>([]);
 
-  const [options, setOptions] = useState<main.PzOptions>({} as main.PzOptions);
-  const [modifiedOptions, setModifiedOptions] = useState<main.PzOptions>({} as main.PzOptions);
+  const [serverOptions, setServerOptions] = useState<ServerOptions>(emptyServerOptions);
+  const [modifiedOptions, setModifiedOptions] = useState<Record<string, OptionValue>>({});
   const [updatingOptions, setUpdatingOptions] = useState(false);
 
   const [reloadDoubleOptionsKey, setReloadDoubleOptionsKey] = useState(0);
+
+  const options = serverOptions.values;
 
   const optionsModified = useMemo(() => !deepEqual(options, modifiedOptions), [options, modifiedOptions]);
   const optionsInvalid = useMemo(() => {
@@ -82,19 +95,20 @@ export const RconProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       setPlayers(players);
     };
 
-    const handleUpdateOptions = (newOptions: main.PzOptions) => {
-      setModifiedOptions(newOptions);
-      setOptions(newOptions);
+    const handleUpdateOptions = (list: main.Option[]) => {
+      const next = serverOptionsFrom(list);
+      setServerOptions(next);
+      setModifiedOptions(next.values);
     };
 
     EventsOn("update-players", handleUpdatePlayers);
-    EventsOn("update-options", handleUpdateOptions);
+    EventsOn("update-options-list", handleUpdateOptions);
 
     return () => {
       EventsOff("update-players");
-      EventsOff("update-options");
+      EventsOff("update-options-list");
     };
-  }, [modifiedOptions, options]);
+  }, []);
 
   const connect = useCallback(async (credentials: main.Credentials): Promise<boolean> => {
     try {
@@ -119,8 +133,8 @@ export const RconProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       const result = await DisconnectRcon();
       setIsConnected(!result);
       setPlayers([]);
-      setOptions({} as main.PzOptions);
-      setModifiedOptions({} as main.PzOptions);
+      setServerOptions(emptyServerOptions);
+      setModifiedOptions({});
       setIp("");
       setPort("");
       setUpdatingOptions(false);
@@ -147,23 +161,23 @@ export const RconProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     [isConnected]
   );
 
-  const modifyOption = useCallback((key: keyof main.PzOptions, value: main.PzOptions[keyof main.PzOptions]) => {
+  const modifyOption = useCallback((key: string, value: OptionValue) => {
     setModifiedOptions((prevOptions) => ({ ...prevOptions, [key]: value }));
   }, []);
 
   const updateOptions: RconContextType["updateOptions"] = useCallback(
     async (reload) => {
       setUpdatingOptions(true);
-      const success = await UpdatePzOptions(modifiedOptions, reload ?? false);
+      const success = await UpdateOptions(optionValuesToStrings(modifiedOptions, serverOptions.kinds), reload ?? false);
       setUpdatingOptions(false);
 
       return success;
     },
-    [modifiedOptions]
+    [modifiedOptions, serverOptions]
   );
 
   const cancelModifiedOptions = useCallback(() => {
-    setModifiedOptions(options as main.PzOptions);
+    setModifiedOptions(options);
   }, [options]);
 
   useEffect(() => {
@@ -180,13 +194,22 @@ export const RconProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const importOptions = () => {
     ImportOptionsDialog().then((response) => {
       if (response.success) {
-        setModifiedOptions(response.options);
+        // Eingelesen wird nur, was der Server auch kennt — der Rest hätte kein Ziel.
+        setModifiedOptions((prevOptions) => {
+          const next = { ...prevOptions };
+          for (const [name, value] of Object.entries(response.options)) {
+            if (serverOptions.kinds[name] !== undefined) {
+              next[name] = optionValueFromString(value, serverOptions.kinds[name]);
+            }
+          }
+          return next;
+        });
       }
     });
   };
 
   const exportOptions = () => {
-    ExportOptionsDialog(modifiedOptions);
+    ExportOptionsDialog(optionValuesToStrings(modifiedOptions, serverOptions.kinds));
   };
 
   return (
@@ -203,6 +226,8 @@ export const RconProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         players,
         options,
         modifiedOptions,
+        optionNames: serverOptions.names,
+        optionKinds: serverOptions.kinds,
         optionsModified,
         modifyOption,
         cancelModifiedOptions,

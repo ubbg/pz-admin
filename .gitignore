@@ -32,3 +32,6 @@ node_modules
 
 # Certificate files
 certificate.*
+
+# Arbeitsvorrat der Engineering-Skills (Issues/Specs vor specs/)
+.scratch/

@@ -66,7 +66,9 @@ func GetDefaultConfig() Config {
 	defaultWindowScale := 100
 	defaultOpacity := 80
 	defaultWindowEffect := 3
-	defaultCheckForUpdates := true
+	// Ohne eigene Release-Quelle bleibt die Prüfung aus, statt still dem Upstream zu
+	// folgen — siehe updateRepoOwner in update.go.
+	defaultCheckForUpdates := updateSource().Configured
 	defaultLastUpdateCheck := 0
 	defaultRememberCredentials := false
 	defaultAutoConnect := false
@@ -124,7 +126,7 @@ func config_init() error {
 		merge_defaults()
 	}
 
-	if GetOs() == "macos" {
+	if GetOs() == "macos" || !updateSource().Configured {
 		falseValue := false
 		config.CheckForUpdates = &falseValue
 	}

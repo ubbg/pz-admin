@@ -292,7 +292,8 @@
 
       "check_for_updates": {
         "label": "Başlangıçta Güncellemeleri Kontrol Et",
-        "description": "Başlangıçta güncellemeleri kontrol et."
+        "description": "Başlangıçta güncellemeleri kontrol et.",
+        "no_source_description": "Bu sürüm için bir güncelleme kaynağı tanımlı değil, bu yüzden kontrol yapılmaz."
       },
 
       "update": {
@@ -308,7 +309,8 @@
         "update_applied": "Güncelleme uygulandı.",
         "restarting": "Yeniden başlatılıyor...",
         "need_admin_privileges": "Uygulamayı güncellemek için yönetici yetkileri gereklidir.",
-        "update_successful": "Güncelleme başarıyla uygulandı."
+        "update_successful": "Güncelleme başarıyla uygulandı.",
+        "no_update_source": "Güncelleme kaynağı tanımlı değil"
       },
 
       "rcon_check_interval": {
@@ -334,6 +336,12 @@
       "debug_mode": {
         "label": "Hata Ayıklama Modu",
         "description": "Hata ayıklama modunu etkinleştir."
+      },
+      "update_source": {
+        "label": "Güncelleme Kaynağı",
+        "description": "Sürümler bu depodan kontrol edilir ve indirilir.",
+        "not_configured": "Tanımlı değil",
+        "not_configured_description": "Bu yapı hiçbir sürüm kaynağını izlemiyor. Yabancı bir sürümün onun yerini almaması için güncellemeler kapalıdır."
       }
     }
   },

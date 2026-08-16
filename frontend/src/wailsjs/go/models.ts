@@ -521,6 +521,24 @@ export namespace main {
 	        this.releaseUrl = source["releaseUrl"];
 	    }
 	}
+	export class UpdateSource {
+	    configured: boolean;
+	    owner: string;
+	    repo: string;
+	    url: string;
+	
+	    static createFrom(source: any = {}) {
+	        return new UpdateSource(source);
+	    }
+	
+	    constructor(source: any = {}) {
+	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.configured = source["configured"];
+	        this.owner = source["owner"];
+	        this.repo = source["repo"];
+	        this.url = source["url"];
+	    }
+	}
 
 }
 

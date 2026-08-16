@@ -90,6 +90,10 @@ export function GetOs() {
   return window['go']['main']['App']['GetOs']();
 }
 
+export function GetUpdateSource() {
+  return window['go']['main']['App']['GetUpdateSource']();
+}
+
 export function GetVersion() {
   return window['go']['main']['App']['GetVersion']();
 }

@@ -10,6 +10,7 @@ interface SwitchConfigProps {
   label: string;
   description?: string;
   requiresRestart?: boolean;
+  disabled?: boolean;
   children?: React.ReactNode;
 }
 
@@ -18,6 +19,7 @@ export function SwitchConfig({
   label,
   description = "",
   requiresRestart = false,
+  disabled = false,
   children,
 }: SwitchConfigProps) {
   const { config, setConfigField } = useConfig();
@@ -39,7 +41,7 @@ export function SwitchConfig({
   };
 
   return (
-    <SettingsItem loading={isLoading} configKey={configKey} requiresRestart={requiresRestart}>
+    <SettingsItem loading={isLoading} configKey={configKey} requiresRestart={requiresRestart} disabled={disabled}>
       <div>
         <SettingLabel>{label}</SettingLabel>
         {description && (

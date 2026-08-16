@@ -292,7 +292,8 @@
 
       "check_for_updates": {
         "label": "Check For Updates On Startup",
-        "description": "Check for updates on startup."
+        "description": "Check for updates on startup.",
+        "no_source_description": "No update source is configured for this build, so nothing is checked."
       },
 
       "update": {
@@ -308,7 +309,8 @@
         "update_applied": "Update applied successfully.",
         "restarting": "Restarting...",
         "need_admin_privileges": "Administration privileges are needed to update the application.",
-        "update_successful": "Update was successfully applied."
+        "update_successful": "Update was successfully applied.",
+        "no_update_source": "No update source configured"
       },
 
       "rcon_check_interval": {
@@ -334,6 +336,12 @@
       "debug_mode": {
         "label": "Debug Mode",
         "description": "Enable debug mode."
+      },
+      "update_source": {
+        "label": "Update Source",
+        "description": "Releases are checked and downloaded from this repository.",
+        "not_configured": "Not configured",
+        "not_configured_description": "This build follows no release source. Updates are disabled so that a foreign release cannot replace it."
       }
     }
   },

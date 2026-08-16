@@ -58,6 +58,10 @@ export function CheckModsNeedUpdate() {
   return window['go']['main']['App']['CheckModsNeedUpdate']();
 }
 
+export function ChooseSandboxPathDialog(arg1) {
+  return window['go']['main']['App']['ChooseSandboxPathDialog'](arg1);
+}
+
 export function Chopper() {
   return window['go']['main']['App']['Chopper']();
 }
@@ -194,6 +198,10 @@ export function ReadConfig(arg1) {
   return window['go']['main']['App']['ReadConfig'](arg1);
 }
 
+export function ReadSandboxVars() {
+  return window['go']['main']['App']['ReadSandboxVars']();
+}
+
 export function ReleaseSafehouse() {
   return window['go']['main']['App']['ReleaseSafehouse']();
 }
@@ -234,6 +242,10 @@ export function RestartApplication(arg1) {
   return window['go']['main']['App']['RestartApplication'](arg1);
 }
 
+export function SandboxAccess() {
+  return window['go']['main']['App']['SandboxAccess']();
+}
+
 export function SaveConfigDialog() {
   return window['go']['main']['App']['SaveConfigDialog']();
 }
@@ -248,6 +260,10 @@ export function SaveItemsDialog(arg1) {
 
 export function SaveMessagesDialog(arg1) {
   return window['go']['main']['App']['SaveMessagesDialog'](arg1);
+}
+
+export function SaveSandboxVars(arg1) {
+  return window['go']['main']['App']['SaveSandboxVars'](arg1);
 }
 
 export function SaveWorld() {
@@ -284,6 +300,10 @@ export function SetConfigField(arg1, arg2) {
 
 export function SetLogLevel(arg1, arg2) {
   return window['go']['main']['App']['SetLogLevel'](arg1, arg2);
+}
+
+export function SetSandboxAccess(arg1, arg2) {
+  return window['go']['main']['App']['SetSandboxAccess'](arg1, arg2);
 }
 
 export function SetStats(arg1, arg2) {

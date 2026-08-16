@@ -31,6 +31,8 @@ export namespace main {
 	    disableRandomButtons?: boolean;
 	    disableOtherButtons?: boolean;
 	    debugMode?: boolean;
+	    sandboxAccessMode?: string;
+	    sandboxPath?: string;
 	
 	    static createFrom(source: any = {}) {
 	        return new Config(source);
@@ -68,6 +70,8 @@ export namespace main {
 	        this.disableRandomButtons = source["disableRandomButtons"];
 	        this.disableOtherButtons = source["disableOtherButtons"];
 	        this.debugMode = source["debugMode"];
+	        this.sandboxAccessMode = source["sandboxAccessMode"];
+	        this.sandboxPath = source["sandboxPath"];
 	    }
 	}
 	export class Coordinates {
@@ -206,6 +210,105 @@ export namespace main {
 	        this.error = source["error"];
 	    }
 	}
+	export class SandboxAccess {
+	    configured: boolean;
+	    mode: string;
+	    path: string;
+	    file: string;
+	    reason: string;
+	
+	    static createFrom(source: any = {}) {
+	        return new SandboxAccess(source);
+	    }
+	
+	    constructor(source: any = {}) {
+	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.configured = source["configured"];
+	        this.mode = source["mode"];
+	        this.path = source["path"];
+	        this.file = source["file"];
+	        this.reason = source["reason"];
+	    }
+	}
+	export class SandboxVar {
+	    key: string;
+	    group: string;
+	    name: string;
+	    value: string;
+	    kind: string;
+	    quoted: boolean;
+	    line: number;
+	
+	    static createFrom(source: any = {}) {
+	        return new SandboxVar(source);
+	    }
+	
+	    constructor(source: any = {}) {
+	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.key = source["key"];
+	        this.group = source["group"];
+	        this.name = source["name"];
+	        this.value = source["value"];
+	        this.kind = source["kind"];
+	        this.quoted = source["quoted"];
+	        this.line = source["line"];
+	    }
+	}
+	export class SandboxDocument {
+	    success: boolean;
+	    file: string;
+	    vars: SandboxVar[];
+	    error: string;
+	
+	    static createFrom(source: any = {}) {
+	        return new SandboxDocument(source);
+	    }
+	
+	    constructor(source: any = {}) {
+	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.success = source["success"];
+	        this.file = source["file"];
+	        this.vars = this.convertValues(source["vars"], SandboxVar);
+	        this.error = source["error"];
+	    }
+	
+		convertValues(a: any, classs: any, asMap: boolean = false): any {
+		    if (!a) {
+		        return a;
+		    }
+		    if (a.slice && a.map) {
+		        return (a as any[]).map(elem => this.convertValues(elem, classs));
+		    } else if ("object" === typeof a) {
+		        if (asMap) {
+		            for (const key of Object.keys(a)) {
+		                a[key] = new classs(a[key]);
+		            }
+		            return a;
+		        }
+		        return new classs(a);
+		    }
+		    return a;
+		}
+	}
+	export class SandboxSaveResult {
+	    success: boolean;
+	    backup: string;
+	    changed: string[];
+	    error: string;
+	
+	    static createFrom(source: any = {}) {
+	        return new SandboxSaveResult(source);
+	    }
+	
+	    constructor(source: any = {}) {
+	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.success = source["success"];
+	        this.backup = source["backup"];
+	        this.changed = source["changed"];
+	        this.error = source["error"];
+	    }
+	}
+	
 	export class ServerMessage {
 	    message: string;
 	    lineColors: Record<number, string>;

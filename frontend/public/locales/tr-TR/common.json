@@ -25,7 +25,8 @@
   "nav": {
     "admin_panel": "Admin Paneli",
     "tools": "Araçlar",
-    "settings": "Ayarlar"
+    "settings": "Ayarlar",
+    "sandbox": "Sandbox"
   },
 
   "notifications": {
@@ -474,6 +475,18 @@
         "description": "Sürümler bu depodan kontrol edilir ve indirilir.",
         "not_configured": "Tanımlı değil",
         "not_configured_description": "Bu yapı hiçbir sürüm kaynağını izlemiyor. Yabancı bir sürümün onun yerini almaması için güncellemeler kapalıdır."
+      },
+      "sandbox_access": {
+        "label": "Sandbox Dosya Erişimi",
+        "description": "Build 42'nin sandbox ayarlarına RCON üzerinden erişilemez. Uygulamayı dosyaya yönlendirin: yerel bir yol ya da bir Docker biriminin veri dizini.",
+        "mode_local": "Yerel yol",
+        "mode_docker": "Docker birimi",
+        "placeholder_local": "/home/user/Zomboid/Server/servertest_SandboxVars.lua",
+        "placeholder_docker": "/srv/zomboid/data",
+        "choose": "Seç",
+        "resolved": "Dosya: {{file}}",
+        "not_usable": "Kullanılamıyor: {{reason}}",
+        "not_configured": "Tanımlı değil — sandbox alanı etkin değil."
       }
     }
   },
@@ -1139,6 +1152,16 @@
         "save_credentials": "Kimlik Bilgilerini Kaydet",
         "auto_connect": "Başlangıçta otomatik bağlan",
         "connect": "Bağlan"
+      },
+      "sandbox": {
+        "title": "Sandbox ayarları",
+        "not_configured": "Sandbox dosyasına erişim tanımlı değil. Bu ayarlar sunucudaki servertest_SandboxVars.lua dosyasında durur — RCON onlara erişemez. Yolu Ayarlar → RCON altında belirleyin.",
+        "search": "Değişkenlerde ara",
+        "general_group": "Genel",
+        "restart_required": "Sandbox değişiklikleri ancak sunucu yeniden başlatıldığında etkili olur — bunlar için yeniden yükleme yoktur.",
+        "modified": "{{count}} değişti",
+        "saved": "Dosyaya yazıldı. Sunucu değerleri bir sonraki başlatmada alır.",
+        "saved_backup": "Yedek: {{backup}}"
       }
     }
   },
@@ -1456,5 +1479,12 @@
       "description": "Noktalı virgülle ayrılmış mod kimlikleri. Build 42'nin yapılandırma dosyasında beklediği ters eğik çizgi kaydederken eklenir.",
       "keywords": "mod,modlar,sunucu"
     }
+  },
+  "sandbox": {
+    "saved": "{{count}} değer dosyaya yazıldı",
+    "saved_restart_hint": "Bir sonraki sunucu başlatmasında etkili olurlar. Yedek: {{backup}}",
+    "nothing_to_save": "Değişen değer yok",
+    "save_failed": "Sandbox dosyası yazılamadı",
+    "save_failed_with_backup": "Sandbox dosyası yazılamadı — önceki durum {{backup}} konumunda"
   }
 }

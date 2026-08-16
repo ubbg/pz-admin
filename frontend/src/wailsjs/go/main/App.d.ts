@@ -30,6 +30,8 @@ export function CheckForUpdate():Promise<main.UpdateInfo>;
 
 export function CheckModsNeedUpdate():Promise<void>;
 
+export function ChooseSandboxPathDialog(arg1:string):Promise<string>;
+
 export function Chopper():Promise<void>;
 
 export function ConnectRcon(arg1:main.Credentials):Promise<boolean>;
@@ -98,6 +100,8 @@ export function RandomThunder():Promise<void>;
 
 export function ReadConfig(arg1:string):Promise<void>;
 
+export function ReadSandboxVars():Promise<main.SandboxDocument>;
+
 export function ReleaseSafehouse():Promise<boolean>;
 
 export function ReloadAllLua():Promise<boolean>;
@@ -118,6 +122,8 @@ export function RemoveZombies():Promise<boolean>;
 
 export function RestartApplication(arg1:Array<string>):Promise<void>;
 
+export function SandboxAccess():Promise<main.SandboxAccess>;
+
 export function SaveConfigDialog():Promise<void>;
 
 export function SaveCredentials(arg1:main.Credentials):Promise<boolean>;
@@ -125,6 +131,8 @@ export function SaveCredentials(arg1:main.Credentials):Promise<boolean>;
 export function SaveItemsDialog(arg1:Array<main.ItemRecord>):Promise<void>;
 
 export function SaveMessagesDialog(arg1:main.ServerMessage):Promise<void>;
+
+export function SaveSandboxVars(arg1:Record<string, string>):Promise<main.SandboxSaveResult>;
 
 export function SaveWorld():Promise<void>;
 
@@ -143,6 +151,8 @@ export function SetAccessLevel(arg1:Array<string>,arg2:string):Promise<void>;
 export function SetConfigField(arg1:string,arg2:any):Promise<void>;
 
 export function SetLogLevel(arg1:string,arg2:string):Promise<boolean>;
+
+export function SetSandboxAccess(arg1:string,arg2:string):Promise<main.SandboxAccess>;
 
 export function SetStats(arg1:string,arg2:number):Promise<boolean>;
 
